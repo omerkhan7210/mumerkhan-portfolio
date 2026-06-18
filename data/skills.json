@@ -1,0 +1,90 @@
+[
+  {
+    "category": "Frontend Development",
+    "skills": [
+      "HTML5 & Semantic Markup",
+      "CSS3 & Tailwind CSS",
+      "JavaScript (Modern ES6+)",
+      "React & Next.js",
+      "Responsive Design",
+      "UI/UX Implementation"
+    ]
+  },
+  {
+    "category": "Backend Development",
+    "skills": [
+      "Node.js & Express",
+      "PHP & Custom WordPress Plugins",
+      "MongoDB & MySQL",
+      "RESTful API Design",
+      "Database Architecture",
+      "Auth & Security"
+    ]
+  },
+  {
+    "category": "WordPress Expertise",
+    "skills": [
+      "WordPress Development",
+      "Custom Theme Development",
+      "Custom Plugin Development",
+      "Elementor & Page Builders",
+      "WooCommerce Setup & Customization",
+      "WordPress Optimization & SEO"
+    ]
+  },
+  {
+    "category": "E-Commerce",
+    "skills": [
+      "WooCommerce Development",
+      "Product Page Design",
+      "Payment Gateway Integration",
+      "Store Optimization",
+      "Inventory Management",
+      "Conversion Optimization"
+    ]
+  },
+  {
+    "category": "Design & Conversion",
+    "skills": [
+      "Figma to WordPress Conversion",
+      "Pixel-Perfect Implementation",
+      "UI/UX Design Principles",
+      "Landing Page Design",
+      "User Experience Optimization",
+      "Conversion-Focused Design"
+    ]
+  },
+  {
+    "category": "Automation & Integration",
+    "skills": [
+      "n8n Workflow Automation",
+      "API Integration",
+      "Google Maps API",
+      "Email Automation",
+      "Data Extraction & Processing",
+      "Custom Integrations"
+    ]
+  },
+  {
+    "category": "MERN Stack",
+    "skills": [
+      "MongoDB Design",
+      "Express.js Backend",
+      "React Frontend",
+      "Node.js Server",
+      "Full-Stack Web Apps",
+      "Real-time Features"
+    ]
+  },
+  {
+    "category": "Performance & SEO",
+    "skills": [
+      "Technical SEO",
+      "Core Web Vitals",
+      "Website Speed Optimization",
+      "Mobile Optimization",
+      "Schema.org Markup",
+      "Search Engine Rankings"
+    ]
+  }
+]

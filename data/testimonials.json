@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Johnson",
+    "role": "E-Commerce Manager",
+    "text": "Umer is truly amazing and is a great WordPress expert. He quickly understood our requirements, delivered excellent work ahead of schedule, and has been supportive throughout. Highly recommended!",
+    "rating": 5,
+    "source": "Upwork"
+  },
+  {
+    "id": 2,
+    "name": "Michael Chen",
+    "role": "Project Manager",
+    "text": "Excellent work on the WordPress mobile menu fix. Umer quickly diagnosed the issue, implemented a clean solution, and ensured full responsiveness across mobile and tablet without breaking existing functionality. Clear communicator too.",
+    "rating": 5,
+    "source": "Upwork"
+  },
+  {
+    "id": 3,
+    "name": "Emma Watson",
+    "role": "Business Owner",
+    "text": "Professional, reliable, and detail-oriented. Umer delivered the custom WordPress theme exactly as we envisioned it. The site is fast, responsive, and easy to manage. Perfect for our needs!",
+    "rating": 5,
+    "source": "Upwork"
+  },
+  {
+    "id": 4,
+    "name": "James Rodriguez",
+    "role": "Startup Founder",
+    "text": "Built our custom MERN application from scratch. Umer understood the requirements perfectly and delivered a scalable, high-performance solution. Communication was excellent throughout.",
+    "rating": 5,
+    "source": "Upwork"
+  },
+  {
+    "id": 5,
+    "name": "Lisa Anderson",
+    "role": "Marketing Director",
+    "text": "Converted our Figma design into a pixel-perfect WordPress website. Umer's attention to detail is outstanding. The result exceeded our expectations and helped increase our conversion rate significantly.",
+    "rating": 5,
+    "source": "Upwork"
+  }
+]

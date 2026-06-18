@@ -1,0 +1,27 @@
+{
+  "name": "Umer Khan",
+  "title": "Full Stack Developer | WordPress & Automation Specialist",
+  "subtitle": "Building high-performance, conversion-focused websites and automation solutions",
+  "email": "omerfarooqkhan7210@gmail.com",
+  "location": "Karachi, Pakistan",
+  "upworkUrl": "https://www.upwork.com/freelancers/muhammadumerk5",
+  "stackOverflowUrl": "https://stackoverflow.com/users/omer-khan",
+  "description": "I'm a detail-oriented web developer specializing in custom MERN applications, pixel-perfect WordPress websites, and automated workflow systems. I focus on building solutions that are scalable, responsive, and tailored to business needs. Whether it's developing interactive web apps, converting designs into pixel-perfect WordPress sites, or automating business workflows with n8n, I deliver solutions that solve real-world problems efficiently.",
+  "heroDescription": "Full Stack Developer turning designs into high-performing websites and automating business processes. Experienced with WordPress, Elementor, MERN Stack, and n8n workflow automation.",
+  "status": {
+    "jobSuccess": "100%",
+    "projectsCompleted": 9,
+    "clientSatisfaction": "100%",
+    "responseTime": "0-4 hours"
+  },
+  "specializations": [
+    "Custom MERN Stack Applications",
+    "WordPress Development & Customization",
+    "Figma to WordPress Conversion",
+    "Elementor & WooCommerce",
+    "n8n Workflow Automation",
+    "Custom Plugin Development",
+    "Responsive Web Design",
+    "Performance Optimization"
+  ]
+}

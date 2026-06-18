@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /.next
+
+Sitemap: https://mumerkhan.com/sitemap.xml
