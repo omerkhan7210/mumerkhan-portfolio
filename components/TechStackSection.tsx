@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import {
   SiWordpress,
   SiReact,
@@ -21,113 +21,176 @@ import {
 } from 'react-icons/si';
 import type { IconType } from 'react-icons';
 
-/* ── Types & data ─────────────────────────────────────────────── */
+/* ── Tech data ─────────────────────────────────────────────────── */
 type Tech = {
   name: string;
   color: string;
   years: string;
   detail: string;
   Icon?: IconType;
-  label?: string; // for text-based fallback icons
+  label?: string;
 };
 
 const INNER: Tech[] = [
-  {
-    Icon: SiWordpress, name: 'WordPress', color: '#21759B',
-    years: '4+ yrs',
-    detail: '50+ sites built — custom themes, bespoke plugins, Elementor Pro & WP REST API.',
-  },
-  {
-    Icon: SiReact, name: 'React', color: '#61DAFB',
-    years: '3+ yrs',
-    detail: 'MERN Stack applications — Hooks, Context API, custom hooks, reusable component systems.',
-  },
-  {
-    Icon: SiNodedotjs, name: 'Node.js', color: '#3C873A',
-    years: '3+ yrs',
-    detail: 'REST APIs, Express.js middleware, JWT auth, server-side architecture & deployment.',
-  },
-  {
-    Icon: SiMongodb, name: 'MongoDB', color: '#47A248',
-    years: '3+ yrs',
-    detail: 'NoSQL schema design, aggregation pipelines, indexing — MERN Stack data layer.',
-  },
-  {
-    Icon: SiFigma, name: 'Figma', color: '#F24E1E',
-    years: 'Daily',
-    detail: 'Pixel-perfect design-to-code conversions, auto-layout, prototyping & client collaboration.',
-  },
-  {
-    Icon: SiN8N, name: 'n8n', color: '#EA4B71',
-    years: '2+ yrs',
-    detail: 'Workflow automation, API integrations, no-code/low-code business process automation.',
-  },
+  { Icon: SiWordpress,  name: 'WordPress', color: '#21759B', years: '4+ yrs', detail: '50+ sites built — custom themes, bespoke plugins, WP REST API & Elementor Pro builds.' },
+  { Icon: SiReact,      name: 'React',     color: '#61DAFB', years: '3+ yrs', detail: 'MERN Stack apps — Hooks, Context API, custom hooks, reusable component architecture.' },
+  { Icon: SiNodedotjs,  name: 'Node.js',   color: '#3C873A', years: '3+ yrs', detail: 'REST APIs, Express.js middleware, JWT authentication & server-side architecture.' },
+  { Icon: SiMongodb,    name: 'MongoDB',   color: '#47A248', years: '3+ yrs', detail: 'NoSQL schema design, aggregation pipelines, indexing — MERN Stack data layer.' },
+  { Icon: SiFigma,      name: 'Figma',     color: '#F24E1E', years: 'Daily',  detail: 'Pixel-perfect design-to-code conversions, auto-layout, prototyping & client collaboration.' },
+  { Icon: SiN8N,        name: 'n8n',       color: '#EA4B71', years: '2+ yrs', detail: 'Workflow automation, API integrations, no-code / low-code business process automation.' },
 ];
 
 const OUTER: Tech[] = [
-  {
-    Icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E',
-    years: '6+ yrs',
-    detail: 'Core language — ES6+, async/await, closures, event loop, DOM manipulation.',
-  },
-  {
-    Icon: SiTypescript, name: 'TypeScript', color: '#3178C6',
-    years: '2+ yrs',
-    detail: 'Type-safe React/Next.js apps — interfaces, generics, strict mode, utility types.',
-  },
-  {
-    Icon: SiNextdotjs, name: 'Next.js', color: '#ffffff',
-    years: '2+ yrs',
-    detail: 'App Router, SSR, SSG, ISR, API routes — production-grade full-stack deployments.',
-  },
-  {
-    Icon: SiPhp, name: 'PHP', color: '#7B7FB5',
-    years: '4+ yrs',
-    detail: 'WordPress custom development, OOP PHP, hooks & filters, cron jobs.',
-  },
-  {
-    Icon: SiTailwindcss, name: 'Tailwind CSS', color: '#06B6D4',
-    years: '3+ yrs',
-    detail: 'Rapid UI development, custom design system tokens, responsive layouts.',
-  },
-  {
-    Icon: SiWoocommerce, name: 'WooCommerce', color: '#96588A',
-    years: '3+ yrs',
-    detail: 'Full e-commerce builds, custom product types, payment gateway integration.',
-  },
-  {
-    Icon: SiGit, name: 'Git', color: '#F05032',
-    years: '6+ yrs',
-    detail: 'Version control, GitHub CI/CD workflows, branching strategies, team collaboration.',
-  },
-  {
-    Icon: SiHtml5, name: 'HTML5', color: '#E34F26',
-    years: '6+ yrs',
-    detail: 'Semantic markup, ARIA accessibility, web standards & browser compatibility.',
-  },
-  {
-    Icon: SiMysql, name: 'MySQL', color: '#4479A1',
-    years: '3+ yrs',
-    detail: 'Relational DB design, complex JOINs, stored procedures, query optimisation.',
-  },
+  { Icon: SiJavascript,  name: 'JavaScript',   color: '#F7DF1E', years: '6+ yrs', detail: 'Core language — ES6+, async/await, closures, event loop & DOM manipulation.' },
+  { Icon: SiTypescript,  name: 'TypeScript',   color: '#3178C6', years: '2+ yrs', detail: 'Type-safe React/Next.js — interfaces, generics, utility types, strict mode.' },
+  { Icon: SiNextdotjs,   name: 'Next.js',      color: '#FFFFFF', years: '2+ yrs', detail: 'App Router, SSR, SSG, ISR, API routes — production-grade full-stack deployments.' },
+  { Icon: SiPhp,         name: 'PHP',           color: '#8993BE', years: '4+ yrs', detail: 'WordPress custom development, OOP PHP, hooks & filters, WP-CLI, cron jobs.' },
+  { Icon: SiTailwindcss, name: 'Tailwind',      color: '#06B6D4', years: '3+ yrs', detail: 'Rapid UI development, custom design system tokens, responsive layout systems.' },
+  { Icon: SiWoocommerce, name: 'WooCommerce',   color: '#96588A', years: '3+ yrs', detail: 'Full e-commerce builds, custom product types & payment gateway integration.' },
+  { Icon: SiGit,         name: 'Git',           color: '#F05032', years: '6+ yrs', detail: 'Version control, GitHub CI/CD workflows, branching strategies & code review.' },
+  { Icon: SiHtml5,       name: 'HTML5',         color: '#E34F26', years: '6+ yrs', detail: 'Semantic markup, ARIA accessibility, web standards & cross-browser compatibility.' },
+  { Icon: SiMysql,       name: 'MySQL',         color: '#4479A1', years: '3+ yrs', detail: 'Relational DB design, complex JOINs, stored procedures & query optimisation.' },
 ];
 
-const ALL_TECHS = [...INNER, ...OUTER];
+const INNER_R   = 178;  // orbit radius px from center
+const OUTER_R   = 290;  // orbit radius px from center
+const ICON_BOX  = 54;   // icon container size px
+const INNER_DUR = 38;   // seconds per revolution
+const OUTER_DUR = 72;
 
-const INNER_R = 155;  // orbit radius px
-const OUTER_R = 252;
-const ICON_BOX = 52;  // icon container px
-const INNER_DUR = 38; // seconds per revolution
-const OUTER_DUR = 70;
+/* ── Tooltip (fixed, follows cursor position at time of hover) ─── */
+type TooltipInfo = { tech: Tech; x: number; y: number } | null;
 
-/* ── Orbit ring ───────────────────────────────────────────────── */
+function FloatingTooltip({ info }: { info: TooltipInfo }) {
+  if (!info) return null;
+  const { tech, x, y } = info;
+  /* Clamp to avoid edge overflow */
+  const left = Math.min(Math.max(x, 180), (typeof window !== 'undefined' ? window.innerWidth : 1200) - 180);
+  const top  = y - 20; // appear above cursor
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        left,
+        top,
+        transform: 'translate(-50%, -100%)',
+        zIndex: 9999,
+        pointerEvents: 'none',
+        animation: 'ts-tooltip-in 0.18s cubic-bezier(0.16,1,0.3,1) forwards',
+      }}
+    >
+      <div
+        style={{
+          background: 'rgba(14,14,14,0.96)',
+          backdropFilter: 'blur(16px)',
+          border: `1px solid rgba(${hexToRgb(tech.color)}, 0.3)`,
+          borderRadius: 14,
+          padding: '12px 16px',
+          minWidth: 230,
+          maxWidth: 300,
+          boxShadow: `0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(${hexToRgb(tech.color)}, 0.1)`,
+        }}
+      >
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 7 }}>
+          {tech.Icon && <tech.Icon size={17} color={tech.color} />}
+          {tech.label && (
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.78rem', color: tech.color }}>
+              {tech.label}
+            </span>
+          )}
+          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9rem', color: '#fff', letterSpacing: '-0.01em' }}>
+            {tech.name}
+          </span>
+          <span
+            style={{
+              marginLeft: 'auto',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.65rem',
+              color: tech.color,
+              background: `rgba(${hexToRgb(tech.color)}, 0.12)`,
+              border: `1px solid rgba(${hexToRgb(tech.color)}, 0.25)`,
+              padding: '2px 8px',
+              borderRadius: 100,
+              letterSpacing: '0.05em',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}
+          >
+            {tech.years}
+          </span>
+        </div>
+        {/* Detail */}
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.5, margin: 0 }}>
+          {tech.detail}
+        </p>
+        {/* Arrow tip */}
+        <div style={{
+          position: 'absolute',
+          bottom: -6,
+          left: '50%',
+          transform: 'translateX(-50%) rotate(45deg)',
+          width: 12,
+          height: 12,
+          background: 'rgba(14,14,14,0.96)',
+          border: `1px solid rgba(${hexToRgb(tech.color)}, 0.3)`,
+          borderTop: 'none',
+          borderLeft: 'none',
+        }} />
+      </div>
+    </div>
+  );
+}
+
+/* ── Single icon badge ──────────────────────────────────────────── */
+function IconBadge({ tech, onHover }: { tech: Tech; onHover: (t: Tech | null, e?: React.MouseEvent) => void }) {
+  const [hov, setHov] = useState(false);
+  const { Icon, label, color, name } = tech;
+
+  return (
+    <div
+      onMouseEnter={(e) => { setHov(true);  onHover(tech, e); }}
+      onMouseLeave={()  => { setHov(false); onHover(null); }}
+      title={name}
+      style={{
+        width: ICON_BOX,
+        height: ICON_BOX,
+        borderRadius: 14,
+        background: hov
+          ? `rgba(${hexToRgb(color)}, 0.18)`
+          : `rgba(${hexToRgb(color)}, 0.07)`,
+        border: hov
+          ? `1px solid rgba(${hexToRgb(color)}, 0.55)`
+          : `1px solid rgba(${hexToRgb(color)}, 0.18)`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        transition: 'background 0.22s, border 0.22s, transform 0.22s, box-shadow 0.22s',
+        transform: hov ? 'scale(1.2)' : 'scale(1)',
+        boxShadow: hov ? `0 0 22px rgba(${hexToRgb(color)}, 0.45)` : 'none',
+        backdropFilter: 'blur(8px)',
+      }}
+    >
+      {Icon  && <Icon size={24} color={color} />}
+      {label && (
+        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '0.7rem', color, letterSpacing: '-0.02em' }}>
+          {label}
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* ── Orbit ring ─────────────────────────────────────────────────── */
 type OrbitProps = {
   techs: Tech[];
   radius: number;
   duration: number;
   clockwise: boolean;
   paused: boolean;
-  onHover: (tech: Tech | null) => void;
+  onHover: (t: Tech | null, e?: React.MouseEvent) => void;
 };
 
 function OrbitRing({ techs, radius, duration, clockwise, paused, onHover }: OrbitProps) {
@@ -136,7 +199,6 @@ function OrbitRing({ techs, radius, duration, clockwise, paused, onHover }: Orbi
   const dur = `${duration}s`;
 
   return (
-    /* ring origin sits at center; w/h 0 so it doesn't capture clicks */
     <div
       style={{
         position: 'absolute',
@@ -154,17 +216,8 @@ function OrbitRing({ techs, radius, duration, clockwise, paused, onHover }: Orbi
         return (
           <div
             key={tech.name}
-            /* slot: pre-rotated to spread icons evenly around the ring */
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: 0,
-              height: 0,
-              transform: `rotate(${angle}deg)`,
-            }}
+            style={{ position: 'absolute', width: 0, height: 0, transform: `rotate(${angle}deg)` }}
           >
-            {/* icon box: translated outward to the orbit radius */}
             <div
               style={{
                 position: 'absolute',
@@ -173,24 +226,18 @@ function OrbitRing({ techs, radius, duration, clockwise, paused, onHover }: Orbi
                 top: -ICON_BOX / 2,
                 left: radius - ICON_BOX / 2,
                 pointerEvents: 'auto',
-                cursor: 'pointer',
               }}
-              onMouseEnter={() => onHover(tech)}
-              onMouseLeave={() => onHover(null)}
             >
-              {/* counter-spin so the icon stays upright */}
+              {/* Counter-rotate to keep icon upright */}
               <div
                 style={{
                   width: '100%',
                   height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   animation: `${countAnim} ${dur} linear infinite`,
                   animationPlayState: paused ? 'paused' : 'running',
                 }}
               >
-                <IconBadge tech={tech} />
+                <IconBadge tech={tech} onHover={onHover} />
               </div>
             </div>
           </div>
@@ -200,186 +247,125 @@ function OrbitRing({ techs, radius, duration, clockwise, paused, onHover }: Orbi
   );
 }
 
-/* ── Single icon badge ────────────────────────────────────────── */
-function IconBadge({ tech }: { tech: Tech }) {
-  const [hov, setHov] = useState(false);
-  const { Icon, label, color } = tech;
-
-  return (
-    <div
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        width: ICON_BOX,
-        height: ICON_BOX,
-        borderRadius: 14,
-        background: hov ? `rgba(${hexToRgb(color)}, 0.15)` : 'rgba(255,255,255,0.04)',
-        border: hov ? `1px solid rgba(${hexToRgb(color)}, 0.5)` : '1px solid rgba(255,255,255,0.08)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'background 0.25s, border 0.25s, transform 0.25s, box-shadow 0.25s',
-        transform: hov ? 'scale(1.18)' : 'scale(1)',
-        boxShadow: hov ? `0 0 18px rgba(${hexToRgb(color)}, 0.35)` : 'none',
-        backdropFilter: 'blur(8px)',
-      }}
-    >
-      {Icon ? (
-        <Icon size={24} color={hov ? color : 'rgba(255,255,255,0.55)'} />
-      ) : (
-        <span
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontWeight: 800,
-            fontSize: '0.72rem',
-            color: hov ? color : 'rgba(255,255,255,0.55)',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          {label}
-        </span>
-      )}
-    </div>
-  );
-}
-
-/* ── Mobile tech list ─────────────────────────────────────────── */
-function MobileTechGrid({ active }: { active: Tech | null }) {
-  return (
-    <div className="flex flex-wrap justify-center gap-3 mt-8">
-      {ALL_TECHS.map((tech) => {
-        const { Icon, label, color, name } = tech;
-        const isActive = active?.name === name;
-        return (
-          <div
-            key={name}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 7,
-              padding: '7px 14px',
-              borderRadius: 100,
-              background: isActive ? `rgba(${hexToRgb(color)}, 0.12)` : 'rgba(255,255,255,0.04)',
-              border: `1px solid ${isActive ? `rgba(${hexToRgb(color)}, 0.4)` : 'rgba(255,255,255,0.08)'}`,
-              transition: 'all 0.2s',
-            }}
-          >
-            {Icon ? (
-              <Icon size={14} color={color} />
-            ) : (
-              <span style={{ fontSize: '0.65rem', fontWeight: 800, color, fontFamily: 'var(--font-display)' }}>
-                {label}
-              </span>
-            )}
-            <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.55)' }}>
-              {name}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ── Hex to RGB helper ────────────────────────────────────────── */
+/* ── hex → "r,g,b" helper ───────────────────────────────────────── */
 function hexToRgb(hex: string) {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+  const h = hex.replace('#', '');
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
   return `${r},${g},${b}`;
 }
 
-/* ── Main section ─────────────────────────────────────────────── */
+/* ── Main section ───────────────────────────────────────────────── */
 export default function TechStackSection() {
   const sectionRef  = useRef<HTMLElement>(null);
   const photoRef    = useRef<HTMLDivElement>(null);
   const orbitRef    = useRef<HTMLDivElement>(null);
   const headRef     = useRef<HTMLDivElement>(null);
+  const ranRef      = useRef(false);
 
   const [innerPaused, setInnerPaused] = useState(false);
   const [outerPaused, setOuterPaused] = useState(false);
-  const [hoveredTech, setHoveredTech] = useState<Tech | null>(null);
+  const [tooltip, setTooltip]         = useState<TooltipInfo>(null);
   const [headVisible, setHeadVisible] = useState(false);
 
-  /* ── Heading scroll reveal ───────────────────────────────────── */
+  /* ── Heading reveal ─────────────────────────────────────────── */
   useEffect(() => {
     const el = headRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setHeadVisible(true); obs.unobserve(el); } },
-      { threshold: 0.2 },
+      { threshold: 0.15 },
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
-  /* ── GSAP 3D photo reveal + orbit fade ──────────────────────── */
+  /* ── GSAP 3D photo reveal via IntersectionObserver ──────────── */
   useEffect(() => {
-    const run = async () => {
+    if (ranRef.current) return;
+    ranRef.current = true;
+
+    const photo  = photoRef.current;
+    const orbit  = orbitRef.current;
+    const section = sectionRef.current;
+    if (!photo || !section) return;
+
+    let gsapInstance: typeof import('gsap')['default'] | null = null;
+
+    const runAnim = async () => {
       const { default: gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
-      /* Expose for Lenis sync (SmoothScroll.tsx reads this) */
-      (window as any).__GSAP_ScrollTrigger = ScrollTrigger;
+      gsapInstance = gsap;
 
-      const photo  = photoRef.current;
-      const orbit  = orbitRef.current;
-      const section = sectionRef.current;
-      if (!photo || !section) return;
-
-      /* Photo: dramatic 3D entrance — tips up from horizontal plane */
+      /* Initial 3D state — photo is horizontal (laying flat away from viewer) */
       gsap.set(photo, {
         transformPerspective: 1000,
         rotateX: -90,
         y: -30,
-        scale: 0.85,
+        scale: 0.8,
         opacity: 0,
       });
 
-      gsap.to(photo, {
-        rotateX: 0,
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        duration: 1.8,
-        ease: 'back.out(1.5)',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          once: true,
-        },
-      });
-
-      /* Orbit rings: fade + scale in after photo lands */
       if (orbit) {
-        gsap.set(orbit, { opacity: 0, scale: 0.75 });
-        gsap.to(orbit, {
-          opacity: 1,
-          scale: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          delay: 0.55,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 70%',
-            once: true,
-          },
-        });
+        gsap.set(orbit, { opacity: 0, scale: 0.7 });
       }
+
+      /* Trigger on scroll */
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+
+          /* Photo: tips up from horizontal → stands upright */
+          gsap.to(photo, {
+            rotateX: 0,
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 1.8,
+            ease: 'back.out(1.6)',
+          });
+
+          /* Orbit: fades + scales in after photo lands */
+          if (orbit) {
+            gsap.to(orbit, {
+              opacity: 1,
+              scale: 1,
+              duration: 1.3,
+              delay: 0.6,
+              ease: 'power3.out',
+            });
+          }
+
+          obs.unobserve(section);
+        },
+        { threshold: 0.15 },
+      );
+      obs.observe(section);
     };
 
-    run();
+    runAnim();
   }, []);
 
-  const handleInnerHover = (tech: Tech | null) => {
-    setInnerPaused(!!tech);
-    setHoveredTech(tech);
-  };
+  const handleHover = useCallback((tech: Tech | null, e?: React.MouseEvent) => {
+    if (tech && e) {
+      setTooltip({ tech, x: e.clientX, y: e.clientY });
+    } else {
+      setTooltip(null);
+    }
+  }, []);
 
-  const handleOuterHover = (tech: Tech | null) => {
+  const handleInnerHover = useCallback((tech: Tech | null, e?: React.MouseEvent) => {
+    setInnerPaused(!!tech);
+    handleHover(tech, e);
+  }, [handleHover]);
+
+  const handleOuterHover = useCallback((tech: Tech | null, e?: React.MouseEvent) => {
     setOuterPaused(!!tech);
-    setHoveredTech(tech);
-  };
+    handleHover(tech, e);
+  }, [handleHover]);
+
+  /* Container dimensions */
+  const STAGE_SIZE = OUTER_R * 2 + ICON_BOX + 40; // ~674px
 
   return (
     <section
@@ -387,15 +373,22 @@ export default function TechStackSection() {
       className="py-24 md:py-32 border-t border-white/[0.05] overflow-hidden"
       style={{ background: '#0A0A0A' }}
     >
-      {/* CSS keyframes for the orbit animations */}
+      {/* Orbit CSS keyframes + tooltip animation */}
       <style>{`
         @keyframes ts-spin-cw  { to { transform: rotate( 360deg); } }
         @keyframes ts-spin-ccw { to { transform: rotate(-360deg); } }
+        @keyframes ts-tooltip-in {
+          from { opacity: 0; transform: translate(-50%, -90%); }
+          to   { opacity: 1; transform: translate(-50%, -100%); }
+        }
       `}</style>
+
+      {/* Floating tooltip rendered at cursor position */}
+      <FloatingTooltip info={tooltip} />
 
       <div className="max-w-[1280px] mx-auto px-6">
 
-        {/* ── Section heading ──────────────────────────────── */}
+        {/* Heading */}
         <div
           ref={headRef}
           style={{
@@ -408,81 +401,56 @@ export default function TechStackSection() {
           <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>
             Tech Stack
           </span>
-          <div
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
-            style={{ marginTop: 16 }}
-          >
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-4">
             <h2
               className="font-sans font-bold text-white"
-              style={{
-                fontSize: 'clamp(2.2rem, 5.5vw, 4.5rem)',
-                lineHeight: 1.0,
-                letterSpacing: '-0.03em',
-              }}
+              style={{ fontSize: 'clamp(2.2rem, 5.5vw, 4.5rem)', lineHeight: 1.0, letterSpacing: '-0.03em' }}
             >
               Tools I build<br />
               <span style={{ color: 'rgba(255,255,255,0.28)' }}>the web with.</span>
             </h2>
-            <p
-              className="font-body text-muted"
-              style={{ fontSize: '0.97rem', maxWidth: 360, lineHeight: 1.65 }}
-            >
+            <p className="font-body text-muted" style={{ fontSize: '0.97rem', maxWidth: 360, lineHeight: 1.65 }}>
               6+ years across the full stack. Hover any icon to explore my experience with each technology.
             </p>
           </div>
         </div>
 
-        {/* ── Orbit system (desktop) ───────────────────────── */}
+        {/* ── Desktop orbit ───────────────────────────────────── */}
         <div className="hidden md:flex flex-col items-center">
+          <div style={{ position: 'relative', width: STAGE_SIZE, height: STAGE_SIZE, flexShrink: 0 }}>
 
-          {/* Orbit stage */}
-          <div
-            style={{
-              position: 'relative',
-              width: 620,
-              height: 620,
-              flexShrink: 0,
-            }}
-          >
-            {/* Orbit track rings (decorative circles) */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%', left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: INNER_R * 2,
-                height: INNER_R * 2,
-                borderRadius: '50%',
-                border: '1px dashed rgba(255,255,255,0.07)',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%', left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: OUTER_R * 2,
-                height: OUTER_R * 2,
-                borderRadius: '50%',
-                border: '1px dashed rgba(255,255,255,0.05)',
-              }}
-            />
+            {/* Orbit track circles */}
+            {[INNER_R, OUTER_R].map((r) => (
+              <div
+                key={r}
+                style={{
+                  position: 'absolute',
+                  top: '50%', left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: r * 2, height: r * 2,
+                  borderRadius: '50%',
+                  border: '1px dashed rgba(255,255,255,0.06)',
+                  pointerEvents: 'none',
+                }}
+              />
+            ))}
 
-            {/* Photo — 3D animated via GSAP */}
+            {/* Center photo — 3D reveal via GSAP + IntersectionObserver */}
             <div
               ref={photoRef}
               style={{
                 position: 'absolute',
                 top: '50%', left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: 172,
-                height: 172,
+                width: 230,
+                height: 230,
                 borderRadius: '50%',
                 overflow: 'hidden',
-                border: '2px solid rgba(200,255,0,0.2)',
+                border: '2px solid rgba(200,255,0,0.22)',
                 boxShadow:
-                  '0 0 0 8px rgba(200,255,0,0.04), 0 0 60px rgba(200,255,0,0.12), 0 20px 60px rgba(0,0,0,0.7)',
+                  '0 0 0 10px rgba(200,255,0,0.04), 0 0 70px rgba(200,255,0,0.14), 0 24px 80px rgba(0,0,0,0.75)',
                 zIndex: 20,
+                flexShrink: 0,
               }}
             >
               <Image
@@ -491,156 +459,92 @@ export default function TechStackSection() {
                 alt="Muhammad Umer Khan"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
                 unoptimized
+                priority
               />
-              {/* Gradient vignette — subtle dark fade at the edges */}
+              {/* Vignette — subtle dark fade at the photo edges */}
               <div
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  borderRadius: '50%',
-                  background:
-                    'radial-gradient(circle at 50% 38%, transparent 28%, rgba(8,8,8,0.38) 65%, rgba(8,8,8,0.72) 100%)',
+                  position: 'absolute', inset: 0,
+                  background: 'radial-gradient(circle at 50% 38%, transparent 30%, rgba(8,8,8,0.42) 68%, rgba(8,8,8,0.78) 100%)',
                   zIndex: 1,
                   pointerEvents: 'none',
                 }}
               />
             </div>
 
-            {/* Orbit rings — fade/scale in via GSAP */}
+            {/* Orbit rings — fade/scale in after photo via GSAP */}
             <div ref={orbitRef} style={{ position: 'absolute', inset: 0 }}>
-              {/* Inner orbit — clockwise */}
               <OrbitRing
                 techs={INNER}
                 radius={INNER_R}
                 duration={INNER_DUR}
                 clockwise
                 paused={innerPaused}
-                onHover={(tech) => handleInnerHover(tech)}
+                onHover={handleInnerHover}
               />
-
-              {/* Outer orbit — counter-clockwise */}
               <OrbitRing
                 techs={OUTER}
                 radius={OUTER_R}
                 duration={OUTER_DUR}
                 clockwise={false}
                 paused={outerPaused}
-                onHover={(tech) => handleOuterHover(tech)}
+                onHover={handleOuterHover}
               />
             </div>
+
           </div>
 
-          {/* ── Tech detail panel ─────────────────────────── */}
-          <div
+          {/* Hint text below orbit */}
+          <p
             style={{
-              marginTop: 40,
-              height: 90,
+              marginTop: 36,
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8rem',
+              color: 'rgba(255,255,255,0.18)',
+              letterSpacing: '0.05em',
               textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 6,
-              transition: 'opacity 0.3s',
             }}
           >
-            {hoveredTech ? (
-              <>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  {hoveredTech.Icon && (
-                    <hoveredTech.Icon size={20} color={hoveredTech.color} />
-                  )}
-                  {hoveredTech.label && (
-                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1rem', color: hoveredTech.color }}>
-                      {hoveredTech.label}
-                    </span>
-                  )}
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontWeight: 700,
-                      fontSize: '1.05rem',
-                      color: hoveredTech.color,
-                      letterSpacing: '-0.015em',
-                    }}
-                  >
-                    {hoveredTech.name}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '0.72rem',
-                      color: 'rgba(255,255,255,0.3)',
-                      background: 'rgba(255,255,255,0.06)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      padding: '3px 10px',
-                      borderRadius: 100,
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    {hoveredTech.years}
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.88rem',
-                    color: 'rgba(255,255,255,0.45)',
-                    maxWidth: 480,
-                    lineHeight: 1.55,
-                  }}
-                >
-                  {hoveredTech.detail}
-                </p>
-              </>
-            ) : (
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.85rem',
-                  color: 'rgba(255,255,255,0.2)',
-                  letterSpacing: '0.04em',
-                }}
-              >
-                Hover any icon to explore my experience
-              </p>
-            )}
-          </div>
+            Inner ring · 6 core technologies &nbsp;·&nbsp; Outer ring · 9 complementary tools
+          </p>
         </div>
 
-        {/* ── Mobile fallback ──────────────────────────────── */}
+        {/* ── Mobile: photo + chip grid ───────────────────────── */}
         <div className="flex md:hidden flex-col items-center gap-8">
-          {/* Photo */}
           <div
             style={{
-              width: 140,
-              height: 140,
+              width: 160, height: 160,
               borderRadius: '50%',
               overflow: 'hidden',
               border: '2px solid rgba(200,255,0,0.2)',
-              boxShadow: '0 0 40px rgba(200,255,0,0.1)',
+              boxShadow: '0 0 50px rgba(200,255,0,0.12)',
               position: 'relative',
               flexShrink: 0,
             }}
           >
-            <Image
-              src="/assets/my_image.png"
-              fill
-              alt="Muhammad Umer Khan"
-              style={{ objectFit: 'cover', objectPosition: 'center top' }}
-              unoptimized
-            />
-            <div
-              style={{
-                position: 'absolute', inset: 0,
-                background: 'radial-gradient(circle at 50% 38%, transparent 28%, rgba(8,8,8,0.4) 65%, rgba(8,8,8,0.75) 100%)',
-                zIndex: 1,
-              }}
-            />
+            <Image src="/assets/my_image.png" fill alt="Muhammad Umer Khan" style={{ objectFit: 'cover', objectPosition: 'center top' }} unoptimized />
+            <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 38%, transparent 30%, rgba(8,8,8,0.4) 68%, rgba(8,8,8,0.75) 100%)', zIndex: 1 }} />
           </div>
-
-          {/* Tech chips */}
-          <MobileTechGrid active={hoveredTech} />
+          <div className="flex flex-wrap justify-center gap-3">
+            {[...INNER, ...OUTER].map((tech) => {
+              const { Icon, label, color, name } = tech;
+              return (
+                <div
+                  key={name}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 7,
+                    padding: '7px 14px', borderRadius: 100,
+                    background: `rgba(${hexToRgb(color)}, 0.08)`,
+                    border: `1px solid rgba(${hexToRgb(color)}, 0.2)`,
+                  }}
+                >
+                  {Icon  && <Icon size={14} color={color} />}
+                  {label && <span style={{ fontSize: '0.65rem', fontWeight: 800, color, fontFamily: 'var(--font-display)' }}>{label}</span>}
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.55)' }}>{name}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
       </div>

@@ -143,7 +143,7 @@ export default function Preloader() {
           {String(progress).padStart(2, '0')}
         </div>
 
-        {/* Name reveal — two halves slide together */}
+        {/* Name reveal — two halves slide in from off-screen */}
         <div
           style={{
             display: 'flex',
@@ -155,38 +155,43 @@ export default function Preloader() {
             zIndex: 2,
           }}
         >
-          <span
-            style={{
-              fontFamily: 'var(--font-display, system-ui, sans-serif)',
-              fontWeight: 800,
-              fontSize: 'clamp(3.5rem, 10vw, 8.5rem)',
-              lineHeight: 0.9,
-              letterSpacing: '-0.04em',
-              color: isFlash ? '#0A0A0A' : '#ffffff',
-              transition: 'color 0.14s',
-              transform: `translateX(${phase === 'loading' ? `-${(100 - progress) * 0.3}px` : '0'})`,
-              transitionProperty: 'color, transform',
-              transitionDuration: '0.14s, 0.05s',
-            }}
-          >
-            UMER
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-display, system-ui, sans-serif)',
-              fontWeight: 800,
-              fontSize: 'clamp(3.5rem, 10vw, 8.5rem)',
-              lineHeight: 0.9,
-              letterSpacing: '-0.04em',
-              color: isFlash ? '#0A0A0A' : '#C8FF00',
-              transition: 'color 0.14s',
-              transform: `translateX(${phase === 'loading' ? `${(100 - progress) * 0.3}px` : '0'})`,
-              transitionProperty: 'color, transform',
-              transitionDuration: '0.14s, 0.05s',
-            }}
-          >
-            KHAN
-          </span>
+          {/* UMER slides in from the left */}
+          <div style={{ overflow: 'hidden' }}>
+            <span
+              style={{
+                display: 'block',
+                fontFamily: 'var(--font-display, system-ui, sans-serif)',
+                fontWeight: 800,
+                fontSize: 'clamp(3.5rem, 10vw, 8.5rem)',
+                lineHeight: 0.9,
+                letterSpacing: '-0.04em',
+                color: isFlash ? '#0A0A0A' : '#ffffff',
+                /* Pure JS position — no CSS transition to prevent jitter */
+                transform: `translateY(${phase === 'loading' ? `${(100 - progress) * 1.2}px` : '0'})`,
+                transition: 'color 0.14s',
+              }}
+            >
+              UMER
+            </span>
+          </div>
+          {/* KHAN slides in from the right */}
+          <div style={{ overflow: 'hidden' }}>
+            <span
+              style={{
+                display: 'block',
+                fontFamily: 'var(--font-display, system-ui, sans-serif)',
+                fontWeight: 800,
+                fontSize: 'clamp(3.5rem, 10vw, 8.5rem)',
+                lineHeight: 0.9,
+                letterSpacing: '-0.04em',
+                color: isFlash ? '#0A0A0A' : '#C8FF00',
+                transform: `translateY(${phase === 'loading' ? `${(100 - progress) * 1.2}px` : '0'})`,
+                transition: 'color 0.14s',
+              }}
+            >
+              KHAN
+            </span>
+          </div>
         </div>
 
         {/* Subtitle */}
