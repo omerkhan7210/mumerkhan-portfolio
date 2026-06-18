@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-/* ── Code block content ─────────────────────────────────────── */
 const CODE_LINES = [
   { jsx: <><span style={{ color: '#C084FC' }}>const</span><span style={{ color: '#60A5FA' }}> developer</span><span style={{ color: '#94A3B8' }}> = {'{'}</span></> },
   { jsx: <><span style={{ color: '#94A3B8' }}>{'  '}name</span><span style={{ color: '#e2e8f0' }}>: </span><span style={{ color: '#86EFAC' }}>&apos;Umer Khan&apos;</span><span style={{ color: '#94A3B8' }}>,</span></> },
@@ -14,14 +13,12 @@ const CODE_LINES = [
   { jsx: <span style={{ color: '#94A3B8' }}>{'}'}</span> },
 ];
 
-/* ── Heading word structure ─────────────────────────────────── */
-const LINES = [
+const HEADING_LINES = [
   [{ text: 'I', lime: false }, { text: 'build', lime: false }, { text: 'things', lime: false }],
-  [{ text: "people", lime: false }, { text: "don't", lime: false }],
+  [{ text: 'people', lime: false }, { text: "don't", lime: false }],
   [{ text: 'forget.', lime: true }],
 ];
 
-/* ── Animated counter hook (React-based, no GSAP textContent) ─ */
 function useCounter(target: number, startMs: number, durationMs = 1600) {
   const [val, setVal] = useState(0);
   useEffect(() => {
@@ -29,7 +26,7 @@ function useCounter(target: number, startMs: number, durationMs = 1600) {
       const begin = performance.now();
       const tick = (now: number) => {
         const p = Math.min((now - begin) / durationMs, 1);
-        const e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+        const e = 1 - Math.pow(1 - p, 3);
         setVal(Math.round(e * target));
         if (p < 1) requestAnimationFrame(tick);
       };
@@ -40,50 +37,50 @@ function useCounter(target: number, startMs: number, durationMs = 1600) {
   return val;
 }
 
-/* ── Component ──────────────────────────────────────────────── */
 export default function AnimatedHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const orbRef = useRef<HTMLDivElement>(null);
-  const ranRef = useRef(false); // guard against React Strict Mode double-fire
+  const ranRef = useRef(false);
   const [codeVisible, setCodeVisible] = useState(0);
 
-  /* Counters */
-  const c1 = useCounter(100, 1100);
-  const c2 = useCounter(9, 1200);
-  const c3 = useCounter(100, 1300);
+  // Parallax orb refs — direct DOM mutation so zero React re-renders
+  const orb1Ref = useRef<HTMLDivElement>(null); // lime, top-right, slow
+  const orb2Ref = useRef<HTMLDivElement>(null); // purple, bottom-left, reverse
+  const orb3Ref = useRef<HTMLDivElement>(null); // sky-blue, center, faster
+  const spotRef = useRef<HTMLDivElement>(null); // cursor spotlight, direct follow
 
-  /* ── GSAP hero entrance (runs once) ─────────────────────── */
+  const projects = useCounter(80, 1100);
+  const jss = useCounter(100, 1200);
+
+  /* ── GSAP entrance ─────────────────────────────────────────── */
   useEffect(() => {
     if (ranRef.current) return;
     ranRef.current = true;
 
     const run = async () => {
       const { default: gsap } = await import('gsap');
-      const el = sectionRef.current;
-      if (!el) return;
+      if (!sectionRef.current) return;
 
-      /* Hard-set initial hidden states */
       gsap.set('.h-pill', { y: -20, opacity: 0 });
-      gsap.set('.h-word', { y: 60, opacity: 0 });
-      gsap.set('.h-sub', { y: 20, opacity: 0 });
-      gsap.set('.h-cta', { y: 14, opacity: 0 });
-      gsap.set('.h-stat', { y: 14, opacity: 0 });
-      gsap.set('.h-code', { x: 40, opacity: 0 });
+      gsap.set('.h-word', { y: 90, opacity: 0 });
+      gsap.set('.h-sub',  { y: 24, opacity: 0 });
+      gsap.set('.h-cta',  { y: 16, opacity: 0 });
+      gsap.set('.h-stat', { y: 16, opacity: 0 });
+      gsap.set('.h-code', { x: 60, opacity: 0 });
 
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
       tl
-        .to('.h-pill', { y: 0, opacity: 1, duration: 0.7 }, 0.15)
-        .to('.h-word', { y: 0, opacity: 1, duration: 0.9, stagger: 0.07 }, 0.35)
-        .to('.h-sub',  { y: 0, opacity: 1, duration: 0.7 }, 0.7)
-        .to('.h-cta',  { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }, 0.85)
-        .to('.h-stat', { y: 0, opacity: 1, duration: 0.5, stagger: 0.07 }, 1.0)
-        .to('.h-code', { x: 0, opacity: 1, duration: 0.9 }, 0.5);
+        .to('.h-pill', { y: 0, opacity: 1, duration: 0.7 }, 0.1)
+        .to('.h-word', { y: 0, opacity: 1, duration: 1.0, stagger: 0.08 }, 0.3)
+        .to('.h-sub',  { y: 0, opacity: 1, duration: 0.7 }, 0.72)
+        .to('.h-cta',  { y: 0, opacity: 1, duration: 0.6, stagger: 0.12 }, 0.88)
+        .to('.h-stat', { y: 0, opacity: 1, duration: 0.5, stagger: 0.08 }, 1.05)
+        .to('.h-code', { x: 0, opacity: 1, duration: 1.0 }, 0.45);
     };
 
     run();
   }, []);
 
-  /* ── Code lines type in ─────────────────────────────────── */
+  /* ── Code lines type-in ─────────────────────────────────────── */
   useEffect(() => {
     const start = setTimeout(() => {
       let i = 0;
@@ -91,54 +88,132 @@ export default function AnimatedHero() {
         i++;
         setCodeVisible(i);
         if (i >= CODE_LINES.length) clearInterval(id);
-      }, 200);
+      }, 210);
       return () => clearInterval(id);
-    }, 1600);
+    }, 1900);
     return () => clearTimeout(start);
   }, []);
 
-  /* ── Mouse parallax on orb ──────────────────────────────── */
+  /* ── Multi-orb mouse parallax (RAF lerp, no state re-renders) ─ */
   useEffect(() => {
-    const orb = orbRef.current;
-    if (!orb) return;
-    const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth  - 0.5) * 50;
-      const y = (e.clientY / window.innerHeight - 0.5) * 50;
-      orb.style.transform = `translate(${x}px, ${y}px)`;
+    const target = { x: 0, y: 0 };
+    const lerped = { x: 0, y: 0 };
+    let raf: number;
+
+    const onMouse = (e: MouseEvent) => {
+      target.x = e.clientX / window.innerWidth  - 0.5;
+      target.y = e.clientY / window.innerHeight - 0.5;
+
+      // Spotlight: follows cursor directly (no lerp, instant)
+      if (spotRef.current) {
+        spotRef.current.style.left    = `${e.clientX}px`;
+        spotRef.current.style.top     = `${e.clientY}px`;
+        spotRef.current.style.opacity = '1';
+      }
     };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    return () => window.removeEventListener('mousemove', onMove);
+
+    const tick = () => {
+      lerped.x += (target.x - lerped.x) * 0.04;
+      lerped.y += (target.y - lerped.y) * 0.04;
+
+      // Orb 1 — lime, slow drift in mouse direction
+      if (orb1Ref.current) {
+        orb1Ref.current.style.transform = `translate(${lerped.x * 80}px, ${lerped.y * 60}px)`;
+      }
+      // Orb 2 — purple, drifts opposite to mouse
+      if (orb2Ref.current) {
+        orb2Ref.current.style.transform = `translate(${lerped.x * -130}px, ${lerped.y * -95}px)`;
+      }
+      // Orb 3 — sky-blue, fastest drift
+      if (orb3Ref.current) {
+        orb3Ref.current.style.transform = `translate(${lerped.x * 170}px, ${lerped.y * 130}px)`;
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener('mousemove', onMouse, { passive: true });
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener('mousemove', onMouse);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-ink bg-grid-pattern flex flex-col justify-center pt-28 pb-20 overflow-hidden"
+      className="relative min-h-screen bg-ink overflow-hidden flex flex-col justify-center pt-28 pb-20"
     >
-      {/* Parallax orb */}
+      {/* ── Background layers ──────────────────────────────────── */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+
+      {/* Orb 1 — large lime glow, top-right */}
       <div
-        ref={orbRef}
-        className="absolute right-[-80px] top-1/2 -translate-y-1/2 pointer-events-none"
+        ref={orb1Ref}
+        className="absolute pointer-events-none"
         style={{
-          width: 800,
-          height: 800,
-          background: 'radial-gradient(circle, rgba(200,255,0,0.09) 0%, transparent 65%)',
-          transition: 'transform 1s cubic-bezier(0.16,1,0.3,1)',
-        }}
-      />
-      <div
-        className="absolute left-[-200px] bottom-[-100px] pointer-events-none"
-        style={{
-          width: 500,
-          height: 500,
-          background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 65%)',
+          right: -120,
+          top: '-5%',
+          width: 960,
+          height: 960,
+          background:
+            'radial-gradient(circle at 35% 35%, rgba(200,255,0,0.11) 0%, rgba(200,255,0,0.03) 40%, transparent 68%)',
         }}
       />
 
+      {/* Orb 2 — purple glow, bottom-left, drifts opposite */}
+      <div
+        ref={orb2Ref}
+        className="absolute pointer-events-none"
+        style={{
+          left: -180,
+          bottom: -80,
+          width: 720,
+          height: 720,
+          background:
+            'radial-gradient(circle at 55% 55%, rgba(139,92,246,0.11) 0%, rgba(139,92,246,0.03) 40%, transparent 68%)',
+        }}
+      />
+
+      {/* Orb 3 — sky-blue glow, center area, fastest */}
+      <div
+        ref={orb3Ref}
+        className="absolute pointer-events-none"
+        style={{
+          left: '35%',
+          top: '55%',
+          width: 460,
+          height: 460,
+          background:
+            'radial-gradient(circle, rgba(56,189,248,0.07) 0%, transparent 65%)',
+        }}
+      />
+
+      {/* Cursor spotlight — lime radial that follows the cursor */}
+      <div
+        ref={spotRef}
+        className="absolute pointer-events-none"
+        style={{
+          width: 560,
+          height: 560,
+          borderRadius: '50%',
+          background:
+            'radial-gradient(circle, rgba(200,255,0,0.055) 0%, transparent 65%)',
+          transform: 'translate(-50%, -50%)',
+          left: '50%',
+          top: '50%',
+          opacity: 0,
+          transition: 'opacity 0.4s ease',
+        }}
+      />
+
+      {/* ── Content ─────────────────────────────────────────────── */}
       <div className="max-w-[1280px] mx-auto px-6 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* ── Left col ───────────────────────────────────── */}
+          {/* ── Left col ──────────────────────────────────────── */}
           <div>
             {/* Status pill */}
             <div className="h-pill inline-flex items-center gap-2.5 border border-white/10 rounded-full px-4 py-2 mb-10 font-body text-sm text-muted">
@@ -146,19 +221,22 @@ export default function AnimatedHero() {
               Available for freelance projects
             </div>
 
-            {/* Heading */}
+            {/* Heading — overflow:hidden per line for clean wipe-up reveal */}
             <h1 className="mb-8" style={{ letterSpacing: '-0.03em' }}>
-              {LINES.map((line, li) => (
-                <div key={li} className="overflow-visible">
+              {HEADING_LINES.map((line, li) => (
+                <div
+                  key={li}
+                  style={{ overflow: 'hidden', paddingBottom: '0.06em' }}
+                >
                   {line.map(({ text, lime }, wi) => (
                     <span
                       key={wi}
                       className="h-word inline-block font-sans font-bold"
                       style={{
-                        fontSize: 'clamp(3rem, 8.5vw, 7.5rem)',
-                        lineHeight: 0.92,
+                        fontSize: 'clamp(3.2rem, 9vw, 8rem)',
+                        lineHeight: 0.9,
                         color: lime ? '#C8FF00' : '#ffffff',
-                        marginRight: '0.2em',
+                        marginRight: '0.22em',
                       }}
                     >
                       {text}
@@ -170,8 +248,8 @@ export default function AnimatedHero() {
 
             {/* Subtext */}
             <p className="h-sub font-body text-muted text-lg max-w-sm mb-10 leading-relaxed">
-              Full Stack Developer. Turning designs into high-performing
-              sites and automating business processes.{' '}
+              Full Stack Developer turning designs into high-performing
+              websites.{' '}
               <span className="text-white/40">WordPress · MERN · n8n.</span>
             </p>
 
@@ -190,47 +268,66 @@ export default function AnimatedHero() {
 
             {/* Stats */}
             <div className="flex flex-wrap gap-8 border-t border-white/10 pt-8">
-              <div className="h-stat">
-                <p className="font-sans font-bold text-lime" style={{ fontSize: 'clamp(1.6rem,3.5vw,2.4rem)' }}>
-                  {c1}<span>%</span>
-                </p>
-                <p className="font-body text-muted text-xs mt-0.5 uppercase tracking-widest">Job Success</p>
-              </div>
-              <div className="h-stat">
-                <p className="font-sans font-bold text-lime" style={{ fontSize: 'clamp(1.6rem,3.5vw,2.4rem)' }}>
-                  {c2}<span>+</span>
-                </p>
-                <p className="font-body text-muted text-xs mt-0.5 uppercase tracking-widest">Projects Done</p>
-              </div>
-              <div className="h-stat">
-                <p className="font-sans font-bold text-lime" style={{ fontSize: 'clamp(1.6rem,3.5vw,2.4rem)' }}>
-                  0–4<span className="text-2xl">h</span>
-                </p>
-                <p className="font-body text-muted text-xs mt-0.5 uppercase tracking-widest">Response Time</p>
-              </div>
-              <div className="h-stat">
-                <p className="font-sans font-bold text-lime" style={{ fontSize: 'clamp(1.6rem,3.5vw,2.4rem)' }}>
-                  {c3}<span>%</span>
-                </p>
-                <p className="font-body text-muted text-xs mt-0.5 uppercase tracking-widest">Satisfaction</p>
-              </div>
+              {[
+                { val: `${projects}+`, label: 'Projects Done' },
+                { val: '6+',           label: 'Years Exp.' },
+                { val: `${jss}%`,      label: 'Job Success' },
+                { val: '5.0★',         label: 'Upwork Rating' },
+              ].map(({ val, label }) => (
+                <div key={label} className="h-stat">
+                  <p
+                    className="font-sans font-bold text-lime"
+                    style={{ fontSize: 'clamp(1.6rem,3.5vw,2.4rem)' }}
+                  >
+                    {val}
+                  </p>
+                  <p className="font-body text-muted text-xs mt-0.5 uppercase tracking-widest">
+                    {label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* ── Right col: Code block ───────────────────────── */}
-          <div className="h-code hidden lg:block">
+          {/* ── Right col: VS Code block ───────────────────────── */}
+          <div className="h-code hidden lg:block relative">
+            {/* Decorative accent glows framing the code block */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                top: -28,
+                left: -28,
+                width: 110,
+                height: 110,
+                background: 'radial-gradient(circle, rgba(200,255,0,0.15) 0%, transparent 70%)',
+                borderRadius: '50%',
+              }}
+            />
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                bottom: -36,
+                right: -36,
+                width: 150,
+                height: 150,
+                background: 'radial-gradient(circle, rgba(139,92,246,0.13) 0%, transparent 70%)',
+                borderRadius: '50%',
+              }}
+            />
+
             <div
               className="rounded-2xl overflow-hidden"
               style={{
                 background: '#0D1117',
                 border: '1px solid rgba(255,255,255,0.07)',
-                boxShadow: '0 0 80px rgba(200,255,0,0.05), 0 40px 80px rgba(0,0,0,0.6)',
+                boxShadow:
+                  '0 0 0 1px rgba(200,255,0,0.05), 0 0 80px rgba(200,255,0,0.07), 0 40px 80px rgba(0,0,0,0.65)',
               }}
             >
               {/* Chrome bar */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.05]">
                 <div className="flex gap-1.5">
-                  {['#FF5F57','#FFBD2E','#28CA41'].map((c, i) => (
+                  {['#FF5F57', '#FFBD2E', '#28CA41'].map((c, i) => (
                     <div key={i} className="w-3 h-3 rounded-full" style={{ background: c }} />
                   ))}
                 </div>
@@ -240,15 +337,21 @@ export default function AnimatedHero() {
 
               {/* Code content */}
               <div className="p-6 min-h-[260px]">
-                <pre style={{ fontFamily: "'Fira Code','JetBrains Mono','Courier New',monospace", fontSize: '0.82rem', lineHeight: 1.9 }}>
+                <pre
+                  style={{
+                    fontFamily: "'Fira Code','JetBrains Mono','Courier New',monospace",
+                    fontSize: '0.82rem',
+                    lineHeight: 1.9,
+                  }}
+                >
                   {CODE_LINES.map((line, i) => (
                     <div
                       key={i}
                       className="flex items-center gap-4"
                       style={{
                         opacity: i < codeVisible ? 1 : 0,
-                        transform: i < codeVisible ? 'none' : 'translateX(-6px)',
-                        transition: 'opacity 0.35s ease, transform 0.35s ease',
+                        transform: i < codeVisible ? 'none' : 'translateX(-8px)',
+                        transition: 'opacity 0.35s ease, transform 0.4s ease',
                       }}
                     >
                       <span
@@ -261,7 +364,6 @@ export default function AnimatedHero() {
                     </div>
                   ))}
 
-                  {/* Blinking cursor */}
                   {codeVisible >= CODE_LINES.length && (
                     <div className="flex items-center gap-4 mt-0.5">
                       <span className="w-4 flex-shrink-0" />
@@ -292,7 +394,10 @@ export default function AnimatedHero() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ opacity: 0.35 }}>
+        <div
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          style={{ opacity: 0.35 }}
+        >
           <span className="font-body text-xs text-muted uppercase tracking-[0.15em]">Scroll</span>
           <div className="w-px h-10 bg-gradient-to-b from-muted to-transparent" />
         </div>

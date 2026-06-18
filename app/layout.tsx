@@ -19,25 +19,109 @@ const inter = Inter({
   weight: ['300', '400', '500', '600'],
 });
 
+const SITE_URL = 'https://mumerkhan.com';
+
 export const metadata: Metadata = {
-  title: 'Muhammad Umer Khan | Full Stack Developer',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Muhammad Umer Khan | Full Stack Developer & WordPress Expert',
+    template: '%s | Umer Khan',
+  },
   description:
-    'Full Stack Developer specializing in WordPress, MERN Stack & n8n Automation. 100% Job Success on Upwork. Based in Karachi, Pakistan.',
-  keywords:
-    'Full Stack Developer, WordPress Developer, MERN Stack, n8n Automation, Figma to WordPress, Elementor, React Developer',
-  authors: [{ name: 'Muhammad Umer Khan' }],
+    'Full Stack Developer with 6+ years of experience. 80+ projects delivered. Specialising in WordPress, MERN Stack, and n8n Automation. 100% Job Success Score on Upwork. Based in Karachi, Pakistan.',
+  keywords: [
+    'Full Stack Developer',
+    'WordPress Developer',
+    'MERN Stack Developer',
+    'n8n Automation',
+    'React Developer',
+    'Figma to WordPress',
+    'WooCommerce Developer',
+    'Web Developer Karachi',
+    'Upwork Full Stack Developer',
+    'Next.js Developer',
+  ],
+  authors: [{ name: 'Muhammad Umer Khan', url: SITE_URL }],
   creator: 'Muhammad Umer Khan',
-  metadataBase: new URL('https://mumerkhan.com'),
+  publisher: 'Muhammad Umer Khan',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://mumerkhan.com',
+    url: SITE_URL,
+    siteName: 'Muhammad Umer Khan',
+    title: 'Muhammad Umer Khan | Full Stack Developer & WordPress Expert',
+    description:
+      '80+ projects · 6+ years · 100% JSS on Upwork. WordPress, MERN Stack, n8n Automation.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Muhammad Umer Khan — Full Stack Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
     title: 'Muhammad Umer Khan | Full Stack Developer',
     description:
-      'Full Stack Developer. WordPress. MERN. Automation. 100% Job Success on Upwork.',
-    siteName: 'Muhammad Umer Khan',
+      '80+ projects · 6+ years · 100% JSS on Upwork. WordPress, MERN, n8n.',
+    images: ['/og-image.png'],
   },
-  robots: 'index, follow',
+  alternates: {
+    canonical: SITE_URL,
+  },
+  category: 'technology',
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: 'Muhammad Umer Khan',
+      url: SITE_URL,
+      email: 'omerfarooqkhan7210@gmail.com',
+      jobTitle: 'Full Stack Developer',
+      description:
+        'Full Stack Developer specialising in WordPress, MERN Stack, and n8n automation with 6+ years of experience.',
+      knowsAbout: [
+        'WordPress Development',
+        'React.js',
+        'Node.js',
+        'MERN Stack',
+        'n8n Automation',
+        'WooCommerce',
+        'Next.js',
+        'Figma',
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Karachi',
+        addressCountry: 'PK',
+      },
+      sameAs: ['https://www.upwork.com/freelancers/muhammadumerk5'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'Muhammad Umer Khan — Full Stack Developer Portfolio',
+      publisher: { '@id': `${SITE_URL}/#person` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -46,6 +130,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0A0A0A" />
+        <link rel="canonical" href={SITE_URL} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         {/* Page preloader — shown once per session */}

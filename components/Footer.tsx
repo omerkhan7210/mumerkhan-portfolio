@@ -391,16 +391,6 @@ export default function Footer() {
         >
           © {year} Muhammad Umer Khan
         </p>
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.7rem',
-            color: 'rgba(255,255,255,0.14)',
-            letterSpacing: '0.04em',
-          }}
-        >
-          Built with Next.js · Deployed on Hostinger VPS
-        </p>
       </div>
     </footer>
   );
