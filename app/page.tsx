@@ -7,6 +7,7 @@ import TrustBar from '@/components/TrustBar';
 import ServicesSection from '@/components/ServicesSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import DeliveredSection from '@/components/DeliveredSection';
+import TechStackSection from '@/components/TechStackSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import PhilosophySection from '@/components/PhilosophySection';
 import PricingSection from '@/components/PricingSection';
@@ -37,6 +38,7 @@ export default function Home() {
       <ServicesSection />
       <ProjectsSection />
       <DeliveredSection />
+      <TechStackSection />
       <TestimonialsSection />
       <PhilosophySection />
       <PricingSection />
