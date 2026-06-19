@@ -352,6 +352,8 @@ export default function ContactClient() {
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(true);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [form, setForm] = useState<FormData>({
     service: '',
     followUp: '',
@@ -375,14 +377,29 @@ export default function ContactClient() {
   const set = (key: keyof FormData, val: string) =>
     setForm((f) => ({ ...f, [key]: val }));
 
-  const handleSubmit = () => {
-    /* Submission: log for now, swap URL for real endpoint */
-    console.log('Form submitted:', form);
-    setVisible(false);
-    setTimeout(() => {
-      setSubmitted(true);
-      setVisible(true);
-    }, 280);
+  const handleSubmit = async () => {
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+      setVisible(false);
+      setTimeout(() => {
+        setSubmitted(true);
+        setVisible(true);
+      }, 280);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   /* ── Success state ── */
@@ -624,12 +641,19 @@ export default function ContactClient() {
                 autoFocus
               />
             </div>
+            {submitError && (
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.82rem', color: '#FF6B6B', marginTop: 18 }}>
+                {submitError}
+              </p>
+            )}
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 28 }}>
-              <NavBtn onClick={handleSubmit}>
-                Send Message
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <NavBtn onClick={handleSubmit} disabled={submitting}>
+                {submitting ? 'Sending...' : 'Send Message'}
+                {!submitting && (
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
               </NavBtn>
               <BackBtn onClick={back} />
             </div>
