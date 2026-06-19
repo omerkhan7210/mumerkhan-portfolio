@@ -7,17 +7,20 @@ const year = new Date().getFullYear();
 
 const links = [
   { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
   { href: '/work', label: 'Work' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
 const services = [
-  'WordPress Dev',
-  'MERN Stack',
-  'n8n Automation',
-  'Figma to Web',
-  'E-Commerce',
-  'UI/UX Design',
+  { label: 'WordPress Dev', href: '/services/wordpress-development' },
+  { label: 'MERN Stack', href: '/services/mern-stack-development' },
+  { label: 'n8n Automation', href: '/services/n8n-automation' },
+  { label: 'Figma to Web', href: '/services/figma-to-web' },
+  { label: 'E-Commerce', href: '/services/ecommerce-development' },
+  { label: 'UI/UX Design', href: '/services/ui-ux-design' },
 ];
 
 function EmailLink() {
@@ -32,7 +35,7 @@ function EmailLink() {
         fontWeight: 700,
         fontSize: 'clamp(1rem, 2vw, 1.5rem)',
         letterSpacing: '-0.02em',
-        color: hovered ? '#C8FF00' : '#ffffff',
+        color: hovered ? 'var(--color-lime)' : 'var(--color-fg)',
         textDecoration: 'none',
         transition: 'color 0.25s',
         display: 'inline-flex',
@@ -97,13 +100,13 @@ export default function Footer() {
                   fontSize: 'clamp(1.8rem, 5vw, 4rem)',
                   letterSpacing: '-0.04em',
                   lineHeight: 0.95,
-                  color: '#ffffff',
+                  color: 'var(--color-fg)',
                   marginTop: 12,
                   maxWidth: 620,
                 }}
               >
                 Got a project?<br />
-                <span style={{ color: '#C8FF00' }}>Let&apos;s talk.</span>
+                <span style={{ color: 'var(--color-lime)' }}>Let&apos;s talk.</span>
               </h2>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
@@ -208,7 +211,7 @@ export default function Footer() {
                   fontFamily: 'var(--font-display)',
                   fontWeight: 600,
                   fontSize: '0.85rem',
-                  color: '#ffffff',
+                  color: 'var(--color-fg)',
                   letterSpacing: '-0.01em',
                 }}
               >
@@ -219,7 +222,7 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.82rem',
-                color: 'rgba(255,255,255,0.35)',
+                color: `rgba(var(--fg-rgb),0.45)`,
                 lineHeight: 1.7,
                 maxWidth: 220,
                 marginBottom: 16,
@@ -233,7 +236,7 @@ export default function Footer() {
                 style={{
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.72rem',
-                  color: 'rgba(255,255,255,0.28)',
+                  color: `rgba(var(--fg-rgb),0.32)`,
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                 }}
@@ -249,7 +252,7 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.62rem',
-                color: 'rgba(255,255,255,0.22)',
+                color: `rgba(var(--fg-rgb),0.28)`,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
                 marginBottom: 18,
@@ -272,7 +275,7 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.62rem',
-                color: 'rgba(255,255,255,0.22)',
+                color: `rgba(var(--fg-rgb),0.28)`,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
                 marginBottom: 18,
@@ -282,39 +285,20 @@ export default function Footer() {
             </p>
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
               {services.map((s) => (
-                <li
-                  key={s}
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.82rem',
-                    color: 'rgba(255,255,255,0.3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                  }}
-                >
-                  <span
-                    style={{
-                      width: 4,
-                      height: 4,
-                      borderRadius: '50%',
-                      background: 'rgba(200,255,0,0.3)',
-                      flexShrink: 0,
-                    }}
-                  />
-                  {s}
+                <li key={s.label}>
+                  <FooterLink href={s.href} label={s.label} />
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4: Contact */}
+          {/* Col 4: Connect */}
           <div>
             <p
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.62rem',
-                color: 'rgba(255,255,255,0.22)',
+                color: `rgba(var(--fg-rgb),0.28)`,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
                 marginBottom: 18,
@@ -323,17 +307,9 @@ export default function Footer() {
               Connect
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <a
-                href="mailto:omerfarooqkhan7210@gmail.com"
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.82rem',
-                  color: 'rgba(255,255,255,0.35)',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s',
-                }}
+              <a href="mailto:omerfarooqkhan7210@gmail.com" className="social-link"
                 onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#ffffff')}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.35)')}
+                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '')}
               >
                 Email ↗
               </a>
@@ -341,23 +317,31 @@ export default function Footer() {
                 href="https://www.upwork.com/freelancers/muhammadumerk5"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.82rem',
-                  color: 'rgba(255,255,255,0.35)',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#C8FF00')}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.35)')}
+                className="social-link"
               >
                 Upwork ↗
+              </a>
+              <a
+                href="https://github.com/omerkhan7210"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                GitHub ↗
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muhammad-umer-khan-7998a8266"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                LinkedIn ↗
               </a>
               <span
                 style={{
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.82rem',
-                  color: 'rgba(255,255,255,0.2)',
+                  color: `rgba(var(--fg-rgb),0.28)`,
                 }}
               >
                 Karachi, Pakistan
@@ -385,7 +369,7 @@ export default function Footer() {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: '0.7rem',
-            color: 'rgba(255,255,255,0.18)',
+            color: `rgba(var(--fg-rgb),0.22)`,
             letterSpacing: '0.04em',
           }}
         >
@@ -406,7 +390,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
       style={{
         fontFamily: 'var(--font-body)',
         fontSize: '0.85rem',
-        color: hovered ? '#ffffff' : 'rgba(255,255,255,0.38)',
+        color: hovered ? 'var(--color-fg)' : `rgba(var(--fg-rgb),0.42)`,
         textDecoration: 'none',
         transition: 'color 0.22s',
         display: 'flex',

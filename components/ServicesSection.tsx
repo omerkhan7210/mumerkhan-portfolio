@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 const SERVICES = [
   {
@@ -8,48 +9,56 @@ const SERVICES = [
     title: 'Full Stack Web Development',
     desc: 'React, Node.js, MongoDB, Express — end to end. Scalable architecture built for real-world production loads.',
     tags: ['React', 'Node.js', 'MongoDB'],
+    href: '/services/mern-stack-development',
   },
   {
     n: '02',
     title: 'Custom WordPress Solutions',
     desc: 'Bespoke theme development from Figma, Elementor Pro builds, WooCommerce stores, and advanced plugin customization.',
     tags: ['Elementor', 'WooCommerce', 'PHP'],
+    href: '/services/wordpress-development',
   },
   {
     n: '03',
     title: 'Business Process Automation',
-    desc: "Automating manual work with n8n workflows — CRM syncs, lead pipelines, email sequences, and data processing at scale.",
+    desc: 'Automating manual work with n8n workflows — CRM syncs, lead pipelines, email sequences, and data processing at scale.',
     tags: ['n8n', 'Zapier', 'REST APIs'],
+    href: '/services/n8n-automation',
   },
   {
     n: '04',
     title: 'Figma → Pixel-Perfect Code',
     desc: 'Exact translation of any design to responsive HTML, WordPress, or React. Every shadow, every spacing, every breakpoint.',
     tags: ['Figma', 'HTML/CSS', 'React'],
+    href: '/services/figma-to-web',
   },
   {
     n: '05',
-    title: 'Landing Page Design & Dev',
-    desc: 'High-converting pages with custom animations, persuasive layouts, and performance-optimized code under 1s load times.',
-    tags: ['CRO', 'GSAP', 'SEO'],
-  },
-  {
-    n: '06',
-    title: 'SEO & Performance Optimization',
-    desc: 'Core Web Vitals tuning, schema markup, image optimization, and technical SEO audits for real search ranking results.',
-    tags: ['Core Web Vitals', 'Schema', 'PageSpeed'],
-  },
-  {
-    n: '07',
     title: 'E-Commerce Development',
     desc: 'Full online stores — product catalogs, cart flows, Stripe / PayPal gateways, and inventory management integrations.',
     tags: ['WooCommerce', 'Stripe', 'UX'],
+    href: '/services/ecommerce-development',
+  },
+  {
+    n: '06',
+    title: 'UI/UX Design',
+    desc: 'Figma wireframes and high-fidelity designs for web apps and marketing sites. Built with development handoff in mind.',
+    tags: ['Figma', 'Design Systems', 'Prototyping'],
+    href: '/services/ui-ux-design',
+  },
+  {
+    n: '07',
+    title: 'SEO & Performance Optimization',
+    desc: 'Core Web Vitals tuning, schema markup, image optimization, and technical SEO audits for real search ranking results.',
+    tags: ['Core Web Vitals', 'Schema', 'PageSpeed'],
+    href: '/services/seo-performance',
   },
   {
     n: '08',
     title: 'Ongoing Maintenance & Support',
     desc: 'Proactive security updates, performance monitoring, backups, and feature additions. I keep your site healthy 24/7.',
     tags: ['Security', 'Backups', 'Performance'],
+    href: '/services/website-maintenance',
   },
 ];
 
@@ -127,14 +136,17 @@ export default function ServicesSection() {
           {SERVICES.map((svc, i) => {
             const isActive = active === i;
             return (
-              <div
+              <Link
                 key={i}
+                href={svc.href}
                 className="svc-cell group relative overflow-hidden"
                 style={{
+                  display: 'block',
+                  textDecoration: 'none',
                   borderBottom: '1px solid rgba(255,255,255,0.05)',
                   borderRight: i % 2 === 0 ? '1px solid rgba(255,255,255,0.05)' : undefined,
                   padding: '28px 32px 26px',
-                  cursor: 'default',
+                  cursor: 'pointer',
                   background: isActive ? '#0e0e0e' : 'transparent',
                   transition: 'background 0.35s ease',
                 }}
@@ -195,7 +207,7 @@ export default function ServicesSection() {
                     className="font-sans font-semibold mb-2.5"
                     style={{
                       fontSize: '1.05rem',
-                      color: isActive ? '#C8FF00' : '#ffffff',
+                      color: isActive ? 'var(--color-lime)' : 'var(--color-fg)',
                       transition: 'color 0.3s ease',
                     }}
                   >
@@ -205,7 +217,7 @@ export default function ServicesSection() {
                   <p
                     className="font-body text-sm leading-relaxed mb-4"
                     style={{
-                      color: isActive ? 'rgba(255,255,255,0.5)' : '#888888',
+                      color: isActive ? `rgba(var(--fg-rgb),0.5)` : 'var(--color-muted)',
                       transition: 'color 0.3s ease',
                     }}
                   >
@@ -219,9 +231,9 @@ export default function ServicesSection() {
                         key={tag}
                         className="font-body text-xs px-2 py-0.5 rounded-sm"
                         style={{
-                          background: isActive ? 'rgba(200,255,0,0.07)' : 'rgba(255,255,255,0.04)',
-                          color: isActive ? 'rgba(200,255,0,0.65)' : '#888888',
-                          border: isActive ? '1px solid rgba(200,255,0,0.14)' : '1px solid rgba(255,255,255,0.05)',
+                          background: isActive ? 'rgba(200,255,0,0.07)' : `rgba(var(--fg-rgb),0.04)`,
+                          color: isActive ? 'var(--color-lime)' : 'var(--color-muted)',
+                          border: isActive ? '1px solid rgba(200,255,0,0.14)' : `1px solid rgba(var(--fg-rgb),0.05)`,
                           transition: 'background 0.3s, color 0.3s, border-color 0.3s',
                         }}
                       >
@@ -242,7 +254,7 @@ export default function ServicesSection() {
                     />
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

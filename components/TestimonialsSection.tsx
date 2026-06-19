@@ -142,7 +142,7 @@ function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
           {t.name[0]}
         </div>
         <div className="min-w-0">
-          <p className="font-sans font-semibold text-white text-sm truncate">{t.name}</p>
+          <p className="font-sans font-semibold text-sm truncate" style={{ color: '#ffffff' }}>{t.name}</p>
           <p className="font-body text-xs text-muted truncate">
             {t.role} · {t.flag} {t.country}
           </p>

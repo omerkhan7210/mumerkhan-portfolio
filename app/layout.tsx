@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter } from 'next/font/google';
 import SmoothScroll from '@/components/SmoothScroll';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -112,7 +113,11 @@ const jsonLd = {
         addressLocality: 'Karachi',
         addressCountry: 'PK',
       },
-      sameAs: ['https://www.upwork.com/freelancers/muhammadumerk5'],
+      sameAs: [
+        'https://www.upwork.com/freelancers/muhammadumerk5',
+        'https://github.com/omerkhan7210',
+        'https://www.linkedin.com/in/muhammad-umer-khan-7998a8266',
+      ],
     },
     {
       '@type': 'WebSite',
@@ -126,7 +131,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark`} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -138,19 +143,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* Page preloader — shown once per session */}
-        <Preloader />
+        <ThemeProvider>
+          {/* Page preloader — shown once per session */}
+          <Preloader />
 
-        {/* Animated film grain overlay */}
-        <div className="grain-overlay" aria-hidden="true" />
+          {/* Animated film grain overlay */}
+          <div className="grain-overlay" aria-hidden="true" />
 
-        {/* Custom cursor (desktop only) */}
-        <CustomCursor />
+          {/* Custom cursor (desktop only) */}
+          <CustomCursor />
 
-        {/* Lenis smooth scroll wrapper */}
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+          {/* Lenis smooth scroll wrapper */}
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

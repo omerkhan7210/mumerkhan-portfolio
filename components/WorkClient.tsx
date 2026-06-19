@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import SitePreviewModal from './SitePreviewModal';
 
 type Project = {
   id: number;
@@ -13,6 +15,7 @@ type Project = {
   description: string;
   technologies: string[];
   cardImage: string;
+  link?: string;
 };
 
 const ACCENTS = [
@@ -30,13 +33,23 @@ const FILTERS = [
   { label: 'Design', match: (c: string) => ['Brand Website', 'Agency Website', 'Service App Website', 'B2B Portfolio Site', 'Wellness Brand Website'].includes(c) },
 ];
 
-function ProjectCard({ project, accent }: { project: Project; accent: string }) {
+function ProjectCard({
+  project,
+  accent,
+  onPreview,
+}: {
+  project: Project;
+  accent: string;
+  onPreview: (url: string, title: string) => void;
+}) {
   const [hovered, setHovered] = useState(false);
+  const router = useRouter();
+  const hasPreview = !!(project.link && project.link !== '#');
 
   return (
-    <Link
-      href={`/work/${project.slug}`}
+    <div
       data-cursor-label="View"
+      onClick={() => router.push(`/work/${project.slug}`)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -51,6 +64,7 @@ function ProjectCard({ project, accent }: { project: Project; accent: string }) 
         transition: 'border-color 0.32s, box-shadow 0.32s, transform 0.42s cubic-bezier(0.16,1,0.3,1)',
         transform: hovered ? 'translateY(-5px)' : 'none',
         aspectRatio: '4/3',
+        cursor: 'pointer',
       }}
     >
       {/* Image */}
@@ -142,11 +156,11 @@ function ProjectCard({ project, accent }: { project: Project; accent: string }) 
           zIndex: 10,
         }}
       >
-        {/* Tech tags — revealed on hover */}
+        {/* Tech tags + action buttons — revealed on hover */}
         <div
           style={{
             overflow: 'hidden',
-            maxHeight: hovered ? 60 : 0,
+            maxHeight: hovered ? 80 : 0,
             opacity: hovered ? 1 : 0,
             transition: 'max-height 0.42s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease',
             marginBottom: hovered ? 10 : 0,
@@ -170,20 +184,62 @@ function ProjectCard({ project, accent }: { project: Project; accent: string }) 
               </span>
             ))}
           </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 5,
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.72rem',
-              color: accent,
-            }}
-          >
-            View Case Study
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
+          {/* Action row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 5,
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.72rem',
+                color: accent,
+              }}
+            >
+              View Case Study
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+
+            {/* Preview site button */}
+            {hasPreview && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPreview(project.link!, project.title);
+                }}
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.68rem',
+                  padding: '3px 10px',
+                  borderRadius: 6,
+                  background: 'rgba(255,255,255,0.09)',
+                  color: 'rgba(255,255,255,0.65)',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 5,
+                  transition: 'background 0.2s, color 0.2s',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)';
+                  (e.currentTarget as HTMLElement).style.color = '#fff';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.09)';
+                  (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.65)';
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+                Preview
+              </button>
+            )}
           </div>
         </div>
 
@@ -225,7 +281,7 @@ function ProjectCard({ project, accent }: { project: Project; accent: string }) 
           zIndex: 20,
         }}
       />
-    </Link>
+    </div>
   );
 }
 
@@ -233,6 +289,7 @@ export default function WorkClient({ projects }: { projects: Project[] }) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [displayed, setDisplayed] = useState<Project[]>(projects);
   const [fading, setFading] = useState(false);
+  const [preview, setPreview] = useState<{ url: string; title: string } | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   const filterCounts = FILTERS.map((f) => ({
@@ -268,115 +325,126 @@ export default function WorkClient({ projects }: { projects: Project[] }) {
   }, []);
 
   return (
-    <section
-      style={{ padding: 'clamp(40px,6vw,80px) 0', background: '#111111' }}
-    >
-      <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 28px' }}>
+    <>
+      <section
+        style={{ padding: 'clamp(40px,6vw,80px) 0', background: '#111111' }}
+      >
+        <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 28px' }}>
 
-        {/* ── Filter tabs ───────────────────────────────── */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            marginBottom: 48,
-            flexWrap: 'wrap',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.65rem',
-              color: 'rgba(255,255,255,0.22)',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              marginRight: 8,
-              flexShrink: 0,
-            }}
-          >
-            Filter:
-          </span>
-          {filterCounts.map(({ label, count }) => {
-            const active = activeFilter === label;
-            return (
-              <FilterTab
-                key={label}
-                label={label}
-                count={count}
-                active={active}
-                onClick={() => handleFilter(label)}
-              />
-            );
-          })}
-        </div>
-
-        {/* ── Count indicator ── */}
-        <div
-          style={{
-            marginBottom: 28,
-            display: 'flex',
-            alignItems: 'baseline',
-            gap: 8,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              fontSize: '2rem',
-              color: '#C8FF00',
-              letterSpacing: '-0.03em',
-              transition: 'opacity 0.3s',
-              opacity: fading ? 0 : 1,
-            }}
-          >
-            {displayed.length}
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.82rem',
-              color: 'rgba(255,255,255,0.3)',
-            }}
-          >
-            {displayed.length === 1 ? 'project' : 'projects'}{activeFilter !== 'All' ? ` in ${activeFilter}` : ' total'}
-          </span>
-        </div>
-
-        {/* ── Grid ─────────────────────────────────────── */}
-        <div
-          ref={gridRef}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
-            gap: 16,
-            opacity: fading ? 0 : 1,
-            transform: fading ? 'translateY(6px)' : 'none',
-            transition: 'opacity 0.26s ease, transform 0.26s ease',
-          }}
-        >
-          {displayed.map((p, i) => (
-            <div key={p.id} className="wk-card">
-              <ProjectCard project={p} accent={ACCENTS[i % ACCENTS.length]} />
-            </div>
-          ))}
-        </div>
-
-        {/* Empty state */}
-        {displayed.length === 0 && (
+          {/* ── Filter tabs ───────────────────────────────── */}
           <div
             style={{
-              textAlign: 'center',
-              padding: '80px 0',
-              color: 'rgba(255,255,255,0.2)',
-              fontFamily: 'var(--font-body)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              marginBottom: 48,
+              flexWrap: 'wrap',
             }}
           >
-            No projects in this category yet.
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.65rem',
+                color: 'rgba(255,255,255,0.22)',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                marginRight: 8,
+                flexShrink: 0,
+              }}
+            >
+              Filter:
+            </span>
+            {filterCounts.map(({ label, count }) => {
+              const active = activeFilter === label;
+              return (
+                <FilterTab
+                  key={label}
+                  label={label}
+                  count={count}
+                  active={active}
+                  onClick={() => handleFilter(label)}
+                />
+              );
+            })}
           </div>
-        )}
-      </div>
-    </section>
+
+          {/* ── Count indicator ── */}
+          <div
+            style={{
+              marginBottom: 28,
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 700,
+                fontSize: '2rem',
+                color: '#C8FF00',
+                letterSpacing: '-0.03em',
+                transition: 'opacity 0.3s',
+                opacity: fading ? 0 : 1,
+              }}
+            >
+              {displayed.length}
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.82rem',
+                color: 'rgba(255,255,255,0.3)',
+              }}
+            >
+              {displayed.length === 1 ? 'project' : 'projects'}{activeFilter !== 'All' ? ` in ${activeFilter}` : ' total'}
+            </span>
+          </div>
+
+          {/* ── Grid ─────────────────────────────────────── */}
+          <div
+            ref={gridRef}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
+              gap: 16,
+              opacity: fading ? 0 : 1,
+              transform: fading ? 'translateY(6px)' : 'none',
+              transition: 'opacity 0.26s ease, transform 0.26s ease',
+            }}
+          >
+            {displayed.map((p, i) => (
+              <div key={p.id} className="wk-card">
+                <ProjectCard
+                  project={p}
+                  accent={ACCENTS[i % ACCENTS.length]}
+                  onPreview={(url, title) => setPreview({ url, title })}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Empty state */}
+          {displayed.length === 0 && (
+            <div
+              style={{
+                textAlign: 'center',
+                padding: '80px 0',
+                color: 'rgba(255,255,255,0.2)',
+                fontFamily: 'var(--font-body)',
+              }}
+            >
+              No projects in this category yet.
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Preview modal */}
+      {preview && (
+        <SitePreviewModal url={preview.url} title={preview.title} onClose={() => setPreview(null)} />
+      )}
+    </>
   );
 }
 

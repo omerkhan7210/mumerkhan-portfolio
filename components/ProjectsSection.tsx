@@ -3,165 +3,289 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SitePreviewModal from './SitePreviewModal';
 import projectsData from '@/data/projects.json';
 
 const ACCENTS = [
   '#C8FF00', '#60A5FA', '#F472B6', '#34D399',
-  '#FB923C', '#A78BFA', '#38BDF8', '#FBBF24', '#E879F9',
+  '#FB923C', '#A78BFA', '#38BDF8', '#FBBF24',
 ];
 
-/* ── Individual project card ─────────────────────────────────── */
-function ProjCard({
+type Project = typeof projectsData[0];
+
+function ProjectRow({
   project,
   index,
-  wide = false,
+  flip,
 }: {
-  project: typeof projectsData[0];
+  project: Project;
   index: number;
-  wide?: boolean;
+  flip: boolean;
 }) {
   const accent = ACCENTS[index % ACCENTS.length];
   const [hovered, setHovered] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const hasLiveLink = project.link && project.link !== '#';
 
   return (
-    <Link
-      href={`/work/${project.slug}`}
-      data-cursor-label="View"
-      className="proj-card relative block overflow-hidden rounded-2xl"
-      style={{
-        background: '#0D0D0D',
-        border: `1px solid ${hovered ? accent + '40' : 'rgba(255,255,255,0.06)'}`,
-        boxShadow: hovered ? `0 28px 80px ${accent}18, 0 0 0 1px ${accent}20` : '0 4px 20px rgba(0,0,0,0.4)',
-        transition: 'border-color 0.35s ease, box-shadow 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)',
-        transform: hovered ? 'translateY(-6px)' : 'none',
-        height: wide ? 340 : 380,
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* ── Image ── */}
-      <div className="absolute inset-0 overflow-hidden">
-        <Image
-          src={project.cardImage}
-          alt={project.title}
-          fill
-          className="object-cover"
-          style={{
-            transform: hovered ? 'scale(1.07)' : 'scale(1)',
-            transition: 'transform 0.75s cubic-bezier(0.16,1,0.3,1)',
-            filter: hovered ? 'brightness(0.75)' : 'brightness(0.55)',
-            transitionProperty: 'transform, filter',
-          }}
-          unoptimized
+    <>
+      {previewUrl && (
+        <SitePreviewModal
+          url={previewUrl}
+          title={project.title}
+          onClose={() => setPreviewUrl(null)}
         />
-      </div>
+      )}
 
-      {/* ── Gradient overlay — always visible ── */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="proj-row group"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
-          background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.1) 100%)',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 0,
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          minHeight: 320,
+          transition: 'background 0.35s ease',
+          background: hovered ? 'rgba(255,255,255,0.015)' : 'transparent',
         }}
-      />
-
-      {/* ── Accent corner glow on hover ── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at 90% 10%, ${accent}18 0%, transparent 50%)`,
-          opacity: hovered ? 1 : 0,
-          transition: 'opacity 0.4s ease',
-        }}
-      />
-
-      {/* ── Top: number + category badge ── */}
-      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-        <span
-          className="font-body tabular-nums"
-          style={{ fontSize: '0.68rem', color: hovered ? accent : 'rgba(255,255,255,0.3)', transition: 'color 0.3s', letterSpacing: '0.08em' }}
-        >
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span
-          className="font-body text-xs px-2.5 py-1 rounded-full"
-          style={{
-            background: hovered ? `${accent}22` : 'rgba(0,0,0,0.55)',
-            color: hovered ? accent : 'rgba(255,255,255,0.5)',
-            border: `1px solid ${hovered ? accent + '35' : 'rgba(255,255,255,0.1)'}`,
-            backdropFilter: 'blur(8px)',
-            transition: 'background 0.3s, color 0.3s, border-color 0.3s',
-          }}
-        >
-          {project.category}
-        </span>
-      </div>
-
-      {/* ── Bottom info panel ── */}
-      <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-        {/* Tech tags — slide up on hover */}
+      >
+        {/* ── Content side ── */}
         <div
           style={{
-            overflow: 'hidden',
-            maxHeight: hovered ? '80px' : '0px',
-            opacity: hovered ? 1 : 0,
-            transition: 'max-height 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease',
-            marginBottom: hovered ? 10 : 0,
+            order: flip ? 2 : 1,
+            padding: 'clamp(28px, 4vw, 48px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: 0,
+            borderRight: flip ? '1px solid rgba(255,255,255,0.06)' : undefined,
+            borderLeft: !flip ? '1px solid rgba(255,255,255,0.06)' : undefined,
           }}
         >
-          <div className="flex flex-wrap gap-1.5 mb-3">
-            {project.technologies.slice(0, 3).map((tech) => (
+          {/* Number + category */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.65rem',
+                color: hovered ? accent : `rgba(var(--fg-rgb),0.3)`,
+                letterSpacing: '0.1em',
+                transition: 'color 0.3s',
+              }}
+            >
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.7rem',
+                padding: '3px 10px',
+                borderRadius: 100,
+                background: hovered ? `${accent}18` : `rgba(var(--fg-rgb),0.05)`,
+                color: hovered ? accent : `rgba(var(--fg-rgb),0.48)`,
+                border: `1px solid ${hovered ? accent + '35' : `rgba(var(--fg-rgb),0.07)`}`,
+                transition: 'all 0.3s',
+              }}
+            >
+              {project.category}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(1.4rem, 2.2vw, 2rem)',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.1,
+              color: hovered ? 'var(--color-fg)' : `rgba(var(--fg-rgb),0.88)`,
+              marginBottom: 12,
+              transition: 'color 0.3s',
+            }}
+          >
+            {project.title}
+          </h3>
+
+          {/* Description */}
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.9rem',
+              color: `rgba(var(--fg-rgb),0.5)`,
+              lineHeight: 1.65,
+              marginBottom: 20,
+              maxWidth: 400,
+            }}
+          >
+            {project.description}
+          </p>
+
+          {/* Tech tags */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
+            {project.technologies.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="font-body text-xs px-2 py-0.5 rounded-sm"
-                style={{ background: `${accent}14`, color: accent, border: `1px solid ${accent}22` }}
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.7rem',
+                  padding: '3px 10px',
+                  borderRadius: 6,
+                  background: `rgba(var(--fg-rgb),0.04)`,
+                  color: `rgba(var(--fg-rgb),0.48)`,
+                  border: `1px solid rgba(var(--fg-rgb),0.07)`,
+                }}
               >
                 {tech}
               </span>
             ))}
           </div>
-          <div className="flex items-center gap-1.5 font-body text-xs" style={{ color: accent }}>
-            <span>View Case Study</span>
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
+
+          {/* CTAs */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+            <Link
+              href={`/work/${project.slug}`}
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                color: accent,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                textDecoration: 'none',
+                transition: 'opacity 0.2s',
+              }}
+            >
+              View case study
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                style={{
+                  transform: hovered ? 'translate(2px,-2px)' : 'none',
+                  transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1)',
+                }}
+              >
+                <path d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </Link>
+
+            {hasLiveLink && (
+              <button
+                onClick={() => setPreviewUrl(project.link)}
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.78rem',
+                  color: `rgba(var(--fg-rgb),0.48)`,
+                  background: `rgba(var(--fg-rgb),0.04)`,
+                  border: `1px solid rgba(var(--fg-rgb),0.1)`,
+                  borderRadius: 8,
+                  padding: '5px 14px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-fg)';
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = `rgba(var(--fg-rgb),0.25)`;
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.color = `rgba(var(--fg-rgb),0.48)`;
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = `rgba(var(--fg-rgb),0.1)`;
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+                Preview site
+              </button>
+            )}
           </div>
+
+          {/* Year */}
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.68rem',
+              color: `rgba(var(--fg-rgb),0.32)`,
+              marginTop: 20,
+              letterSpacing: '0.06em',
+            }}
+          >
+            {project.year}
+          </p>
         </div>
 
-        {/* Project title — always visible */}
-        <h3
-          className="font-sans font-bold leading-tight"
+        {/* ── Image side ── */}
+        <div
           style={{
-            fontSize: 'clamp(1.05rem, 2vw, 1.35rem)',
-            letterSpacing: '-0.02em',
-            color: hovered ? '#ffffff' : 'rgba(255,255,255,0.9)',
-            transition: 'color 0.3s',
+            order: flip ? 1 : 2,
+            position: 'relative',
+            overflow: 'hidden',
+            minHeight: 280,
+            background: '#111',
           }}
         >
-          {project.title}
-        </h3>
-        <p className="font-body text-xs mt-1" style={{ color: 'rgba(255,255,255,0.35)' }}>
-          {project.year}
-        </p>
-      </div>
+          {/* Accent top border */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 2,
+              background: accent,
+              opacity: hovered ? 1 : 0,
+              transition: 'opacity 0.4s ease',
+              zIndex: 2,
+            }}
+          />
 
-      {/* ── Bottom accent sweep ── */}
-      <div
-        className="absolute bottom-0 left-0 h-0.5 z-20"
-        style={{
-          width: hovered ? '100%' : '0%',
-          background: `linear-gradient(90deg, ${accent}, ${accent}40)`,
-          transition: 'width 0.55s cubic-bezier(0.16,1,0.3,1)',
-        }}
-      />
-    </Link>
+          <Image
+            src={project.cardImage}
+            alt={project.title}
+            fill
+            className="object-cover"
+            style={{
+              transform: hovered ? 'scale(1.04)' : 'scale(1)',
+              transition: 'transform 0.85s cubic-bezier(0.16,1,0.3,1)',
+              filter: hovered ? 'brightness(0.85)' : 'brightness(0.7)',
+              transitionProperty: 'transform, filter',
+            }}
+            unoptimized
+          />
+
+          {/* Corner accent glow */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: `radial-gradient(ellipse at ${flip ? '20% 80%' : '80% 20%'}, ${accent}22 0%, transparent 55%)`,
+              opacity: hovered ? 1 : 0,
+              transition: 'opacity 0.5s ease',
+              pointerEvents: 'none',
+              zIndex: 1,
+            }}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
-/* ── Section ─────────────────────────────────────────────────── */
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
   /* Scroll-reveal heading */
   useEffect(() => {
@@ -175,36 +299,36 @@ export default function ProjectsSection() {
     return () => obs.disconnect();
   }, []);
 
-  /* Stagger cards on scroll */
+  /* Stagger rows on scroll */
   useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.proj-card'));
-    cards.forEach((c) => {
-      c.style.opacity = '0';
-      c.style.transform = 'translateY(32px)';
-      c.style.transitionProperty = 'opacity, transform, border-color, box-shadow';
-      c.style.transitionDuration = '0.7s, 0.7s, 0.35s, 0.35s';
-      c.style.transitionTimingFunction = 'cubic-bezier(0.16,1,0.3,1)';
+    const section = sectionRef.current;
+    if (!section) return;
+    const rows = Array.from(section.querySelectorAll<HTMLElement>('.proj-row'));
+    rows.forEach((r) => {
+      r.style.opacity = '0';
+      r.style.transform = 'translateY(28px)';
+      r.style.transition = 'opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1), background 0.35s ease';
     });
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const i = cards.indexOf(entry.target as HTMLElement);
+            const i = rows.indexOf(entry.target as HTMLElement);
             setTimeout(() => {
               (entry.target as HTMLElement).style.opacity = '1';
-              (entry.target as HTMLElement).style.transform = 'translateY(0)';
-            }, i * 70);
+              (entry.target as HTMLElement).style.transform = 'none';
+            }, i * 80);
             obs.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.05 },
     );
-    cards.forEach((c) => obs.observe(c));
+    rows.forEach((r) => obs.observe(r));
     return () => obs.disconnect();
   }, []);
+
+  const featured = projectsData.slice(0, 6);
 
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-ink-2">
@@ -225,65 +349,57 @@ export default function ProjectsSection() {
             href="/work"
             className="font-body text-muted text-sm hover:text-white transition-colors flex items-center gap-2 self-end"
           >
-            View All 15 Projects
+            View all 15 projects
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>
           </Link>
         </div>
 
-        {/* ── Bento card grid ── */}
-        <div ref={gridRef}>
-
-          {/* Row 1: [wide - 2col] + [normal] + [normal] — 4-col base */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            {/* P1 wide */}
-            <div className="sm:col-span-2">
-              <ProjCard project={projectsData[0]} index={0} wide />
-            </div>
-            {/* P2 */}
-            <div>
-              <ProjCard project={projectsData[1]} index={1} />
-            </div>
-            {/* P3 */}
-            <div>
-              <ProjCard project={projectsData[2]} index={2} />
-            </div>
-          </div>
-
-          {/* Row 2: [normal] + [normal] + [wide - 2col] */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* P4 */}
-            <div>
-              <ProjCard project={projectsData[3]} index={3} />
-            </div>
-            {/* P5 */}
-            <div>
-              <ProjCard project={projectsData[4]} index={4} />
-            </div>
-            {/* P6 wide */}
-            <div className="sm:col-span-2">
-              <ProjCard project={projectsData[5]} index={5} wide />
-            </div>
-          </div>
+        {/* Rows */}
+        <div
+          style={{
+            border: '1px solid rgba(255,255,255,0.06)',
+            borderRadius: 16,
+            overflow: 'hidden',
+          }}
+        >
+          {featured.map((project, i) => (
+            <ProjectRow
+              key={project.slug}
+              project={project}
+              index={i}
+              flip={i % 2 !== 0}
+            />
+          ))}
         </div>
 
         {/* CTA */}
         <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
           <Link href="/work" className="btn-lime">
-            See All 15 Projects
+            See all 15 projects
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </Link>
-          <Link href="/work" className="font-body text-sm text-muted hover:text-white transition-colors flex items-center gap-1.5">
-            <span>Browse by category</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>
           </Link>
         </div>
       </div>
+
+      {/* Mobile grid fallback */}
+      <style>{`
+        @media (max-width: 680px) {
+          .proj-row {
+            grid-template-columns: 1fr !important;
+          }
+          .proj-row > div:last-child {
+            order: 1 !important;
+            min-height: 200px !important;
+          }
+          .proj-row > div:first-child {
+            order: 2 !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

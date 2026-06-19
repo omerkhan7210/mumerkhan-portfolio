@@ -215,7 +215,7 @@ export default function DeliveredSection() {
                     </svg>
                   ))}
                 </div>
-                <p className="font-sans font-bold text-white" style={{ fontSize: 'clamp(1.8rem,4vw,2.8rem)', letterSpacing: '-0.03em', lineHeight: 1 }}>
+                <p className="font-sans font-bold" style={{ fontSize: 'clamp(1.8rem,4vw,2.8rem)', letterSpacing: '-0.03em', lineHeight: 1, color: '#ffffff' }}>
                   5.0<span className="text-lime text-xl ml-1">/ 5.0</span>
                 </p>
                 <p className="font-body text-xs text-muted mt-1.5">
@@ -274,7 +274,7 @@ export default function DeliveredSection() {
           style={{
             fontSize: 'clamp(1.2rem, 2.5vw, 2rem)',
             letterSpacing: '-0.02em',
-            color: 'rgba(255,255,255,0.08)',
+            color: `rgba(var(--fg-rgb),0.08)`,
             maxWidth: '75%',
           }}
         >
