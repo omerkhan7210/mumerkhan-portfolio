@@ -4,7 +4,10 @@
    Run with: node -r dotenv/config scripts/submit-sitemap.js dotenv_config_path=.env.local */
 const { google } = require('googleapis');
 
-const SITE_URL = 'https://mumerkhan.com/';
+/* Verified as a domain property in Search Console — must use the
+   sc-domain: identifier for the API's siteUrl param, not a plain URL. */
+const SITE_PROPERTY = 'sc-domain:mumerkhan.com';
+const SITEMAP_FEED_URL = 'https://mumerkhan.com/sitemap.xml';
 
 function getCredentials() {
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
@@ -20,10 +23,10 @@ async function main() {
   });
   const webmasters = google.webmasters({ version: 'v3', auth });
 
-  await webmasters.sitemaps.submit({ siteUrl: SITE_URL, feedpath: `${SITE_URL}sitemap.xml` });
+  await webmasters.sitemaps.submit({ siteUrl: SITE_PROPERTY, feedpath: SITEMAP_FEED_URL });
   console.log('Sitemap submitted successfully.');
 
-  const list = await webmasters.sitemaps.list({ siteUrl: SITE_URL });
+  const list = await webmasters.sitemaps.list({ siteUrl: SITE_PROPERTY });
   console.log('Current sitemaps on file:', JSON.stringify(list.data.sitemap ?? [], null, 2));
 }
 

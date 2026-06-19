@@ -1,6 +1,12 @@
 import { google } from 'googleapis';
 
-const SITE_URL = 'https://mumerkhan.com/';
+/* The Search Console property is verified as a domain property, so
+   the API's `siteUrl` parameter must be the `sc-domain:` identifier,
+   not a regular https:// URL — those are two different "site" types
+   in Search Console and using the wrong one returns a permission
+   error even though the service account has access. */
+const SITE_PROPERTY = 'sc-domain:mumerkhan.com';
+const SITEMAP_FEED_URL = 'https://mumerkhan.com/sitemap.xml';
 
 /* Service account credentials are provided as a single base64-encoded
    JSON string in GOOGLE_SERVICE_ACCOUNT_KEY (never as a raw file in
@@ -21,17 +27,17 @@ function getAuth() {
   });
 }
 
-export async function submitSitemap(sitemapUrl = `${SITE_URL}sitemap.xml`) {
+export async function submitSitemap(sitemapUrl = SITEMAP_FEED_URL) {
   const auth = getAuth();
   const webmasters = google.webmasters({ version: 'v3', auth });
-  await webmasters.sitemaps.submit({ siteUrl: SITE_URL, feedpath: sitemapUrl });
+  await webmasters.sitemaps.submit({ siteUrl: SITE_PROPERTY, feedpath: sitemapUrl });
   return { ok: true, sitemapUrl };
 }
 
 export async function listSitemaps() {
   const auth = getAuth();
   const webmasters = google.webmasters({ version: 'v3', auth });
-  const res = await webmasters.sitemaps.list({ siteUrl: SITE_URL });
+  const res = await webmasters.sitemaps.list({ siteUrl: SITE_PROPERTY });
   return res.data.sitemap ?? [];
 }
 
@@ -44,7 +50,7 @@ export async function getSearchPerformance(days = 28) {
   const fmt = (d: Date) => d.toISOString().slice(0, 10);
 
   const res = await webmasters.searchanalytics.query({
-    siteUrl: SITE_URL,
+    siteUrl: SITE_PROPERTY,
     requestBody: {
       startDate: fmt(start),
       endDate: fmt(end),
