@@ -6,6 +6,7 @@ import Link from 'next/link';
 /* ── Types ───────────────────────────────────────────────── */
 type FormData = {
   service: string;
+  followUp: string;
   budget: string;
   name: string;
   email: string;
@@ -21,6 +22,42 @@ const SERVICES = [
   { value: 'Not sure yet', icon: '?' },
 ];
 
+/* Follow-up question + options depend entirely on which service was
+   picked in step 0 — this is what makes the flow dynamic rather than
+   a fixed sequence of generic questions. */
+const FOLLOW_UPS: Record<string, { question: string; hint: string; options: string[] }> = {
+  'New Website': {
+    question: 'How many pages do you need?',
+    hint: 'A rough page count helps me scope the build correctly.',
+    options: ['1–5 pages', '6–15 pages', '16+ pages', 'Not sure yet'],
+  },
+  Redesign: {
+    question: "What's driving the redesign?",
+    hint: 'Knowing the "why" shapes the whole approach.',
+    options: ['Outdated look', "It's too slow", 'Need a CMS', 'Bad on mobile', 'Something else'],
+  },
+  'E-Commerce': {
+    question: 'How many products are we talking about?',
+    hint: 'Catalogue size changes the platform and architecture I\'d recommend.',
+    options: ['Under 50', '50–500', '500+', 'Not sure yet'],
+  },
+  Automation: {
+    question: 'What do you want to automate?',
+    hint: 'The type of workflow determines the tools and integrations needed.',
+    options: ['Lead / CRM workflows', 'Internal reporting', 'Document processing', 'Something else'],
+  },
+  'Full Stack App': {
+    question: 'What kind of app is this?',
+    hint: 'This shapes the stack — auth, database design, and hosting all depend on it.',
+    options: ['Internal tool', 'Customer-facing product', 'Marketplace / two-sided', 'Something else'],
+  },
+  'Not sure yet': {
+    question: "What's prompting you to reach out?",
+    hint: 'No pressure to have it all figured out — this just helps me point you in the right direction.',
+    options: ['Just exploring options', 'I have a deadline', 'Replacing a developer', 'Something else'],
+  },
+};
+
 const BUDGETS = [
   { value: 'Under $500', label: 'Under $500' },
   { value: '$500–$2k', label: '$500 – $2k' },
@@ -28,7 +65,7 @@ const BUDGETS = [
   { value: '$5k+', label: '$5k+' },
 ];
 
-const TOTAL_STEPS = 5; // 0=service, 1=budget, 2=name, 3=email, 4=details
+const TOTAL_STEPS = 6; // 0=service, 1=follow-up, 2=budget, 3=name, 4=email, 5=details
 
 /* ── Progress bar ────────────────────────────────────────── */
 function ProgressBar({ step }: { step: number }) {
@@ -317,6 +354,7 @@ export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState<FormData>({
     service: '',
+    followUp: '',
     budget: '',
     name: '',
     email: '',
@@ -416,7 +454,7 @@ export default function ContactClient() {
         {/* Step 0 — Service */}
         {step === 0 && (
           <div>
-            <StepLabel num="01 / 05" />
+            <StepLabel num="01 / 06" />
             <StepQuestion>What are you looking to build?</StepQuestion>
             <StepHint>Pick the one that fits best — we can always refine it.</StepHint>
             <div
@@ -434,7 +472,9 @@ export default function ContactClient() {
                   icon={icon}
                   selected={form.service === value}
                   onClick={() => {
-                    set('service', value);
+                    /* Changing the service invalidates any previously
+                       chosen follow-up answer from a different branch */
+                    setForm((f) => ({ ...f, service: value, followUp: '' }));
                     setTimeout(next, 160);
                   }}
                 />
@@ -443,12 +483,47 @@ export default function ContactClient() {
           </div>
         )}
 
-        {/* Step 1 — Budget */}
-        {step === 1 && (
+        {/* Step 1 — Dynamic follow-up, entirely driven by the service picked in step 0 */}
+        {step === 1 && (() => {
+          const followUp = FOLLOW_UPS[form.service] ?? FOLLOW_UPS['Not sure yet'];
+          return (
+            <div>
+              <StepLabel num="02 / 06" />
+              <StepQuestion>{followUp.question}</StepQuestion>
+              <StepHint>{followUp.hint}</StepHint>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,200px), 1fr))',
+                  gap: 10,
+                  marginTop: 28,
+                }}
+              >
+                {followUp.options.map((opt) => (
+                  <OptionBtn
+                    key={opt}
+                    label={opt}
+                    selected={form.followUp === opt}
+                    onClick={() => {
+                      set('followUp', opt);
+                      setTimeout(next, 160);
+                    }}
+                  />
+                ))}
+              </div>
+              <BackBtn onClick={back} />
+            </div>
+          );
+        })()}
+
+        {/* Step 2 — Budget */}
+        {step === 2 && (
           <div>
-            <StepLabel num="02 / 05" />
+            <StepLabel num="03 / 06" />
             <StepQuestion>What&apos;s your budget range?</StepQuestion>
-            <StepHint>Rough estimates are totally fine — helps me tailor my approach.</StepHint>
+            <StepHint>
+              For your {form.service.toLowerCase()} — rough estimates are totally fine, this just helps me tailor my approach.
+            </StepHint>
             <div
               style={{
                 display: 'grid',
@@ -473,10 +548,10 @@ export default function ContactClient() {
           </div>
         )}
 
-        {/* Step 2 — Name */}
-        {step === 2 && (
+        {/* Step 3 — Name */}
+        {step === 3 && (
           <div>
-            <StepLabel num="03 / 05" />
+            <StepLabel num="04 / 06" />
             <StepQuestion>What&apos;s your name?</StepQuestion>
             <div style={{ marginTop: 28, maxWidth: 480 }}>
               <StepInput
@@ -499,10 +574,10 @@ export default function ContactClient() {
           </div>
         )}
 
-        {/* Step 3 — Email */}
-        {step === 3 && (
+        {/* Step 4 — Email */}
+        {step === 4 && (
           <div>
-            <StepLabel num="04 / 05" />
+            <StepLabel num="05 / 06" />
             <StepQuestion>
               Nice to meet you, {form.name}!<br />
               <span style={{ color: '#C8FF00' }}>What&apos;s your email?</span>
@@ -529,10 +604,10 @@ export default function ContactClient() {
           </div>
         )}
 
-        {/* Step 4 — Details + Submit */}
-        {step === 4 && (
+        {/* Step 5 — Details + Submit */}
+        {step === 5 && (
           <div>
-            <StepLabel num="05 / 05" />
+            <StepLabel num="06 / 06" />
             <StepQuestion>
               Almost there — tell me<br />
               <span style={{ color: '#C8FF00' }}>about your project.</span>
@@ -543,7 +618,7 @@ export default function ContactClient() {
             </StepHint>
             <div style={{ marginTop: 24 }}>
               <StepTextarea
-                placeholder="Describe your project, timeline, and goals..."
+                placeholder={`Tell me more about your ${form.service.toLowerCase()} project${form.followUp ? ` — ${form.followUp.toLowerCase()}` : ''}, timeline, and goals...`}
                 value={form.details}
                 onChange={(v) => set('details', v)}
                 autoFocus

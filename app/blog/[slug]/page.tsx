@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BlogCoverArt from '@/components/BlogCoverArt';
 import { posts, getPostBySlug, formatDate } from '@/data/blog';
 
 type Props = { params: { slug: string } };
@@ -45,9 +46,26 @@ export default function BlogPostPage({ params }: Props) {
 
   const catColor = CATEGORY_COLORS[post.category] ?? '#C8FF00';
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.seoDescription,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { '@type': 'Person', name: 'Muhammad Umer Khan', url: 'https://mumerkhan.com/about' },
+    publisher: { '@type': 'Person', name: 'Muhammad Umer Khan' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://mumerkhan.com/blog/${post.slug}` },
+    keywords: post.tags.join(', '),
+  };
+
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <main className="bg-ink min-h-screen">
         {/* ── Article hero ─────────────────────────────────── */}
         <section className="pt-36 pb-12 relative overflow-hidden">
@@ -103,6 +121,18 @@ export default function BlogPostPage({ params }: Props) {
           </div>
         </section>
 
+        {/* ── Cover image ──────────────────────────────────── */}
+        <section className="pb-12">
+          <div className="max-w-[780px] mx-auto px-6 md:px-10">
+            <BlogCoverArt
+              accent={catColor}
+              category={post.category}
+              className="w-full rounded-2xl border border-white/[0.07]"
+              style={{ height: 'clamp(220px, 32vw, 360px)' }}
+            />
+          </div>
+        </section>
+
         {/* ── Article body ─────────────────────────────────── */}
         <section className="pb-16">
           <div
@@ -127,38 +157,6 @@ export default function BlogPostPage({ params }: Props) {
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────── */}
-        <section className="pb-16">
-          <div className="max-w-[780px] mx-auto px-6 md:px-10">
-            <div
-              className="rounded-2xl p-8 md:p-10"
-              style={{ background: 'rgba(200,255,0,0.04)', border: '1px solid rgba(200,255,0,0.12)' }}
-            >
-              <p className="font-body text-lime text-xs tracking-[0.12em] uppercase mb-3">Ready to build?</p>
-              <h2
-                className="font-sans font-bold text-white mb-2"
-                style={{ fontSize: 'clamp(1.3rem, 2.5vw, 2rem)', letterSpacing: '-0.025em' }}
-              >
-                Let's turn this into action
-              </h2>
-              <p className="font-body text-muted text-sm mb-6 max-w-md">
-                I build what I write about. If this article gave you an idea, let's scope it out — free, no commitment.
-              </p>
-              <div className="flex items-center gap-3 flex-wrap">
-                <Link href="/contact" className="btn-lime" style={{ fontSize: '0.9rem' }}>
-                  Book a free call
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M7 17L17 7M17 7H7M17 7v10" />
-                  </svg>
-                </Link>
-                <Link href="/services" className="btn-outline" style={{ fontSize: '0.9rem' }}>
-                  View services
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ── Related articles ─────────────────────────────── */}
         {related.length > 0 && (
           <section className="pb-20 border-t border-white/[0.05]">
@@ -172,8 +170,10 @@ export default function BlogPostPage({ params }: Props) {
                     className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.07] hover:border-white/15 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-200"
                     style={{ textDecoration: 'none' }}
                   >
-                    <div
-                      className={`w-14 h-14 rounded-lg flex-shrink-0 bg-gradient-to-br ${p.coverGradient}`}
+                    <BlogCoverArt
+                      accent={CATEGORY_COLORS[p.category] ?? '#C8FF00'}
+                      category={p.category}
+                      className="w-14 h-14 rounded-lg flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <p className="font-body text-muted text-xs mb-1">{p.category} · {p.readTime} min read</p>

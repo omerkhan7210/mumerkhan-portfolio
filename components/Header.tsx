@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import ThemeToggle from './ThemeToggle';
 
 const SERVICE_LINKS = [
   { href: '/services/wordpress-development',  label: 'WordPress Development', icon: 'WP' },
@@ -451,7 +450,6 @@ export default function Header() {
 
           {/* Desktop right */}
           <div className="hidden md:flex items-center gap-4">
-            <ThemeToggle />
             <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
               <span className="status-dot" />
               <span style={{
@@ -642,20 +640,17 @@ export default function Header() {
           flexWrap: 'wrap',
           gap: 12,
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <a
-              href="mailto:omerfarooqkhan7210@gmail.com"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.72rem',
-                color: 'rgba(255,255,255,0.3)',
-                textDecoration: 'none',
-              }}
-            >
-              omerfarooqkhan7210@gmail.com
-            </a>
-            <ThemeToggle />
-          </div>
+          <a
+            href="mailto:omerfarooqkhan7210@gmail.com"
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.72rem',
+              color: 'rgba(255,255,255,0.3)',
+              textDecoration: 'none',
+            }}
+          >
+            omerfarooqkhan7210@gmail.com
+          </a>
           <Link
             href="/contact"
             onClick={() => setOpen(false)}

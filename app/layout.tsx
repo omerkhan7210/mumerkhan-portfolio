@@ -3,7 +3,6 @@ import { Space_Grotesk, Inter } from 'next/font/google';
 import SmoothScroll from '@/components/SmoothScroll';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
-import { ThemeProvider } from '@/contexts/ThemeContext';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -131,7 +130,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark`}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -143,21 +142,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <ThemeProvider>
-          {/* Page preloader — shown once per session */}
-          <Preloader />
+        {/* Page preloader — shown once per session */}
+        <Preloader />
 
-          {/* Animated film grain overlay */}
-          <div className="grain-overlay" aria-hidden="true" />
+        {/* Animated film grain overlay */}
+        <div className="grain-overlay" aria-hidden="true" />
 
-          {/* Custom cursor (desktop only) */}
-          <CustomCursor />
+        {/* Custom cursor (desktop only) */}
+        <CustomCursor />
 
-          {/* Lenis smooth scroll wrapper */}
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
-        </ThemeProvider>
+        {/* Lenis smooth scroll wrapper */}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

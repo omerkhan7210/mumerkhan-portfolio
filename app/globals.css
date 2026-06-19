@@ -19,20 +19,6 @@
   --fg-rgb:            255,255,255;
 }
 
-html.light {
-  --color-bg:          #F5F4EF;
-  --color-bg-2:        #EDECEA;
-  --color-bg-3:        #E8E6E0;
-  --color-bg-footer:   #E2E0D9;
-  --color-fg:          #0A0A0A;
-  --color-fg-dim:      rgba(0,0,0,0.55);
-  --color-muted:       #666666;
-  --color-border:      rgba(0,0,0,0.08);
-  --color-border-sub:  rgba(0,0,0,0.05);
-  --color-card:        rgba(0,0,0,0.03);
-  --color-lime:        #7ACC00;
-  --fg-rgb:            10,10,10;
-}
 
 /* ── Reset & Base ─────────────────────────────── */
 *, *::before, *::after {
@@ -371,123 +357,116 @@ input, textarea, select {
 .prose-article em {
   color: rgba(255,255,255,0.85);
 }
-
-/* ── Light mode structural + text overrides ────── */
-html.light header {
-  background: rgba(245,244,239,0.94) !important;
-  border-bottom-color: rgba(0,0,0,0.06) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
+.prose-article h3 a,
+.prose-article h2 a {
+  text-decoration: none;
 }
 
-html.light footer {
-  background: var(--color-bg-footer) !important;
-  border-top-color: rgba(0,0,0,0.06) !important;
+/* ── In-article visual content blocks ─────────── */
+.prose-article .stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 2em 0;
 }
-
-html.light .bg-grid-pattern {
-  background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+.prose-article .stat-box {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  padding: 18px 16px;
 }
-
-/* ── Light mode: text color overrides ─────────────
- * Inline styles (color:'#ffffff') beat CSS class rules, so we must
- * use !important on the element types that carry white inline styles.
- * Lime-colored inline spans still win (their inline specificity is
- * unaffected by !important on a parent selector).
- * ─────────────────────────────────────────────── */
-
-/* Tailwind text-white utility — scoped the same way as headings.
-   `.text-white` is used both inside flipping sections (page <main>
-   wrappers, CaseStudyClient's bg-ink/bg-ink-2 sections) AND inside
-   permanently-dark cards/sections (TrustBar, PricingSection on the
-   homepage, CaseStudyClient's hardcoded-dark hero). Scoping to the
-   flip-able ancestors only avoids darkening text that sits on a
-   background which never changes. */
-html.light .bg-ink .text-white,
-html.light .bg-ink-2 .text-white,
-html.light .bg-ink-3 .text-white,
-html.light main .text-white { color: var(--color-fg) !important; }
-html.light .bg-ink .hover\:text-white:hover,
-html.light .bg-ink-2 .hover\:text-white:hover,
-html.light .bg-ink-3 .hover\:text-white:hover,
-html.light main .hover\:text-white:hover { color: var(--color-fg) !important; }
-
-/* `text-ink` is always literal dark ink text (used on cream/lime
-   backgrounds like Marquee, PhilosophySection, pricing badges) —
-   it must NOT flip with the theme since `ink` itself is now a
-   theme-aware CSS variable used for backgrounds. */
-.text-ink { color: #0A0A0A !important; }
-
-/* Headings + paragraphs — SCOPED to sections that actually flip
-   background (bg-ink / bg-ink-2 / bg-ink-3 / main wrapper / header /
-   footer). We deliberately do NOT use a blanket `html.light h1 {...}`
-   selector: many cards (WorkClient project cards, testimonial cards,
-   metric cards, pricing cards) have hardcoded dark backgrounds that
-   never flip, and their light-colored headings must stay light or
-   they'd become unreadable dark-on-dark text. */
-html.light .bg-ink h1,    html.light .bg-ink h2,    html.light .bg-ink h3,    html.light .bg-ink h4,
-html.light .bg-ink-2 h1,  html.light .bg-ink-2 h2,  html.light .bg-ink-2 h3,  html.light .bg-ink-2 h4,
-html.light .bg-ink-3 h1,  html.light .bg-ink-3 h2,  html.light .bg-ink-3 h3,  html.light .bg-ink-3 h4 {
-  color: #0A0A0A !important;
+.prose-article .stat-box .stat-num {
+  display: block;
+  font-family: var(--font-display, system-ui, sans-serif);
+  font-weight: 800;
+  font-size: 1.7rem;
+  letter-spacing: -0.03em;
+  color: #C8FF00;
+  line-height: 1;
+  margin-bottom: 6px;
 }
-
-/* Paragraphs — ONLY scoped to the <main> wrapper used by static
-   subpages (/work, /services, /pricing, /blog, /contact, /about).
-   We deliberately do NOT scope this to `.bg-ink` generally: on the
-   homepage, `.bg-ink`/`.bg-ink-2` sections (Services, Projects,
-   Delivered, Testimonials) contain cards with hardcoded dark
-   backgrounds (TestimonialCard, MetricCard) whose <p> tags must
-   stay light-colored — those are fixed individually in their
-   component files instead. */
-html.light main p { color: rgba(0,0,0,0.68) !important; }
-
-/* Inline children inherit the dark heading color unless they have
-   their own inline style (e.g. lime accent spans keep #C8FF00) */
-html.light .bg-ink h1 > span,    html.light .bg-ink h2 > span,    html.light .bg-ink h3 > span,
-html.light .bg-ink-2 h1 > span,  html.light .bg-ink-2 h2 > span,  html.light .bg-ink-2 h3 > span,
-html.light .bg-ink-3 h1 > span,  html.light .bg-ink-3 h2 > span,  html.light .bg-ink-3 h3 > span,
-html.light .bg-ink h1 > div > span { color: inherit; }
-
-/* Header nav text (spans carrying rgba-white inline styles) */
-html.light header nav span { color: rgba(0,0,0,0.62) !important; }
-html.light header a > span:last-child { color: rgba(0,0,0,0.62) !important; }
-
-/* Status + subtitle text in header */
-html.light header [style*="rgba(255,255,255"] { color: rgba(0,0,0,0.5) !important; }
-
-/* Footer body text spans */
-html.light footer span { color: rgba(0,0,0,0.55) !important; }
-html.light footer p    { color: rgba(0,0,0,0.55) !important; }
-
-/* Label tags — scoped like headings: `.label-tag` (default #888888)
-   is used both inside flipping sections (ServicesSection, Delivered,
-   Testimonials) AND permanently-dark ones (TechStackSection,
-   PricingSection on the homepage). Only force dark text where the
-   ancestor background actually flips to cream. */
-html.light .bg-ink .label-tag,
-html.light .bg-ink-2 .label-tag,
-html.light .bg-ink-3 .label-tag,
-html.light main .label-tag { color: rgba(0,0,0,0.45) !important; }
-/* `.label-tag-dark` is only ever used on already-light/cream
-   backgrounds (PhilosophySection, /about) so it never needs to flip —
-   its default #777777 is already correct in both themes. */
-
-/* Button */
-html.light .btn-outline {
-  border-color: rgba(0,0,0,0.18);
-  color: #0A0A0A;
+.prose-article .stat-box .stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.4;
 }
-html.light .btn-outline:hover {
-  border-color: rgba(0,0,0,0.4);
-  background: rgba(0,0,0,0.05);
-  color: #0A0A0A;
+.prose-article .compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 2em 0;
 }
-
-/* Body-level theme transitions */
-body, header, footer, section, main, nav, aside {
-  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+@media (max-width: 640px) {
+  .prose-article .compare-grid { grid-template-columns: 1fr; }
+}
+.prose-article .compare-card {
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+}
+.prose-article .compare-card.compare-good {
+  border-color: rgba(200,255,0,0.18);
+  background: rgba(200,255,0,0.03);
+}
+.prose-article .compare-card h4 {
+  font-family: var(--font-display, system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.prose-article .compare-card ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.prose-article .compare-card li {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  padding-left: 1.3em;
+  position: relative;
+  margin-bottom: 0.5em;
+}
+.prose-article .compare-card.compare-good li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #C8FF00;
+}
+.prose-article .compare-card:not(.compare-good) li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: rgba(255,255,255,0.25);
+}
+.prose-article .internal-link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 2em 0;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(200,255,0,0.15);
+  background: rgba(200,255,0,0.035);
+  text-decoration: none !important;
+}
+.prose-article .internal-link-card .ilc-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(200,255,0,0.6);
+  display: block;
+  margin-bottom: 4px;
+}
+.prose-article .internal-link-card .ilc-title {
+  font-family: var(--font-display, system-ui, sans-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #ffffff;
 }
 
 /* ── Social icon links ────────────────────────── */
@@ -502,5 +481,3 @@ body, header, footer, section, main, nav, aside {
   transition: color 0.22s;
 }
 .social-link:hover { color: #C8FF00; }
-html.light .social-link { color: rgba(0,0,0,0.45); }
-html.light .social-link:hover { color: var(--color-lime); }

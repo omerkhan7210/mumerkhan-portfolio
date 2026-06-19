@@ -2,16 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BlogCoverArt from '@/components/BlogCoverArt';
 import { posts, formatDate } from '@/data/blog';
 
 export const metadata: Metadata = {
-  title: 'Blog — Web Development, Automation & Design',
+  title: 'Web Development Blog — WordPress, n8n Automation & Pricing Guides',
   description:
-    'Practical articles on WordPress, MERN stack development, n8n automation, and web strategy. Written by Umer Khan, Full Stack Developer.',
+    'Practical 2025 articles on WordPress vs custom development, n8n workflow automation, website conversion fixes, and real website pricing. Written by Umer Khan, Full Stack Developer.',
   alternates: { canonical: 'https://mumerkhan.com/blog' },
   openGraph: {
-    title: 'Blog | Umer Khan — Full Stack Developer',
-    description: 'Web development articles: WordPress, MERN stack, n8n automation, pricing guides, and conversion strategy.',
+    title: 'Web Development & Automation Blog | Umer Khan',
+    description: 'WordPress vs custom development, n8n automation guides, website pricing breakdowns, and conversion strategy — straight answers, no fluff.',
     url: 'https://mumerkhan.com/blog',
   },
 };
@@ -60,9 +61,10 @@ export default function BlogPage() {
               className="group flex flex-col md:flex-row gap-0 rounded-2xl border border-white/[0.08] overflow-hidden hover:border-white/15 transition-all duration-300"
               style={{ textDecoration: 'none' }}
             >
-              {/* Gradient swatch */}
-              <div
-                className={`w-full md:w-2/5 h-48 md:h-auto min-h-[200px] flex-shrink-0 bg-gradient-to-br ${featured.coverGradient}`}
+              <BlogCoverArt
+                accent={CATEGORY_COLORS[featured.category] ?? '#C8FF00'}
+                category={featured.category}
+                className="w-full md:w-2/5 h-48 md:h-auto min-h-[200px] flex-shrink-0"
                 style={{ minHeight: 220 }}
               />
               <div className="flex flex-col justify-center p-8 md:p-10 flex-1 bg-white/[0.02] group-hover:bg-white/[0.04] transition-colors duration-300">
@@ -119,9 +121,10 @@ export default function BlogPage() {
                     className="group flex flex-col rounded-2xl border border-white/[0.07] overflow-hidden hover:border-white/15 transition-all duration-300"
                     style={{ textDecoration: 'none' }}
                   >
-                    {/* Cover */}
-                    <div
-                      className={`h-36 bg-gradient-to-br ${post.coverGradient} flex-shrink-0`}
+                    <BlogCoverArt
+                      accent={CATEGORY_COLORS[post.category] ?? '#C8FF00'}
+                      category={post.category}
+                      className="h-36 flex-shrink-0"
                     />
                     <div className="flex flex-col flex-1 p-6 bg-white/[0.02] group-hover:bg-white/[0.04] transition-colors duration-300">
                       <div className="flex items-center gap-3 mb-3">
@@ -163,35 +166,7 @@ export default function BlogPage() {
           </section>
         )}
 
-        {/* ── Newsletter / CTA ──────────────────────────────── */}
-        <section className="pb-20 border-t border-white/[0.05]">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 pt-16">
-            <div
-              className="rounded-2xl p-10 md:p-14 flex flex-col md:flex-row md:items-center md:justify-between gap-8"
-              style={{ background: 'rgba(200,255,0,0.04)', border: '1px solid rgba(200,255,0,0.12)' }}
-            >
-              <div>
-                <h2
-                  className="font-sans font-bold text-white mb-2"
-                  style={{ fontSize: 'clamp(1.5rem, 3vw, 2.4rem)', letterSpacing: '-0.025em' }}
-                >
-                  Have a project in mind?
-                </h2>
-                <p className="font-body text-muted max-w-md">
-                  If something in these articles sparked an idea, let's make it real. Book a free call and we'll scope it out.
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <Link href="/contact" className="btn-lime">
-                  Start a project
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M7 17L17 7M17 7H7M17 7v10" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div className="pb-8" />
       </main>
       <Footer />
     </>
