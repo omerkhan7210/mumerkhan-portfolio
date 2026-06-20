@@ -43,7 +43,7 @@ export const skills: Skill[] = [
       'Custom post types and taxonomies for non-standard content (portfolios, bookings, listings)',
       'Performance and security hardening — caching, plugin audits, hosting configuration',
     ],
-    projectSlugs: ['globalremote', 'talehouse', 'novara-md', 'cleverconcept', 'wetotalcare', 'gc-logistics', 'house-of-greens', 'karma-fastfood', 'lobos-co', 'manyway-laundry', 'panaceacare', 'shopfitters-fitout', 'furniture-store', 'yogi-escape'],
+    projectSlugs: ['globalremote', 'talehouse', 'novara-md', 'cleverconcept', 'wetotalcare', 'gc-logistics', 'house-of-greens', 'karma-fastfood', 'lobos-co', 'manyway-laundry', 'panaceacare', 'shopfitters-fitout', 'furniture-store', 'yogi-escape', 'veterans-transition-support'],
     relatedServiceSlug: 'wordpress-development',
     relatedSkillSlugs: ['php', 'woocommerce', 'figma'],
     faqs: [
@@ -75,7 +75,7 @@ export const skills: Skill[] = [
       'Performance optimization — code splitting, memoization, render profiling',
       'Pairing React with Node.js/Express backends for full-stack MERN apps',
     ],
-    projectSlugs: ['roaddarts'],
+    projectSlugs: ['roaddarts', 'kings-capital', 'kingspeg'],
     relatedServiceSlug: 'mern-stack-development',
     relatedSkillSlugs: ['nodejs', 'mongodb', 'nextjs'],
     faqs: [
@@ -224,7 +224,7 @@ export const skills: Skill[] = [
       'API integration — fetch, REST consumption, error handling',
       'Performance-conscious scripting — avoiding render-blocking, lazy loading',
     ],
-    projectSlugs: ['talehouse', 'cleverconcept', 'gc-logistics', 'karma-fastfood', 'shopfitters-fitout', 'furniture-store', 'roaddarts'],
+    projectSlugs: ['talehouse', 'cleverconcept', 'gc-logistics', 'karma-fastfood', 'shopfitters-fitout', 'furniture-store', 'roaddarts', 'drivco-auction', 'kings-capital', 'kingspeg', 'veterans-transition-support'],
     relatedServiceSlug: 'wordpress-development',
     relatedSkillSlugs: ['react', 'typescript', 'html5'],
     faqs: [
@@ -311,7 +311,7 @@ export const skills: Skill[] = [
       'WP-CLI for deployment and maintenance workflows',
       'Cron jobs and scheduled task automation within WordPress',
     ],
-    projectSlugs: ['globalremote', 'talehouse', 'gc-logistics', 'karma-fastfood', 'lobos-co', 'manyway-laundry', 'panaceacare', 'shopfitters-fitout', 'house-of-greens'],
+    projectSlugs: ['globalremote', 'talehouse', 'gc-logistics', 'karma-fastfood', 'lobos-co', 'manyway-laundry', 'panaceacare', 'shopfitters-fitout', 'house-of-greens', 'drivco-auction', 'veterans-transition-support'],
     relatedServiceSlug: 'wordpress-development',
     relatedSkillSlugs: ['wordpress', 'mysql', 'woocommerce'],
     faqs: [
@@ -340,7 +340,7 @@ export const skills: Skill[] = [
       'Combining Tailwind with custom CSS where utility classes aren\'t enough',
       'Dark-mode and theme-variant patterns',
     ],
-    projectSlugs: [],
+    projectSlugs: ['kings-capital', 'drivco-auction'],
     relatedServiceSlug: 'ui-ux-design',
     relatedSkillSlugs: ['react', 'html5', 'figma'],
     faqs: [
@@ -427,7 +427,7 @@ export const skills: Skill[] = [
       'SEO-aware markup structure (which doubles as AI-crawler-friendly structure)',
       'Forms, validation, and accessible interactive elements',
     ],
-    projectSlugs: [],
+    projectSlugs: ['drivco-auction', 'kings-capital', 'kingspeg', 'veterans-transition-support'],
     relatedServiceSlug: 'seo-performance',
     relatedSkillSlugs: ['javascript', 'tailwindcss'],
     faqs: [],
@@ -453,7 +453,7 @@ export const skills: Skill[] = [
       'Direct database access for migrations, cleanup, and reporting tasks',
       'Diagnosing performance bottlenecks at the database layer',
     ],
-    projectSlugs: [],
+    projectSlugs: ['drivco-auction'],
     relatedServiceSlug: 'seo-performance',
     relatedSkillSlugs: ['php', 'wordpress'],
     faqs: [],

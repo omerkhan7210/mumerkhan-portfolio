@@ -17,8 +17,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Case Study | Muhammad Umer Khan`,
+    title: `${project.title} — Case Study`,
     description: project.description,
+    alternates: { canonical: `https://mumerkhan.com/work/${project.slug}` },
   };
 }
 
