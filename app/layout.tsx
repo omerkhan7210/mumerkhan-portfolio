@@ -66,21 +66,12 @@ export const metadata: Metadata = {
     title: 'Muhammad Umer Khan | Full Stack Developer & WordPress Expert',
     description:
       '80+ projects · 6+ years · 100% JSS on Upwork. WordPress, MERN Stack, n8n Automation.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Muhammad Umer Khan — Full Stack Developer',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Muhammad Umer Khan | Full Stack Developer',
     description:
       '80+ projects · 6+ years · 100% JSS on Upwork. WordPress, MERN, n8n.',
-    images: ['/og-image.png'],
   },
   alternates: {
     canonical: SITE_URL,
@@ -127,6 +118,24 @@ const jsonLd = {
       url: SITE_URL,
       name: 'Muhammad Umer Khan — Full Stack Developer Portfolio',
       publisher: { '@id': `${SITE_URL}/#person` },
+    },
+    /* SiteNavigationElement: the structured-data signal that helps
+       Google understand main site sections (closest schema lever for
+       sitelinks-style results) — actual sitelinks display is still an
+       algorithmic Google decision based on site authority + crawl
+       history, not something schema can force directly. */
+    {
+      '@type': 'SiteNavigationElement',
+      '@id': `${SITE_URL}/#nav`,
+      name: ['Work', 'Services', 'Pricing', 'Blog', 'About', 'Contact'],
+      url: [
+        `${SITE_URL}/work`,
+        `${SITE_URL}/services`,
+        `${SITE_URL}/pricing`,
+        `${SITE_URL}/blog`,
+        `${SITE_URL}/about`,
+        `${SITE_URL}/contact`,
+      ],
     },
   ],
 };
