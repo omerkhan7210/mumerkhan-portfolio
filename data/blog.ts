@@ -16,7 +16,7 @@ export const posts: BlogPost[] = [
   {
     slug: 'wordpress-vs-custom-web-development',
     title: 'WordPress vs Custom Web Development in 2025: Which Is Right for Your Business?',
-    seoTitle: 'WordPress vs Custom Web Development 2025: Cost, Pros & Cons | Umer Khan',
+    seoTitle: 'WordPress vs Custom Web Development 2025: Cost, Pros & Cons',
     seoDescription:
       'WordPress or custom code? A 2025 cost and performance breakdown covering pricing, flexibility, maintenance, and SEO — so you choose the right platform the first time.',
     excerpt:
@@ -95,7 +95,7 @@ export const posts: BlogPost[] = [
   {
     slug: 'what-is-n8n-automation',
     title: 'What Is n8n? The Workflow Automation Tool Saving Small Businesses Hours Every Week',
-    seoTitle: 'What Is n8n Automation? Zapier Alternative Guide 2025 | Umer Khan',
+    seoTitle: 'What Is n8n Automation? Zapier Alternative Guide 2025',
     seoDescription:
       'n8n is a self-hosted workflow automation tool — the open-source Zapier alternative you actually own. Learn what it automates, what it costs, and how to get started.',
     excerpt:
@@ -177,7 +177,7 @@ export const posts: BlogPost[] = [
   {
     slug: 'why-your-website-is-losing-you-clients',
     title: "Why Your Website Is Quietly Losing You Clients (And the Fixes That Actually Work)",
-    seoTitle: 'Why Your Website Isn\'t Converting Visitors Into Clients | Umer Khan',
+    seoTitle: 'Why Your Website Isn\'t Converting Visitors Into Clients',
     seoDescription:
       'Most business websites are actively costing their owners money. Here are the five most common website conversion killers I see in every audit, and how to fix each one.',
     excerpt:
@@ -257,7 +257,7 @@ export const posts: BlogPost[] = [
   {
     slug: 'how-much-does-a-website-cost',
     title: 'How Much Does a Professional Website Cost in 2025? Real Numbers',
-    seoTitle: 'How Much Does a Website Cost in 2025? Real Pricing Guide | Umer Khan',
+    seoTitle: 'How Much Does a Website Cost in 2025? Real Pricing Guide',
     seoDescription:
       'Transparent website pricing for 2025. From a simple landing page to a full e-commerce store — what you should actually expect to pay, and why quotes vary so much.',
     excerpt:

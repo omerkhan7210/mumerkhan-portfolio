@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { TECH_TAG_TO_SKILL } from '@/data/skills';
 
 type Project = {
   id: number;
@@ -185,19 +186,20 @@ export default function CaseStudyClient({
               <div>
                 <p className="font-body text-xs text-muted uppercase tracking-widest mb-2">Technologies</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((t) => (
-                    <span
-                      key={t}
-                      className="font-body text-xs px-2.5 py-1 rounded-sm"
-                      style={{
-                        background: `${accent}08`,
-                        color: accent,
-                        border: `1px solid ${accent}18`,
-                      }}
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {project.technologies.map((t) => {
+                    const skillSlug = TECH_TAG_TO_SKILL[t];
+                    const tagClass = 'font-body text-xs px-2.5 py-1 rounded-sm';
+                    const tagStyle = { background: `${accent}08`, color: accent, border: `1px solid ${accent}18` };
+                    return skillSlug ? (
+                      <Link key={t} href={`/skills/${skillSlug}`} className={tagClass} style={tagStyle}>
+                        {t}
+                      </Link>
+                    ) : (
+                      <span key={t} className={tagClass} style={tagStyle}>
+                        {t}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
               <div>

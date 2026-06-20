@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SitePreviewModal from './SitePreviewModal';
 import projectsData from '@/data/projects.json';
+import { TECH_TAG_TO_SKILL } from '@/data/skills';
 
 const ACCENTS = [
   '#C8FF00', '#60A5FA', '#F472B6', '#34D399',
@@ -125,22 +126,28 @@ function ProjectRow({
 
           {/* Tech tags */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
-            {project.technologies.slice(0, 4).map((tech) => (
-              <span
-                key={tech}
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.7rem',
-                  padding: '3px 10px',
-                  borderRadius: 6,
-                  background: `rgba(var(--fg-rgb),0.04)`,
-                  color: `rgba(var(--fg-rgb),0.48)`,
-                  border: `1px solid rgba(var(--fg-rgb),0.07)`,
-                }}
-              >
-                {tech}
-              </span>
-            ))}
+            {project.technologies.slice(0, 4).map((tech) => {
+              const skillSlug = TECH_TAG_TO_SKILL[tech];
+              const tagStyle = {
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.7rem',
+                padding: '3px 10px',
+                borderRadius: 6,
+                background: `rgba(var(--fg-rgb),0.04)`,
+                color: `rgba(var(--fg-rgb),0.48)`,
+                border: `1px solid rgba(var(--fg-rgb),0.07)`,
+                textDecoration: 'none',
+              };
+              return skillSlug ? (
+                <Link key={tech} href={`/skills/${skillSlug}`} style={tagStyle}>
+                  {tech}
+                </Link>
+              ) : (
+                <span key={tech} style={tagStyle}>
+                  {tech}
+                </span>
+              );
+            })}
           </div>
 
           {/* CTAs */}

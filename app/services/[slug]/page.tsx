@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { services, getServiceBySlug } from '@/data/services';
+import { TECH_TAG_TO_SKILL } from '@/data/skills';
 
 type Props = { params: { slug: string } };
 
@@ -54,15 +55,20 @@ export default function ServicePage({ params }: Props) {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-6">
-              {svc.tags.map((t) => (
-                <span
-                  key={t}
-                  className="font-body text-xs px-3 py-1 rounded-full border"
-                  style={{ color: svc.color, borderColor: `${svc.color}40`, background: `${svc.color}10` }}
-                >
-                  {t}
-                </span>
-              ))}
+              {svc.tags.map((t) => {
+                const skillSlug = TECH_TAG_TO_SKILL[t];
+                const tagClass = 'font-body text-xs px-3 py-1 rounded-full border';
+                const tagStyle = { color: svc.color, borderColor: `${svc.color}40`, background: `${svc.color}10` };
+                return skillSlug ? (
+                  <Link key={t} href={`/skills/${skillSlug}`} className={tagClass} style={{ ...tagStyle, textDecoration: 'none' }}>
+                    {t}
+                  </Link>
+                ) : (
+                  <span key={t} className={tagClass} style={tagStyle}>
+                    {t}
+                  </span>
+                );
+              })}
             </div>
 
             <h1
@@ -164,14 +170,19 @@ export default function ServicePage({ params }: Props) {
               Tools I use for {svc.name.toLowerCase()}
             </h2>
             <div className="flex flex-wrap gap-2.5">
-              {svc.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="font-body text-sm px-4 py-2 rounded-lg border border-white/[0.08] bg-white/[0.03] text-white/65 hover:text-white hover:border-white/20 transition-colors duration-200"
-                >
-                  {tech}
-                </span>
-              ))}
+              {svc.technologies.map((tech) => {
+                const skillSlug = TECH_TAG_TO_SKILL[tech];
+                const tagClass = 'font-body text-sm px-4 py-2 rounded-lg border border-white/[0.08] bg-white/[0.03] text-white/65 hover:text-white hover:border-white/20 transition-colors duration-200';
+                return skillSlug ? (
+                  <Link key={tech} href={`/skills/${skillSlug}`} className={tagClass} style={{ textDecoration: 'none' }}>
+                    {tech}
+                  </Link>
+                ) : (
+                  <span key={tech} className={tagClass}>
+                    {tech}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </section>

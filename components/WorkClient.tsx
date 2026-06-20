@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import SitePreviewModal from './SitePreviewModal';
+import { TECH_TAG_TO_SKILL } from '@/data/skills';
 
 type Project = {
   id: number;
@@ -167,22 +168,33 @@ function ProjectCard({
           }}
         >
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 8 }}>
-            {project.technologies.slice(0, 3).map((t) => (
-              <span
-                key={t}
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.65rem',
-                  padding: '2px 8px',
-                  borderRadius: 4,
-                  background: `${accent}14`,
-                  color: accent,
-                  border: `1px solid ${accent}22`,
-                }}
-              >
-                {t}
-              </span>
-            ))}
+            {project.technologies.slice(0, 3).map((t) => {
+              const skillSlug = TECH_TAG_TO_SKILL[t];
+              const tagStyle = {
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.65rem',
+                padding: '2px 8px',
+                borderRadius: 4,
+                background: `${accent}14`,
+                color: accent,
+                border: `1px solid ${accent}22`,
+                textDecoration: 'none',
+              };
+              return skillSlug ? (
+                <Link
+                  key={t}
+                  href={`/skills/${skillSlug}`}
+                  onClick={(e) => e.stopPropagation()}
+                  style={tagStyle}
+                >
+                  {t}
+                </Link>
+              ) : (
+                <span key={t} style={tagStyle}>
+                  {t}
+                </span>
+              );
+            })}
           </div>
           {/* Action row */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

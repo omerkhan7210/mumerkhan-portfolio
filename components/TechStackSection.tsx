@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import {
   SiWordpress,
@@ -27,29 +28,30 @@ type Tech = {
   color: string;
   years: string;
   detail: string;
+  slug: string;
   Icon?: IconType;
   label?: string;
 };
 
 const INNER: Tech[] = [
-  { Icon: SiWordpress,  name: 'WordPress', color: '#21759B', years: '4+ yrs', detail: '50+ sites built — custom themes, bespoke plugins, WP REST API & Elementor Pro builds.' },
-  { Icon: SiReact,      name: 'React',     color: '#61DAFB', years: '3+ yrs', detail: 'MERN Stack apps — Hooks, Context API, custom hooks, reusable component architecture.' },
-  { Icon: SiNodedotjs,  name: 'Node.js',   color: '#3C873A', years: '3+ yrs', detail: 'REST APIs, Express.js middleware, JWT authentication & server-side architecture.' },
-  { Icon: SiMongodb,    name: 'MongoDB',   color: '#47A248', years: '3+ yrs', detail: 'NoSQL schema design, aggregation pipelines, indexing — MERN Stack data layer.' },
-  { Icon: SiFigma,      name: 'Figma',     color: '#F24E1E', years: 'Daily',  detail: 'Pixel-perfect design-to-code conversions, auto-layout, prototyping & client collaboration.' },
-  { Icon: SiN8N,        name: 'n8n',       color: '#EA4B71', years: '2+ yrs', detail: 'Workflow automation, API integrations, no-code / low-code business process automation.' },
+  { Icon: SiWordpress,  name: 'WordPress', color: '#21759B', years: '4+ yrs', slug: 'wordpress', detail: '50+ sites built — custom themes, bespoke plugins, WP REST API & Elementor Pro builds.' },
+  { Icon: SiReact,      name: 'React',     color: '#61DAFB', years: '3+ yrs', slug: 'react', detail: 'MERN Stack apps — Hooks, Context API, custom hooks, reusable component architecture.' },
+  { Icon: SiNodedotjs,  name: 'Node.js',   color: '#3C873A', years: '3+ yrs', slug: 'nodejs', detail: 'REST APIs, Express.js middleware, JWT authentication & server-side architecture.' },
+  { Icon: SiMongodb,    name: 'MongoDB',   color: '#47A248', years: '3+ yrs', slug: 'mongodb', detail: 'NoSQL schema design, aggregation pipelines, indexing — MERN Stack data layer.' },
+  { Icon: SiFigma,      name: 'Figma',     color: '#F24E1E', years: 'Daily',  slug: 'figma', detail: 'Pixel-perfect design-to-code conversions, auto-layout, prototyping & client collaboration.' },
+  { Icon: SiN8N,        name: 'n8n',       color: '#EA4B71', years: '2+ yrs', slug: 'n8n', detail: 'Workflow automation, API integrations, no-code / low-code business process automation.' },
 ];
 
 const OUTER: Tech[] = [
-  { Icon: SiJavascript,  name: 'JavaScript',   color: '#F7DF1E', years: '6+ yrs', detail: 'Core language — ES6+, async/await, closures, event loop & DOM manipulation.' },
-  { Icon: SiTypescript,  name: 'TypeScript',   color: '#3178C6', years: '2+ yrs', detail: 'Type-safe React/Next.js — interfaces, generics, utility types, strict mode.' },
-  { Icon: SiNextdotjs,   name: 'Next.js',      color: '#FFFFFF', years: '2+ yrs', detail: 'App Router, SSR, SSG, ISR, API routes — production-grade full-stack deployments.' },
-  { Icon: SiPhp,         name: 'PHP',           color: '#8993BE', years: '4+ yrs', detail: 'WordPress custom development, OOP PHP, hooks & filters, WP-CLI, cron jobs.' },
-  { Icon: SiTailwindcss, name: 'Tailwind',      color: '#06B6D4', years: '3+ yrs', detail: 'Rapid UI development, custom design system tokens, responsive layout systems.' },
-  { Icon: SiWoocommerce, name: 'WooCommerce',   color: '#96588A', years: '3+ yrs', detail: 'Full e-commerce builds, custom product types & payment gateway integration.' },
-  { Icon: SiGit,         name: 'Git',           color: '#F05032', years: '6+ yrs', detail: 'Version control, GitHub CI/CD workflows, branching strategies & code review.' },
-  { Icon: SiHtml5,       name: 'HTML5',         color: '#E34F26', years: '6+ yrs', detail: 'Semantic markup, ARIA accessibility, web standards & cross-browser compatibility.' },
-  { Icon: SiMysql,       name: 'MySQL',         color: '#4479A1', years: '3+ yrs', detail: 'Relational DB design, complex JOINs, stored procedures & query optimisation.' },
+  { Icon: SiJavascript,  name: 'JavaScript',   color: '#F7DF1E', years: '6+ yrs', slug: 'javascript', detail: 'Core language — ES6+, async/await, closures, event loop & DOM manipulation.' },
+  { Icon: SiTypescript,  name: 'TypeScript',   color: '#3178C6', years: '2+ yrs', slug: 'typescript', detail: 'Type-safe React/Next.js — interfaces, generics, utility types, strict mode.' },
+  { Icon: SiNextdotjs,   name: 'Next.js',      color: '#FFFFFF', years: '2+ yrs', slug: 'nextjs', detail: 'App Router, SSR, SSG, ISR, API routes — production-grade full-stack deployments.' },
+  { Icon: SiPhp,         name: 'PHP',           color: '#8993BE', years: '4+ yrs', slug: 'php', detail: 'WordPress custom development, OOP PHP, hooks & filters, WP-CLI, cron jobs.' },
+  { Icon: SiTailwindcss, name: 'Tailwind',      color: '#06B6D4', years: '3+ yrs', slug: 'tailwindcss', detail: 'Rapid UI development, custom design system tokens, responsive layout systems.' },
+  { Icon: SiWoocommerce, name: 'WooCommerce',   color: '#96588A', years: '3+ yrs', slug: 'woocommerce', detail: 'Full e-commerce builds, custom product types & payment gateway integration.' },
+  { Icon: SiGit,         name: 'Git',           color: '#F05032', years: '6+ yrs', slug: 'git', detail: 'Version control, GitHub CI/CD workflows, branching strategies & code review.' },
+  { Icon: SiHtml5,       name: 'HTML5',         color: '#E34F26', years: '6+ yrs', slug: 'html5', detail: 'Semantic markup, ARIA accessibility, web standards & cross-browser compatibility.' },
+  { Icon: SiMysql,       name: 'MySQL',         color: '#4479A1', years: '3+ yrs', slug: 'mysql', detail: 'Relational DB design, complex JOINs, stored procedures & query optimisation.' },
 ];
 
 const INNER_R   = 178;  // orbit radius px from center
@@ -146,13 +148,14 @@ function FloatingTooltip({ info }: { info: TooltipInfo }) {
 /* ── Single icon badge ──────────────────────────────────────────── */
 function IconBadge({ tech, onHover }: { tech: Tech; onHover: (t: Tech | null, e?: React.MouseEvent) => void }) {
   const [hov, setHov] = useState(false);
-  const { Icon, label, color, name } = tech;
+  const { Icon, label, color, name, slug } = tech;
 
   return (
-    <div
+    <Link
+      href={`/skills/${slug}`}
       onMouseEnter={(e) => { setHov(true);  onHover(tech, e); }}
       onMouseLeave={()  => { setHov(false); onHover(null); }}
-      title={name}
+      title={`View ${name} experience`}
       style={{
         width: ICON_BOX,
         height: ICON_BOX,
@@ -179,7 +182,7 @@ function IconBadge({ tech, onHover }: { tech: Tech; onHover: (t: Tech | null, e?
           {label}
         </span>
       )}
-    </div>
+    </Link>
   );
 }
 
@@ -527,21 +530,23 @@ export default function TechStackSection() {
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             {[...INNER, ...OUTER].map((tech) => {
-              const { Icon, label, color, name } = tech;
+              const { Icon, label, color, name, slug } = tech;
               return (
-                <div
+                <Link
                   key={name}
+                  href={`/skills/${slug}`}
                   style={{
                     display: 'flex', alignItems: 'center', gap: 7,
                     padding: '7px 14px', borderRadius: 100,
                     background: `rgba(${hexToRgb(color)}, 0.08)`,
                     border: `1px solid rgba(${hexToRgb(color)}, 0.2)`,
+                    textDecoration: 'none',
                   }}
                 >
                   {Icon  && <Icon size={14} color={color} />}
                   {label && <span style={{ fontSize: '0.65rem', fontWeight: 800, color, fontFamily: 'var(--font-display)' }}>{label}</span>}
                   <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.55)' }}>{name}</span>
-                </div>
+                </Link>
               );
             })}
           </div>
