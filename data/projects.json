@@ -9,13 +9,32 @@
     "longDescription": "Built a complete custom web application using MERN stack (MongoDB, Express, React, Node.js) that helps users discover and navigate to business locations effortlessly. Integrated Google Maps API for real-time directions, advanced filtering functionality, and visual display of business locations on interactive maps.",
     "challenge": "The client needed a platform that could handle thousands of business listings, allow users to filter by category and proximity, and show real-time routing — all within a single-page app that felt fast and native on mobile.",
     "solution": "Built a full MERN stack application with a custom REST API, MongoDB geospatial indexing for proximity searches, React frontend with state management, and Google Maps JS API integration for dynamic routing and cluster markers.",
-    "results": ["Sub-2s initial load time", "Google Maps real-time routing integrated", "Advanced category + proximity filtering", "Fully mobile-responsive"],
+    "results": [
+      "Sub-2s initial load time",
+      "Google Maps real-time routing integrated",
+      "Advanced category + proximity filtering",
+      "Fully mobile-responsive"
+    ],
     "link": "https://roaddarts.com",
-    "technologies": ["React", "Node.js", "MongoDB", "Express", "Google Maps API"],
+    "technologies": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "Google Maps API"
+    ],
     "cardImage": "/assets/roaddart/roaddarts,3screen.png",
     "heroImage": "/assets/roaddart/roaddarts-page.png",
-    "galleryImages": ["/assets/roaddart/roaddarts,3screen.png"],
-    "keyFeatures": ["Full MERN stack development", "Google Maps API integration", "Business location mapping", "Dynamic search & filters", "Real-time routing & directions"]
+    "galleryImages": [
+      "/assets/roaddart/roaddarts,3screen.png"
+    ],
+    "keyFeatures": [
+      "Full MERN stack development",
+      "Google Maps API integration",
+      "Business location mapping",
+      "Dynamic search & filters",
+      "Real-time routing & directions"
+    ]
   },
   {
     "id": 2,
@@ -27,13 +46,33 @@
     "longDescription": "Built key components of GlobalRemote's automated recruitment platform using n8n workflows. Designed custom registration pages and integrated powerful CV parsing module that automatically extracts and processes candidate resumes. Created automated backend workflows that trigger when applications are submitted.",
     "challenge": "The recruitment team was spending 8+ hours per day manually processing CVs and entering candidate data. They needed an automated pipeline that could extract key information from uploaded resumes and route candidates to the right job categories.",
     "solution": "Implemented a WordPress front-end with custom registration forms, then connected n8n workflows that trigger on form submission. The n8n pipeline parses CVs, extracts candidate details, and pushes structured data into their CRM while sending automated follow-up emails.",
-    "results": ["8+ hours/day of manual work eliminated", "CV parsing pipeline live in 3 weeks", "Automated follow-up email sequences", "Seamless CRM integration"],
+    "results": [
+      "8+ hours/day of manual work eliminated",
+      "CV parsing pipeline live in 3 weeks",
+      "Automated follow-up email sequences",
+      "Seamless CRM integration"
+    ],
     "link": "https://globalremote.nl",
-    "technologies": ["WordPress", "Elementor", "n8n", "PHP", "Automation"],
+    "technologies": [
+      "WordPress",
+      "Elementor",
+      "n8n",
+      "PHP",
+      "Automation"
+    ],
     "cardImage": "/assets/globalremote/globalremote,3screen.png",
     "heroImage": "/assets/globalremote/global-remote-front-page.png",
-    "galleryImages": ["/assets/globalremote/globalremote,3screen.png", "/assets/globalremote/global-remote-front-page.png"],
-    "keyFeatures": ["Custom registration UI", "n8n backend automation", "CV parsing & extraction", "Automated workflows", "Scalable process automation"]
+    "galleryImages": [
+      "/assets/globalremote/globalremote,3screen.png",
+      "/assets/globalremote/global-remote-front-page.png"
+    ],
+    "keyFeatures": [
+      "Custom registration UI",
+      "n8n backend automation",
+      "CV parsing & extraction",
+      "Automated workflows",
+      "Scalable process automation"
+    ]
   },
   {
     "id": 3,
@@ -45,13 +84,33 @@
     "longDescription": "Developed a custom WordPress theme built from scratch based on client requirements. Features flexible dynamic sections, custom layouts, and reusable content modules that enable easy management and updates. The solution supports multiple iterations and evolving content workflows.",
     "challenge": "The client had outgrown off-the-shelf themes but didn't want a page builder. They needed a completely custom theme that gave editors full control over content layout without touching code.",
     "solution": "Built a bespoke WordPress theme using PHP, advanced custom fields (ACF), and custom post types. Created a library of flexible content modules — each with its own layout options — that the editorial team could compose into any page structure.",
-    "results": ["Zero page builder dependency", "Full editorial control", "15+ reusable content modules", "Pixel-perfect design fidelity"],
+    "results": [
+      "Zero page builder dependency",
+      "Full editorial control",
+      "15+ reusable content modules",
+      "Pixel-perfect design fidelity"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "PHP", "Custom CSS", "JavaScript", "ACF"],
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "Custom CSS",
+      "JavaScript",
+      "ACF"
+    ],
     "cardImage": "/assets/talehouse/talehouse,3screen.png",
     "heroImage": "/assets/talehouse/talehouse-front-page.png",
-    "galleryImages": ["/assets/talehouse/talehouse,3screen.png", "/assets/talehouse/talehouse-front-page.png"],
-    "keyFeatures": ["Custom theme development", "Dynamic content modules", "Flexible page layouts", "ACF integration", "Easy content management"]
+    "galleryImages": [
+      "/assets/talehouse/talehouse,3screen.png",
+      "/assets/talehouse/talehouse-front-page.png"
+    ],
+    "keyFeatures": [
+      "Custom theme development",
+      "Dynamic content modules",
+      "Flexible page layouts",
+      "ACF integration",
+      "Easy content management"
+    ]
   },
   {
     "id": 4,
@@ -63,13 +122,32 @@
     "longDescription": "Meticulously translated a detailed Figma design into a fully functional WordPress site. Every layout detail, typography specification, and component was implemented with pixel-perfect accuracy across all breakpoints.",
     "challenge": "The design team had invested weeks in a highly detailed Figma prototype — every pixel, every animation, every hover state was specified. The client wanted code that honored 100% of that design without compromise.",
     "solution": "Used WordPress with Elementor Pro and heavy custom CSS to match every design detail. Implemented custom hover animations, responsive typography scales, and component-level CSS overrides to achieve exact fidelity to the Figma source.",
-    "results": ["100% design fidelity achieved", "Fully responsive across 5 breakpoints", "Custom CSS animations matched", "Delivered ahead of schedule"],
+    "results": [
+      "100% design fidelity achieved",
+      "Fully responsive across 5 breakpoints",
+      "Custom CSS animations matched",
+      "Delivered ahead of schedule"
+    ],
     "link": "https://dev1.web786.work",
-    "technologies": ["WordPress", "Elementor", "Figma", "CSS", "Responsive Design"],
+    "technologies": [
+      "WordPress",
+      "Elementor",
+      "Figma",
+      "CSS",
+      "Responsive Design"
+    ],
     "cardImage": "/assets/novara/novara,3screen.png",
     "heroImage": "/assets/novara/novara%20-front-page.png",
-    "galleryImages": ["/assets/novara/novara,3screen.png"],
-    "keyFeatures": ["Figma to WordPress conversion", "Pixel-perfect design fidelity", "Custom product pages", "Fully responsive layout", "Clean theme structure"]
+    "galleryImages": [
+      "/assets/novara/novara,3screen.png"
+    ],
+    "keyFeatures": [
+      "Figma to WordPress conversion",
+      "Pixel-perfect design fidelity",
+      "Custom product pages",
+      "Fully responsive layout",
+      "Clean theme structure"
+    ]
   },
   {
     "id": 5,
@@ -81,13 +159,33 @@
     "longDescription": "Focused on building the main Case Studies page with pixel-perfect design accuracy. Developed a dynamic filtering system allowing easy browsing of case categories. The result is an engaging, interactive showcase that improves usability and makes it easier for visitors to explore work samples.",
     "challenge": "The existing case studies page was a static list that was hard to browse and impossible to filter. The client needed a system where adding new case studies was simple, and visitors could filter by industry or service type.",
     "solution": "Built a custom post type for case studies with taxonomy-based categories, custom meta fields for project details, and a JavaScript filter system that shows/hides cards without page reload. All styled to match the existing brand precisely.",
-    "results": ["Custom filter system live", "Instant category filtering (no reload)", "Editor-friendly CMS workflow", "Mobile-optimized grid layout"],
+    "results": [
+      "Custom filter system live",
+      "Instant category filtering (no reload)",
+      "Editor-friendly CMS workflow",
+      "Mobile-optimized grid layout"
+    ],
     "link": "https://cleverconcept.nl",
-    "technologies": ["WordPress", "Custom Post Types", "JavaScript", "CSS"],
+    "technologies": [
+      "WordPress",
+      "Custom Post Types",
+      "JavaScript",
+      "CSS"
+    ],
     "cardImage": "/assets/cleverConcept/cleverConcept,3screen(1).png",
     "heroImage": "/assets/cleverConcept/fullpageCC.png",
-    "galleryImages": ["/assets/cleverConcept/cleverConcept,3screen(1).png", "/assets/cleverConcept/caseStudycollage.png", "/assets/cleverConcept/overoncollage.png"],
-    "keyFeatures": ["Pixel-perfect design implementation", "Custom filter system", "Case study showcase", "Interactive navigation", "Mobile optimization"]
+    "galleryImages": [
+      "/assets/cleverConcept/cleverConcept,3screen(1).png",
+      "/assets/cleverConcept/caseStudycollage.png",
+      "/assets/cleverConcept/overoncollage.png"
+    ],
+    "keyFeatures": [
+      "Pixel-perfect design implementation",
+      "Custom filter system",
+      "Case study showcase",
+      "Interactive navigation",
+      "Mobile optimization"
+    ]
   },
   {
     "id": 6,
@@ -99,13 +197,34 @@
     "longDescription": "Built a custom WordPress + WooCommerce store from a detailed Figma design. Special attention was paid to premium UI features including a custom product slider on the homepage using advanced addon plugins. Every page was built to match the design with pixel-perfect accuracy.",
     "challenge": "The client had a high-end product line but their existing WooCommerce site felt generic. They needed a complete rebuild that reflected the premium nature of their brand, with custom product presentation and a better purchase flow.",
     "solution": "Rebuilt from scratch using WordPress + WooCommerce with a custom child theme. Implemented a premium product slider with custom transitions, bespoke product page templates with enlarged media galleries, and a streamlined cart and checkout flow.",
-    "results": ["Premium brand aesthetic achieved", "Custom product slider delivered", "Improved product page UX", "Full responsiveness across devices"],
+    "results": [
+      "Premium brand aesthetic achieved",
+      "Custom product slider delivered",
+      "Improved product page UX",
+      "Full responsiveness across devices"
+    ],
     "link": "https://dev1.web786.work/wtc",
-    "technologies": ["WordPress", "WooCommerce", "Premium Plugins", "Figma", "CSS"],
+    "technologies": [
+      "WordPress",
+      "WooCommerce",
+      "Premium Plugins",
+      "Figma",
+      "CSS"
+    ],
     "cardImage": "/assets/wetotalcare/wetotalcare,3screen(1).png",
     "heroImage": "/assets/wetotalcare/wtc-front-page.png",
-    "galleryImages": ["/assets/wetotalcare/wetotalcare,3screen(1).png", "/assets/wetotalcare/productpage%20collage.png", "/assets/wetotalcare/wetotalcare.png"],
-    "keyFeatures": ["Figma to WordPress build", "Premium slider integration", "Custom product templates", "E-commerce optimization", "Full responsiveness"]
+    "galleryImages": [
+      "/assets/wetotalcare/wetotalcare,3screen(1).png",
+      "/assets/wetotalcare/productpage%20collage.png",
+      "/assets/wetotalcare/wetotalcare.png"
+    ],
+    "keyFeatures": [
+      "Figma to WordPress build",
+      "Premium slider integration",
+      "Custom product templates",
+      "E-commerce optimization",
+      "Full responsiveness"
+    ]
   },
   {
     "id": 7,
@@ -117,13 +236,33 @@
     "longDescription": "Designed and built a premium website for a logistics company targeting enterprise clients. The brief was 'luxury logistics' — the site needed to convey precision, reliability, and scale while looking visually impressive. Built with WordPress using a custom theme and advanced CSS animations.",
     "challenge": "Logistics websites are typically dry and corporate. The client wanted to stand out in a crowded market by looking premium and trustworthy, with a design that matched their high-value service proposition.",
     "solution": "Custom WordPress theme built around a dark, sophisticated color palette with gold accents. Implemented smooth scroll animations, a dynamic service card grid, interactive fleet showcase, and an animated metrics section showing company stats.",
-    "results": ["Premium brand impression achieved", "Custom animated stats section", "Fleet showcase interactive gallery", "Mobile-first responsive layout"],
+    "results": [
+      "Premium brand impression achieved",
+      "Custom animated stats section",
+      "Fleet showcase interactive gallery",
+      "Mobile-first responsive layout"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Custom Theme", "CSS Animations", "PHP", "JavaScript"],
+    "technologies": [
+      "WordPress",
+      "Custom Theme",
+      "CSS Animations",
+      "PHP",
+      "JavaScript"
+    ],
     "cardImage": "/assets/gc-logistics/luxury%20logistics%20,3screen.png",
     "heroImage": "/assets/gc-logistics/luxurylog%20collage.png",
-    "galleryImages": ["/assets/gc-logistics/luxury%20logistics%20,3screen.png", "/assets/gc-logistics/luxurylog%20collage.png"],
-    "keyFeatures": ["Custom premium theme", "Animated stats section", "Service showcase grid", "Fleet gallery", "Enterprise brand feel"]
+    "galleryImages": [
+      "/assets/gc-logistics/luxury%20logistics%20,3screen.png",
+      "/assets/gc-logistics/luxurylog%20collage.png"
+    ],
+    "keyFeatures": [
+      "Custom premium theme",
+      "Animated stats section",
+      "Service showcase grid",
+      "Fleet gallery",
+      "Enterprise brand feel"
+    ]
   },
   {
     "id": 8,
@@ -135,13 +274,33 @@
     "longDescription": "Built a full WooCommerce store for an organic plant and gardening brand. The design required a warm, natural feel with earthy tones, product photography showcasing, and an intuitive browsing experience. Implemented custom plant category navigation and a streamlined checkout.",
     "challenge": "The client had beautiful photography and quality products but an outdated website that didn't showcase either. They needed a modern e-commerce experience that felt aligned with their organic, natural brand values.",
     "solution": "WordPress + WooCommerce with a custom theme using earthy typography and color palette. Built custom product category pages with large photography, a sticky quick-add-to-cart feature, and a simplified 2-step checkout with plant care information on product pages.",
-    "results": ["Complete brand refresh online", "Custom product category pages", "Streamlined checkout flow", "Integrated plant care content"],
+    "results": [
+      "Complete brand refresh online",
+      "Custom product category pages",
+      "Streamlined checkout flow",
+      "Integrated plant care content"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "WooCommerce", "Elementor", "Custom CSS", "PHP"],
+    "technologies": [
+      "WordPress",
+      "WooCommerce",
+      "Elementor",
+      "Custom CSS",
+      "PHP"
+    ],
     "cardImage": "/assets/houseofgreens/Houseofgreens,3screen.png",
     "heroImage": "/assets/houseofgreens/HouseofgreensCollage.png",
-    "galleryImages": ["/assets/houseofgreens/Houseofgreens,3screen.png", "/assets/houseofgreens/HouseofgreensCollage.png"],
-    "keyFeatures": ["Custom WooCommerce theme", "Product photography showcase", "Category navigation system", "Streamlined checkout", "Plant care content integration"]
+    "galleryImages": [
+      "/assets/houseofgreens/Houseofgreens,3screen.png",
+      "/assets/houseofgreens/HouseofgreensCollage.png"
+    ],
+    "keyFeatures": [
+      "Custom WooCommerce theme",
+      "Product photography showcase",
+      "Category navigation system",
+      "Streamlined checkout",
+      "Plant care content integration"
+    ]
   },
   {
     "id": 9,
@@ -153,13 +312,34 @@
     "longDescription": "Built a brand-forward website for a fast food restaurant chain. The site needed high energy, bold typography, and a mouth-watering visual experience. Implemented an interactive menu with category filters, a location finder, and an online ordering integration.",
     "challenge": "The client had strong brand photography and a bold identity but no web presence that matched it. They needed a site that felt as exciting as their brand — fast, visual, appetizing — and drove foot traffic and online orders.",
     "solution": "Custom WordPress site with a bold design system — high-contrast colors, large food photography, and animated menu cards. Integrated an interactive menu with JavaScript filtering by category, a location finder with embedded maps, and an online ordering plugin.",
-    "results": ["Brand-matched visual identity", "Interactive menu with filtering", "Location finder integrated", "Online ordering linked"],
+    "results": [
+      "Brand-matched visual identity",
+      "Interactive menu with filtering",
+      "Location finder integrated",
+      "Online ordering linked"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Custom CSS", "JavaScript", "Google Maps", "PHP"],
+    "technologies": [
+      "WordPress",
+      "Custom CSS",
+      "JavaScript",
+      "Google Maps",
+      "PHP"
+    ],
     "cardImage": "/assets/karma-fastfood/karma-fast-food.png",
     "heroImage": "/assets/karma-fastfood/fastfood%20web.png",
-    "galleryImages": ["/assets/karma-fastfood/karma-fast-food.png", "/assets/karma-fastfood/fastfood%20web.png", "/assets/karma-fastfood/fastfood%20web-1.png"],
-    "keyFeatures": ["Bold brand-forward design", "Interactive menu system", "Category filtering", "Location finder", "Online ordering integration"]
+    "galleryImages": [
+      "/assets/karma-fastfood/karma-fast-food.png",
+      "/assets/karma-fastfood/fastfood%20web.png",
+      "/assets/karma-fastfood/fastfood%20web-1.png"
+    ],
+    "keyFeatures": [
+      "Bold brand-forward design",
+      "Interactive menu system",
+      "Category filtering",
+      "Location finder",
+      "Online ordering integration"
+    ]
   },
   {
     "id": 10,
@@ -171,13 +351,33 @@
     "longDescription": "Designed and developed a sophisticated agency website for Lobos & Co. The client wanted something that felt premium, editorial, and confident — the kind of site that wins clients before a word is read. Built with WordPress and custom animations.",
     "challenge": "Agency websites need to sell the agency before showcasing the work. Lobos needed a site that immediately communicated quality, professionalism, and creativity — not just a portfolio list.",
     "solution": "Built a custom WordPress site with an editorial design system: large typography, generous whitespace, scroll-triggered reveal animations, and a curated work showcase. The homepage leads with a bold statement, followed by selected case studies with hover effects.",
-    "results": ["High-impact homepage achieved", "Editorial design system", "Animated scroll reveals", "Work showcase with hover effects"],
+    "results": [
+      "High-impact homepage achieved",
+      "Editorial design system",
+      "Animated scroll reveals",
+      "Work showcase with hover effects"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Custom Theme", "GSAP", "CSS", "PHP"],
+    "technologies": [
+      "WordPress",
+      "Custom Theme",
+      "GSAP",
+      "CSS",
+      "PHP"
+    ],
     "cardImage": "/assets/lobosandco/lobosand,3screen.png",
     "heroImage": "/assets/lobosandco/lobosand.png",
-    "galleryImages": ["/assets/lobosandco/lobosand,3screen.png", "/assets/lobosandco/lobosand.png"],
-    "keyFeatures": ["Editorial design system", "Scroll-triggered animations", "Portfolio showcase", "Premium typography", "Performance optimized"]
+    "galleryImages": [
+      "/assets/lobosandco/lobosand,3screen.png",
+      "/assets/lobosandco/lobosand.png"
+    ],
+    "keyFeatures": [
+      "Editorial design system",
+      "Scroll-triggered animations",
+      "Portfolio showcase",
+      "Premium typography",
+      "Performance optimized"
+    ]
   },
   {
     "id": 11,
@@ -189,13 +389,32 @@
     "longDescription": "Built a complete web presence for a laundry and dry-cleaning service. The site needed to feel modern and trustworthy while making it extremely easy for customers to book pickups and understand pricing. Implemented an online booking flow integrated with the client's scheduling system.",
     "challenge": "The client was losing business to competitors with better digital presence. Customers would visit the site, not understand the service packages quickly, and leave without booking.",
     "solution": "Redesigned the site with a clear pricing table, a 3-step booking process, and social proof sections. Connected an online booking widget with automatic SMS confirmation. Simplified the service descriptions and added before/after photography.",
-    "results": ["Booking conversion rate improved", "Clear pricing structure", "Online booking integrated", "SMS confirmation automated"],
+    "results": [
+      "Booking conversion rate improved",
+      "Clear pricing structure",
+      "Online booking integrated",
+      "SMS confirmation automated"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Elementor", "Booking Plugin", "PHP", "CSS"],
+    "technologies": [
+      "WordPress",
+      "Elementor",
+      "Booking Plugin",
+      "PHP",
+      "CSS"
+    ],
     "cardImage": "/assets/manyway-laundry/manywaylaundry%20,3screen.png",
     "heroImage": "/assets/manyway-laundry/manywaylaundry.jpg",
-    "galleryImages": ["/assets/manyway-laundry/manywaylaundry%20,3screen.png"],
-    "keyFeatures": ["Online booking flow", "Service package pricing", "SMS confirmation", "Before/after showcase", "Mobile-optimized"]
+    "galleryImages": [
+      "/assets/manyway-laundry/manywaylaundry%20,3screen.png"
+    ],
+    "keyFeatures": [
+      "Online booking flow",
+      "Service package pricing",
+      "SMS confirmation",
+      "Before/after showcase",
+      "Mobile-optimized"
+    ]
   },
   {
     "id": 12,
@@ -207,13 +426,34 @@
     "longDescription": "Built a comprehensive healthcare website for Panacea Care, covering multiple service areas including physiotherapy, nutrition, and wellness coaching. The site needed to feel trustworthy, clinical, and warm — a difficult balance that required careful design choices.",
     "challenge": "Healthcare sites need to balance professionalism with approachability. Patients should feel reassured and confident, not intimidated. The client also needed online appointment booking and clear service descriptions for SEO.",
     "solution": "Custom WordPress site with a clean, light design using calming colors. Built individual service pages with structured content, implemented an appointment booking plugin with calendar sync, and added patient testimonials and team profiles to build trust.",
-    "results": ["Online booking system live", "Individual service pages ranking", "Team profiles with credentials", "Accessibility WCAG AA compliance"],
+    "results": [
+      "Online booking system live",
+      "Individual service pages ranking",
+      "Team profiles with credentials",
+      "Accessibility WCAG AA compliance"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Elementor", "PHP", "Booking Plugin", "CSS"],
+    "technologies": [
+      "WordPress",
+      "Elementor",
+      "PHP",
+      "Booking Plugin",
+      "CSS"
+    ],
     "cardImage": "/assets/panaceacare/pcc,3screen.png",
     "heroImage": "/assets/panaceacare/pcccollage.png",
-    "galleryImages": ["/assets/panaceacare/pcc,3screen.png", "/assets/panaceacare/pcccollage.png", "/assets/panaceacare/pccCollage2.png"],
-    "keyFeatures": ["Online appointment booking", "Service-specific landing pages", "Team credential showcase", "Patient testimonials", "WCAG accessibility compliance"]
+    "galleryImages": [
+      "/assets/panaceacare/pcc,3screen.png",
+      "/assets/panaceacare/pcccollage.png",
+      "/assets/panaceacare/pccCollage2.png"
+    ],
+    "keyFeatures": [
+      "Online appointment booking",
+      "Service-specific landing pages",
+      "Team credential showcase",
+      "Patient testimonials",
+      "WCAG accessibility compliance"
+    ]
   },
   {
     "id": 13,
@@ -225,13 +465,34 @@
     "longDescription": "Built a polished B2B website for a retail shop fitting company. Their clients are retail brands, restaurant chains, and commercial spaces looking for fitout expertise. The site needed to showcase craftsmanship, convey scale, and generate quality leads.",
     "challenge": "ShopFitters were winning business through referrals only. They needed a digital presence that could showcase their portfolio quality, communicate their process, and generate direct enquiries from brand managers and procurement teams.",
     "solution": "Built a project portfolio site with a custom filterable case study grid, a detailed 'Our Process' page showing the end-to-end fitout journey, and a conversion-optimized enquiry form. Heavy use of full-bleed photography to showcase the quality of completed fit-outs.",
-    "results": ["B2B enquiry form generating leads", "Portfolio filterable by sector", "Process page reducing sales calls", "Brand-appropriate premium aesthetic"],
+    "results": [
+      "B2B enquiry form generating leads",
+      "Portfolio filterable by sector",
+      "Process page reducing sales calls",
+      "Brand-appropriate premium aesthetic"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Custom Post Types", "JavaScript", "CSS", "PHP"],
+    "technologies": [
+      "WordPress",
+      "Custom Post Types",
+      "JavaScript",
+      "CSS",
+      "PHP"
+    ],
     "cardImage": "/assets/shopfiiters-fitout/shopfittercollage.png",
     "heroImage": "/assets/shopfiiters-fitout/shopFitterTilted1.png",
-    "galleryImages": ["/assets/shopfiiters-fitout/shopfittercollage.png", "/assets/shopfiiters-fitout/shopFitterTilted1.png", "/assets/shopfiiters-fitout/shopFitterTilted2.png"],
-    "keyFeatures": ["Filterable project portfolio", "B2B lead generation", "Process showcase", "Full-bleed photography", "Conversion-optimized enquiry"]
+    "galleryImages": [
+      "/assets/shopfiiters-fitout/shopfittercollage.png",
+      "/assets/shopfiiters-fitout/shopFitterTilted1.png",
+      "/assets/shopfiiters-fitout/shopFitterTilted2.png"
+    ],
+    "keyFeatures": [
+      "Filterable project portfolio",
+      "B2B lead generation",
+      "Process showcase",
+      "Full-bleed photography",
+      "Conversion-optimized enquiry"
+    ]
   },
   {
     "id": 14,
@@ -243,13 +504,33 @@
     "longDescription": "Developed a high-end furniture e-commerce concept showcasing premium product photography and a minimalist editorial aesthetic. The concept demonstrates clean typography hierarchy, generous whitespace, 3D product presentations, and an intuitive category browsing system.",
     "challenge": "Premium furniture brands need their website to match the quality of their physical showrooms. Generic WooCommerce themes undercut the brand. This concept solves that by treating the website as an extension of the showroom experience.",
     "solution": "Built a concept using Next.js and Tailwind CSS with a bespoke design system. Large product photography, sophisticated typography, micro-interaction hover states, and a room-scene product visualizer demonstrate how luxury furniture should be presented online.",
-    "results": ["Showroom-quality digital experience", "3D product mockup integration", "Editorial product presentation", "Luxury UX patterns demonstrated"],
+    "results": [
+      "Showroom-quality digital experience",
+      "3D product mockup integration",
+      "Editorial product presentation",
+      "Luxury UX patterns demonstrated"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "WooCommerce", "Custom CSS", "Figma", "JavaScript"],
+    "technologies": [
+      "WordPress",
+      "WooCommerce",
+      "Custom CSS",
+      "Figma",
+      "JavaScript"
+    ],
     "cardImage": "/assets/furniture%20mockup/furniture-mockup.png",
     "heroImage": "/assets/furniture%20mockup/furniture-mockup-2.png",
-    "galleryImages": ["/assets/furniture%20mockup/furniture-mockup.png", "/assets/furniture%20mockup/furniture-mockup-2.png"],
-    "keyFeatures": ["3D product mockups", "Editorial layout system", "Luxury typography hierarchy", "Room-scene presentations", "Smooth hover interactions"]
+    "galleryImages": [
+      "/assets/furniture%20mockup/furniture-mockup.png",
+      "/assets/furniture%20mockup/furniture-mockup-2.png"
+    ],
+    "keyFeatures": [
+      "3D product mockups",
+      "Editorial layout system",
+      "Luxury typography hierarchy",
+      "Room-scene presentations",
+      "Smooth hover interactions"
+    ]
   },
   {
     "id": 15,
@@ -261,13 +542,33 @@
     "longDescription": "Built a wellness-focused website for a yoga studio and retreat brand. The site needed to evoke calm, flow, and mindfulness while still being functional — booking classes, showcasing instructors, and selling retreat packages. Every design decision was made to reduce friction and increase serenity.",
     "challenge": "Most yoga studio websites feel either too corporate or too DIY. Yogi Escape needed something that felt premium, peaceful, and made the visitor want to book a class within 30 seconds of arriving on the page.",
     "solution": "Custom WordPress site with soft, organic design language — curved elements, warm neutrals, flowing typography. Implemented a class schedule with online booking, instructor profile pages with specialty tags, and a retreat packages page with integrated payment.",
-    "results": ["Online class booking implemented", "Instructor profile system", "Retreat package sales page", "Calming UX reduces bounce rate"],
+    "results": [
+      "Online class booking implemented",
+      "Instructor profile system",
+      "Retreat package sales page",
+      "Calming UX reduces bounce rate"
+    ],
     "link": "#",
-    "technologies": ["WordPress", "Elementor", "Booking Plugin", "Custom CSS", "PHP"],
+    "technologies": [
+      "WordPress",
+      "Elementor",
+      "Booking Plugin",
+      "Custom CSS",
+      "PHP"
+    ],
     "cardImage": "/assets/yoga%20mockup/yogicescape-mockup.png",
     "heroImage": "/assets/yoga%20mockup/yogicescape-mockup-2.png",
-    "galleryImages": ["/assets/yoga%20mockup/yogicescape-mockup.png", "/assets/yoga%20mockup/yogicescape-mockup-2.png"],
-    "keyFeatures": ["Class schedule + booking", "Instructor profile pages", "Retreat package showcase", "Organic design system", "Payment integration"]
+    "galleryImages": [
+      "/assets/yoga%20mockup/yogicescape-mockup.png",
+      "/assets/yoga%20mockup/yogicescape-mockup-2.png"
+    ],
+    "keyFeatures": [
+      "Class schedule + booking",
+      "Instructor profile pages",
+      "Retreat package showcase",
+      "Organic design system",
+      "Payment integration"
+    ]
   },
   {
     "id": 16,
@@ -279,13 +580,34 @@
     "longDescription": "Built a full car dealership and auction platform from scratch in PHP and MySQL — no framework, no page builder. Covers the full flow a real auction site needs: browsing by brand and category, viewing detailed listings with bid history, placing live bids against a countdown, and an admin panel for managing inventory.",
     "challenge": "A car marketplace is a different kind of project than a brochure site — it needed a real relational data model (cars, bids, users, orders, cart, wishlist) and bidding logic that has to behave correctly under time pressure: tracking the current highest bid and bidder, counting down to auction close, and preventing stale data from showing the wrong price.",
     "solution": "Designed an 8-table MySQL schema (cardetails, bids, users, orders, cart, wishlist, products, admins) and built the full PHP application around it — brand/category browsing, a detailed auction page with a live countdown timer and current-highest-bid display, an admin login and management panel, and a Tailwind-based UI on top of it all.",
-    "results": ["Real-time bidding engine with live highest-bid tracking", "8-table relational schema covering the full auction lifecycle", "Countdown-driven auction detail pages", "Admin panel for listing & user management"],
+    "results": [
+      "Real-time bidding engine with live highest-bid tracking",
+      "8-table relational schema covering the full auction lifecycle",
+      "Countdown-driven auction detail pages",
+      "Admin panel for listing & user management"
+    ],
     "link": "#",
-    "technologies": ["PHP", "MySQL", "Tailwind", "JavaScript", "HTML5"],
+    "technologies": [
+      "PHP",
+      "MySQL",
+      "Tailwind",
+      "JavaScript",
+      "HTML5"
+    ],
     "cardImage": "/assets/drivco-auction/ca-home.png",
     "heroImage": "/assets/drivco-auction/ca-home-full.png",
-    "galleryImages": ["/assets/drivco-auction/ca-home.png", "/assets/drivco-auction/ca-details.png", "/assets/drivco-auction/ca-home-full.png"],
-    "keyFeatures": ["Live bidding engine with countdown timers", "Brand & category browsing", "Admin panel for inventory management", "8-table relational MySQL schema", "Bid history & highest-bidder tracking"]
+    "galleryImages": [
+      "/assets/drivco-auction/ca-home.png",
+      "/assets/drivco-auction/ca-details.png",
+      "/assets/drivco-auction/ca-home-full.png"
+    ],
+    "keyFeatures": [
+      "Live bidding engine with countdown timers",
+      "Brand & category browsing",
+      "Admin panel for inventory management",
+      "8-table relational MySQL schema",
+      "Bid history & highest-bidder tracking"
+    ]
   },
   {
     "id": 17,
@@ -297,13 +619,32 @@
     "longDescription": "Built a corporate website for a financial advisory firm covering financial planning, investment management, retirement solutions, and wealth preservation. The brief called for a site that reads as trustworthy and established — the kind of design that reassures a visitor handing over financial decisions to a stranger.",
     "challenge": "Financial services sites have to walk a line: look credible and established without tipping into generic stock-photo corporate cliché, and present four distinct service lines clearly enough that a visitor can self-select into the right one without a phone call.",
     "solution": "Built a React frontend styled entirely with a custom Tailwind config, structured around a clear service-first information architecture — a hero with a direct value statement, a four-pillar services grid (Financial Planning, Investment Management, Retirement Solutions, Wealth Preservation) repeated as a comparison section, and a testimonials block for social proof.",
-    "results": ["Four service lines presented with clear self-selection paths", "Consistent design system built on custom Tailwind tokens", "Client testimonials integrated for trust signals", "Fully responsive across devices"],
-    "link": "#",
-    "technologies": ["React", "Tailwind", "JavaScript", "HTML5"],
-    "cardImage": "/assets/kings-capital/kc-home.png",
-    "heroImage": "/assets/kings-capital/kc-services.png",
-    "galleryImages": ["/assets/kings-capital/kc-home.png", "/assets/kings-capital/kc-about.png", "/assets/kings-capital/kc-services.png"],
-    "keyFeatures": ["Four-pillar services architecture", "Custom Tailwind design system", "Client testimonials section", "Lead capture contact form"]
+    "results": [
+      "Four service lines presented with clear self-selection paths",
+      "Consistent design system built on custom Tailwind tokens",
+      "Client testimonials integrated for trust signals",
+      "Fully responsive across devices"
+    ],
+    "link": "https://kings-capital.vercel.app",
+    "technologies": [
+      "React",
+      "Tailwind",
+      "JavaScript",
+      "HTML5"
+    ],
+    "cardImage": "/assets/kings-capital/kings-capital-3screen.png",
+    "heroImage": "/assets/kings-capital/kings-capital-home.png",
+    "galleryImages": [
+      "/assets/kings-capital/kings-capital-home.png",
+      "/assets/kings-capital/kings-capital-collage.png",
+      "/assets/kings-capital/kings-capital-3screen.png"
+    ],
+    "keyFeatures": [
+      "Four-pillar services architecture",
+      "Custom Tailwind design system",
+      "Client testimonials section",
+      "Lead capture contact form"
+    ]
   },
   {
     "id": 18,
@@ -315,13 +656,30 @@
     "longDescription": "Built a corporate site for a private equity group that owns several lines of business under one umbrella. The brief was explicitly about feel as much as function — a confident, cinematic site using motion to communicate scale and global reach, not just a static page of investment categories.",
     "challenge": "Private equity sites tend to be either dry and text-heavy or flashy without substance. The goal here was a site that felt genuinely premium through motion design — page transitions, scroll-driven reveals — while still clearly communicating the firm's investment focus areas (Global Presence, Strategic Partnerships, Financial Expertise).",
     "solution": "Built entirely in React with Framer Motion handling page transitions and scroll-triggered animations, layered over full-bleed photography of skylines and business environments to reinforce the 'global reach' positioning. Structured navigation around the firm's core pillars rather than generic page names.",
-    "results": ["Custom page-transition system built with Framer Motion", "Motion-driven storytelling replacing static content blocks", "Clear navigation around investment focus pillars", "Full-bleed cinematic visual direction"],
-    "link": "#",
-    "technologies": ["React", "JavaScript", "HTML5"],
-    "cardImage": "/assets/kingspeg/kingspeg-home.png",
+    "results": [
+      "Custom page-transition system built with Framer Motion",
+      "Motion-driven storytelling replacing static content blocks",
+      "Clear navigation around investment focus pillars",
+      "Full-bleed cinematic visual direction"
+    ],
+    "link": "https://kingspeg-animated-site-yzjh.vercel.app",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "HTML5"
+    ],
+    "cardImage": "/assets/kingspeg/kingspeg-3screen.png",
     "heroImage": "/assets/kingspeg/kingspeg-home.png",
-    "galleryImages": ["/assets/kingspeg/kingspeg-home.png"],
-    "keyFeatures": ["Framer Motion page transitions", "Scroll-triggered reveal animations", "Pillar-based navigation structure", "Cinematic full-bleed visual direction"]
+    "galleryImages": [
+      "/assets/kingspeg/kingspeg-home.png",
+      "/assets/kingspeg/kingspeg-3screen.png"
+    ],
+    "keyFeatures": [
+      "Framer Motion page transitions",
+      "Scroll-triggered reveal animations",
+      "Pillar-based navigation structure",
+      "Cinematic full-bleed visual direction"
+    ]
   },
   {
     "id": 19,
@@ -333,12 +691,319 @@
     "longDescription": "Ongoing engagement with Veterans Transition Support, a nonprofit helping veterans move into civilian careers through free job training and mentoring. The work spans a full technical SEO audit, redesigns of several key pages (donors & sponsors, events calendar, donation flow, job submission form), and a custom 'job landings' feature that lets the team log and showcase veteran job placements with an approval workflow.",
     "challenge": "As a donor- and grant-funded nonprofit, the site needed to be both technically healthy for search visibility and credible to prospective donors and partners — while giving a non-technical team a way to log job placements (the organization's core success metric) without needing a developer involved every time.",
     "solution": "Ran a full crawl-based technical SEO audit (accessibility, Core Web Vitals, structured data, canonicals, redirects, and 200+ other checks) and used it to drive a prioritized cleanup plan. Delivered redesigns for the donors/sponsors, events, donation, and job submission pages with formal client sign-off on each. Built a custom job-landings board with a submission and admin-approval workflow so the team can publish new veteran placements themselves. Separately scoped a phased growth proposal covering a homepage rebuild, an Events Hub via the Eventbrite API, and automated lead capture.",
-    "results": ["Full technical SEO audit covering 200+ automated checks", "Four key pages redesigned with formal client approval", "Custom job-landings board with self-service publishing", "Phased growth roadmap scoped for homepage, events, and automation"],
+    "results": [
+      "Full technical SEO audit covering 200+ automated checks",
+      "Four key pages redesigned with formal client approval",
+      "Custom job-landings board with self-service publishing",
+      "Phased growth roadmap scoped for homepage, events, and automation"
+    ],
     "link": "https://veteranstransitionsupport.org",
-    "technologies": ["WordPress", "PHP", "JavaScript", "SEO"],
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "JavaScript",
+      "SEO"
+    ],
     "cardImage": "/assets/vts/vts-homepage.png",
     "heroImage": "/assets/vts/vts-homepage.png",
-    "galleryImages": ["/assets/vts/vts-homepage.png"],
-    "keyFeatures": ["Comprehensive technical SEO audit", "Key page redesigns with client approval workflow", "Custom job-landings board feature", "Phased automation & growth roadmap"]
+    "galleryImages": [
+      "/assets/vts/vts-homepage.png",
+      "/assets/vts/vts-collage.png"
+    ],
+    "keyFeatures": [
+      "Comprehensive technical SEO audit",
+      "Key page redesigns with client approval workflow",
+      "Custom job-landings board feature",
+      "Phased automation & growth roadmap"
+    ]
+  },
+  {
+    "id": 20,
+    "slug": "kp-global-consultants",
+    "title": "KP Global Consultants",
+    "category": "Corporate Website",
+    "year": "2026",
+    "description": "Accounting & advisory firm website covering IFRS advisory, internal audit, and offshore accounting services.",
+    "longDescription": "Rebuilt and fixed a corporate site for KP Global Consultants, an accounting and financial advisory firm offering budgeting & forecasting, IFRS technical advisory, internal audit, and offshore accounting/audit support services. The original site had broken navigation, missing plugin includes, and hardcoded absolute URLs that prevented it from being portable to a new host.",
+    "challenge": "The existing site referenced a hardcoded production domain throughout every page, was missing a script include that broke its homepage slider entirely, and loaded a font over an insecure http:// connection that browsers silently blocked once served over https — all invisible until you actually tried to deploy it somewhere new.",
+    "solution": "Converted every hardcoded absolute URL to a relative path across all 10 pages, restored the missing flexslider plugin include that had never actually been wired up, and fixed the mixed-content font request to load over https. Deployed clean to Vercel with a proper clean-URL routing config.",
+    "results": [
+      "Fixed homepage slider that was silently broken on every page",
+      "Removed all hardcoded absolute URLs for full host portability",
+      "Resolved mixed-content font blocking on https",
+      "Deployed live with clean URL routing"
+    ],
+    "link": "https://kp-global-consultants.vercel.app",
+    "technologies": [
+      "HTML5",
+      "jQuery",
+      "CSS3",
+      "Vercel"
+    ],
+    "cardImage": "/assets/kp-global/kp-global-3screen.png",
+    "heroImage": "/assets/kp-global/kp-global-home.png",
+    "galleryImages": [
+      "/assets/kp-global/kp-global-home.png",
+      "/assets/kp-global/kp-global-collage.png",
+      "/assets/kp-global/kp-global-3screen.png"
+    ],
+    "keyFeatures": [
+      "IFRS technical advisory service pages",
+      "Internal audit & offshore accounting sections",
+      "Fixed slider and navigation bugs",
+      "Portable, host-agnostic relative URL structure"
+    ]
+  },
+  {
+    "id": 21,
+    "slug": "ialus",
+    "title": "IALUS (International Academy of Letters USA)",
+    "category": "Nonprofit Website",
+    "year": "2026",
+    "description": "Static site rebuild for a nonprofit academic organization, with dead links, broken plugins, and exposed credentials cleaned up.",
+    "longDescription": "Took over a nonprofit organization's existing static site, which had accumulated a long tail of front-end bugs: dead links to a removed PHP admin dashboard, unguarded jQuery plugin calls throwing console errors across most pages, missing script includes, and exposed database credentials left in deleted PHP files. Rebuilt it as a clean static frontend deployment.",
+    "challenge": "The site had a PHP/MySQL-backed events CRUD admin panel with hardcoded database and SMTP credentials committed in plaintext — a real security exposure — plus over a dozen separate front-end bugs (missing jQuery includes, wrong script load order, dead image references, unguarded plugin initializations) accumulated across 13 pages.",
+    "solution": "Removed the PHP admin backend entirely (out of scope for a static deployment) and deleted the files containing exposed credentials. Systematically swept every page with automated browser testing to find and fix each console error: guarded every jQuery plugin call against missing elements, fixed script load order, rewrote dead links and image references to local assets, and added missing ES-module script attributes.",
+    "results": [
+      "Removed hardcoded database & SMTP credentials from the codebase",
+      "Fixed console errors across all 13 site pages",
+      "Rebuilt navigation and dead links to point to real content",
+      "Deployed as a clean, static, fully portable frontend"
+    ],
+    "link": "https://ialus-academy.vercel.app",
+    "technologies": [
+      "HTML5",
+      "jQuery",
+      "CSS3",
+      "Vercel"
+    ],
+    "cardImage": "/assets/ialus/ialus-3screen.png",
+    "heroImage": "/assets/ialus/ialus-home.png",
+    "galleryImages": [
+      "/assets/ialus/ialus-home.png",
+      "/assets/ialus/ialus-collage.png",
+      "/assets/ialus/ialus-3screen.png"
+    ],
+    "keyFeatures": [
+      "Full front-end bug sweep across 13 pages",
+      "Removed exposed credentials from legacy PHP code",
+      "Rebuilt dead links & image references",
+      "Clean static deployment with no backend dependency"
+    ]
+  },
+  {
+    "id": 22,
+    "slug": "shifalia",
+    "title": "ShifaLia",
+    "category": "React Web App",
+    "year": "2026",
+    "description": "Healthcare fundraising platform frontend built in React, covering fundraiser creation, case browsing, and donor flows.",
+    "longDescription": "A React (Create React App) frontend for ShifaLia, a healthcare-focused fundraising platform where patients can raise funds for medical care and donors can browse and contribute to active cases. The build covers the full public-facing flow: browsing cases, reading updates and articles, and starting a fundraiser.",
+    "challenge": "The production build was failing because CRA treats ESLint warnings as hard build errors under CI, and the project's routing meant any mistyped URL rendered a blank page with no 404 fallback — both invisible in local development but blocking on deployment.",
+    "solution": "Resolved the CI build-failure by overriding the build command directly rather than relying on a local .env file (which Vercel doesn't upload), and mapped out the app's real routes from its router config to verify every public page renders correctly end to end.",
+    "results": [
+      "Fixed CI build failure blocking all deployments",
+      "Verified all public routes render without errors",
+      "Deployed as a stable, shareable demo build",
+      "Confirmed clean console across the core browsing flow"
+    ],
+    "link": "https://website-development.vercel.app",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "CSS3",
+      "Vercel"
+    ],
+    "cardImage": "/assets/shifalia/shifalia-3screen.png",
+    "heroImage": "/assets/shifalia/shifalia-collage.png",
+    "galleryImages": [
+      "/assets/shifalia/shifalia-collage.png",
+      "/assets/shifalia/shifalia-3screen.png"
+    ],
+    "keyFeatures": [
+      "Fundraiser case browsing & creation flow",
+      "Articles, updates, and blog content sections",
+      "Donor-facing contribution pages",
+      "Stable CI/CD production build"
+    ]
+  },
+  {
+    "id": 23,
+    "slug": "kanalfuchs",
+    "title": "Kanalfuchs GmbH",
+    "category": "Local Service Business Website",
+    "year": "2026",
+    "description": "24/7 emergency drain & sewer cleaning service website for a Swiss home-services company.",
+    "longDescription": "Built a conversion-focused website for Kanalfuchs, a Swiss drain and sewer cleaning company offering 24-hour emergency call-out service. The brief was speed and trust: a visitor with a flooding basement needs to find a phone number and feel confident calling it within seconds, not browse a portfolio.",
+    "challenge": "Emergency home-service businesses lose customers the moment a site feels slow or the phone number is not immediately obvious. Visitors in a plumbing emergency don't read, they scan and call. The site needed to communicate 24/7 availability and reliability instantly, in German, to a local Swiss audience.",
+    "solution": "Built a clean, fast-loading single-focus site with the emergency phone number fixed in the header and repeated throughout, a clear service breakdown (Kanalreinigung and related services), and trust signals (Swiss quality, round-the-clock availability) placed above the fold.",
+    "results": [
+      "Emergency contact number visible from first scroll",
+      "Clear, scannable service breakdown for non-browsing visitors",
+      "Fast-loading, mobile-first build for on-the-go searches",
+      "Localized German-language copy for the Swiss market"
+    ],
+    "link": "https://kanalfuchs.ch",
+    "technologies": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "cardImage": "/assets/kanalfuchs/kanalfuchs-3screen.png",
+    "heroImage": "/assets/kanalfuchs/kanalfuchs-home.png",
+    "galleryImages": [
+      "/assets/kanalfuchs/kanalfuchs-home.png",
+      "/assets/kanalfuchs/kanalfuchs-collage.png",
+      "/assets/kanalfuchs/kanalfuchs-3screen.png"
+    ],
+    "keyFeatures": [
+      "Always-visible emergency contact number",
+      "24/7 availability messaging above the fold",
+      "Localized German-language content",
+      "Mobile-first, fast-loading build"
+    ]
+  },
+  {
+    "id": 24,
+    "slug": "mizar",
+    "title": "Mizar Creative Studio",
+    "category": "Agency Portfolio Site",
+    "year": "2026",
+    "description": "Dark-mode portfolio site for a creative studio, covering brand identity, digital design, and fine art services.",
+    "longDescription": "Designed and built a portfolio website for Mizar, a creative agency offering website design, brand identity, digital identity, creative direction, rebranding, fine art, and asset production. The site needed to feel like the agency's own best work, a showcase that sells the studio's aesthetic sensibility before a visitor reads a single line of copy.",
+    "challenge": "A creative agency's own site is held to a higher bar than a typical client project. It has to demonstrably look better than what competitors are putting out, since it is the agency's single biggest piece of self-marketing.",
+    "solution": "Built a bold, dark-themed single-page experience with large kinetic typography, a gradient-accented visual identity, and a clear services breakdown structured around the studio's seven core offerings, anchored by a confident 'Create. Transform. Inspire.' brand statement.",
+    "results": [
+      "Bold dark-mode visual identity built around large typography",
+      "Seven core service offerings clearly structured",
+      "Gradient-accented brand system applied consistently",
+      "Fully responsive single-page experience"
+    ],
+    "link": "https://dev1.web786.work/mizar",
+    "technologies": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "cardImage": "/assets/mizar/mizar-2screen.png",
+    "heroImage": "/assets/mizar/mizar-collage.png",
+    "galleryImages": [
+      "/assets/mizar/mizar-collage.png",
+      "/assets/mizar/mizar-2screen.png"
+    ],
+    "keyFeatures": [
+      "Bold dark-mode brand identity",
+      "Large kinetic typography hero",
+      "Seven-service capability breakdown",
+      "Gradient-accented design system"
+    ]
+  },
+  {
+    "id": 25,
+    "slug": "nexgen-ems",
+    "title": "NexGen EMS",
+    "category": "B2B Manufacturing Website",
+    "year": "2026",
+    "description": "Industrial website for an Electronics Manufacturing Services provider covering cable assemblies, PCB manufacturing, and custom test systems.",
+    "longDescription": "Built a B2B website for NexGen EMS, an Electronics Manufacturing Services provider offering cable assembly, PCB manufacturing, and custom test system solutions. The brief was to read as precise and production-ready to an industrial buyer evaluating manufacturing partners, not as a generic agency template.",
+    "challenge": "Industrial B2B buyers are evaluating reliability and capability, not aesthetics. The site needed to communicate technical credibility (quality, lead times, testing rigor) fast, while still looking modern enough to compete with larger established EMS providers online.",
+    "solution": "Built a dark, high-contrast industrial design system led by a 'Precision Built. Production Ready.' value statement, with quantified trust signals (100% quality tested, core service count, fast lead times) placed immediately in the hero, followed by a clear services and industries breakdown and a direct quote-request path.",
+    "results": [
+      "Quantified trust signals (quality, lead time) placed above the fold",
+      "Clear services and industries served breakdown",
+      "Direct quote-request conversion path",
+      "Industrial, high-contrast visual identity"
+    ],
+    "link": "https://ems-cable.vercel.app",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "CSS3",
+      "Vercel"
+    ],
+    "cardImage": "/assets/nexgen-ems/nexgen-2screen.png",
+    "heroImage": "/assets/nexgen-ems/nexgen-collage.png",
+    "galleryImages": [
+      "/assets/nexgen-ems/nexgen-collage.png",
+      "/assets/nexgen-ems/nexgen-2screen.png"
+    ],
+    "keyFeatures": [
+      "Quantified trust signals in the hero",
+      "Services and industries served sections",
+      "Direct quote-request flow",
+      "Industrial dark-mode design system"
+    ]
+  },
+  {
+    "id": 26,
+    "slug": "life-works-parenting",
+    "title": "Life Works Parenting",
+    "category": "Course/Education Platform",
+    "year": "2026",
+    "description": "Court-approved online co-parenting course platform redesign, built to convert state-mandated parenting-class searches into signups.",
+    "longDescription": "Redesigned the homepage for Life Works Parenting, a DCF-approved provider of court-mandated co-parenting classes operating across multiple US states. The site serves a very specific high-intent visitor: someone who has been ordered by a court to complete a parenting course and is searching for the fastest, most credible option for their state.",
+    "challenge": "Court-mandated course visitors are anxious, time-pressed, and need state-specific reassurance (is this course actually approved in my state?) before anything else. The design had to lead with credibility signals and state availability rather than generic marketing copy.",
+    "solution": "Led the homepage with a direct value statement ('Your court-required parenting class, done in 4 hours'), surfaced DCF-approval and 30+ years of trust as immediate credibility markers, and built a state-availability callout system (including a Spanish-language path) so visitors can self-confirm eligibility in seconds.",
+    "results": [
+      "Court-approval and trust signals placed immediately above the fold",
+      "State-specific availability messaging for self-qualification",
+      "Spanish-language path for bilingual accessibility",
+      "Clear single-action conversion path to start a course"
+    ],
+    "link": "https://lifeworks-parenting.vercel.app",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "CSS3",
+      "Vercel"
+    ],
+    "cardImage": "/assets/life-works-parenting/parenting-2screen.png",
+    "heroImage": "/assets/life-works-parenting/parenting-collage.png",
+    "galleryImages": [
+      "/assets/life-works-parenting/parenting-collage.png",
+      "/assets/life-works-parenting/parenting-2screen.png"
+    ],
+    "keyFeatures": [
+      "State-specific course availability messaging",
+      "DCF-approval and trust credibility signals",
+      "Spanish-language accessibility path",
+      "High-intent, single-action conversion flow"
+    ]
+  },
+  {
+    "id": 27,
+    "slug": "fogana",
+    "title": "FOGANA",
+    "category": "Nonprofit / Community Website",
+    "year": "2026",
+    "description": "Cultural nonprofit website for the Federation of Gujarati Associations of North America, covering events, galleries, and membership.",
+    "longDescription": "Built a website for FOGANA (Federation of Gujarati Associations of North America), a nonprofit umbrella organization celebrating Gujarati culture across North America through events like Garba and Raas. The site needed to serve a community audience spanning multiple generations and member associations across the continent.",
+    "challenge": "Cultural nonprofit sites serving a dispersed, multi-generational community need to balance event promotion (driving attendance to specific dated events) with an ongoing sense of cultural identity and belonging, for an audience ranging from teenagers to grandparents.",
+    "solution": "Built a vibrant, photo-led site structured around the organization's core community functions: a rotating events showcase (led with the current featured event), a gallery of past celebrations, a 'Join Community' membership path, and clear navigation to rules and regulations and entry forms for event participants.",
+    "results": [
+      "Featured-event promotion system on the homepage",
+      "Photo gallery showcasing past community celebrations",
+      "Clear membership and community join path",
+      "Accessible navigation for a multi-generational audience"
+    ],
+    "link": "https://fogana.org",
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "CSS3"
+    ],
+    "cardImage": "/assets/fogana/fogana-3screen.png",
+    "heroImage": "/assets/fogana/fogana-collage-home.png",
+    "galleryImages": [
+      "/assets/fogana/fogana-collage-home.png",
+      "/assets/fogana/fogana-collage-event.png",
+      "/assets/fogana/fogana-3screen.png"
+    ],
+    "keyFeatures": [
+      "Featured event promotion system",
+      "Community photo gallery",
+      "Membership join flow",
+      "Multi-generational accessible navigation"
+    ]
   }
 ]
