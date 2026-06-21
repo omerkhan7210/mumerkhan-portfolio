@@ -356,7 +356,7 @@ export default function ProjectsSection() {
             href="/work"
             className="font-body text-muted text-sm hover:text-white transition-colors flex items-center gap-2 self-end"
           >
-            View all 15 projects
+            View all {projectsData.length} projects
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>
@@ -384,7 +384,7 @@ export default function ProjectsSection() {
         {/* CTA */}
         <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
           <Link href="/work" className="btn-lime">
-            See all 15 projects
+            See all {projectsData.length} projects
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>

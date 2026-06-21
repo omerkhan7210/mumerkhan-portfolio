@@ -8,7 +8,7 @@ import projects from '@/data/projects.json';
 export const metadata: Metadata = {
   title: 'Work | Muhammad Umer Khan — Full Stack Developer',
   description:
-    'Portfolio of 15 WordPress, MERN Stack, automation, and design projects by Muhammad Umer Khan. Built for real clients, solving real problems.',
+    `Portfolio of ${projects.length} WordPress, MERN Stack, automation, and design projects by Muhammad Umer Khan. Built for real clients, solving real problems.`,
 };
 
 export default function Work() {
@@ -84,7 +84,7 @@ export default function Work() {
                   marginTop: 20,
                 }}
               >
-                15 builds across WordPress, MERN Stack, automation, and brand design.
+                {projects.length} builds across WordPress, MERN Stack, automation, and brand design.
                 Each one delivered on time and built for results.
               </p>
             </div>
@@ -102,7 +102,7 @@ export default function Work() {
               }}
             >
               {[
-                { num: '15', label: 'Projects' },
+                { num: String(projects.length), label: 'Projects' },
                 { num: '100%', label: 'Delivered' },
                 { num: '6+', label: 'Years' },
               ].map(({ num, label }) => (
