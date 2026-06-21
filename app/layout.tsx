@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import Script from 'next/script';
 import SmoothScroll from '@/components/SmoothScroll';
+import PageTransition from '@/components/PageTransition';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
 import './globals.css';
@@ -187,7 +188,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Lenis smooth scroll wrapper */}
         <SmoothScroll>
-          {children}
+          <PageTransition>{children}</PageTransition>
         </SmoothScroll>
       </body>
     </html>

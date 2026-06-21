@@ -187,7 +187,7 @@ export default function DeliveredSection() {
               number={80}
               suffix="+"
               label="Career Total"
-              sub="Projects delivered since 2018"
+              sub="Projects delivered since 2020"
               accent="#60A5FA"
               triggered={triggered}
               delay={100}

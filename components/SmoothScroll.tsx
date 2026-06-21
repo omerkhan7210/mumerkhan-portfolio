@@ -1,8 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
   useEffect(() => {
     let cleanup: (() => void) | undefined;
 
@@ -21,6 +24,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         if (st) st.update();
       });
 
+      /* Exposed so other code (e.g. route-change scroll reset below) can
+         reach the single shared Lenis instance instead of creating its own. */
+      (window as any).__lenis = lenis;
+
       let rafId: number;
       const tick = (time: number) => {
         lenis.raf(time);
@@ -31,12 +38,25 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       cleanup = () => {
         cancelAnimationFrame(rafId);
         lenis.destroy();
+        (window as any).__lenis = null;
       };
     };
 
     init();
     return () => cleanup?.();
   }, []);
+
+  /* Reset scroll position on every route change — Lenis intercepts native
+     scrolling, so Next.js's default scroll-to-top on navigation never
+     reaches it, and the new page otherwise opens at the old scroll offset. */
+  useEffect(() => {
+    const lenis = (window as any).__lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   return <>{children}</>;
 }

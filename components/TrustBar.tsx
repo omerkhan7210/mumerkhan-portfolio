@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import projects from '@/data/projects.json';
 
 function useCounter(target: number, startMs: number, durationMs = 1400) {
   const [val, setVal] = useState(0);
@@ -41,7 +42,7 @@ const BADGES = [
 ];
 
 export default function TrustBar() {
-  const c1 = useCounter(15, 0);
+  const c1 = useCounter(projects.length, 0);
   const c2 = useCounter(100, 80);
   const c3 = useCounter(50, 160);
 

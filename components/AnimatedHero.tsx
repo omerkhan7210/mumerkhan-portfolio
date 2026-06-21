@@ -221,7 +221,7 @@ export default function AnimatedHero() {
           >
             Full Stack Developer specialising in WordPress, MERN Stack &amp; n8n
             Automation. Turning designs into high-performing websites since
-            2018.
+            2020.
           </p>
 
           <div className="flex flex-col gap-4 flex-shrink-0 items-end">

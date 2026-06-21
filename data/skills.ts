@@ -47,7 +47,7 @@ export const skills: Skill[] = [
     relatedServiceSlug: 'wordpress-development',
     relatedSkillSlugs: ['php', 'woocommerce', 'figma'],
     faqs: [
-      { q: 'How many WordPress sites have you built?', a: "50+ WordPress projects since 2018 — a mix of fully custom themes, Elementor Pro builds, and WooCommerce stores, mostly for small-to-medium businesses across Europe, North America, and Australia." },
+      { q: 'How many WordPress sites have you built?', a: "50+ WordPress projects since 2020 — a mix of fully custom themes, Elementor Pro builds, and WooCommerce stores, mostly for small-to-medium businesses across Europe, North America, and Australia." },
       { q: 'Do you build custom themes or use page builders?', a: "Both, depending on the client. If the design is complex and won't change much post-launch, I hand-code a custom theme for maximum performance and control. If the client wants to add pages and edit layouts themselves long-term, I build it in Elementor Pro with a structured global design system so it stays consistent." },
       { q: 'Can you fix or take over an existing WordPress site?', a: "Yes — a good chunk of my work is auditing and rebuilding sites that were poorly built by previous developers or low-cost templates. I start with a technical audit before quoting any changes." },
     ],
