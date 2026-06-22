@@ -22,6 +22,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   'Automation': '#ea4b71',
   'Strategy': '#f59e0b',
   'Pricing': '#10b981',
+  'Hiring': '#8B5CF6',
 };
 
 export default function BlogPage() {

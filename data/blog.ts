@@ -323,6 +323,225 @@ export const posts: BlogPost[] = [
 <p>My own pricing is visible on the <a href="/pricing">pricing page</a>. If your project doesn't fit a template, I'm happy to <a href="/contact">scope it properly on a call</a>.</p>
     `,
   },
+  {
+    slug: 'freelancer-vs-agency-website',
+    title: 'Freelancer vs Agency: Who Should Build Your Website in 2026?',
+    seoTitle: 'Freelancer vs Agency for Website Development: 2026 Comparison',
+    seoDescription:
+      'Hiring a freelance developer or a digital agency for your next website? A breakdown of cost, speed, communication, and quality differences to help you decide.',
+    excerpt:
+      'The agency-vs-freelancer decision usually comes down to one unexamined assumption: that more people automatically means more reliability. Here\'s when that\'s true — and when it\'s just overhead you\'re paying for.',
+    date: '2026-02-12',
+    readTime: 6,
+    category: 'Hiring',
+    tags: ['Hiring a Developer', 'Freelancer', 'Agency', 'Web Development'],
+    coverGradient: 'from-[#8B5CF6] to-[#0A0A0A]',
+    content: `
+<p>Before any conversation about price or timeline, there's a decision that shapes everything else: do you hire a freelancer or an agency? Both can deliver a great website. They just get there in very different ways, at very different price points.</p>
+
+<div class="stat-row">
+  <div class="stat-box"><span class="stat-num">3–5x</span><span class="stat-label">typical agency cost premium</span></div>
+  <div class="stat-box"><span class="stat-num">2–4</span><span class="stat-label">people you'll talk to at an agency</span></div>
+  <div class="stat-box"><span class="stat-num">1</span><span class="stat-label">person who actually writes your code, either way</span></div>
+</div>
+
+<h2>What you're actually paying for at an agency</h2>
+
+<p>An agency quote isn't just developer time — it's a project manager, an account manager, a designer, and a margin on top of all of it. That structure buys you real things: redundancy if someone's on leave, a formal process, and someone whose whole job is keeping your project moving.</p>
+
+<p>What it doesn't buy you is necessarily better code. The person actually building your site is, in almost every case, a single developer — the same as if you'd hired a freelancer directly. You're paying extra for the layer of people between you and that developer, not for the code itself.</p>
+
+<h2>What you're actually paying for with a freelancer</h2>
+
+<p>With a freelancer, you're talking directly to the person who builds your site. No account manager translating your feedback, no project manager scheduling a call to discuss a call. Decisions happen in one message instead of three.</p>
+
+<p>The tradeoff is real, though: a freelancer is one person. If they get sick, get busy with another client, or simply aren't very good, there's no internal backup covering for them. That risk is the entire reason agencies can charge what they charge — and the entire reason vetting matters so much more when you're hiring solo.</p>
+
+<div class="compare-grid">
+  <div class="compare-card">
+    <h4>Choose an agency if</h4>
+    <ul>
+      <li>You need multiple disciplines (design + dev + content + SEO) coordinated at once</li>
+      <li>Budget genuinely isn't the constraint</li>
+      <li>You need a paper trail of process for internal stakeholders</li>
+      <li>The project is large enough that one person can't realistically do it alone</li>
+    </ul>
+  </div>
+  <div class="compare-card compare-good">
+    <h4>Choose a freelancer if</h4>
+    <ul>
+      <li>Budget matters and you don't need agency overhead</li>
+      <li>You want direct communication with the person doing the work</li>
+      <li>Your project fits within one person's skill set</li>
+      <li>Speed matters — fewer approval layers means faster turnaround</li>
+    </ul>
+  </div>
+</div>
+
+<a href="/work" class="internal-link-card">
+  <div><span class="ilc-label">See the work</span><span class="ilc-title">27 client projects across WordPress, MERN & automation →</span></div>
+</a>
+
+<h2>How to actually vet a freelancer</h2>
+
+<p>Since the freelancer route lives or dies on who you pick, here's what actually separates a reliable hire from a risky one:</p>
+
+<ul>
+  <li><strong>A real portfolio with live links.</strong> Not screenshots — links you can click and test yourself. Anyone can show a Figma mockup; fewer people can show 20+ shipped, working sites.</li>
+  <li><strong>Verifiable track record.</strong> A platform like Upwork with a maintained Job Success Score gives you something an agency's "About Us" page can't: a record of actual client outcomes, not marketing copy.</li>
+  <li><strong>How they communicate before you've paid them anything.</strong> If response times are slow and answers are vague during the sales conversation, that's the best version of working with them you'll ever get.</li>
+  <li><strong>Whether they ask you questions back.</strong> A freelancer who immediately quotes a price without understanding your actual goal is optimizing for closing the deal, not for the result.</li>
+</ul>
+
+<h2>The honest answer</h2>
+
+<p>For most small-to-medium business websites — marketing sites, e-commerce stores, custom web apps under enterprise scale — a vetted freelancer delivers the same outcome as an agency for a fraction of the cost, with faster communication. The agency premium earns its keep mainly at a scale and complexity most single-business websites never reach.</p>
+
+<p>I work directly with clients with a <a href="https://www.upwork.com/freelancers/muhammadumerk5" target="_blank" rel="noopener">100% Job Success Score on Upwork</a> and a portfolio of <a href="/work">27 shipped projects</a> you can actually click through. If you want to talk through your specific project before deciding either way, <a href="/contact">reach out</a> — I'll tell you honestly if it's a fit.</p>
+    `,
+  },
+  {
+    slug: 'how-long-does-it-take-to-build-a-website',
+    title: 'How Long Does It Take to Build a Website in 2026? Realistic Timelines',
+    seoTitle: 'How Long Does It Take to Build a Website? 2026 Timeline Guide',
+    seoDescription:
+      'Realistic website timelines for 2026 — from a 3-day landing page to a 3-month custom web app. What actually determines how long your project will take.',
+    excerpt:
+      '"How long will my website take?" is the second most common question I get, right after price. The honest answer depends on five factors most people don\'t think to ask about upfront.',
+    date: '2026-04-03',
+    readTime: 7,
+    category: 'Web Development',
+    tags: ['Project Timeline', 'Web Development', 'Planning'],
+    coverGradient: 'from-[#3B82F6] to-[#0A0A0A]',
+    content: `
+<p>Right after "how much does it cost," the next question is always "how long will it take." The honest answer is: it depends on factors most clients don't think to ask about until they're already mid-project. Here's the realistic breakdown.</p>
+
+<div class="stat-row">
+  <div class="stat-box"><span class="stat-num">3–5 days</span><span class="stat-label">Landing page</span></div>
+  <div class="stat-box"><span class="stat-num">2–3 weeks</span><span class="stat-label">Marketing site</span></div>
+  <div class="stat-box"><span class="stat-num">2–4 months</span><span class="stat-label">Custom web app</span></div>
+</div>
+
+<h2>The five factors that actually set your timeline</h2>
+
+<ul>
+  <li><strong>Content readiness.</strong> If your copy, images, and product data are ready on day one, development starts immediately. If content arrives in pieces over six weeks, your "3-week project" becomes a 3-week project spread across two months.</li>
+  <li><strong>Design approval rounds.</strong> Every round of "actually, can we try a different color" or "let's see three more layout options" adds days. Decisive feedback is the single biggest lever you control.</li>
+  <li><strong>Scope and custom functionality.</strong> A contact form takes an hour. A booking system with calendar sync, conditional pricing, and SMS confirmations takes days. Functionality is where timelines genuinely scale.</li>
+  <li><strong>Number of revision cycles built into the agreement.</strong> Unlimited revisions sound generous but often extend timelines indefinitely. A defined number of structured revision rounds keeps things moving.</li>
+  <li><strong>How fast you respond.</strong> A developer waiting 4 days for feedback on every milestone adds those 4 days to your calendar — even though zero actual development time was spent.</li>
+</ul>
+
+<h2>Realistic timelines by project type</h2>
+
+<h3>Landing page / single-page site (3–5 days)</h3>
+<p>Template-based or lightly customised, one page, basic contact form. Content needs to be ready before day one for this timeline to hold.</p>
+
+<h3>Marketing website — 5–10 pages (2–3 weeks)</h3>
+<p>Custom design, WordPress CMS, mobile-responsive, SEO basics. This is the timeline assuming content is supplied early and feedback turns around within 1–2 business days. See what's actually included at this tier on the <a href="/pricing">pricing page</a>.</p>
+
+<h3>E-commerce store (3–6 weeks)</h3>
+<p>WooCommerce setup, product catalogue import, payment gateway integration, and testing checkout flows properly takes real time — most of it isn't development, it's getting every product, price, and shipping rule correct. Catalogue size is the biggest variable; see the <a href="/services/ecommerce-development">e-commerce development</a> breakdown.</p>
+
+<h3>Custom web application (2–4+ months)</h3>
+<p>Authentication, database design, an admin dashboard, and business-specific logic. Scoped feature-by-feature rather than by page count — a simple internal tool might land at the low end, a multi-tenant SaaS product runs well beyond four months. My <a href="/services/mern-stack-development">MERN stack development</a> work falls in this tier.</p>
+
+<a href="/work" class="internal-link-card">
+  <div><span class="ilc-label">Real examples</span><span class="ilc-title">See actual delivery timelines across 27 projects →</span></div>
+</a>
+
+<h2>Why timelines slip — and it's rarely the dev</h2>
+
+<p>In my own project history, the single biggest cause of timeline slippage isn't development speed — it's waiting. Waiting for content, waiting for feedback, waiting for a stakeholder to sign off. A developer can usually hit an aggressive deadline if everything needed from the client side arrives on schedule. The moment that stops happening, the calendar — not the code — becomes the bottleneck.</p>
+
+<h2>How to keep your project on schedule</h2>
+
+<ul>
+  <li>Have your core content (copy, logo, key images) ready before kickoff, not promised "by next week"</li>
+  <li>Agree on a feedback turnaround time upfront (24–48 hours is reasonable) and actually hold to it</li>
+  <li>Limit design decision-makers to one or two people — more approvers means more rounds</li>
+  <li>Lock scope before development starts; mid-project "can we also add" requests are the most common source of delay</li>
+</ul>
+
+<p>If you want a realistic timeline for your specific project rather than a generic range, <a href="/contact">tell me what you're building</a> — I'll give you an honest estimate based on scope, not a number designed to win the bid.</p>
+    `,
+  },
+  {
+    slug: 'n8n-vs-zapier-vs-make',
+    title: 'n8n vs Zapier vs Make: Which Automation Tool Should You Use in 2026?',
+    seoTitle: 'n8n vs Zapier vs Make 2026: Automation Tool Comparison',
+    seoDescription:
+      'n8n, Zapier, or Make for business automation? A practical 2026 comparison covering pricing, self-hosting, complexity, and which tool fits which kind of workflow.',
+    excerpt:
+      'All three automate your busywork. They are not interchangeable. Here\'s how to pick the right one based on what you\'re actually automating — not which one has the prettiest landing page.',
+    date: '2026-06-08',
+    readTime: 8,
+    category: 'Automation',
+    tags: ['n8n', 'Zapier', 'Make', 'Automation', 'Workflow'],
+    coverGradient: 'from-[#FB7185] to-[#0A0A0A]',
+    content: `
+<p>Zapier, Make, and n8n all promise the same thing — connect your apps, eliminate manual work, save hours every week. They're genuinely not interchangeable, though, and picking the wrong one usually shows up later as either a surprise bill or a workflow you've outgrown.</p>
+
+<div class="stat-row">
+  <div class="stat-box"><span class="stat-num">7,000+</span><span class="stat-label">apps on Zapier's directory</span></div>
+  <div class="stat-box"><span class="stat-num">$0</span><span class="stat-label">self-hosted n8n licensing cost</span></div>
+  <div class="stat-box"><span class="stat-num">Per-task</span><span class="stat-label">how Zapier & Make bill, at scale</span></div>
+</div>
+
+<h2>Zapier — best for simple, high-volume integrations</h2>
+
+<p>Zapier's strength is breadth and simplicity: a massive app directory and a "when this happens, do that" model anyone non-technical can build in minutes. It's the right call when your automation is genuinely simple — a new form submission creates a CRM contact, a new sale triggers a Slack message — and you don't want to think about infrastructure at all.</p>
+
+<p>The catch is cost at scale. Zapier bills per task executed, and that adds up fast once you're running thousands of automation steps a month. Complex branching logic also gets clumsy — Zapier wasn't built for workflows with many conditional paths.</p>
+
+<h2>Make (formerly Integromat) — best for visual complexity</h2>
+
+<p>Make sits between Zapier and n8n: a visual canvas that handles branching logic and data transformation far better than Zapier, while staying no-code. If your workflow has real complexity — multiple conditional paths, data that needs reshaping mid-flow, several services chained together — Make handles it more gracefully than Zapier without requiring you to write code.</p>
+
+<p>It still bills on a usage model (operations rather than raw tasks), so cost at high volume remains a real consideration, just a bit more forgiving than Zapier's.</p>
+
+<h2>n8n — best for control, scale, and cost at volume</h2>
+
+<p>n8n is the odd one out: open-source, and can be self-hosted, which means once it's running, there's no per-task billing ceiling. For a business running high-volume automation — thousands of executions a month — that alone can be the difference between a $20 plan and a $500+ one on a usage-billed competitor.</p>
+
+<p>The tradeoff is technical overhead. Self-hosting means someone needs to set up and maintain the instance, and while n8n's visual editor is intuitive for basic flows, real business logic — conditional branches, error handling, custom code steps — benefits from someone who's built workflows like it before. This is exactly the gap I closed on a recent project: <a href="/work/globalremote">GlobalRemote's recruitment platform</a> needed an n8n pipeline that parses uploaded CVs, extracts candidate data, and pushes it into their CRM automatically — eliminating 8+ hours of manual data entry a day.</p>
+
+<div class="compare-grid">
+  <div class="compare-card">
+    <h4>Choose Zapier or Make if</h4>
+    <ul>
+      <li>Your team is non-technical and needs to self-manage</li>
+      <li>Automation volume is low-to-moderate</li>
+      <li>You want zero infrastructure to think about</li>
+      <li>Speed of initial setup matters more than long-term cost</li>
+    </ul>
+  </div>
+  <div class="compare-card compare-good">
+    <h4>Choose n8n if</h4>
+    <ul>
+      <li>You're running high-volume automation where per-task billing gets expensive</li>
+      <li>You need custom logic, code steps, or self-hosted data control</li>
+      <li>You have (or can hire) someone to build and maintain the workflows</li>
+      <li>Long-term cost matters more than no-code simplicity</li>
+    </ul>
+  </div>
+</div>
+
+<a href="/services/n8n-automation" class="internal-link-card">
+  <div><span class="ilc-label">Related service</span><span class="ilc-title">n8n Automation Setup & Workflows →</span></div>
+</a>
+
+<h2>The real cost comparison at scale</h2>
+
+<p>For light usage, the three tools land in a similar price range and the decision comes down to ease of use. The gap opens up at volume: a business running tens of thousands of monthly automation tasks on Zapier or Make can pay hundreds of dollars a month for something that costs only server hosting on a self-hosted n8n instance — typically $5–20/month for a small-to-medium workload. The break-even point where n8n's setup effort pays for itself is usually somewhere in the first one to three months, depending on volume.</p>
+
+<h2>The honest recommendation</h2>
+
+<p>Start with Zapier if you're not sure how much automation you'll actually need — it's the fastest to test an idea with zero commitment. Move to Make once your workflows need real branching logic. Move to n8n once volume or cost makes per-task billing painful, or once you need a level of custom logic the no-code tools can't express.</p>
+
+<p>If you're past the "trying it out" stage and want an n8n setup built properly the first time — error handling, retries, and logic that won't break the moment an upstream app changes its API — <a href="/contact">let's talk about your workflow</a>.</p>
+    `,
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
