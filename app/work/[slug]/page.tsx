@@ -16,8 +16,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
+  const seoTitle = (project as any).seoTitle;
+  const shortTitle = project.title.replace(/\s*\(.*?\)\s*/, '');
   return {
-    title: `${project.title} — Case Study`,
+    title: seoTitle ? `${seoTitle} — ${shortTitle}` : `${project.title} — Case Study`,
     description: project.description,
     alternates: { canonical: `https://mumerkhan.com/work/${project.slug}` },
   };

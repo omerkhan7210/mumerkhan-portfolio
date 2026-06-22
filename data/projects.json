@@ -34,7 +34,8 @@
       "Business location mapping",
       "Dynamic search & filters",
       "Real-time routing & directions"
-    ]
+    ],
+    "seoTitle": "MERN Stack Business Locator App"
   },
   {
     "id": 2,
@@ -72,7 +73,8 @@
       "CV parsing & extraction",
       "Automated workflows",
       "Scalable process automation"
-    ]
+    ],
+    "seoTitle": "n8n Recruitment Automation & CV Parsing"
   },
   {
     "id": 3,
@@ -110,7 +112,8 @@
       "Flexible page layouts",
       "ACF integration",
       "Easy content management"
-    ]
+    ],
+    "seoTitle": "Custom WordPress Theme Without a Page Builder"
   },
   {
     "id": 4,
@@ -147,7 +150,8 @@
       "Custom product pages",
       "Fully responsive layout",
       "Clean theme structure"
-    ]
+    ],
+    "seoTitle": "Figma to WordPress Conversion for Medical Aesthetics"
   },
   {
     "id": 5,
@@ -185,7 +189,8 @@
       "Case study showcase",
       "Interactive navigation",
       "Mobile optimization"
-    ]
+    ],
+    "seoTitle": "Custom WordPress Filterable Case Study System"
   },
   {
     "id": 6,
@@ -224,7 +229,8 @@
       "Custom product templates",
       "E-commerce optimization",
       "Full responsiveness"
-    ]
+    ],
+    "seoTitle": "Premium WooCommerce Store Design"
   },
   {
     "id": 7,
@@ -262,7 +268,8 @@
       "Service showcase grid",
       "Fleet gallery",
       "Enterprise brand feel"
-    ]
+    ],
+    "seoTitle": "Luxury Logistics Company Website Design"
   },
   {
     "id": 8,
@@ -300,7 +307,8 @@
       "Category navigation system",
       "Streamlined checkout",
       "Plant care content integration"
-    ]
+    ],
+    "seoTitle": "Plant Nursery WooCommerce Website"
   },
   {
     "id": 9,
@@ -339,7 +347,8 @@
       "Category filtering",
       "Location finder",
       "Online ordering integration"
-    ]
+    ],
+    "seoTitle": "Restaurant Website with Online Menu & Ordering"
   },
   {
     "id": 10,
@@ -377,7 +386,8 @@
       "Portfolio showcase",
       "Premium typography",
       "Performance optimized"
-    ]
+    ],
+    "seoTitle": "Creative Agency Portfolio Website Design"
   },
   {
     "id": 11,
@@ -414,7 +424,8 @@
       "SMS confirmation",
       "Before/after showcase",
       "Mobile-optimized"
-    ]
+    ],
+    "seoTitle": "Laundry Service Website with Online Booking"
   },
   {
     "id": 12,
@@ -453,7 +464,8 @@
       "Team credential showcase",
       "Patient testimonials",
       "WCAG accessibility compliance"
-    ]
+    ],
+    "seoTitle": "Healthcare Website with Appointment Booking"
   },
   {
     "id": 13,
@@ -492,7 +504,8 @@
       "Process showcase",
       "Full-bleed photography",
       "Conversion-optimized enquiry"
-    ]
+    ],
+    "seoTitle": "B2B Retail Fitout Portfolio Website"
   },
   {
     "id": 14,
@@ -530,7 +543,8 @@
       "Luxury typography hierarchy",
       "Room-scene presentations",
       "Smooth hover interactions"
-    ]
+    ],
+    "seoTitle": "Luxury Furniture E-Commerce Concept"
   },
   {
     "id": 15,
@@ -568,7 +582,8 @@
       "Retreat package showcase",
       "Organic design system",
       "Payment integration"
-    ]
+    ],
+    "seoTitle": "Yoga Studio Website with Class Booking"
   },
   {
     "id": 16,
@@ -607,7 +622,8 @@
       "Admin panel for inventory management",
       "8-table relational MySQL schema",
       "Bid history & highest-bidder tracking"
-    ]
+    ],
+    "seoTitle": "PHP Car Auction & Live Bidding Platform"
   },
   {
     "id": 17,
@@ -644,7 +660,8 @@
       "Custom Tailwind design system",
       "Client testimonials section",
       "Lead capture contact form"
-    ]
+    ],
+    "seoTitle": "Financial Advisory Website Design"
   },
   {
     "id": 18,
@@ -679,7 +696,8 @@
       "Scroll-triggered reveal animations",
       "Pillar-based navigation structure",
       "Cinematic full-bleed visual direction"
-    ]
+    ],
+    "seoTitle": "Private Equity Website with Motion Design"
   },
   {
     "id": 19,
@@ -715,7 +733,8 @@
       "Key page redesigns with client approval workflow",
       "Custom job-landings board feature",
       "Phased automation & growth roadmap"
-    ]
+    ],
+    "seoTitle": "Nonprofit Technical SEO Audit & Redesign"
   },
   {
     "id": 20,
@@ -752,7 +771,8 @@
       "Internal audit & offshore accounting sections",
       "Fixed slider and navigation bugs",
       "Portable, host-agnostic relative URL structure"
-    ]
+    ],
+    "seoTitle": "Accounting Firm Website Fix & Deployment"
   },
   {
     "id": 21,
@@ -789,7 +809,8 @@
       "Removed exposed credentials from legacy PHP code",
       "Rebuilt dead links & image references",
       "Clean static deployment with no backend dependency"
-    ]
+    ],
+    "seoTitle": "Nonprofit Website Rebuild & Security Cleanup"
   },
   {
     "id": 22,
@@ -825,7 +846,8 @@
       "Articles, updates, and blog content sections",
       "Donor-facing contribution pages",
       "Stable CI/CD production build"
-    ]
+    ],
+    "seoTitle": "Healthcare Fundraising Platform Frontend"
   },
   {
     "id": 23,
@@ -861,7 +883,8 @@
       "24/7 availability messaging above the fold",
       "Localized German-language content",
       "Mobile-first, fast-loading build"
-    ]
+    ],
+    "seoTitle": "Emergency Home-Service Business Website"
   },
   {
     "id": 24,
@@ -896,7 +919,8 @@
       "Large kinetic typography hero",
       "Seven-service capability breakdown",
       "Gradient-accented design system"
-    ]
+    ],
+    "seoTitle": "Dark-Mode Creative Studio Website Design"
   },
   {
     "id": 25,
@@ -932,7 +956,8 @@
       "Services and industries served sections",
       "Direct quote-request flow",
       "Industrial dark-mode design system"
-    ]
+    ],
+    "seoTitle": "B2B Manufacturing Company Website Design"
   },
   {
     "id": 26,
@@ -968,7 +993,8 @@
       "DCF-approval and trust credibility signals",
       "Spanish-language accessibility path",
       "High-intent, single-action conversion flow"
-    ]
+    ],
+    "seoTitle": "Court-Mandated Course Website Redesign"
   },
   {
     "id": 27,
@@ -1004,6 +1030,7 @@
       "Community photo gallery",
       "Membership join flow",
       "Multi-generational accessible navigation"
-    ]
+    ],
+    "seoTitle": "Nonprofit Community Website Design"
   }
 ]
