@@ -80,7 +80,6 @@ function ProjectCard({
           filter: hovered ? 'brightness(0.7)' : 'brightness(0.52)',
           transitionProperty: 'transform, filter',
         }}
-        unoptimized
       />
 
       {/* Gradient overlay */}

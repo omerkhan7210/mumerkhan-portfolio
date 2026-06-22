@@ -41,11 +41,15 @@ export default function AnimatedHero() {
       gsap.set(".h-sub", { y: 28, opacity: 0 });
       gsap.set(".h-cta", { y: 20, opacity: 0 });
 
+      /* Timings kept tight on purpose — the subtitle is the page's LCP
+         element, and the original schedule (subtitle starting at 0.78s)
+         was adding ~1.5s of pure render delay to Core Web Vitals with
+         no real visual benefit over a faster reveal. */
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-      tl.to(".h-pill", { y: 0, opacity: 1, duration: 0.7 }, 0.1)
-        .to(".h-word", { y: 0, opacity: 1, duration: 1.1, stagger: 0.09 }, 0.28)
-        .to(".h-sub", { y: 0, opacity: 1, duration: 0.8 }, 0.78)
-        .to(".h-cta", { y: 0, opacity: 1, duration: 0.7, stagger: 0.13 }, 0.94);
+      tl.to(".h-pill", { y: 0, opacity: 1, duration: 0.35 }, 0)
+        .to(".h-word", { y: 0, opacity: 1, duration: 0.5, stagger: 0.04 }, 0.08)
+        .to(".h-sub", { y: 0, opacity: 1, duration: 0.35 }, 0.22)
+        .to(".h-cta", { y: 0, opacity: 1, duration: 0.3, stagger: 0.06 }, 0.32);
     };
 
     run();

@@ -172,7 +172,6 @@ export default function SkillPage({ params }: Props) {
                       fill
                       className="object-cover"
                       style={{ filter: 'brightness(0.55)', transition: 'filter 0.3s' }}
-                      unoptimized
                     />
                     <div
                       className="absolute inset-0"

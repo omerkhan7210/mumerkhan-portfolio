@@ -158,7 +158,6 @@ export default function CaseStudyClient({
                 transition: 'opacity 0.8s ease',
               }}
               onLoad={() => setHeroLoaded(true)}
-              unoptimized
             />
             {/* Accent border glow */}
             <div
@@ -288,7 +287,6 @@ export default function CaseStudyClient({
                       alt={`${project.title} screenshot ${i + 1}`}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-700"
-                      unoptimized
                     />
                   </div>
                 ))}

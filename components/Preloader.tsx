@@ -21,8 +21,10 @@ export default function Preloader() {
     /* Lock scroll while preloader is active */
     document.body.style.overflow = 'hidden';
 
-    /* Animate progress over ~2.4s */
-    const duration = 2400;
+    /* Animate progress over ~0.7s — this overlay blocks the entire page
+       (and the real LCP element underneath) on every first visit, so it
+       has a direct Core Web Vitals cost. Kept short on purpose. */
+    const duration = 700;
     const start = performance.now();
 
     const tick = (now: number) => {
@@ -52,9 +54,9 @@ export default function Preloader() {
               setPhase('done');
               document.body.style.overflow = '';
               try { sessionStorage.setItem('muk-loaded', '1'); } catch {}
-            }, 850);
-          }, 180);
-        }, 350);
+            }, 350);
+          }, 80);
+        }, 120);
       }
     };
 
@@ -83,7 +85,7 @@ export default function Preloader() {
         transform: isExiting ? 'translateY(-100%)' : 'translateY(0)',
         /* Spring-like slide — fast exit, tiny overshoot feel */
         transitionProperty: isExiting ? 'transform' : 'background-color',
-        transitionDuration: isExiting ? '0.85s' : '0.14s',
+        transitionDuration: isExiting ? '0.35s' : '0.14s',
         transitionTimingFunction: isExiting ? 'cubic-bezier(0.76, 0, 0.24, 1)' : 'ease',
         display: 'flex',
         flexDirection: 'column',

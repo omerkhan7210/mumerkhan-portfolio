@@ -269,7 +269,6 @@ function ProjectRow({
               filter: hovered ? 'brightness(0.85)' : 'brightness(0.7)',
               transitionProperty: 'transform, filter',
             }}
-            unoptimized
           />
 
           {/* Corner accent glow */}
@@ -393,7 +392,9 @@ export default function ProjectsSection() {
       </div>
 
       {/* Mobile grid fallback */}
-      <style>{`
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @media (max-width: 680px) {
           .proj-row {
             grid-template-columns: 1fr !important;
@@ -406,7 +407,9 @@ export default function ProjectsSection() {
             order: 2 !important;
           }
         }
-      `}</style>
+      `,
+        }}
+      />
     </section>
   );
 }

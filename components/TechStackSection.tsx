@@ -461,7 +461,6 @@ export default function TechStackSection() {
                 fill
                 alt="Muhammad Umer Khan"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                unoptimized
                 priority
               />
               {/* Vignette — subtle dark fade at the photo edges */}
@@ -525,7 +524,7 @@ export default function TechStackSection() {
               flexShrink: 0,
             }}
           >
-            <Image src="/assets/my_image.png" fill alt="Muhammad Umer Khan" style={{ objectFit: 'cover', objectPosition: 'center top' }} unoptimized />
+            <Image src="/assets/my_image.png" fill alt="Muhammad Umer Khan" style={{ objectFit: 'cover', objectPosition: 'center top' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 38%, transparent 30%, rgba(8,8,8,0.4) 68%, rgba(8,8,8,0.75) 100%)', zIndex: 1 }} />
           </div>
           <div className="flex flex-wrap justify-center gap-3">
