@@ -81,7 +81,6 @@ export default function Preloader() {
         zIndex: 99999,
         overflow: 'hidden',
         backgroundColor: isFlash ? '#C8FF00' : '#0A0A0A',
-        transition: isFlash ? 'background-color 0.14s ease' : 'none',
         transform: isExiting ? 'translateY(-100%)' : 'translateY(0)',
         /* Spring-like slide — fast exit, tiny overshoot feel */
         transitionProperty: isExiting ? 'transform' : 'background-color',

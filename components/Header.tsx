@@ -19,8 +19,9 @@ const TOP_LINKS = [
   { href: '/',        label: 'Home',    num: '01' },
   { href: '/work',    label: 'Work',    num: '03' },
   { href: '/pricing', label: 'Pricing', num: '04' },
-  { href: '/blog',    label: 'Blog',    num: '05' },
-  { href: '/contact', label: 'Contact', num: '06' },
+  { href: '/tools',   label: 'Tools',   num: '05' },
+  { href: '/blog',    label: 'Blog',    num: '06' },
+  { href: '/contact', label: 'Contact', num: '07' },
 ];
 
 const MOBILE_LINKS = [
@@ -28,8 +29,9 @@ const MOBILE_LINKS = [
   { href: '/services',label: 'Services', num: '02' },
   { href: '/work',    label: 'Work',     num: '03' },
   { href: '/pricing', label: 'Pricing',  num: '04' },
-  { href: '/blog',    label: 'Blog',     num: '05' },
-  { href: '/contact', label: 'Contact',  num: '06' },
+  { href: '/tools',   label: 'Tools',    num: '05' },
+  { href: '/blog',    label: 'Blog',     num: '06' },
+  { href: '/contact', label: 'Contact',  num: '07' },
 ];
 
 /* ── Simple nav item ───────────────────────────────────────────── */

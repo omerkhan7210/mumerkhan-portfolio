@@ -128,12 +128,13 @@ const jsonLd = {
     {
       '@type': 'SiteNavigationElement',
       '@id': `${SITE_URL}/#nav`,
-      name: ['Work', 'Services', 'Skills', 'Pricing', 'Blog', 'About', 'Contact'],
+      name: ['Work', 'Services', 'Skills', 'Pricing', 'Tools', 'Blog', 'About', 'Contact'],
       url: [
         `${SITE_URL}/work`,
         `${SITE_URL}/services`,
         `${SITE_URL}/skills`,
         `${SITE_URL}/pricing`,
+        `${SITE_URL}/tools`,
         `${SITE_URL}/blog`,
         `${SITE_URL}/about`,
         `${SITE_URL}/contact`,

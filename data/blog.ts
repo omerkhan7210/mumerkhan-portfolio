@@ -167,6 +167,10 @@ export const posts: BlogPost[] = [
   <div><span class="ilc-label">Related service</span><span class="ilc-title">n8n Automation Setup & Workflows →</span></div>
 </a>
 
+<a href="/tools/automation-roi-calculator" class="internal-link-card">
+  <div><span class="ilc-label">Run the numbers</span><span class="ilc-title">Free automation ROI calculator →</span></div>
+</a>
+
 <h2>Is it hard to use?</h2>
 
 <p>n8n's visual editor is genuinely intuitive for anyone comfortable with basic software tools. The complexity comes in writing the business logic — conditional branches, error handling, data transformation. That's where most businesses benefit from having someone build the initial workflows, after which their own team can monitor and make minor edits.</p>
@@ -314,6 +318,10 @@ export const posts: BlogPost[] = [
 
 <a href="/pricing" class="internal-link-card">
   <div><span class="ilc-label">See exact numbers</span><span class="ilc-title">Full pricing & feature comparison →</span></div>
+</a>
+
+<a href="/tools/website-cost-calculator" class="internal-link-card">
+  <div><span class="ilc-label">Get a number for your project</span><span class="ilc-title">Free website cost calculator →</span></div>
 </a>
 
 <h2>What you should actually do</h2>
@@ -529,6 +537,10 @@ export const posts: BlogPost[] = [
 
 <a href="/services/n8n-automation" class="internal-link-card">
   <div><span class="ilc-label">Related service</span><span class="ilc-title">n8n Automation Setup & Workflows →</span></div>
+</a>
+
+<a href="/tools/automation-roi-calculator" class="internal-link-card">
+  <div><span class="ilc-label">Run your own numbers</span><span class="ilc-title">Free automation ROI calculator →</span></div>
 </a>
 
 <h2>The real cost comparison at scale</h2>
