@@ -121,7 +121,7 @@ const SERVICE_REPLY: Record<
   },
 };
 
-function wrapEmail(bodyHtml: string): string {
+export function wrapEmail(bodyHtml: string): string {
   return `
 <!DOCTYPE html>
 <html>
@@ -275,6 +275,117 @@ export function buildLeadNotificationEmail(rawForm: ContactFormData): { subject:
 
   return {
     subject: `New lead: ${form.name} — ${form.service || 'General enquiry'}`,
+    html: wrapEmail(body),
+  };
+}
+
+/* ── Calculator result emails ──────────────────────────────────── */
+export type CalculatorLeadData = {
+  tool: 'Website Cost Calculator' | 'Automation ROI Calculator';
+  email: string;
+  resultHeadline: string;
+  resultLines: string[];
+  shareUrl: string;
+};
+
+export function buildCalculatorResultEmail(raw: CalculatorLeadData): { subject: string; html: string } {
+  const email = escapeHtml(raw.email);
+  const resultHeadline = escapeHtml(raw.resultHeadline);
+  const resultLines = raw.resultLines.map(escapeHtml);
+  const shareUrl = escapeHtml(raw.shareUrl);
+
+  const body = `
+          <tr>
+            <td style="padding:36px 32px 8px;">
+              <p style="margin:0 0 6px;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#999;">${escapeHtml(raw.tool)}</p>
+              <h1 style="margin:0 0 14px;font-size:26px;line-height:1.25;color:${INK};letter-spacing:-0.01em;">
+                ${resultHeadline}
+              </h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 8px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f6f3;border-radius:10px;border:1px solid #eceae3;">
+                <tr>
+                  <td style="padding:18px 20px;">
+                    ${resultLines
+                      .map(
+                        (line) => `
+                    <p style="margin:0 0 8px;font-size:13.5px;color:#333;line-height:1.6;">${line}</p>`,
+                      )
+                      .join('')}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 32px 8px;">
+              <a href="${shareUrl}" style="display:inline-block;background:${LIME};color:${INK};font-size:13.5px;font-weight:700;text-decoration:none;padding:13px 26px;border-radius:9px;">
+                View your full breakdown →
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px 32px 36px;">
+              <p style="margin:0;font-size:12.5px;color:#999;line-height:1.6;">
+                Want to talk through the numbers? Just reply to this email, or
+                <a href="${SITE_URL}/contact" style="color:#1a1a1a;">book a quick call</a>.
+              </p>
+            </td>
+          </tr>`;
+
+  return {
+    subject: `Your ${raw.tool.toLowerCase()} results — ${email.split('@')[0]}`,
+    html: wrapEmail(body),
+  };
+}
+
+export function buildCalculatorLeadNotificationEmail(raw: CalculatorLeadData): { subject: string; html: string } {
+  const email = escapeHtml(raw.email);
+  const resultHeadline = escapeHtml(raw.resultHeadline);
+  const resultLines = raw.resultLines.map(escapeHtml);
+  const shareUrl = escapeHtml(raw.shareUrl);
+
+  const body = `
+          <tr>
+            <td style="padding:36px 32px 8px;">
+              <p style="margin:0 0 6px;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#999;">${escapeHtml(raw.tool)} lead</p>
+              <h1 style="margin:0 0 14px;font-size:22px;line-height:1.3;color:${INK};letter-spacing:-0.01em;">
+                ${email} requested their results
+              </h1>
+              <p style="margin:0 0 4px;font-size:14.5px;line-height:1.7;color:#444;">${resultHeadline}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 8px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f6f3;border-radius:10px;border:1px solid #eceae3;">
+                <tr>
+                  <td style="padding:14px 18px;">
+                    ${resultLines
+                      .map(
+                        (line) => `
+                    <p style="margin:0 0 6px;font-size:13px;color:#444;line-height:1.6;">${line}</p>`,
+                      )
+                      .join('')}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 32px 36px;">
+              <a href="mailto:${email}" style="display:inline-block;background:${LIME};color:${INK};font-size:13.5px;font-weight:700;text-decoration:none;padding:12px 24px;border-radius:9px;">
+                Reply to ${email} →
+              </a>
+              <p style="margin:14px 0 0;font-size:11.5px;color:#aaa;">
+                <a href="${shareUrl}" style="color:#aaa;">View their exact inputs →</a>
+              </p>
+            </td>
+          </tr>`;
+
+  return {
+    subject: `New ${raw.tool} lead: ${email}`,
     html: wrapEmail(body),
   };
 }
