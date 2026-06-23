@@ -7,6 +7,7 @@ import { encodeState, decodeState } from './calculators/shareState';
 import ShareButton from './calculators/ShareButton';
 import BreakdownBars, { BreakdownItem } from './calculators/BreakdownBars';
 import EmailCapture from './calculators/EmailCapture';
+import AiSummary from './calculators/AiSummary';
 
 type ProjectType = 'landing' | 'marketing' | 'ecommerce' | 'webapp';
 
@@ -305,6 +306,8 @@ export default function WebsiteCostCalculator() {
             </p>
 
             <BreakdownBars items={breakdown} />
+
+            <AiSummary tool="Website Cost Calculator" inputs={state} breakdown={breakdown} />
 
             <div style={{ marginTop: 24, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/contact" className="btn-lime">Get an exact quote</Link>

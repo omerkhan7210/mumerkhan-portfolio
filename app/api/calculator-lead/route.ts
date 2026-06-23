@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getPool } from '@/lib/db';
 import { sendMail } from '@/lib/mailer';
 import { buildCalculatorResultEmail, buildCalculatorLeadNotificationEmail } from '@/lib/emailTemplates';
+import { notifyLeadWebhook } from '@/lib/n8n';
 
 const CREATE_TABLE_SQL = `
   CREATE TABLE IF NOT EXISTS calculator_leads (
@@ -45,6 +46,8 @@ export async function POST(req: NextRequest) {
         });
       });
     }
+
+    await notifyLeadWebhook({ source: 'calculator-lead', tool, email: email.trim(), resultHeadline, resultLines, inputs, result });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

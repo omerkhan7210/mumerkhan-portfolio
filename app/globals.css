@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes aiSummaryPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
 /* ── Theme CSS Variables ──────────────────────── */
 :root {
   --color-bg:          #0A0A0A;

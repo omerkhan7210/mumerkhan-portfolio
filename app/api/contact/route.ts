@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getPool } from '@/lib/db';
 import { sendMail } from '@/lib/mailer';
 import { buildAutoReplyEmail, buildLeadNotificationEmail } from '@/lib/emailTemplates';
+import { notifyLeadWebhook } from '@/lib/n8n';
 
 const CREATE_TABLE_SQL = `
   CREATE TABLE IF NOT EXISTS contact_submissions (
@@ -51,6 +52,8 @@ export async function POST(req: NextRequest) {
         });
       });
     }
+
+    await notifyLeadWebhook({ source: 'contact', tool: 'Contact Form', email: form.email, message: details, inputs: form, result: {} });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

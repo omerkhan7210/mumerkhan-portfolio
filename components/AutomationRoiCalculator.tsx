@@ -8,6 +8,7 @@ import ShareButton from './calculators/ShareButton';
 import BreakdownBars, { BreakdownItem } from './calculators/BreakdownBars';
 import PaybackChart from './calculators/PaybackChart';
 import EmailCapture from './calculators/EmailCapture';
+import AiSummary from './calculators/AiSummary';
 
 type Category = 'leads' | 'data-entry' | 'reporting' | 'invoicing' | 'support' | 'social' | 'other';
 
@@ -247,6 +248,8 @@ export default function AutomationRoiCalculator() {
 
             <PaybackChart setupCost={result.setupMid} monthlySavings={result.totalMonthlySavings} />
             <BreakdownBars items={breakdown} />
+
+            <AiSummary tool="Automation ROI Calculator" inputs={state} breakdown={breakdown} />
 
             <p style={{ ...resultSub, marginTop: 20 }}>
               Workflow tier is based on how many apps are involved and whether you need branching logic or error handling — not a guess.
