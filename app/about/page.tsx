@@ -7,7 +7,7 @@ import skills from '@/data/skills.json';
 export const metadata: Metadata = {
   title: 'About | Muhammad Umer Khan — Full Stack Developer',
   description:
-    'Full Stack Developer based in Karachi, Pakistan. 100% Job Success on Upwork. WordPress, MERN Stack, and n8n automation specialist.',
+    'Full Stack Developer based in Karachi, Pakistan with 6+ years of experience and 80+ completed projects. 100% Job Success Score on Upwork. WordPress, MERN Stack, and n8n automation specialist.',
 };
 
 const ArrowIcon = () => (
@@ -75,11 +75,19 @@ export default function About() {
                 className="space-y-4 font-body text-sm leading-relaxed"
                 style={{ color: '#444444' }}
               >
+                <p className="font-semibold" style={{ color: '#1a1a1a' }}>
+                  Muhammad Umer Khan is a full-stack developer based in Karachi, Pakistan,
+                  with 6+ years of experience and 80+ completed projects across WordPress,
+                  the MERN stack (MongoDB, Express, React, Node.js), and n8n workflow
+                  automation. He holds a 100% Job Success Score on Upwork and works
+                  directly with clients worldwide — no agency overhead, no account
+                  managers, just the person who writes the code.
+                </p>
                 <p>
-                  I started my journey at Bahria University studying Computer
-                  Science. What began as learning HTML and CSS quickly evolved
-                  into a full-stack obsession — spanning WordPress, React,
-                  Node.js, and eventually workflow automation with n8n.
+                  It started at Bahria University studying Computer Science. What began
+                  as learning HTML and CSS quickly evolved into a full-stack obsession —
+                  spanning WordPress, React, Node.js, and eventually workflow automation
+                  with n8n.
                 </p>
                 <p>
                   Every project taught me something new. MERN applications pushed
@@ -98,6 +106,8 @@ export default function About() {
             {/* Quick-fact cards */}
             <div className="grid grid-cols-2 gap-3">
               {[
+                { label: 'Experience', value: '6+ Years' },
+                { label: 'Projects Completed', value: '80+' },
                 { label: 'Location', value: 'Karachi, Pakistan' },
                 { label: 'Status', value: 'Available for hire' },
                 { label: 'Education', value: 'BS Computer Science' },
@@ -201,13 +211,13 @@ export default function About() {
                 icon: '🎓',
                 title: 'Bachelor of Computer Science',
                 sub: 'Bahria University, Karachi',
-                detail: '2022 – 2026 (Expected)',
+                detail: '2022 – 2026',
               },
               {
                 icon: '⭐',
                 title: 'Upwork Top-Rated Freelancer',
                 sub: '100% Job Success Score',
-                detail: '9+ Projects · 5-Star Rated · Verified ID',
+                detail: '9+ Upwork Projects · 5-Star Rated · Verified ID',
               },
             ].map((cred, i) => (
               <div

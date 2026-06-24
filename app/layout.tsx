@@ -91,7 +91,7 @@ const jsonLd = {
       email: 'omerfarooqkhan7210@gmail.com',
       jobTitle: 'Full Stack Developer',
       description:
-        'Full Stack Developer specialising in WordPress, MERN Stack, and n8n automation with 6+ years of experience.',
+        'Full Stack Developer specialising in WordPress, MERN Stack, and n8n automation with 6+ years of experience and 80+ completed projects.',
       knowsAbout: [
         'WordPress Development',
         'React.js',
