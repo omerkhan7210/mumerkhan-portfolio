@@ -3,16 +3,19 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { SiWordpress, SiReact, SiN8N, SiFigma } from 'react-icons/si';
+import { FiShoppingCart, FiPenTool, FiTrendingUp, FiShield } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 
-const SERVICE_LINKS = [
-  { href: '/services/wordpress-development',  label: 'WordPress Development', icon: 'WP' },
-  { href: '/services/mern-stack-development', label: 'MERN Stack Development', icon: '⚛' },
-  { href: '/services/n8n-automation',         label: 'n8n Automation',         icon: '⚡' },
-  { href: '/services/figma-to-web',           label: 'Figma to Web',           icon: '✦' },
-  { href: '/services/ecommerce-development',  label: 'E-Commerce Development', icon: '🛒' },
-  { href: '/services/ui-ux-design',           label: 'UI/UX Design',           icon: '◈' },
-  { href: '/services/seo-performance',        label: 'SEO & Performance',      icon: '🔍' },
-  { href: '/services/website-maintenance',    label: 'Website Maintenance',    icon: '🛡' },
+const SERVICE_LINKS: { href: string; label: string; icon: IconType }[] = [
+  { href: '/services/wordpress-development',  label: 'WordPress Development', icon: SiWordpress },
+  { href: '/services/mern-stack-development', label: 'MERN Stack Development', icon: SiReact },
+  { href: '/services/n8n-automation',         label: 'n8n Automation',         icon: SiN8N },
+  { href: '/services/figma-to-web',           label: 'Figma to Web',           icon: SiFigma },
+  { href: '/services/ecommerce-development',  label: 'E-Commerce Development', icon: FiShoppingCart },
+  { href: '/services/ui-ux-design',           label: 'UI/UX Design',           icon: FiPenTool },
+  { href: '/services/seo-performance',        label: 'SEO & Performance',      icon: FiTrendingUp },
+  { href: '/services/website-maintenance',    label: 'Website Maintenance',    icon: FiShield },
 ];
 
 const TOP_LINKS = [
@@ -245,7 +248,7 @@ function ServicesNav({ active }: { active: boolean }) {
   );
 }
 
-function DropdownServiceItem({ href, label, icon }: { href: string; label: string; icon: string }) {
+function DropdownServiceItem({ href, label, icon: Icon }: { href: string; label: string; icon: IconType }) {
   const [hov, setHov] = useState(false);
   return (
     <Link
@@ -273,11 +276,11 @@ function DropdownServiceItem({ href, label, icon }: { href: string; label: strin
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '0.7rem',
+        color: hov ? 'var(--color-lime)' : `rgba(var(--fg-rgb),0.6)`,
         flexShrink: 0,
-        transition: 'background 0.18s, border-color 0.18s',
+        transition: 'background 0.18s, border-color 0.18s, color 0.18s',
       }}>
-        {icon}
+        <Icon size={13} />
       </span>
       <span style={{
         fontFamily: 'var(--font-body)',

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { services } from '@/data/services';
+import { SiWordpress, SiReact, SiN8N, SiFigma } from 'react-icons/si';
+import { FiShoppingCart, FiPenTool, FiTrendingUp, FiShield } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 
 export const metadata: Metadata = {
   title: 'Services — Full Stack Development & Design',
@@ -16,13 +19,15 @@ export const metadata: Metadata = {
   },
 };
 
-const SERVICE_ICONS: Record<string, string> = {
-  'wordpress-development': '⬛',
-  'mern-stack-development': '⚛',
-  'n8n-automation': '⚡',
-  'figma-to-web': '✦',
-  'ecommerce-development': '🛒',
-  'ui-ux-design': '◈',
+const SERVICE_ICONS: Record<string, IconType> = {
+  'wordpress-development': SiWordpress,
+  'mern-stack-development': SiReact,
+  'n8n-automation': SiN8N,
+  'figma-to-web': SiFigma,
+  'ecommerce-development': FiShoppingCart,
+  'ui-ux-design': FiPenTool,
+  'seo-performance': FiTrendingUp,
+  'website-maintenance': FiShield,
 };
 
 export default function ServicesPage() {
@@ -57,7 +62,9 @@ export default function ServicesPage() {
         <section className="pb-24">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {services.map((svc, i) => (
+              {services.map((svc, i) => {
+                const Icon = SERVICE_ICONS[svc.slug];
+                return (
                 <Link
                   key={svc.slug}
                   href={`/services/${svc.slug}`}
@@ -74,15 +81,14 @@ export default function ServicesPage() {
 
                   {/* Icon area */}
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-xl"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                     style={{
                       background: `${svc.color}15`,
                       border: `1px solid ${svc.color}30`,
                       color: svc.color,
-                      fontSize: '1.2rem',
                     }}
                   >
-                    {SERVICE_ICONS[svc.slug] ?? '◻'}
+                    {Icon ? <Icon size={20} /> : null}
                   </div>
 
                   <h2
@@ -123,7 +129,8 @@ export default function ServicesPage() {
                     </svg>
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

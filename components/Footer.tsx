@@ -2,6 +2,10 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { FaEnvelope, FaLinkedin } from 'react-icons/fa6';
+import { SiUpwork, SiGithub, SiDevdotto, SiMedium } from 'react-icons/si';
+import { FiAward } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 
 const year = new Date().getFullYear();
 
@@ -23,6 +27,36 @@ const services = [
   { label: 'E-Commerce', href: '/services/ecommerce-development' },
   { label: 'UI/UX Design', href: '/services/ui-ux-design' },
 ];
+
+function SocialIconLink({ href, label, Icon }: { href: string; label: string; Icon: IconType }) {
+  const [hovered, setHovered] = useState(false);
+  const isExternal = href.startsWith('http');
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      title={label}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: 36,
+        height: 36,
+        borderRadius: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: `1px solid ${hovered ? 'rgba(200,255,0,0.4)' : 'rgba(var(--fg-rgb),0.1)'}`,
+        background: hovered ? 'rgba(200,255,0,0.08)' : 'rgba(var(--fg-rgb),0.03)',
+        color: hovered ? 'var(--color-lime)' : `rgba(var(--fg-rgb),0.5)`,
+        transition: 'background 0.2s, border-color 0.2s, color 0.2s',
+      }}
+    >
+      <Icon size={16} />
+    </a>
+  );
+}
 
 function EmailLink() {
   const [hovered, setHovered] = useState(false);
@@ -307,71 +341,24 @@ export default function Footer() {
             >
               Connect
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <a href="mailto:omerfarooqkhan7210@gmail.com" className="social-link"
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#ffffff')}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '')}
-              >
-                Email ↗
-              </a>
-              <a
-                href="https://www.upwork.com/freelancers/muhammadumerk5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                Upwork ↗
-              </a>
-              <a
-                href="https://github.com/omerkhan7210"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                GitHub ↗
-              </a>
-              <a
-                href="https://www.linkedin.com/in/muhammad-umer-khan-7998a8266"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                LinkedIn ↗
-              </a>
-              <a
-                href="https://clutch.co/profile/muhammad-umer-khan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                Clutch ↗
-              </a>
-              <a
-                href="https://dev.to/omer_khan_846c4feb067c59e"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                Dev.to ↗
-              </a>
-              <a
-                href="https://medium.com/@omerfarooqkhan7210"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                Medium ↗
-              </a>
-              <span
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.82rem',
-                  color: `rgba(var(--fg-rgb),0.28)`,
-                }}
-              >
-                Karachi, Pakistan
-              </span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
+              <SocialIconLink href="mailto:omerfarooqkhan7210@gmail.com" label="Email" Icon={FaEnvelope} />
+              <SocialIconLink href="https://www.upwork.com/freelancers/muhammadumerk5" label="Upwork" Icon={SiUpwork} />
+              <SocialIconLink href="https://github.com/omerkhan7210" label="GitHub" Icon={SiGithub} />
+              <SocialIconLink href="https://www.linkedin.com/in/muhammad-umer-khan-7998a8266" label="LinkedIn" Icon={FaLinkedin} />
+              <SocialIconLink href="https://clutch.co/profile/muhammad-umer-khan" label="Clutch" Icon={FiAward} />
+              <SocialIconLink href="https://dev.to/omer_khan_846c4feb067c59e" label="Dev.to" Icon={SiDevdotto} />
+              <SocialIconLink href="https://medium.com/@omerfarooqkhan7210" label="Medium" Icon={SiMedium} />
             </div>
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.82rem',
+                color: `rgba(var(--fg-rgb),0.28)`,
+              }}
+            >
+              Karachi, Pakistan
+            </span>
           </div>
         </div>
       </div>

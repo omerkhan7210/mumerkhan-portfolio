@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { FiGlobe, FiRefreshCw, FiShoppingCart, FiZap, FiBox, FiHelpCircle } from 'react-icons/fi';
+import type { IconType } from 'react-icons';
 
 /* ── Types ───────────────────────────────────────────────── */
 type FormData = {
@@ -13,13 +15,13 @@ type FormData = {
   details: string;
 };
 
-const SERVICES = [
-  { value: 'New Website', icon: '🌐' },
-  { value: 'Redesign', icon: '✦' },
-  { value: 'E-Commerce', icon: '🛒' },
-  { value: 'Automation', icon: '⚡' },
-  { value: 'Full Stack App', icon: '⬡' },
-  { value: 'Not sure yet', icon: '?' },
+const SERVICES: { value: string; icon: IconType }[] = [
+  { value: 'New Website', icon: FiGlobe },
+  { value: 'Redesign', icon: FiRefreshCw },
+  { value: 'E-Commerce', icon: FiShoppingCart },
+  { value: 'Automation', icon: FiZap },
+  { value: 'Full Stack App', icon: FiBox },
+  { value: 'Not sure yet', icon: FiHelpCircle },
 ];
 
 /* Follow-up question + options depend entirely on which service was
@@ -111,12 +113,12 @@ function StepWrapper({ children, visible }: { children: React.ReactNode; visible
 /* ── Option button (for service / budget selectors) ──────── */
 function OptionBtn({
   label,
-  icon,
+  icon: Icon,
   selected,
   onClick,
 }: {
   label: string;
-  icon?: string;
+  icon?: IconType;
   selected: boolean;
   onClick: () => void;
 }) {
@@ -153,9 +155,9 @@ function OptionBtn({
         overflow: 'hidden',
       }}
     >
-      {icon && (
-        <span style={{ fontSize: '1rem', flexShrink: 0, opacity: selected ? 1 : 0.6 }}>
-          {icon}
+      {Icon && (
+        <span style={{ display: 'flex', flexShrink: 0, opacity: selected ? 1 : 0.6 }}>
+          <Icon size={16} />
         </span>
       )}
       {label}
