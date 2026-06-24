@@ -65,6 +65,24 @@ export default function ToolsPage() {
         </div>
       </section>
 
+      <section style={{ background: '#0A0A0A', padding: '0 24px 40px' }}>
+        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.92rem',
+              color: 'rgba(255,255,255,0.45)',
+              lineHeight: 1.75,
+              maxWidth: 640,
+            }}
+          >
+            Both calculators below are built on the same factors that go into a real quote — project scope, complexity,
+            and timeline — not a flat industry average. Answer what applies to your project and the estimate updates
+            instantly, with an AI-generated takeaway explaining what's actually driving your number.
+          </p>
+        </div>
+      </section>
+
       <section style={{ background: '#0A0A0A', padding: '0 24px 100px' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
           {TOOLS.map((tool) => (
