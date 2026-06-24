@@ -9,16 +9,33 @@ const CREATE_TABLE_SQL = `
     id          SERIAL PRIMARY KEY,
     tool        TEXT NOT NULL,
     email       TEXT NOT NULL,
+    name        TEXT,
+    company     TEXT,
+    role        TEXT,
     inputs      JSONB,
     result      JSONB,
     created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
   );
+  ALTER TABLE calculator_leads ADD COLUMN IF NOT EXISTS name TEXT;
+  ALTER TABLE calculator_leads ADD COLUMN IF NOT EXISTS company TEXT;
+  ALTER TABLE calculator_leads ADD COLUMN IF NOT EXISTS role TEXT;
 `;
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { tool, email = '', resultHeadline = '', resultLines = [], shareUrl = '', inputs = {}, result = {} } = body ?? {};
+    const {
+      tool,
+      email = '',
+      name = '',
+      company = '',
+      role = '',
+      resultHeadline = '',
+      resultLines = [],
+      shareUrl = '',
+      inputs = {},
+      result = {},
+    } = body ?? {};
 
     if (!tool || !email.trim() || !email.includes('@')) {
       return NextResponse.json({ error: 'A valid email is required.' }, { status: 400 });
@@ -27,12 +44,12 @@ export async function POST(req: NextRequest) {
     const pool = getPool();
     await pool.query(CREATE_TABLE_SQL);
     await pool.query(
-      `INSERT INTO calculator_leads (tool, email, inputs, result) VALUES ($1, $2, $3, $4)`,
-      [tool, email.trim(), JSON.stringify(inputs), JSON.stringify(result)],
+      `INSERT INTO calculator_leads (tool, email, name, company, role, inputs, result) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      [tool, email.trim(), name.trim() || null, company.trim() || null, role.trim() || null, JSON.stringify(inputs), JSON.stringify(result)],
     );
 
     const salesEmail = process.env.SALES_EMAIL;
-    const payload = { tool, email: email.trim(), resultHeadline, resultLines, shareUrl };
+    const payload = { tool, email: email.trim(), name: name.trim(), company: company.trim(), role: role.trim(), resultHeadline, resultLines, shareUrl };
 
     if (salesEmail) {
       const resultEmail = buildCalculatorResultEmail(payload);
@@ -47,7 +64,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    await notifyLeadWebhook({ source: 'calculator-lead', tool, email: email.trim(), resultHeadline, resultLines, inputs, result });
+    await notifyLeadWebhook({ source: 'calculator-lead', tool, email: email.trim(), name: name.trim(), company: company.trim(), role: role.trim(), resultHeadline, resultLines, inputs, result });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

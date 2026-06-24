@@ -22,9 +22,6 @@ const CATEGORIES: { id: Category; label: string }[] = [
   { id: 'other', label: 'Something else' },
 ];
 
-/* Category-specific framing for the headline copy — same calculation
-   underneath, but the result reads like it actually understood what
-   was typed in, not a generic template. */
 const CATEGORY_COPY: Record<Category, string> = {
   leads: 'on manually routing leads and updating your CRM',
   'data-entry': 'on manual data entry',
@@ -36,43 +33,43 @@ const CATEGORY_COPY: Record<Category, string> = {
 };
 
 type ToolChoice = 'none' | 'zapier' | 'make' | 'other';
+type DataFormat = 'digital' | 'mixed' | 'paper';
+type BreakFrequency = 'rarely' | 'weekly' | 'daily';
 
 type State = {
   category: Category;
+  taskDescription: string;
   hoursPerWeek: number;
   hourlyRate: number;
   teamMembers: number;
   appsCount: 1 | 2 | 3;
   needsBranching: boolean;
   needsErrorHandling: boolean;
+  breakFrequency: BreakFrequency;
+  specificApps: string;
   currentTool: ToolChoice;
   monthlyTasks: number;
+  dataFormat: DataFormat;
 };
 
 const DEFAULT_STATE: State = {
   category: 'leads',
+  taskDescription: '',
   hoursPerWeek: 8,
   hourlyRate: 25,
   teamMembers: 1,
   appsCount: 2,
   needsBranching: false,
   needsErrorHandling: false,
+  breakFrequency: 'rarely',
+  specificApps: '',
   currentTool: 'none',
   monthlyTasks: 5000,
+  dataFormat: 'digital',
 };
-
-const STEP_CATEGORY = 0;
-const STEP_HOURS = 1;
-const STEP_RATE = 2;
-const STEP_TEAM = 3;
-const STEP_WORKFLOW = 4;
-const STEP_TOOLS = 5;
-const STEP_RESULT = 6;
-const TOTAL_STEPS = 7;
 
 export default function AutomationRoiCalculator() {
   const [state, setState] = useState<State>(DEFAULT_STATE);
-  const [step, setStep] = useState(0);
   const [shareUrl, setShareUrl] = useState('');
 
   useEffect(() => {
@@ -80,10 +77,7 @@ export default function AutomationRoiCalculator() {
     const s = params.get('s');
     if (s) {
       const decoded = decodeState<State>(s);
-      if (decoded) {
-        setState({ ...DEFAULT_STATE, ...decoded });
-        setStep(STEP_RESULT);
-      }
+      if (decoded) setState({ ...DEFAULT_STATE, ...decoded });
     }
   }, []);
 
@@ -93,8 +87,6 @@ export default function AutomationRoiCalculator() {
   }, [state]);
 
   const set = <K extends keyof State>(key: K, value: State[K]) => setState((s) => ({ ...s, [key]: value }));
-  const next = () => setStep((s) => Math.min(s + 1, TOTAL_STEPS - 1));
-  const back = () => setStep((s) => Math.max(s - 1, 0));
 
   /* ── Complexity is computed from concrete answers, not self-labeled ──
      score: apps involved (1/2/3) + branching logic + error handling.
@@ -102,11 +94,11 @@ export default function AutomationRoiCalculator() {
      their workflow "medium" can land in different cost tiers depending
      on what they actually answered. */
   const complexity = useMemo(() => {
-    const score = state.appsCount + (state.needsBranching ? 1 : 0) + (state.needsErrorHandling ? 1 : 0);
+    const score = state.appsCount + (state.needsBranching ? 1 : 0) + (state.needsErrorHandling ? 1 : 0) + (state.dataFormat === 'paper' ? 1 : 0);
     if (score <= 2) return { tier: 'Simple' as const, setupCost: [300, 700] as [number, number] };
     if (score <= 4) return { tier: 'Medium' as const, setupCost: [700, 1800] as [number, number] };
     return { tier: 'Complex' as const, setupCost: [1800, 4500] as [number, number] };
-  }, [state.appsCount, state.needsBranching, state.needsErrorHandling]);
+  }, [state.appsCount, state.needsBranching, state.needsErrorHandling, state.dataFormat]);
 
   const result = useMemo(() => {
     const monthlyHoursSaved = state.hoursPerWeek * 4.33 * state.teamMembers;
@@ -155,131 +147,153 @@ export default function AutomationRoiCalculator() {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: 6, marginBottom: 36 }}>
-        {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#C8FF00' : 'rgba(255,255,255,0.1)', transition: 'background 0.3s' }} />
-        ))}
-      </div>
+      <p style={hintText}>Answer what applies below — your estimate updates instantly as you go.</p>
 
-      {step === STEP_CATEGORY && (
-        <Step title="What are you trying to automate?">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
-            {CATEGORIES.map((c) => (
-              <button key={c.id} onClick={() => { set('category', c.id); next(); }} style={optionCard(state.category === c.id, true)}>
-                <span style={cardTitle}>{c.label}</span>
-              </button>
-            ))}
-          </div>
-        </Step>
-      )}
-
-      {step === STEP_HOURS && (
-        <Step title={`Hours/week spent ${CATEGORY_COPY[state.category]}: ${state.hoursPerWeek}h`} onBack={back}>
-          <input type="range" min={1} max={40} value={state.hoursPerWeek} onChange={(e) => set('hoursPerWeek', Number(e.target.value))} style={sliderStyle} />
-          <button onClick={next} className="btn-lime" style={{ marginTop: 24 }}>Continue →</button>
-        </Step>
-      )}
-
-      {step === STEP_RATE && (
-        <Step title={`Hourly cost of the person doing it: $${state.hourlyRate}/hr`} onBack={back}>
-          <input type="range" min={10} max={150} step={5} value={state.hourlyRate} onChange={(e) => set('hourlyRate', Number(e.target.value))} style={sliderStyle} />
-          <button onClick={next} className="btn-lime" style={{ marginTop: 24 }}>Continue →</button>
-        </Step>
-      )}
-
-      {step === STEP_TEAM && (
-        <Step title={`People doing this task: ${state.teamMembers}`} onBack={back}>
-          <input type="range" min={1} max={20} value={state.teamMembers} onChange={(e) => set('teamMembers', Number(e.target.value))} style={sliderStyle} />
-          <button onClick={next} className="btn-lime" style={{ marginTop: 24 }}>Continue →</button>
-        </Step>
-      )}
-
-      {step === STEP_WORKFLOW && (
-        <Step title="A bit about the workflow" onBack={back}>
-          <FieldLabel>How many different apps/tools need to talk to each other?</FieldLabel>
-          <ChoiceRow
-            options={[{ id: '1', label: '1–2 apps' }, { id: '2', label: '3–5 apps' }, { id: '3', label: '6+ apps' }]}
-            value={String(state.appsCount)}
-            onChange={(v) => set('appsCount', Number(v) as State['appsCount'])}
-          />
-          <div style={{ marginTop: 18 }}>
-            <ToggleRow label="Needs conditional branching (if/else logic)" value={state.needsBranching} onChange={(v) => set('needsBranching', v)} />
-            <ToggleRow label="Needs error handling / retries (mission-critical)" value={state.needsErrorHandling} onChange={(v) => set('needsErrorHandling', v)} />
-          </div>
-          <button onClick={next} className="btn-lime" style={{ marginTop: 20 }}>Continue →</button>
-        </Step>
-      )}
-
-      {step === STEP_TOOLS && (
-        <Step title="Currently using an automation tool?" onBack={back}>
-          <ChoiceRow
-            options={[{ id: 'none', label: 'No / not yet' }, { id: 'zapier', label: 'Zapier' }, { id: 'make', label: 'Make' }, { id: 'other', label: 'Other' }]}
-            value={state.currentTool}
-            onChange={(v) => set('currentTool', v as ToolChoice)}
-          />
-          {state.currentTool !== 'none' && (
-            <div style={{ marginTop: 20 }}>
-              <FieldLabel>
-                Approx. automation tasks/month: <Highlight>{state.monthlyTasks.toLocaleString()}</Highlight>
-              </FieldLabel>
-              <input type="range" min={500} max={100000} step={500} value={state.monthlyTasks} onChange={(e) => set('monthlyTasks', Number(e.target.value))} style={sliderStyle} />
-            </div>
-          )}
-          <button onClick={next} className="btn-lime" style={{ marginTop: 20 }}>See my results →</button>
-        </Step>
-      )}
-
-      {step === STEP_RESULT && (
-        <div>
-          <button onClick={back} style={backLink}>← Edit answers</button>
-          <div style={resultBox}>
-            <p style={resultLabel}>Estimated annual savings</p>
-            <p style={resultNumber}>${animatedAnnual.toLocaleString()}</p>
-            <p style={resultSub}>
-              {result.monthlyHoursSaved} hours/month freed up {CATEGORY_COPY[state.category]}
-              {result.monthlyToolSavings > 0 && <> · plus ~${result.monthlyToolSavings.toLocaleString()}/month saved switching tool billing to n8n</>}
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16, marginTop: 28, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-              <Stat label="Workflow tier" value={complexity.tier} />
-              <Stat label="Setup cost (est.)" value={`$${result.setupLow.toLocaleString()}–${result.setupHigh.toLocaleString()}`} />
-              <Stat label="Payback period" value={`~${result.paybackMonths.toFixed(1)} mo`} />
-            </div>
-
-            <PaybackChart setupCost={result.setupMid} monthlySavings={result.totalMonthlySavings} />
-            <BreakdownBars items={breakdown} />
-
-            <AiSummary tool="Automation ROI Calculator" inputs={state} breakdown={breakdown} />
-
-            <p style={{ ...resultSub, marginTop: 20 }}>
-              Workflow tier is based on how many apps are involved and whether you need branching logic or error handling — not a guess.
-            </p>
-
-            <div style={{ marginTop: 24, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/contact" className="btn-lime">Get a workflow built</Link>
-              <Link href="/services/n8n-automation" className="btn-outline">See automation service</Link>
-            </div>
-
-            <EmailCapture
-              tool="Automation ROI Calculator"
-              resultHeadline={`Estimated annual savings: $${result.annualLaborSavings.toLocaleString()}`}
-              resultLines={[
-                `${result.monthlyHoursSaved} hours/month freed up`,
-                `Workflow tier: ${complexity.tier}`,
-                `Payback period: ~${result.paybackMonths.toFixed(1)} months`,
-                `Setup cost estimate: $${result.setupLow.toLocaleString()}–$${result.setupHigh.toLocaleString()}`,
-              ]}
-              shareUrl={shareUrl}
-              inputs={state}
-              result={result}
-            />
-
-            <div style={{ marginTop: 18 }}>
-              <ShareButton url={shareUrl} />
-            </div>
-          </div>
+      <Section title="1. The process">
+        <FieldLabel>What are you trying to automate?</FieldLabel>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10, marginBottom: 20 }}>
+          {CATEGORIES.map((c) => (
+            <button key={c.id} onClick={() => set('category', c.id)} style={optionCard(state.category === c.id, true)}>
+              <span style={cardTitle}>{c.label}</span>
+            </button>
+          ))}
         </div>
-      )}
+        <FieldLabel>Describe the task in one sentence (optional, helps sharpen the estimate)</FieldLabel>
+        <input
+          type="text"
+          value={state.taskDescription}
+          onChange={(e) => set('taskDescription', e.target.value)}
+          placeholder="e.g. copying new form leads from email into our CRM every morning"
+          style={textInputStyle}
+        />
+      </Section>
+
+      <Section title="2. Time & cost">
+        <FieldLabel>Hours/week spent {CATEGORY_COPY[state.category]}: <Highlight>{state.hoursPerWeek}h</Highlight></FieldLabel>
+        <input type="range" min={1} max={40} value={state.hoursPerWeek} onChange={(e) => set('hoursPerWeek', Number(e.target.value))} style={sliderStyle} />
+
+        <FieldLabel style={{ marginTop: 22 }}>Hourly cost of the person doing it: <Highlight>${state.hourlyRate}/hr</Highlight></FieldLabel>
+        <input type="range" min={10} max={150} step={5} value={state.hourlyRate} onChange={(e) => set('hourlyRate', Number(e.target.value))} style={sliderStyle} />
+
+        <FieldLabel style={{ marginTop: 22 }}>People doing this task: <Highlight>{state.teamMembers}</Highlight></FieldLabel>
+        <input type="range" min={1} max={20} value={state.teamMembers} onChange={(e) => set('teamMembers', Number(e.target.value))} style={sliderStyle} />
+      </Section>
+
+      <Section title="3. Current tooling">
+        <FieldLabel>Currently using an automation tool?</FieldLabel>
+        <ChoiceRow
+          options={[{ id: 'none', label: 'No / not yet' }, { id: 'zapier', label: 'Zapier' }, { id: 'make', label: 'Make' }, { id: 'other', label: 'Other' }]}
+          value={state.currentTool}
+          onChange={(v) => set('currentTool', v as ToolChoice)}
+        />
+        {state.currentTool !== 'none' && (
+          <div style={{ marginTop: 20 }}>
+            <FieldLabel>Approx. automation tasks/month: <Highlight>{state.monthlyTasks.toLocaleString()}</Highlight></FieldLabel>
+            <input type="range" min={500} max={100000} step={500} value={state.monthlyTasks} onChange={(e) => set('monthlyTasks', Number(e.target.value))} style={sliderStyle} />
+          </div>
+        )}
+        <FieldLabel style={{ marginTop: 22 }}>Is the data you're working with already digital?</FieldLabel>
+        <ChoiceRow
+          options={[
+            { id: 'digital', label: 'Yes, fully digital' },
+            { id: 'mixed', label: 'Mixed (some paper/manual)' },
+            { id: 'paper', label: 'Mostly paper/manual entry' },
+          ]}
+          value={state.dataFormat}
+          onChange={(v) => set('dataFormat', v as DataFormat)}
+        />
+      </Section>
+
+      <Section title="4. Complexity">
+        <FieldLabel>How many different apps/tools need to talk to each other?</FieldLabel>
+        <ChoiceRow
+          options={[{ id: '1', label: '1–2 apps' }, { id: '2', label: '3–5 apps' }, { id: '3', label: '6+ apps' }]}
+          value={String(state.appsCount)}
+          onChange={(v) => set('appsCount', Number(v) as State['appsCount'])}
+        />
+        <div style={{ marginTop: 18 }}>
+          <ToggleRow label="Needs conditional branching (if/else logic)" value={state.needsBranching} onChange={(v) => set('needsBranching', v)} />
+          <ToggleRow label="Needs error handling / retries (mission-critical)" value={state.needsErrorHandling} onChange={(v) => set('needsErrorHandling', v)} />
+        </div>
+        <FieldLabel style={{ marginTop: 18 }}>How often does this process break or need fixing today?</FieldLabel>
+        <ChoiceRow
+          options={[
+            { id: 'rarely', label: 'Rarely / never' },
+            { id: 'weekly', label: 'About weekly' },
+            { id: 'daily', label: 'Daily or worse' },
+          ]}
+          value={state.breakFrequency}
+          onChange={(v) => set('breakFrequency', v as BreakFrequency)}
+        />
+      </Section>
+
+      <Section title="5. Systems involved">
+        <FieldLabel>Which specific apps/platforms are involved? (optional)</FieldLabel>
+        <input
+          type="text"
+          value={state.specificApps}
+          onChange={(e) => set('specificApps', e.target.value)}
+          placeholder="e.g. Gmail, HubSpot, Google Sheets, Slack"
+          style={textInputStyle}
+        />
+      </Section>
+
+      <div style={resultBox}>
+        <p style={resultLabel}>Estimated annual savings</p>
+        <p style={resultNumber}>${animatedAnnual.toLocaleString()}</p>
+        <p style={resultSub}>
+          {result.monthlyHoursSaved} hours/month freed up {CATEGORY_COPY[state.category]}
+          {result.monthlyToolSavings > 0 && <> · plus ~${result.monthlyToolSavings.toLocaleString()}/month saved switching tool billing to n8n</>}
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16, marginTop: 28, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <Stat label="Workflow tier" value={complexity.tier} />
+          <Stat label="Setup cost (est.)" value={`$${result.setupLow.toLocaleString()}–${result.setupHigh.toLocaleString()}`} />
+          <Stat label="Payback period" value={`~${result.paybackMonths.toFixed(1)} mo`} />
+        </div>
+
+        <PaybackChart setupCost={result.setupMid} monthlySavings={result.totalMonthlySavings} />
+        <BreakdownBars items={breakdown} />
+
+        <AiSummary tool="Automation ROI Calculator" inputs={state} breakdown={breakdown} />
+
+        <p style={{ ...resultSub, marginTop: 20 }}>
+          Workflow tier is based on how many apps are involved and whether you need branching logic or error handling — not a guess.
+        </p>
+
+        <div style={{ marginTop: 24, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/contact" className="btn-lime">Get a workflow built</Link>
+          <Link href="/services/n8n-automation" className="btn-outline">See automation service</Link>
+        </div>
+
+        <EmailCapture
+          tool="Automation ROI Calculator"
+          resultHeadline={`Estimated annual savings: $${result.annualLaborSavings.toLocaleString()}`}
+          resultLines={[
+            `${result.monthlyHoursSaved} hours/month freed up`,
+            `Workflow tier: ${complexity.tier}`,
+            `Payback period: ~${result.paybackMonths.toFixed(1)} months`,
+            `Setup cost estimate: $${result.setupLow.toLocaleString()}–$${result.setupHigh.toLocaleString()}`,
+          ]}
+          shareUrl={shareUrl}
+          inputs={state}
+          result={result}
+          collectRole
+        />
+
+        <div style={{ marginTop: 18 }}>
+          <ShareButton url={shareUrl} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div style={sectionCard}>
+      <p style={sectionTitle}>{title}</p>
+      {children}
     </div>
   );
 }
@@ -293,18 +307,8 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Step({ title, children, onBack }: { title: string; children: React.ReactNode; onBack?: () => void }) {
-  return (
-    <div>
-      {onBack && <button onClick={onBack} style={backLink}>← Back</button>}
-      <p style={fieldLabelBase}>{title}</p>
-      {children}
-    </div>
-  );
-}
-
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return <p style={fieldLabelBase}>{children}</p>;
+function FieldLabel({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  return <p style={{ ...fieldLabelBase, ...style }}>{children}</p>;
 }
 
 function Highlight({ children }: { children: React.ReactNode }) {
@@ -332,6 +336,31 @@ function ToggleRow({ label, value, onChange }: { label: string; value: boolean; 
   );
 }
 
+const hintText: React.CSSProperties = {
+  fontFamily: 'var(--font-body)',
+  fontSize: '0.85rem',
+  color: 'rgba(255,255,255,0.45)',
+  marginBottom: 24,
+  textAlign: 'center',
+};
+
+const sectionCard: React.CSSProperties = {
+  borderRadius: 16,
+  border: '1px solid rgba(255,255,255,0.08)',
+  background: 'rgba(255,255,255,0.015)',
+  padding: 'clamp(18px, 3vw, 28px)',
+  marginBottom: 16,
+};
+
+const sectionTitle: React.CSSProperties = {
+  fontFamily: 'var(--font-display)',
+  fontWeight: 600,
+  fontSize: '1rem',
+  color: '#fff',
+  marginBottom: 18,
+  letterSpacing: '-0.01em',
+};
+
 const cardTitle: React.CSSProperties = { fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.9rem', color: '#fff' };
 
 const fieldLabelBase: React.CSSProperties = {
@@ -343,18 +372,6 @@ const fieldLabelBase: React.CSSProperties = {
   letterSpacing: '-0.01em',
 };
 
-const backLink: React.CSSProperties = {
-  display: 'inline-block',
-  marginBottom: 16,
-  fontFamily: 'var(--font-body)',
-  fontSize: '0.8rem',
-  color: 'rgba(255,255,255,0.4)',
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  padding: 0,
-};
-
 const sliderStyle: React.CSSProperties = {
   width: '100%',
   height: 6,
@@ -362,6 +379,18 @@ const sliderStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.1)',
   accentColor: '#C8FF00',
   cursor: 'pointer',
+};
+
+const textInputStyle: React.CSSProperties = {
+  width: '100%',
+  fontFamily: 'var(--font-body)',
+  fontSize: '0.9rem',
+  color: '#fff',
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.12)',
+  borderRadius: 10,
+  padding: '12px 16px',
+  outline: 'none',
 };
 
 const resultBox: React.CSSProperties = {

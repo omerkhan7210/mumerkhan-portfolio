@@ -10,6 +10,11 @@ import EmailCapture from './calculators/EmailCapture';
 import AiSummary from './calculators/AiSummary';
 
 type ProjectType = 'landing' | 'marketing' | 'ecommerce' | 'webapp';
+type SiteStatus = 'none' | 'outdated' | 'redesign';
+type ContentSource = 'client' | 'us' | 'copywriter';
+type HostingPref = 'new' | 'has';
+type LaunchTimeframe = 'asap' | '1-2mo' | '3mo-plus' | 'flexible';
+type BudgetRange = 'lt2k' | '2-5k' | '5-10k' | '10k-plus' | 'not-sure';
 
 const PROJECT_TYPES: { id: ProjectType; label: string; sub: string; base: [number, number]; color: string }[] = [
   { id: 'landing', label: 'Landing Page', sub: '1–3 pages, single focus', base: [300, 600], color: '#C8FF00' },
@@ -23,10 +28,13 @@ const ADDONS: { id: string; label: string; cost: [number, number]; color: string
   { id: 'payments', label: 'Payment gateway integration', cost: [400, 900], color: '#F472B6' },
   { id: 'multilang', label: 'Multi-language support', cost: [300, 600], color: '#FBBF24' },
   { id: 'automation', label: 'n8n workflow automation', cost: [400, 1000], color: '#34D399' },
+  { id: 'seo', label: 'On-page SEO setup', cost: [250, 650], color: '#A78BFA' },
 ];
 
 type State = {
   type: ProjectType;
+  industry: string;
+  currentSiteStatus: SiteStatus;
   // landing
   landingGoal: 'leads' | 'launch' | 'event';
   needsAnimation: boolean;
@@ -42,15 +50,26 @@ type State = {
   userRoles: number;
   realtimeFeatures: boolean;
   integrationCount: number;
-  // universal
+  // content & design
+  contentSource: ContentSource;
   customDesign: boolean;
-  selfEdit: boolean;
+  brandAssetsReady: boolean;
+  // functionality
   addons: string[];
+  specificIntegrations: string;
+  // technical
+  selfEdit: boolean;
+  hostingPref: HostingPref;
+  // timeline & budget
   rush: boolean;
+  launchTimeframe: LaunchTimeframe;
+  budgetRange: BudgetRange;
 };
 
 const DEFAULT_STATE: State = {
   type: 'marketing',
+  industry: '',
+  currentSiteStatus: 'none',
   landingGoal: 'leads',
   needsAnimation: false,
   pageCount: 7,
@@ -62,23 +81,20 @@ const DEFAULT_STATE: State = {
   userRoles: 1,
   realtimeFeatures: false,
   integrationCount: 1,
+  contentSource: 'client',
   customDesign: true,
-  selfEdit: true,
+  brandAssetsReady: true,
   addons: [],
+  specificIntegrations: '',
+  selfEdit: true,
+  hostingPref: 'new',
   rush: false,
+  launchTimeframe: 'flexible',
+  budgetRange: 'not-sure',
 };
-
-const STEP_TYPE = 0;
-const STEP_DYNAMIC = 1;
-const STEP_DESIGN = 2;
-const STEP_ADDONS = 3;
-const STEP_TIMELINE = 4;
-const STEP_RESULT = 5;
-const TOTAL_STEPS = 6;
 
 export default function WebsiteCostCalculator() {
   const [state, setState] = useState<State>(DEFAULT_STATE);
-  const [step, setStep] = useState(0);
   const [shareUrl, setShareUrl] = useState('');
 
   useEffect(() => {
@@ -86,10 +102,7 @@ export default function WebsiteCostCalculator() {
     const s = params.get('s');
     if (s) {
       const decoded = decodeState<State>(s);
-      if (decoded) {
-        setState({ ...DEFAULT_STATE, ...decoded });
-        setStep(STEP_RESULT);
-      }
+      if (decoded) setState({ ...DEFAULT_STATE, ...decoded });
     }
   }, []);
 
@@ -101,9 +114,6 @@ export default function WebsiteCostCalculator() {
   const set = <K extends keyof State>(key: K, value: State[K]) => setState((s) => ({ ...s, [key]: value }));
   const toggleAddon = (id: string) =>
     setState((prev) => ({ ...prev, addons: prev.addons.includes(id) ? prev.addons.filter((a) => a !== id) : [...prev.addons, id] }));
-
-  const next = () => setStep((s) => Math.min(s + 1, TOTAL_STEPS - 1));
-  const back = () => setStep((s) => Math.max(s - 1, 0));
 
   /* ── Dynamic, type-specific cost contribution ──────────────────── */
   const dynamicBreakdown = useMemo<BreakdownItem[]>(() => {
@@ -150,9 +160,9 @@ export default function WebsiteCostCalculator() {
       }
     });
 
-    if (!state.selfEdit) {
-      items.push({ label: 'Static build (no CMS)', amount: -150 * rushMultiplier, color: '#94A3B8' });
-    }
+    if (state.contentSource === 'copywriter') items.push({ label: 'Copywriting service', amount: 400 * rushMultiplier, color: '#FDE68A' });
+    if (!state.brandAssetsReady) items.push({ label: 'Basic branding (logo/colors)', amount: 350 * rushMultiplier, color: '#FCA5A5' });
+    if (!state.selfEdit) items.push({ label: 'Static build (no CMS)', amount: -150 * rushMultiplier, color: '#94A3B8' });
 
     return items;
   }, [state, dynamicBreakdown]);
@@ -169,182 +179,230 @@ export default function WebsiteCostCalculator() {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: 6, marginBottom: 36 }}>
-        {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-          <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? '#C8FF00' : 'rgba(255,255,255,0.1)', transition: 'background 0.3s' }} />
-        ))}
-      </div>
+      <p style={hintText}>Answer what applies below — your estimate updates instantly as you go.</p>
 
-      {step === STEP_TYPE && (
-        <Step title="What are you building?">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
-            {PROJECT_TYPES.map((p) => (
-              <button key={p.id} onClick={() => { set('type', p.id); next(); }} style={optionCard(state.type === p.id)}>
-                <span style={cardTitle}>{p.label}</span>
-                <span style={cardSub}>{p.sub}</span>
-              </button>
-            ))}
-          </div>
-        </Step>
-      )}
-
-      {/* ── Dynamic, type-specific question set ───────────────────── */}
-      {step === STEP_DYNAMIC && (
-        <Step title="A bit more detail" onBack={back} onNext={next}>
-          {state.type === 'landing' && (
-            <>
-              <FieldLabel>Main goal of the page</FieldLabel>
-              <ChoiceRow
-                options={[
-                  { id: 'leads', label: 'Capture leads' },
-                  { id: 'launch', label: 'Product launch' },
-                  { id: 'event', label: 'Event / promo' },
-                ]}
-                value={state.landingGoal}
-                onChange={(v) => set('landingGoal', v as State['landingGoal'])}
-              />
-              <ToggleRow label="Custom motion / scroll animation" value={state.needsAnimation} onChange={(v) => set('needsAnimation', v)} />
-            </>
-          )}
-
-          {state.type === 'marketing' && (
-            <>
-              <FieldLabel>
-                Number of pages: <Highlight>{state.pageCount}</Highlight>
-              </FieldLabel>
-              <input type="range" min={5} max={30} value={state.pageCount} onChange={(e) => set('pageCount', Number(e.target.value))} style={sliderStyle} />
-              <div style={{ marginTop: 18 }}>
-                <ToggleRow label="Blog / news section" value={state.needsBlog} onChange={(v) => set('needsBlog', v)} />
-                <ToggleRow label="Multiple locations / branches" value={state.multiLocation} onChange={(v) => set('multiLocation', v)} />
-              </div>
-            </>
-          )}
-
-          {state.type === 'ecommerce' && (
-            <>
-              <FieldLabel>
-                Roughly how many products: <Highlight>{state.productCount}</Highlight>
-              </FieldLabel>
-              <input type="range" min={5} max={1000} step={5} value={state.productCount} onChange={(e) => set('productCount', Number(e.target.value))} style={sliderStyle} />
-              <FieldLabel style={{ marginTop: 22 }}>
-                Payment gateways needed: <Highlight>{state.paymentGateways}</Highlight>
-              </FieldLabel>
-              <input type="range" min={1} max={4} value={state.paymentGateways} onChange={(e) => set('paymentGateways', Number(e.target.value))} style={sliderStyle} />
-              <div style={{ marginTop: 18 }}>
-                <ToggleRow label="Inventory sync with another system" value={state.needsInventorySync} onChange={(v) => set('needsInventorySync', v)} />
-              </div>
-            </>
-          )}
-
-          {state.type === 'webapp' && (
-            <>
-              <FieldLabel>
-                Distinct user roles (e.g. admin, customer, staff): <Highlight>{state.userRoles}</Highlight>
-              </FieldLabel>
-              <input type="range" min={1} max={6} value={state.userRoles} onChange={(e) => set('userRoles', Number(e.target.value))} style={sliderStyle} />
-              <FieldLabel style={{ marginTop: 22 }}>
-                Third-party API integrations: <Highlight>{state.integrationCount}</Highlight>
-              </FieldLabel>
-              <input type="range" min={0} max={6} value={state.integrationCount} onChange={(e) => set('integrationCount', Number(e.target.value))} style={sliderStyle} />
-              <div style={{ marginTop: 18 }}>
-                <ToggleRow label="Real-time features (live updates, chat, dashboards)" value={state.realtimeFeatures} onChange={(v) => set('realtimeFeatures', v)} />
-              </div>
-            </>
-          )}
-        </Step>
-      )}
-
-      {step === STEP_DESIGN && (
-        <Step title="Design & content approach" onBack={back}>
-          <FieldLabel>Design approach</FieldLabel>
-          <ChoiceRow
-            options={[{ id: 'custom', label: 'Custom design' }, { id: 'template', label: 'Template-based' }]}
-            value={state.customDesign ? 'custom' : 'template'}
-            onChange={(v) => set('customDesign', v === 'custom')}
-          />
-          <FieldLabel style={{ marginTop: 22 }}>Will you need to edit content yourself?</FieldLabel>
-          <ChoiceRow
-            options={[{ id: 'yes', label: 'Yes, I need a CMS' }, { id: 'no', label: 'No, static is fine' }]}
-            value={state.selfEdit ? 'yes' : 'no'}
-            onChange={(v) => { set('selfEdit', v === 'yes'); next(); }}
-          />
-        </Step>
-      )}
-
-      {step === STEP_ADDONS && (
-        <Step title="Extra functionality (optional)" onBack={back} onNext={next}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 10 }}>
-            {ADDONS.filter((a) => !(a.id === 'payments' && state.type === 'ecommerce')).map((a) => (
-              <button key={a.id} onClick={() => toggleAddon(a.id)} style={{ ...optionCard(state.addons.includes(a.id), true), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#fff' }}>{a.label}</span>
-                <Checkbox checked={state.addons.includes(a.id)} />
-              </button>
-            ))}
-          </div>
-        </Step>
-      )}
-
-      {step === STEP_TIMELINE && (
-        <Step title="Timeline" onBack={back}>
-          <ChoiceRow
-            options={[{ id: 'standard', label: 'Standard' }, { id: 'rush', label: 'Rush (+30%)' }]}
-            value={state.rush ? 'rush' : 'standard'}
-            onChange={(v) => { set('rush', v === 'rush'); next(); }}
-          />
-        </Step>
-      )}
-
-      {step === STEP_RESULT && (
-        <div>
-          <button onClick={back} style={backLink}>← Edit answers</button>
-          <div style={resultBox}>
-            <p style={resultLabel}>Estimated cost</p>
-            <p style={resultNumber}>${animatedLow.toLocaleString()}–${animatedHigh.toLocaleString()}</p>
-            <p style={resultSub}>
-              This is a rough estimate based on your actual scope. Every project is different —{' '}
-              <Link href="/pricing" style={{ color: '#C8FF00' }}>see fixed-fee packages</Link> or get an exact quote below.
-            </p>
-
-            <BreakdownBars items={breakdown} />
-
-            <AiSummary tool="Website Cost Calculator" inputs={state} breakdown={breakdown} />
-
-            <div style={{ marginTop: 24, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/contact" className="btn-lime">Get an exact quote</Link>
-              <Link href="/pricing" className="btn-outline">View pricing packages</Link>
-            </div>
-
-            <EmailCapture
-              tool="Website Cost Calculator"
-              resultHeadline={`Estimated cost: $${result.low.toLocaleString()}–$${result.high.toLocaleString()}`}
-              resultLines={breakdown.map((b) => `${b.label}: $${Math.round(b.amount).toLocaleString()}`)}
-              shareUrl={shareUrl}
-              inputs={state}
-              result={result}
-            />
-
-            <div style={{ marginTop: 18 }}>
-              <ShareButton url={shareUrl} />
-            </div>
-          </div>
+      <Section title="1. Project basics">
+        <FieldLabel>What are you building?</FieldLabel>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12, marginBottom: 20 }}>
+          {PROJECT_TYPES.map((p) => (
+            <button key={p.id} onClick={() => set('type', p.id)} style={optionCard(state.type === p.id)}>
+              <span style={cardTitle}>{p.label}</span>
+              <span style={cardSub}>{p.sub}</span>
+            </button>
+          ))}
         </div>
-      )}
+        <FieldLabel>What industry/niche is this for?</FieldLabel>
+        <input
+          type="text"
+          value={state.industry}
+          onChange={(e) => set('industry', e.target.value)}
+          placeholder="e.g. dental clinic, SaaS startup, local restaurant"
+          style={textInputStyle}
+        />
+        <FieldLabel style={{ marginTop: 20 }}>Do you currently have a website?</FieldLabel>
+        <ChoiceRow
+          options={[
+            { id: 'none', label: 'No, starting fresh' },
+            { id: 'outdated', label: 'Yes, but outdated' },
+            { id: 'redesign', label: 'Yes, want a redesign' },
+          ]}
+          value={state.currentSiteStatus}
+          onChange={(v) => set('currentSiteStatus', v as SiteStatus)}
+        />
+      </Section>
+
+      <Section title="2. Scope">
+        {state.type === 'landing' && (
+          <>
+            <FieldLabel>Main goal of the page</FieldLabel>
+            <ChoiceRow
+              options={[
+                { id: 'leads', label: 'Capture leads' },
+                { id: 'launch', label: 'Product launch' },
+                { id: 'event', label: 'Event / promo' },
+              ]}
+              value={state.landingGoal}
+              onChange={(v) => set('landingGoal', v as State['landingGoal'])}
+            />
+            <ToggleRow label="Custom motion / scroll animation" value={state.needsAnimation} onChange={(v) => set('needsAnimation', v)} />
+          </>
+        )}
+
+        {state.type === 'marketing' && (
+          <>
+            <FieldLabel>
+              Number of pages: <Highlight>{state.pageCount}</Highlight>
+            </FieldLabel>
+            <input type="range" min={5} max={30} value={state.pageCount} onChange={(e) => set('pageCount', Number(e.target.value))} style={sliderStyle} />
+            <div style={{ marginTop: 18 }}>
+              <ToggleRow label="Blog / news section" value={state.needsBlog} onChange={(v) => set('needsBlog', v)} />
+              <ToggleRow label="Multiple locations / branches" value={state.multiLocation} onChange={(v) => set('multiLocation', v)} />
+            </div>
+          </>
+        )}
+
+        {state.type === 'ecommerce' && (
+          <>
+            <FieldLabel>
+              Roughly how many products: <Highlight>{state.productCount}</Highlight>
+            </FieldLabel>
+            <input type="range" min={5} max={1000} step={5} value={state.productCount} onChange={(e) => set('productCount', Number(e.target.value))} style={sliderStyle} />
+            <FieldLabel style={{ marginTop: 22 }}>
+              Payment gateways needed: <Highlight>{state.paymentGateways}</Highlight>
+            </FieldLabel>
+            <input type="range" min={1} max={4} value={state.paymentGateways} onChange={(e) => set('paymentGateways', Number(e.target.value))} style={sliderStyle} />
+            <div style={{ marginTop: 18 }}>
+              <ToggleRow label="Inventory sync with another system" value={state.needsInventorySync} onChange={(v) => set('needsInventorySync', v)} />
+            </div>
+          </>
+        )}
+
+        {state.type === 'webapp' && (
+          <>
+            <FieldLabel>
+              Distinct user roles (e.g. admin, customer, staff): <Highlight>{state.userRoles}</Highlight>
+            </FieldLabel>
+            <input type="range" min={1} max={6} value={state.userRoles} onChange={(e) => set('userRoles', Number(e.target.value))} style={sliderStyle} />
+            <FieldLabel style={{ marginTop: 22 }}>
+              Third-party API integrations: <Highlight>{state.integrationCount}</Highlight>
+            </FieldLabel>
+            <input type="range" min={0} max={6} value={state.integrationCount} onChange={(e) => set('integrationCount', Number(e.target.value))} style={sliderStyle} />
+            <div style={{ marginTop: 18 }}>
+              <ToggleRow label="Real-time features (live updates, chat, dashboards)" value={state.realtimeFeatures} onChange={(v) => set('realtimeFeatures', v)} />
+            </div>
+          </>
+        )}
+      </Section>
+
+      <Section title="3. Content & design">
+        <FieldLabel>Who's writing the content?</FieldLabel>
+        <ChoiceRow
+          options={[
+            { id: 'client', label: "I'll provide it" },
+            { id: 'us', label: 'Use placeholder, refine later' },
+            { id: 'copywriter', label: 'I need a copywriter' },
+          ]}
+          value={state.contentSource}
+          onChange={(v) => set('contentSource', v as ContentSource)}
+        />
+        <FieldLabel style={{ marginTop: 22 }}>Design approach</FieldLabel>
+        <ChoiceRow
+          options={[{ id: 'custom', label: 'Custom design' }, { id: 'template', label: 'Template-based' }]}
+          value={state.customDesign ? 'custom' : 'template'}
+          onChange={(v) => set('customDesign', v === 'custom')}
+        />
+        <div style={{ marginTop: 18 }}>
+          <ToggleRow label="I already have a logo and brand colors" value={state.brandAssetsReady} onChange={(v) => set('brandAssetsReady', v)} />
+        </div>
+      </Section>
+
+      <Section title="4. Functionality & integrations">
+        <FieldLabel>Extra functionality (optional)</FieldLabel>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 10, marginBottom: 20 }}>
+          {ADDONS.filter((a) => !(a.id === 'payments' && state.type === 'ecommerce')).map((a) => (
+            <button key={a.id} onClick={() => toggleAddon(a.id)} style={{ ...optionCard(state.addons.includes(a.id), true), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#fff' }}>{a.label}</span>
+              <Checkbox checked={state.addons.includes(a.id)} />
+            </button>
+          ))}
+        </div>
+        <FieldLabel>Any specific tools/platforms that need to connect? (optional)</FieldLabel>
+        <input
+          type="text"
+          value={state.specificIntegrations}
+          onChange={(e) => set('specificIntegrations', e.target.value)}
+          placeholder="e.g. Stripe, HubSpot, Calendly, Mailchimp"
+          style={textInputStyle}
+        />
+      </Section>
+
+      <Section title="5. Technical">
+        <FieldLabel>Will you need to edit content yourself?</FieldLabel>
+        <ChoiceRow
+          options={[{ id: 'yes', label: 'Yes, I need a CMS' }, { id: 'no', label: 'No, static is fine' }]}
+          value={state.selfEdit ? 'yes' : 'no'}
+          onChange={(v) => set('selfEdit', v === 'yes')}
+        />
+        <FieldLabel style={{ marginTop: 22 }}>Hosting / domain</FieldLabel>
+        <ChoiceRow
+          options={[{ id: 'new', label: 'Need new hosting/domain' }, { id: 'has', label: 'Already have hosting' }]}
+          value={state.hostingPref}
+          onChange={(v) => set('hostingPref', v as HostingPref)}
+        />
+      </Section>
+
+      <Section title="6. Timeline & budget">
+        <FieldLabel>Timeline</FieldLabel>
+        <ChoiceRow
+          options={[{ id: 'standard', label: 'Standard' }, { id: 'rush', label: 'Rush (+30%)' }]}
+          value={state.rush ? 'rush' : 'standard'}
+          onChange={(v) => set('rush', v === 'rush')}
+        />
+        <FieldLabel style={{ marginTop: 22 }}>When do you want to launch?</FieldLabel>
+        <ChoiceRow
+          options={[
+            { id: 'asap', label: 'ASAP' },
+            { id: '1-2mo', label: '1–2 months' },
+            { id: '3mo-plus', label: '3+ months' },
+            { id: 'flexible', label: "I'm flexible" },
+          ]}
+          value={state.launchTimeframe}
+          onChange={(v) => set('launchTimeframe', v as LaunchTimeframe)}
+        />
+        <FieldLabel style={{ marginTop: 22 }}>Do you have a budget range in mind? (optional, helps us tailor the quote)</FieldLabel>
+        <ChoiceRow
+          options={[
+            { id: 'lt2k', label: 'Under $2k' },
+            { id: '2-5k', label: '$2k–$5k' },
+            { id: '5-10k', label: '$5k–$10k' },
+            { id: '10k-plus', label: '$10k+' },
+            { id: 'not-sure', label: 'Not sure yet' },
+          ]}
+          value={state.budgetRange}
+          onChange={(v) => set('budgetRange', v as BudgetRange)}
+        />
+      </Section>
+
+      <div style={resultBox}>
+        <p style={resultLabel}>Estimated cost</p>
+        <p style={resultNumber}>${animatedLow.toLocaleString()}–${animatedHigh.toLocaleString()}</p>
+        <p style={resultSub}>
+          This is a rough estimate based on your actual scope. Every project is different —{' '}
+          <Link href="/pricing" style={{ color: '#C8FF00' }}>see fixed-fee packages</Link> or get an exact quote below.
+        </p>
+
+        <BreakdownBars items={breakdown} />
+
+        <AiSummary tool="Website Cost Calculator" inputs={state} breakdown={breakdown} />
+
+        <div style={{ marginTop: 24, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/contact" className="btn-lime">Get an exact quote</Link>
+          <Link href="/pricing" className="btn-outline">View pricing packages</Link>
+        </div>
+
+        <EmailCapture
+          tool="Website Cost Calculator"
+          resultHeadline={`Estimated cost: $${result.low.toLocaleString()}–$${result.high.toLocaleString()}`}
+          resultLines={breakdown.map((b) => `${b.label}: $${Math.round(b.amount).toLocaleString()}`)}
+          shareUrl={shareUrl}
+          inputs={state}
+          result={result}
+        />
+
+        <div style={{ marginTop: 18 }}>
+          <ShareButton url={shareUrl} />
+        </div>
+      </div>
     </div>
   );
 }
 
-/* ── Shared step chrome ───────────────────────────────────────────── */
-function Step({ title, children, onBack, onNext }: { title: string; children: React.ReactNode; onBack?: () => void; onNext?: () => void }) {
+/* ── Shared chrome ───────────────────────────────────────────── */
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div>
-      {onBack && <button onClick={onBack} style={backLink}>← Back</button>}
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', fontWeight: 600, color: '#fff', marginBottom: 18, letterSpacing: '-0.01em' }}>{title}</p>
+    <div style={sectionCard}>
+      <p style={sectionTitle}>{title}</p>
       {children}
-      {onNext && (
-        <button onClick={onNext} className="btn-lime" style={{ marginTop: 20 }}>
-          Continue →
-        </button>
-      )}
     </div>
   );
 }
@@ -393,6 +451,31 @@ function Checkbox({ checked }: { checked: boolean }) {
   );
 }
 
+const hintText: React.CSSProperties = {
+  fontFamily: 'var(--font-body)',
+  fontSize: '0.85rem',
+  color: 'rgba(255,255,255,0.45)',
+  marginBottom: 24,
+  textAlign: 'center',
+};
+
+const sectionCard: React.CSSProperties = {
+  borderRadius: 16,
+  border: '1px solid rgba(255,255,255,0.08)',
+  background: 'rgba(255,255,255,0.015)',
+  padding: 'clamp(18px, 3vw, 28px)',
+  marginBottom: 16,
+};
+
+const sectionTitle: React.CSSProperties = {
+  fontFamily: 'var(--font-display)',
+  fontWeight: 600,
+  fontSize: '1rem',
+  color: '#fff',
+  marginBottom: 18,
+  letterSpacing: '-0.01em',
+};
+
 const cardTitle: React.CSSProperties = { fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.95rem', color: '#fff' };
 const cardSub: React.CSSProperties = { fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', marginTop: 4 };
 
@@ -405,18 +488,6 @@ const fieldLabelBase: React.CSSProperties = {
   letterSpacing: '-0.01em',
 };
 
-const backLink: React.CSSProperties = {
-  display: 'inline-block',
-  marginBottom: 16,
-  fontFamily: 'var(--font-body)',
-  fontSize: '0.8rem',
-  color: 'rgba(255,255,255,0.4)',
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  padding: 0,
-};
-
 const sliderStyle: React.CSSProperties = {
   width: '100%',
   height: 6,
@@ -424,6 +495,18 @@ const sliderStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.1)',
   accentColor: '#C8FF00',
   cursor: 'pointer',
+};
+
+const textInputStyle: React.CSSProperties = {
+  width: '100%',
+  fontFamily: 'var(--font-body)',
+  fontSize: '0.9rem',
+  color: '#fff',
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.12)',
+  borderRadius: 10,
+  padding: '12px 16px',
+  outline: 'none',
 };
 
 const resultBox: React.CSSProperties = {

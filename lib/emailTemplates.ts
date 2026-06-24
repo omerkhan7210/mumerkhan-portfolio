@@ -283,6 +283,9 @@ export function buildLeadNotificationEmail(rawForm: ContactFormData): { subject:
 export type CalculatorLeadData = {
   tool: 'Website Cost Calculator' | 'Automation ROI Calculator';
   email: string;
+  name?: string;
+  company?: string;
+  role?: string;
   resultHeadline: string;
   resultLines: string[];
   shareUrl: string;
@@ -293,14 +296,16 @@ export function buildCalculatorResultEmail(raw: CalculatorLeadData): { subject: 
   const resultHeadline = escapeHtml(raw.resultHeadline);
   const resultLines = raw.resultLines.map(escapeHtml);
   const shareUrl = escapeHtml(raw.shareUrl);
+  const firstName = raw.name?.trim().split(/\s+/)[0];
 
   const body = `
           <tr>
             <td style="padding:36px 32px 8px;">
               <p style="margin:0 0 6px;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#999;">${escapeHtml(raw.tool)}</p>
               <h1 style="margin:0 0 14px;font-size:26px;line-height:1.25;color:${INK};letter-spacing:-0.01em;">
-                ${resultHeadline}
+                ${firstName ? `${escapeHtml(firstName)}, here's your estimate:` : resultHeadline}
               </h1>
+              ${firstName ? `<p style="margin:0 0 14px;font-size:16px;color:${INK};font-weight:600;">${resultHeadline}</p>` : ''}
             </td>
           </tr>
           <tr>
@@ -346,15 +351,20 @@ export function buildCalculatorLeadNotificationEmail(raw: CalculatorLeadData): {
   const resultHeadline = escapeHtml(raw.resultHeadline);
   const resultLines = raw.resultLines.map(escapeHtml);
   const shareUrl = escapeHtml(raw.shareUrl);
+  const name = raw.name ? escapeHtml(raw.name) : '';
+  const company = raw.company ? escapeHtml(raw.company) : '';
+  const role = raw.role ? escapeHtml(raw.role) : '';
+  const whoLabel = name || email;
 
   const body = `
           <tr>
             <td style="padding:36px 32px 8px;">
               <p style="margin:0 0 6px;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#999;">${escapeHtml(raw.tool)} lead</p>
               <h1 style="margin:0 0 14px;font-size:22px;line-height:1.3;color:${INK};letter-spacing:-0.01em;">
-                ${email} requested their results
+                ${whoLabel} requested their results
               </h1>
               <p style="margin:0 0 4px;font-size:14.5px;line-height:1.7;color:#444;">${resultHeadline}</p>
+              ${company || role ? `<p style="margin:4px 0 0;font-size:13px;color:#888;">${[company, role].filter(Boolean).join(' · ')}</p>` : ''}
             </td>
           </tr>
           <tr>
