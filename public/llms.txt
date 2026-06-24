@@ -1,0 +1,38 @@
+# Muhammad Umer Khan
+
+> Full Stack Developer based in Karachi, Pakistan, specializing in WordPress development, the MERN stack (MongoDB, Express, React, Node.js), and n8n workflow automation. 6+ years of experience, 80+ completed projects, 100% Job Success Score on Upwork.
+
+Muhammad Umer Khan builds custom websites, e-commerce stores, full-stack web applications, and workflow automations for small and mid-sized businesses. He works directly with clients as a freelancer (not through an agency), offering fixed-price packages and free estimation tools.
+
+## Services
+
+- [WordPress Development](https://mumerkhan.com/services/wordpress-development): Custom WordPress themes and sites, no bloated page builders.
+- [MERN Stack Development](https://mumerkhan.com/services/mern-stack-development): Full-stack web applications using MongoDB, Express, React, and Node.js.
+- [n8n Workflow Automation](https://mumerkhan.com/services/n8n-automation): Automating manual business processes (lead routing, data entry, reporting, invoicing) using n8n.
+- [E-Commerce Development](https://mumerkhan.com/services/ecommerce-development): WooCommerce and Shopify-style online stores.
+- [Figma to Web](https://mumerkhan.com/services/figma-to-web): Converting Figma designs into pixel-accurate, responsive code.
+- [UI/UX Design](https://mumerkhan.com/services/ui-ux-design): Interface and experience design in Figma.
+- [SEO & Performance](https://mumerkhan.com/services/seo-performance): Core Web Vitals optimization and on-page SEO.
+- [Website Maintenance](https://mumerkhan.com/services/website-maintenance): Ongoing support, updates, and security monitoring.
+
+## Free tools
+
+- [Website Cost Calculator](https://mumerkhan.com/tools/website-cost-calculator): Instant price-range estimate for a website project based on scope and features.
+- [Automation ROI Calculator](https://mumerkhan.com/tools/automation-roi-calculator): Estimates time and cost savings from automating a manual business process with n8n.
+
+## Key pages
+
+- [About](https://mumerkhan.com/about): Background, experience, and approach to client work.
+- [Work](https://mumerkhan.com/work): Portfolio of completed projects.
+- [Pricing](https://mumerkhan.com/pricing): Fixed-fee packages by project type.
+- [Blog](https://mumerkhan.com/blog): Articles on website costs, timelines, freelancer vs agency decisions, and automation tooling (n8n vs Zapier vs Make).
+- [Contact](https://mumerkhan.com/contact): Project inquiry form.
+
+## Profiles
+
+- [Upwork](https://www.upwork.com/freelancers/muhammadumerk5)
+- [GitHub](https://github.com/omerkhan7210)
+- [LinkedIn](https://www.linkedin.com/in/muhammad-umer-khan-7998a8266)
+- [Clutch](https://clutch.co/profile/muhammad-umer-khan)
+- [Dev.to](https://dev.to/omer_khan_846c4feb067c59e)
+- [Medium](https://medium.com/@omerfarooqkhan7210)

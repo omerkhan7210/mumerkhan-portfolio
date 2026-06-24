@@ -3,4 +3,28 @@ Allow: /
 Disallow: /admin
 Disallow: /.next
 
+# Explicitly allow AI/answer-engine crawlers (AEO/GEO) — these would
+# already be allowed by the wildcard rule above, but naming them
+# directly future-proofs against an accidental blanket disallow.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://mumerkhan.com/sitemap.xml

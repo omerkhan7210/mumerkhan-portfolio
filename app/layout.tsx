@@ -111,6 +111,9 @@ const jsonLd = {
         'https://www.upwork.com/freelancers/muhammadumerk5',
         'https://github.com/omerkhan7210',
         'https://www.linkedin.com/in/muhammad-umer-khan-7998a8266',
+        'https://clutch.co/profile/muhammad-umer-khan',
+        'https://dev.to/omer_khan_846c4feb067c59e',
+        'https://medium.com/@omerfarooqkhan7210',
       ],
     },
     {

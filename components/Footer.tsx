@@ -338,6 +338,30 @@ export default function Footer() {
               >
                 LinkedIn ↗
               </a>
+              <a
+                href="https://clutch.co/profile/muhammad-umer-khan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                Clutch ↗
+              </a>
+              <a
+                href="https://dev.to/omer_khan_846c4feb067c59e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                Dev.to ↗
+              </a>
+              <a
+                href="https://medium.com/@omerfarooqkhan7210"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                Medium ↗
+              </a>
               <span
                 style={{
                   fontFamily: 'var(--font-body)',
