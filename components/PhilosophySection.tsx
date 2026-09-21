@@ -7,17 +7,17 @@ const pillars = [
   {
     n: '01',
     heading: 'Design without compromise',
-    body: "Most developers stop at 'it works.' I don't stop until it looks exactly right on every screen, every browser, every size.",
+    body: "Trade customers decide in seconds. I design for clarity and trust first — then polish every breakpoint so nothing gets in the way of the enquiry.",
   },
   {
     n: '02',
     heading: 'Speed is a feature',
-    body: "A slow website is a broken website. Every project I ship is performance-audited. If it doesn't load fast, it doesn't go live.",
+    body: "A slow site loses jobs on mobile. Every build is checked for speed — especially the path to call or request a quote.",
   },
   {
     n: '03',
     heading: 'SEO built in, not bolted on',
-    body: 'Clean architecture means search engines understand your site from day one. No plugins needed to fix what was built right.',
+    body: 'Clean structure helps local search and real users. Service pages, areas, and proof are built in — not bolted on later.',
   },
 ];
 
@@ -27,25 +27,28 @@ function useScrollReveal(threshold = 0.08) {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add('sr-visible'); obs.unobserve(el); } },
-      { threshold, rootMargin: '0px 0px -40px 0px' },
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.classList.add('sr-visible');
+          obs.unobserve(el);
+        }
+      },
+      { threshold },
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [threshold]);
   return ref;
 }
 
 export default function PhilosophySection() {
   const headRef = useScrollReveal();
-  const gridRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useScrollReveal();
+  const cardsRef = useRef<HTMLDivElement>(null);
 
-  /* Stagger pillar cards */
   useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.phil-card'));
+    const root = cardsRef.current;
+    if (!root) return;
+    const cards = Array.from(root.querySelectorAll<HTMLElement>('.phil-card'));
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -73,47 +76,34 @@ export default function PhilosophySection() {
   return (
     <section className="py-24 md:py-32 bg-cream">
       <div className="max-w-[1280px] mx-auto px-6">
-        {/* Heading */}
         <div ref={headRef} className="sr">
           <span className="label-tag-dark">The Philosophy</span>
           <h2
             className="font-sans font-bold text-ink mb-16"
-            style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', lineHeight: 1.05, letterSpacing: '-0.025em' }}
+            style={{ fontSize: 'clamp(2rem,5vw,3.4rem)', lineHeight: 1.05, letterSpacing: '-0.03em' }}
           >
-            The internet<br />deserves better.<br />
-            <span style={{ color: '#AAAAAA' }}>So do you.</span>
+            Your website should<br />win more jobs.<br />Not just look busy.
           </h2>
         </div>
 
-        {/* Pillars */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-14">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
           {pillars.map((p) => (
-            <div key={p.n} className="phil-card">
-              <span
-                className="font-sans font-bold text-xs tracking-widest uppercase mb-4 block"
-                style={{ color: '#BBBBBB' }}
-              >
-                {p.n}
-              </span>
-              <h3 className="font-sans font-bold text-ink text-xl mb-3">{p.heading}</h3>
-              <p className="font-body text-sm leading-relaxed" style={{ color: '#555555' }}>
-                {p.body}
-              </p>
+            <div
+              key={p.n}
+              className="phil-card rounded-2xl p-7 border border-black/5 bg-white/60"
+            >
+              <span className="font-body text-xs text-ink/40 tabular-nums">{p.n}</span>
+              <h3 className="font-sans font-semibold text-ink mt-3 mb-3" style={{ fontSize: '1.15rem' }}>
+                {p.heading}
+              </h3>
+              <p className="font-body text-sm text-ink/60 leading-relaxed">{p.body}</p>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div
-          ref={ctaRef}
-          className="sr mt-14 pt-14 border-t"
-          style={{ borderColor: 'rgba(0,0,0,0.08)' }}
-        >
-          <Link href="/contact" className="btn-dark">
+        <div className="flex justify-center">
+          <Link href="/contact" className="btn-ink">
             Start a project
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
           </Link>
         </div>
       </div>
