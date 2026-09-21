@@ -1,1 +1,147 @@
-SEE_FILE
+[
+  {
+    "id": 1,
+    "slug": "erbs-ltd",
+    "title": "ERBS Ltd",
+    "category": "Roofing · Trade Website",
+    "year": "2025",
+    "description": "UK roofing contractor site upgraded with real project photography and a structured Our Work gallery — so homeowners see proof, not placeholders.",
+    "longDescription": "Eastfield Roofing Services needed their website to reflect the quality of jobs they actually complete. Placeholder images were replaced with a full year of real project photos sourced from their Facebook archive, categorized by job type, and presented in a dedicated project gallery.",
+    "challenge": "The site structure existed, but trust was weak: stock-style placeholders did not match a working roofing contractor with a strong local track record.",
+    "solution": "Sourced and organized ~12 months of Facebook project photos, matched images to the right service pages, and built an Our Work portfolio gallery.",
+    "results": [
+      "Real project photos live across service pages",
+      "Categorized gallery by job type (slate, repairs, full roofs)",
+      "Stronger first impression for homeowners comparing local roofers",
+      "Site ready to support enquiry conversion"
+    ],
+    "link": "https://erbsltd.co.uk/",
+    "technologies": ["WordPress", "Elementor", "Project Gallery", "Local SEO"],
+    "cardImage": "/assets/erbs/erbs-card.jpg",
+    "heroImage": "/assets/erbs/erbs-hero.jpg",
+    "galleryImages": ["/assets/erbs/erbs-card.jpg"],
+    "keyFeatures": [
+      "Real project photography from client Facebook archive",
+      "Service-matched images",
+      "Our Work portfolio gallery",
+      "Mobile-friendly proof for local roofing enquiries"
+    ],
+    "seoTitle": "ERBS Ltd — Roofing Website & Project Gallery"
+  },
+  {
+    "id": 2,
+    "slug": "wlk-gardeners",
+    "title": "WLK Gardeners",
+    "category": "Local Service · Full Rebrand",
+    "year": "2025",
+    "description": "Full rebrand and Elementor rebuild for a UK gardening business — homepage process, FAQ, service areas, and migration to live with Duplicator Pro.",
+    "longDescription": "WLK Gardeners needed a complete brand shift on the web: new identity, a finished local-service site structure, and a clean move from staging to production without losing media.",
+    "challenge": "An incomplete template kit and leftover old-business details left the site feeling unfinished.",
+    "solution": "Applied the full brand kit in Elementor globals, completed Homepage, About, services hub, three service pages, FAQ content, fixed Contact, and migrated staging to live with Duplicator Pro.",
+    "results": [
+      "Complete local-service site under the new WLK brand",
+      "Process, FAQ, and Areas We Cover sections live",
+      "Three focused service pages",
+      "Staging to live migration with media preserved"
+    ],
+    "link": "https://wlkgardeners.co.uk/",
+    "technologies": ["WordPress", "Elementor", "Brand System", "Duplicator Pro"],
+    "cardImage": "/assets/wlk/wlk-card.jpg",
+    "heroImage": "/assets/wlk/wlk-hero.jpg",
+    "galleryImages": ["/assets/wlk/wlk-card.jpg"],
+    "keyFeatures": [
+      "Full brand kit in Elementor global settings",
+      "Homepage modules: Process, FAQ, Areas We Cover",
+      "Service pages with mobile QA",
+      "Live migration via Duplicator Pro"
+    ],
+    "seoTitle": "WLK Gardeners — Local Service Website Rebrand"
+  },
+  {
+    "id": 3,
+    "slug": "isg-flooring",
+    "title": "ISG Flooring",
+    "category": "Local SEO · Service Pages",
+    "year": "2025",
+    "description": "80 local SEO landing pages for a UK flooring company — 8 core services × 10 cities, with unique Rank Math meta and natural city-integrated copy.",
+    "longDescription": "ISG Flooring needed scalable city coverage without thin pages. Built 80 landing pages manually in Elementor with unique Rank Math titles/descriptions and natural content for 10 UK cities.",
+    "challenge": "Competing in multiple UK cities required dedicated landing pages per service and location without thin content.",
+    "solution": "Designed a repeatable page structure, then manually customized each page in Elementor with city-specific content and unique Rank Math meta.",
+    "results": [
+      "80 published city × service landing pages",
+      "Unique meta titles and descriptions per page",
+      "Natural city integration",
+      "Repeatable structure the client can extend"
+    ],
+    "link": "https://isgflooring.com",
+    "technologies": ["WordPress", "Elementor", "Rank Math", "Local SEO"],
+    "cardImage": "/assets/isg/isg-card.jpg",
+    "heroImage": "/assets/isg/isg-hero.jpg",
+    "galleryImages": ["/assets/isg/isg-card.jpg"],
+    "keyFeatures": [
+      "8 services × 10 UK cities",
+      "Rank Math unique meta per page",
+      "Natural local copywriting",
+      "Elementor-based scalable structure"
+    ],
+    "seoTitle": "ISG Flooring — 80 Local SEO Landing Pages"
+  },
+  {
+    "id": 4,
+    "slug": "v1-campers",
+    "title": "V1 Campers",
+    "category": "WooCommerce · Booking Automation",
+    "year": "2025",
+    "description": "Complex WooCommerce + PH Bookings work: deposit pricing fixes, 6-week deposit rules, branded balance-payment reminders, and staff-safe Stripe link workflow.",
+    "longDescription": "V1 Campers needed booking commerce to behave correctly under real hire rules. Fixed deposit total display bugs, enforced a 6-week restriction on £100 deposits, built WP-Cron balance reminders with branded WooCommerce emails, and a no-code order meta box for Stripe links.",
+    "challenge": "Plugin defaults showed the wrong Pay Full Amount price, near-term hires could still pick a low deposit, and balance reminders needed automation without losing human review.",
+    "solution": "Custom JS with MutationObserver for deposit UI sync; 6-week deposit lock; WP-Cron daily checks 42 days before hire; custom Woo email class; order meta box for Stripe links.",
+    "results": [
+      "Deposit UI shows real booking totals",
+      "£100 deposit blocked inside 6 weeks of hire",
+      "Automated balance reminders 42 days before start",
+      "Staff can attach Stripe links before send",
+      "Branded emails (not WordPress as sender)"
+    ],
+    "link": "https://v1campers.co.uk",
+    "technologies": ["WooCommerce", "PH Bookings", "Custom JS", "WP-Cron", "Stripe"],
+    "cardImage": "/assets/v1/v1-card.jpg",
+    "heroImage": "/assets/v1/v1-hero.jpg",
+    "galleryImages": ["/assets/v1/v1-card.jpg"],
+    "keyFeatures": [
+      "Deposit total sync + MutationObserver hard-fix",
+      "6-week deposit restriction",
+      "WP-Cron balance payment reminders",
+      "Branded WooCommerce reminder emails",
+      "Order meta box for Stripe payment links"
+    ],
+    "seoTitle": "V1 Campers — WooCommerce Booking & Deposit Automation"
+  },
+  {
+    "id": 5,
+    "slug": "bright-home",
+    "title": "Bright Home",
+    "category": "Local Service · Website",
+    "year": "2025",
+    "description": "Website work for Bright Home (bright-home.co.uk) — clearer presentation for a UK home/services brand focused on enquiries and trust.",
+    "longDescription": "Supported Bright Home with website improvements aimed at presentation, clarity, and enquiry readiness for a local home-services audience.",
+    "challenge": "Local home-service brands often lose enquiries when the site is generic or weak on next steps.",
+    "solution": "WordPress-focused delivery emphasizing clear service presentation, mobile readability, and a path to contact.",
+    "results": [
+      "Live presence at bright-home.co.uk",
+      "Clearer service-oriented presentation",
+      "Aligned with enquiry-first local business UX"
+    ],
+    "link": "https://bright-home.co.uk/",
+    "technologies": ["WordPress", "Elementor", "Mobile UX"],
+    "cardImage": "/assets/isg/isg-card.jpg",
+    "heroImage": "/assets/isg/isg-hero.jpg",
+    "galleryImages": ["/assets/isg/isg-card.jpg"],
+    "keyFeatures": [
+      "Local service website presentation",
+      "Enquiry-oriented structure",
+      "Mobile-friendly layout"
+    ],
+    "seoTitle": "Bright Home — Local Service Website"
+  }
+]
