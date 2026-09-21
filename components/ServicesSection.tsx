@@ -6,58 +6,58 @@ import Link from 'next/link';
 const SERVICES = [
   {
     n: '01',
-    title: 'Full Stack Web Development',
-    desc: 'React, Node.js, MongoDB, Express — end to end. Scalable architecture built for real-world production loads.',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    href: '/services/mern-stack-development',
-  },
-  {
-    n: '02',
-    title: 'Custom WordPress Solutions',
-    desc: 'Bespoke theme development from Figma, Elementor Pro builds, WooCommerce stores, and advanced plugin customization.',
-    tags: ['Elementor', 'WooCommerce', 'PHP'],
+    title: 'Quote & enquiry path',
+    desc: 'Mobile-first path to call or request a quote — sticky CTAs, shorter forms, photo upload, urgent vs non-urgent. Built so visitors become booked jobs.',
+    tags: ['Conversion', 'Mobile UX', 'WordPress'],
     href: '/services/wordpress-development',
   },
   {
-    n: '03',
-    title: 'Business Process Automation',
-    desc: 'Automating manual work with n8n workflows — CRM syncs, lead pipelines, email sequences, and data processing at scale.',
-    tags: ['n8n', 'Zapier', 'REST APIs'],
+    n: '02',
+    title: 'After-hours lead capture',
+    desc: 'Simple chat or lead flows for nights and weekends — name, area, phone, urgency — so enquiries do not die when the phone is not answered.',
+    tags: ['Lead capture', 'Automation', 'UX'],
     href: '/services/n8n-automation',
   },
   {
+    n: '03',
+    title: 'Trade & local service websites',
+    desc: 'WordPress rebuilds for roofing, plumbing, HVAC, cleaning, and local trades — services, areas, galleries, trust, and enquiry-ready pages.',
+    tags: ['WordPress', 'Elementor', 'Local business'],
+    href: '/services/wordpress-development',
+  },
+  {
     n: '04',
-    title: 'Figma → Pixel-Perfect Code',
-    desc: 'Exact translation of any design to responsive HTML, WordPress, or React. Every shadow, every spacing, every breakpoint.',
-    tags: ['Figma', 'HTML/CSS', 'React'],
-    href: '/services/figma-to-web',
+    title: 'Project galleries & proof',
+    desc: 'Real job photos organized by service type — so homeowners and commercial clients see finished work, not placeholders.',
+    tags: ['Portfolio', 'Trust', 'WordPress'],
+    href: '/services/wordpress-development',
   },
   {
     n: '05',
-    title: 'E-Commerce Development',
-    desc: 'Full online stores — product catalogs, cart flows, Stripe / PayPal gateways, and inventory management integrations.',
-    tags: ['WooCommerce', 'Stripe', 'UX'],
-    href: '/services/ecommerce-development',
-  },
-  {
-    n: '06',
-    title: 'UI/UX Design',
-    desc: 'Figma wireframes and high-fidelity designs for web apps and marketing sites. Built with development handoff in mind.',
-    tags: ['Figma', 'Design Systems', 'Prototyping'],
-    href: '/services/ui-ux-design',
-  },
-  {
-    n: '07',
-    title: 'SEO & Performance Optimization',
-    desc: 'Core Web Vitals tuning, schema markup, image optimization, and technical SEO audits for real search ranking results.',
-    tags: ['Core Web Vitals', 'Schema', 'PageSpeed'],
+    title: 'Local SEO service pages',
+    desc: 'City × service landing pages with unique meta and natural copy — the structure behind multi-location trade visibility.',
+    tags: ['Local SEO', 'Rank Math', 'Elementor'],
     href: '/services/seo-performance',
   },
   {
+    n: '06',
+    title: 'Booking & payment automation',
+    desc: 'WooCommerce deposits, hire rules, branded reminder emails, and staff-safe payment workflows when bookings get complex.',
+    tags: ['WooCommerce', 'WP-Cron', 'Stripe'],
+    href: '/services/ecommerce-development',
+  },
+  {
+    n: '07',
+    title: 'Figma → WordPress',
+    desc: 'Pixel-perfect builds from design files — every breakpoint, every interaction — without losing conversion structure.',
+    tags: ['Figma', 'WordPress', 'CSS'],
+    href: '/services/figma-to-web',
+  },
+  {
     n: '08',
-    title: 'Ongoing Maintenance & Support',
-    desc: 'Proactive security updates, performance monitoring, backups, and feature additions. I keep your site healthy 24/7.',
-    tags: ['Security', 'Backups', 'Performance'],
+    title: 'Ongoing support',
+    desc: 'Updates, fixes, speed, and small feature work after launch — so the site keeps earning enquiries, not collecting dust.',
+    tags: ['Maintenance', 'Performance', 'Support'],
     href: '/services/website-maintenance',
   },
 ];
@@ -67,7 +67,6 @@ export default function ServicesSection() {
   const headRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
 
-  /* Scroll-reveal heading */
   useEffect(() => {
     const el = headRef.current;
     if (!el) return;
@@ -79,7 +78,6 @@ export default function ServicesSection() {
     return () => obs.disconnect();
   }, []);
 
-  /* Stagger rows */
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -111,8 +109,6 @@ export default function ServicesSection() {
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-ink border-t border-white/[0.04]">
       <div className="max-w-[1280px] mx-auto px-6">
-
-        {/* Header */}
         <div ref={headRef} className="sr flex items-end justify-between mb-16 flex-wrap gap-6">
           <div>
             <span className="label-tag">What I Do</span>
@@ -120,15 +116,14 @@ export default function ServicesSection() {
               className="font-sans font-bold text-white mt-3"
               style={{ fontSize: 'clamp(2rem,5vw,3.6rem)', lineHeight: 1, letterSpacing: '-0.03em' }}
             >
-              Services &amp;<br />Capabilities
+              What I help<br />you with
             </h2>
           </div>
           <p className="font-body text-muted max-w-xs leading-relaxed text-sm">
-            From design to deployment — everything your project needs, handled by one developer who gives a damn.
+            Focused on trade and local service businesses — more enquiries, clearer proof, and sites that convert on mobile.
           </p>
         </div>
 
-        {/* Bento Grid */}
         <div
           className="grid grid-cols-1 md:grid-cols-2"
           style={{ border: '1px solid rgba(255,255,255,0.05)' }}
@@ -153,7 +148,6 @@ export default function ServicesSection() {
                 onMouseEnter={() => setActive(i)}
                 onMouseLeave={() => setActive(null)}
               >
-                {/* Left border flash */}
                 <div
                   className="absolute inset-y-0 left-0 w-0.5 pointer-events-none"
                   style={{
@@ -163,8 +157,6 @@ export default function ServicesSection() {
                     transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1)',
                   }}
                 />
-
-                {/* Watermark number */}
                 <span
                   className="absolute right-3 bottom-0 font-sans font-bold pointer-events-none select-none"
                   style={{
@@ -176,8 +168,6 @@ export default function ServicesSection() {
                 >
                   {svc.n}
                 </span>
-
-                {/* Content */}
                 <div className="relative z-10">
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <span
@@ -202,7 +192,6 @@ export default function ServicesSection() {
                       <path d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
                   </div>
-
                   <h3
                     className="font-sans font-semibold mb-2.5"
                     style={{
@@ -213,7 +202,6 @@ export default function ServicesSection() {
                   >
                     {svc.title}
                   </h3>
-
                   <p
                     className="font-body text-sm leading-relaxed mb-4"
                     style={{
@@ -223,8 +211,6 @@ export default function ServicesSection() {
                   >
                     {svc.desc}
                   </p>
-
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-1.5">
                     {svc.tags.map((tag) => (
                       <span
@@ -241,8 +227,6 @@ export default function ServicesSection() {
                       </span>
                     ))}
                   </div>
-
-                  {/* Progress bar */}
                   <div className="mt-4 h-px rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
                     <div
                       className="h-full rounded-full"
