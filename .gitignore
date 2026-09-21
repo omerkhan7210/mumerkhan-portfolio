@@ -13,3 +13,4 @@ custom_sites/
 # <project-id>-<hash>.json) — never commit these, the content lives
 # in .env.local as GOOGLE_SERVICE_ACCOUNT_KEY instead.
 *-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].json
+.vercel
