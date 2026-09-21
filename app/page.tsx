@@ -13,18 +13,18 @@ import PhilosophySection from '@/components/PhilosophySection';
 import PricingSection from '@/components/PricingSection';
 
 export const metadata: Metadata = {
-  title: 'Muhammad Umer Khan | Full Stack Developer & WordPress Expert',
+  title: 'Muhammad Umer Khan | Websites for Trade & Local Service Businesses',
   description:
-    'Hire Umer Khan — Full Stack Developer with 6+ years experience and 80+ projects delivered. WordPress, MERN Stack & n8n Automation. 100% Job Success Score on Upwork.',
+    'Hire Umer Khan for trade and local service websites — quote paths, project galleries, local SEO pages, and WordPress builds that convert. 100% Job Success on Upwork.',
   alternates: {
     canonical: 'https://mumerkhan.com',
   },
   openGraph: {
-    title: 'Muhammad Umer Khan | Full Stack Developer & WordPress Expert',
+    title: 'Muhammad Umer Khan | Websites for Trade & Local Service Businesses',
     description:
-      '80+ projects · 6+ years · 100% JSS · WordPress, MERN Stack, n8n Automation. Available for freelance projects.',
+      'Websites for roofing, plumbing, HVAC & local trades · 80+ projects · 100% JSS on Upwork.',
     url: 'https://mumerkhan.com',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Muhammad Umer Khan — Full Stack Developer' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Muhammad Umer Khan — Trade & local service websites' }],
   },
 };
 
