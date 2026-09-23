@@ -201,8 +201,8 @@ export default function AnimatedHero() {
                   <path d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
               </Link>
-              <Link href="/contact" className="h-cta btn-outline text-base">
-                Get a free site review
+              <Link href="/redesign" className="h-cta btn-outline text-base">
+                Get my free site fix
               </Link>
             </div>
             <div className="h-cta flex items-center gap-5">

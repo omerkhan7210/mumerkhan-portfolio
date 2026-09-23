@@ -6,6 +6,7 @@ import AnimatedHero from '@/components/AnimatedHero';
 import TrustBar from '@/components/TrustBar';
 import ServicesSection from '@/components/ServicesSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import FreeConceptBanner from '@/components/FreeConceptBanner';
 import DeliveredSection from '@/components/DeliveredSection';
 import TechStackSection from '@/components/TechStackSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -37,6 +38,7 @@ export default function Home() {
       <Marquee />
       <ServicesSection />
       <ProjectsSection />
+      <FreeConceptBanner />
       <DeliveredSection />
       <TechStackSection />
       <TestimonialsSection />
