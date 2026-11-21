@@ -13,6 +13,8 @@ export function getPool(): Pool {
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false },
       max: 5,
+      // Fail fast: a paused database must not hold up a lead that can still go out by email.
+      connectionTimeoutMillis: 4000,
     });
   }
   return global.__pgPool;
