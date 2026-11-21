@@ -1,7 +1,7 @@
 'use client';
 
 const SIGNALS = [
-  { value: '100%', label: 'Upwork Job Success', accent: '#C8FF00' },
+  { value: '100%', label: 'Upwork Job Success', accent: '#9FC7B8' },
   { value: 'Top Rated', label: 'Upwork Badge', accent: '#FBBF24' },
   { value: '5', label: 'Trade & local rebuilds live', accent: '#60A5FA' },
   { value: '90+', label: 'Target mobile Lighthouse score', accent: '#34D399' },

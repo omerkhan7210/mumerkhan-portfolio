@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { FiGlobe, FiRefreshCw, FiShoppingCart, FiZap, FiBox, FiHelpCircle } from 'react-icons/fi';
-import type { IconType } from 'react-icons';
 
-/* ── Types ───────────────────────────────────────────────── */
+/* Same payload as before ({ service, followUp, budget, name, email, details } → /api/contact),
+   in four steps instead of six: the three choices, then one short contact step. */
 type FormData = {
   service: string;
   followUp: string;
@@ -15,372 +14,44 @@ type FormData = {
   details: string;
 };
 
-const SERVICES: { value: string; icon: IconType }[] = [
-  { value: 'New Website', icon: FiGlobe },
-  { value: 'Redesign', icon: FiRefreshCw },
-  { value: 'E-Commerce', icon: FiShoppingCart },
-  { value: 'Automation', icon: FiZap },
-  { value: 'Full Stack App', icon: FiBox },
-  { value: 'Not sure yet', icon: FiHelpCircle },
-];
+const SERVICES = ['New Website', 'Redesign', 'E-Commerce', 'Automation', 'Full Stack App', 'Not sure yet'];
 
-/* Follow-up question + options depend entirely on which service was
-   picked in step 0 — this is what makes the flow dynamic rather than
-   a fixed sequence of generic questions. */
 const FOLLOW_UPS: Record<string, { question: string; hint: string; options: string[] }> = {
-  'New Website': {
-    question: 'How many pages do you need?',
-    hint: 'A rough page count helps me scope the build correctly.',
-    options: ['1–5 pages', '6–15 pages', '16+ pages', 'Not sure yet'],
-  },
-  Redesign: {
-    question: "What's driving the redesign?",
-    hint: 'Knowing the "why" shapes the whole approach.',
-    options: ['Outdated look', "It's too slow", 'Need a CMS', 'Bad on mobile', 'Something else'],
-  },
-  'E-Commerce': {
-    question: 'How many products are we talking about?',
-    hint: 'Catalogue size changes the platform and architecture I\'d recommend.',
-    options: ['Under 50', '50–500', '500+', 'Not sure yet'],
-  },
-  Automation: {
-    question: 'What do you want to automate?',
-    hint: 'The type of workflow determines the tools and integrations needed.',
-    options: ['Lead / CRM workflows', 'Internal reporting', 'Document processing', 'Something else'],
-  },
-  'Full Stack App': {
-    question: 'What kind of app is this?',
-    hint: 'This shapes the stack — auth, database design, and hosting all depend on it.',
-    options: ['Internal tool', 'Customer-facing product', 'Marketplace / two-sided', 'Something else'],
-  },
-  'Not sure yet': {
-    question: "What's prompting you to reach out?",
-    hint: 'No pressure to have it all figured out — this just helps me point you in the right direction.',
-    options: ['Just exploring options', 'I have a deadline', 'Replacing a developer', 'Something else'],
-  },
+  'New Website': { question: 'How many pages do you need?', hint: 'A rough count is fine.', options: ['1–5 pages', '6–15 pages', '16+ pages', 'Not sure yet'] },
+  Redesign: { question: 'What’s driving the redesign?', hint: 'The reason shapes the whole approach.', options: ['Outdated look', 'It’s too slow', 'Need a CMS', 'Bad on mobile', 'Something else'] },
+  'E-Commerce': { question: 'How many products?', hint: 'Catalogue size changes the setup I’d recommend.', options: ['Under 50', '50–500', '500+', 'Not sure yet'] },
+  Automation: { question: 'What do you want to automate?', hint: 'This decides the tools and integrations.', options: ['Lead / CRM workflows', 'Internal reporting', 'Document processing', 'Something else'] },
+  'Full Stack App': { question: 'What kind of app is it?', hint: 'Auth, database and hosting all depend on this.', options: ['Internal tool', 'Customer-facing product', 'Marketplace / two-sided', 'Something else'] },
+  'Not sure yet': { question: 'What’s prompting you to reach out?', hint: 'No need to have it figured out.', options: ['Just exploring options', 'I have a deadline', 'Replacing a developer', 'Something else'] },
 };
 
-const BUDGETS = [
-  { value: 'Under $500', label: 'Under $500' },
-  { value: '$500–$2k', label: '$500 – $2k' },
-  { value: '$2k–$5k', label: '$2k – $5k' },
-  { value: '$5k+', label: '$5k+' },
-];
+const BUDGETS = ['Under $500', '$500–$2k', '$2k–$5k', '$5k+'];
+const STEPS = 4;
 
-const TOTAL_STEPS = 6; // 0=service, 1=follow-up, 2=budget, 3=name, 4=email, 5=details
-
-/* ── Progress bar ────────────────────────────────────────── */
-function ProgressBar({ step }: { step: number }) {
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: 2,
-        background: 'rgba(255,255,255,0.07)',
-        borderRadius: 2,
-        marginBottom: 48,
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        style={{
-          height: '100%',
-          width: `${((step + 1) / TOTAL_STEPS) * 100}%`,
-          background: '#C8FF00',
-          borderRadius: 2,
-          transition: 'width 0.5s cubic-bezier(0.16,1,0.3,1)',
-        }}
-      />
-    </div>
-  );
-}
-
-/* ── Step wrapper with enter/exit animation ──────────────── */
-function StepWrapper({ children, visible }: { children: React.ReactNode; visible: boolean }) {
-  return (
-    <div
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(14px)',
-        transition: 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)',
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* ── Option button (for service / budget selectors) ──────── */
-function OptionBtn({
-  label,
-  icon: Icon,
-  selected,
-  onClick,
-}: {
-  label: string;
-  icon?: IconType;
-  selected: boolean;
-  onClick: () => void;
-}) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: 'var(--font-body)',
-        fontSize: '0.88rem',
-        letterSpacing: '-0.01em',
-        padding: '14px 20px',
-        borderRadius: 12,
-        border: selected
-          ? '1px solid rgba(200,255,0,0.6)'
-          : `1px solid ${hovered ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.08)'}`,
-        background: selected
-          ? 'rgba(200,255,0,0.1)'
-          : hovered
-          ? 'rgba(255,255,255,0.04)'
-          : 'rgba(255,255,255,0.02)',
-        color: selected ? '#C8FF00' : hovered ? '#ffffff' : 'rgba(255,255,255,0.6)',
-        cursor: 'pointer',
-        transition: 'all 0.22s',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 10,
-        width: '100%',
-        textAlign: 'left',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {Icon && (
-        <span style={{ display: 'flex', flexShrink: 0, opacity: selected ? 1 : 0.6 }}>
-          <Icon size={16} />
-        </span>
-      )}
-      {label}
-      {selected && (
-        <span
-          style={{
-            marginLeft: 'auto',
-            width: 18,
-            height: 18,
-            borderRadius: '50%',
-            background: '#C8FF00',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}
-        >
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="3">
-            <path d="M20 6L9 17l-5-5" />
-          </svg>
-        </span>
-      )}
-    </button>
-  );
-}
-
-/* ── Text input ──────────────────────────────────────────── */
-function StepInput({
-  type = 'text',
-  placeholder,
-  value,
-  onChange,
-  autoFocus,
-  onKeyDown,
-}: {
-  type?: string;
-  placeholder: string;
-  value: string;
-  onChange: (v: string) => void;
-  autoFocus?: boolean;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
-}) {
-  const ref = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    if (autoFocus) setTimeout(() => ref.current?.focus(), 50);
-  }, [autoFocus]);
-
-  return (
-    <input
-      ref={ref}
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      onKeyDown={onKeyDown}
-      style={{
-        fontFamily: 'var(--font-display)',
-        fontWeight: 600,
-        fontSize: 'clamp(1.1rem, 3vw, 1.8rem)',
-        letterSpacing: '-0.02em',
-        color: '#ffffff',
-        background: 'transparent',
-        border: 'none',
-        borderBottom: '2px solid rgba(255,255,255,0.15)',
-        outline: 'none',
-        padding: '12px 0',
-        width: '100%',
-        caretColor: '#C8FF00',
-        transition: 'border-color 0.25s',
-      }}
-      onFocus={(e) => { e.target.style.borderBottomColor = '#C8FF00'; }}
-      onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(255,255,255,0.15)'; }}
-    />
-  );
-}
-
-/* ── Textarea ────────────────────────────────────────────── */
-function StepTextarea({
-  placeholder,
-  value,
-  onChange,
-  autoFocus,
-}: {
-  placeholder: string;
-  value: string;
-  onChange: (v: string) => void;
-  autoFocus?: boolean;
-}) {
-  const ref = useRef<HTMLTextAreaElement>(null);
-  useEffect(() => {
-    if (autoFocus) setTimeout(() => ref.current?.focus(), 50);
-  }, [autoFocus]);
-
-  return (
-    <textarea
-      ref={ref}
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      rows={5}
-      style={{
-        fontFamily: 'var(--font-body)',
-        fontSize: '0.95rem',
-        letterSpacing: '-0.01em',
-        color: 'rgba(255,255,255,0.85)',
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: 12,
-        outline: 'none',
-        padding: '16px',
-        width: '100%',
-        resize: 'none',
-        lineHeight: 1.65,
-        caretColor: '#C8FF00',
-        transition: 'border-color 0.25s',
-      }}
-      onFocus={(e) => { e.target.style.borderColor = 'rgba(200,255,0,0.4)'; }}
-      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; }}
-    />
-  );
-}
-
-/* ── Nav button ──────────────────────────────────────────── */
-function NavBtn({
-  onClick,
-  disabled,
-  children,
-  variant = 'primary',
-}: {
-  onClick: () => void;
-  disabled?: boolean;
-  children: React.ReactNode;
-  variant?: 'primary' | 'ghost';
-}) {
-  const [hovered, setHovered] = useState(false);
-
-  if (variant === 'ghost') {
-    return (
-      <button
-        onClick={onClick}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: '0.8rem',
-          color: hovered ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.28)',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          transition: 'color 0.2s',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 5,
-          padding: '8px 0',
-        }}
-      >
-        {children}
-      </button>
-    );
-  }
-
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: 'var(--font-body)',
-        fontSize: '0.88rem',
-        fontWeight: 500,
-        color: disabled ? 'rgba(10,10,10,0.4)' : '#0A0A0A',
-        background: disabled ? 'rgba(200,255,0,0.3)' : hovered ? '#d4ff1a' : '#C8FF00',
-        border: 'none',
-        borderRadius: 10,
-        padding: '13px 28px',
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        transition: 'background 0.22s, box-shadow 0.22s, transform 0.22s',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-        boxShadow: !disabled && hovered ? '0 8px 24px rgba(200,255,0,0.3)' : 'none',
-        transform: !disabled && hovered ? 'translateY(-2px)' : 'none',
-        letterSpacing: '-0.01em',
-      }}
-    >
-      {children}
-    </button>
-  );
-}
-
-/* ── Main component ──────────────────────────────────────── */
 export default function ContactClient() {
   const [step, setStep] = useState(0);
-  const [visible, setVisible] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [form, setForm] = useState<FormData>({
-    service: '',
-    followUp: '',
-    budget: '',
-    name: '',
-    email: '',
-    details: '',
-  });
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState<FormData>({ service: '', followUp: '', budget: '', name: '', email: '', details: '' });
+  const headRef = useRef<HTMLDivElement>(null);
 
-  const transition = (fn: () => void) => {
-    setVisible(false);
-    setTimeout(() => {
-      fn();
-      setVisible(true);
-    }, 280);
+  const go = (n: number) => {
+    setStep(n);
+    requestAnimationFrame(() => headRef.current?.focus());
+  };
+  const pick = (patch: Partial<FormData>) => {
+    setForm((f) => ({ ...f, ...patch }));
+    setTimeout(() => go(step + 1), 140);
   };
 
-  const next = () => transition(() => setStep((s) => s + 1));
-  const back = () => transition(() => setStep((s) => s - 1));
-
-  const set = (key: keyof FormData, val: string) =>
-    setForm((f) => ({ ...f, [key]: val }));
-
-  const handleSubmit = async () => {
-    setSubmitError(null);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.includes('@')) {
+      setError('Please add your name and a valid email.');
+      return;
+    }
+    setError(null);
     setSubmitting(true);
     try {
       const res = await fetch('/api/contact', {
@@ -392,338 +63,131 @@ export default function ContactClient() {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
-      setVisible(false);
-      setTimeout(() => {
-        setSubmitted(true);
-        setVisible(true);
-      }, 280);
+      setSubmitted(true);
+      (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({ event: 'contact_submit', service: form.service, budget: form.budget });
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
     }
   };
 
-  /* ── Success state ── */
   if (submitted) {
     return (
-      <StepWrapper visible={visible}>
-        <div style={{ textAlign: 'center', padding: '40px 0' }}>
-          {/* Animated checkmark */}
-          <div
-            style={{
-              width: 72,
-              height: 72,
-              borderRadius: '50%',
-              background: 'rgba(200,255,0,0.12)',
-              border: '1px solid rgba(200,255,0,0.35)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 28px',
-            }}
-          >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" strokeWidth="2.5">
-              <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              letterSpacing: '-0.035em',
-              color: '#ffffff',
-              lineHeight: 1.1,
-              marginBottom: 16,
-            }}
-          >
-            Thanks, {form.name || 'there'}!
-          </h2>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '1rem',
-              color: 'rgba(255,255,255,0.45)',
-              lineHeight: 1.65,
-              maxWidth: 380,
-              margin: '0 auto 32px',
-            }}
-          >
-            Your message is on its way. I&apos;ll review your project details and get back to you within 4 hours.
-          </p>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/" className="btn-lime" style={{ fontSize: '0.85rem' }}>
-              Back to Home
-            </Link>
-            <Link href="/work" className="btn-outline" style={{ fontSize: '0.85rem' }}>
-              View My Work
-            </Link>
-          </div>
+      <div className="py-6" role="status">
+        <p className="text-bone font-medium" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.15 }}>
+          Thanks, {form.name.split(' ')[0] || 'there'}. It’s on its way.
+        </p>
+        <p className="mt-4 text-[18px] max-w-[46ch] text-bone">
+          I’ll read your project details and reply within four hours on weekdays, usually with a first plan and a price range.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link href="/work" className="btn-lime">Browse case studies</Link>
+          <Link href="/" className="btn-outline">Back to home</Link>
         </div>
-      </StepWrapper>
+      </div>
     );
   }
 
+  const follow = FOLLOW_UPS[form.service] ?? FOLLOW_UPS['Not sure yet'];
+  const q =
+    step === 0
+      ? { title: 'What are you looking to build?', hint: 'Pick the closest. We can refine it on the call.' }
+      : step === 1
+        ? { title: follow.question, hint: follow.hint }
+        : step === 2
+          ? { title: 'What’s your budget range?', hint: 'A rough range is fine. It helps me suggest the right approach.' }
+          : { title: 'Where should I reply?', hint: 'Add anything useful: timeline, goals, links to sites you like.' };
+
+  const options = step === 0 ? SERVICES : step === 1 ? follow.options : step === 2 ? BUDGETS : [];
+  const chosen = step === 0 ? form.service : step === 1 ? form.followUp : form.budget;
+
   return (
     <div>
-      <ProgressBar step={step} />
+      <div className="h-1 w-full" style={{ background: 'var(--surface-2)' }} aria-hidden="true">
+        <div className="h-full transition-[width] duration-500" style={{ width: `${((step + 1) / STEPS) * 100}%`, background: 'var(--accent)', transitionTimingFunction: 'var(--ease-out)' }} />
+      </div>
+      <div ref={headRef} tabIndex={-1} className="outline-none mt-6">
+        <h2 className="text-bone font-medium" style={{ fontSize: 'clamp(1.6rem, 2.6vw, 2.25rem)', lineHeight: 1.15 }}>{q.title}</h2>
+        <p className="mt-2 text-[16px]" style={{ color: 'var(--muted)' }}>
+          {q.hint} <span className="whitespace-nowrap">(Question {step + 1} of {STEPS}{form.service && step > 0 ? `, ${form.service}` : ''})</span>
+        </p>
+      </div>
 
-      <StepWrapper visible={visible}>
-        {/* Step 0 — Service */}
-        {step === 0 && (
-          <div>
-            <StepLabel num="01 / 06" />
-            <StepQuestion>What are you looking to build?</StepQuestion>
-            <StepHint>Pick the one that fits best — we can always refine it.</StepHint>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,200px), 1fr))',
-                gap: 10,
-                marginTop: 28,
-              }}
-            >
-              {SERVICES.map(({ value, icon }) => (
-                <OptionBtn
-                  key={value}
-                  label={value}
-                  icon={icon}
-                  selected={form.service === value}
-                  onClick={() => {
-                    /* Changing the service invalidates any previously
-                       chosen follow-up answer from a different branch */
-                    setForm((f) => ({ ...f, service: value, followUp: '' }));
-                    setTimeout(next, 160);
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Step 1 — Dynamic follow-up, entirely driven by the service picked in step 0 */}
-        {step === 1 && (() => {
-          const followUp = FOLLOW_UPS[form.service] ?? FOLLOW_UPS['Not sure yet'];
-          return (
-            <div>
-              <StepLabel num="02 / 06" />
-              <StepQuestion>{followUp.question}</StepQuestion>
-              <StepHint>{followUp.hint}</StepHint>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,200px), 1fr))',
-                  gap: 10,
-                  marginTop: 28,
-                }}
+      {step < 3 ? (
+        <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label={q.title}>
+          {options.map((o) => {
+            const on = chosen === o;
+            return (
+              <button
+                key={o}
+                type="button"
+                role="radio"
+                aria-checked={on}
+                onClick={() =>
+                  pick(step === 0 ? { service: o, followUp: '' } : step === 1 ? { followUp: o } : { budget: o })
+                }
+                className="min-h-[56px] px-5 text-left text-[17px] transition-colors duration-200 hover:bg-[#2c3734] active:scale-[0.99]"
+                style={{ background: on ? 'var(--accent)' : 'var(--surface)', color: on ? 'var(--accent-ink)' : 'var(--ink)' }}
               >
-                {followUp.options.map((opt) => (
-                  <OptionBtn
-                    key={opt}
-                    label={opt}
-                    selected={form.followUp === opt}
-                    onClick={() => {
-                      set('followUp', opt);
-                      setTimeout(next, 160);
-                    }}
-                  />
-                ))}
-              </div>
-              <BackBtn onClick={back} />
-            </div>
-          );
-        })()}
-
-        {/* Step 2 — Budget */}
-        {step === 2 && (
-          <div>
-            <StepLabel num="03 / 06" />
-            <StepQuestion>What&apos;s your budget range?</StepQuestion>
-            <StepHint>
-              For your {form.service.toLowerCase()} — rough estimates are totally fine, this just helps me tailor my approach.
-            </StepHint>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,180px),1fr))',
-                gap: 10,
-                marginTop: 28,
-              }}
-            >
-              {BUDGETS.map(({ value, label }) => (
-                <OptionBtn
-                  key={value}
-                  label={label}
-                  selected={form.budget === value}
-                  onClick={() => {
-                    set('budget', value);
-                    setTimeout(next, 160);
-                  }}
-                />
-              ))}
-            </div>
-            <BackBtn onClick={back} />
-          </div>
-        )}
-
-        {/* Step 3 — Name */}
-        {step === 3 && (
-          <div>
-            <StepLabel num="04 / 06" />
-            <StepQuestion>What&apos;s your name?</StepQuestion>
-            <div style={{ marginTop: 28, maxWidth: 480 }}>
-              <StepInput
-                placeholder="Your name..."
+                {o}
+              </button>
+            );
+          })}
+        </div>
+      ) : (
+        <form onSubmit={submit} className="mt-7 grid gap-4" noValidate>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <label className="grid gap-1.5 text-[15px]" style={{ color: 'var(--muted)' }}>
+              Name
+              <input
+                required
+                autoComplete="name"
                 value={form.name}
-                onChange={(v) => set('name', v)}
-                autoFocus
-                onKeyDown={(e) => { if (e.key === 'Enter' && form.name.trim()) next(); }}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="h-14 px-4 text-[17px] text-bone"
+                style={{ background: 'var(--surface)', border: '1px solid #33403C' }}
               />
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 32 }}>
-              <NavBtn onClick={next} disabled={!form.name.trim()}>
-                Continue
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </NavBtn>
-              <BackBtn onClick={back} />
-            </div>
-          </div>
-        )}
-
-        {/* Step 4 — Email */}
-        {step === 4 && (
-          <div>
-            <StepLabel num="05 / 06" />
-            <StepQuestion>
-              Nice to meet you, {form.name}!<br />
-              <span style={{ color: '#C8FF00' }}>What&apos;s your email?</span>
-            </StepQuestion>
-            <div style={{ marginTop: 28, maxWidth: 480 }}>
-              <StepInput
+            </label>
+            <label className="grid gap-1.5 text-[15px]" style={{ color: 'var(--muted)' }}>
+              Email
+              <input
+                required
                 type="email"
-                placeholder="your@email.com"
+                autoComplete="email"
                 value={form.email}
-                onChange={(v) => set('email', v)}
-                autoFocus
-                onKeyDown={(e) => { if (e.key === 'Enter' && form.email.trim()) next(); }}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="h-14 px-4 text-[17px] text-bone"
+                style={{ background: 'var(--surface)', border: '1px solid #33403C' }}
               />
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 32 }}>
-              <NavBtn onClick={next} disabled={!form.email.includes('@')}>
-                Continue
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </NavBtn>
-              <BackBtn onClick={back} />
-            </div>
+            </label>
           </div>
-        )}
+          <label className="grid gap-1.5 text-[15px]" style={{ color: 'var(--muted)' }}>
+            Project details (optional)
+            <textarea
+              rows={5}
+              value={form.details}
+              onChange={(e) => setForm({ ...form, details: e.target.value })}
+              placeholder={`Your ${form.service.toLowerCase() || 'project'}${form.followUp ? `, ${form.followUp.toLowerCase()}` : ''}: timeline, goals, sites you like…`}
+              className="px-4 py-3 text-[17px] text-bone resize-y placeholder:text-[#8E948D]"
+              style={{ background: 'var(--surface)', border: '1px solid #33403C' }}
+            />
+          </label>
+          {error && <p className="text-[15px]" style={{ color: '#F2A7A0' }} role="alert">{error}</p>}
+          <div className="flex flex-wrap items-center gap-5 pt-2">
+            <button type="submit" disabled={submitting} className="btn-lime disabled:opacity-60">
+              {submitting ? 'Sending…' : 'Send my project'}
+            </button>
+            <span className="text-[14px]" style={{ color: 'var(--muted)' }}>No spam, no newsletter. Just a reply from me.</span>
+          </div>
+        </form>
+      )}
 
-        {/* Step 5 — Details + Submit */}
-        {step === 5 && (
-          <div>
-            <StepLabel num="06 / 06" />
-            <StepQuestion>
-              Almost there — tell me<br />
-              <span style={{ color: '#C8FF00' }}>about your project.</span>
-            </StepQuestion>
-            <StepHint>
-              Timeline, goals, anything important — the more you share, the better I can help.
-              (Optional but useful)
-            </StepHint>
-            <div style={{ marginTop: 24 }}>
-              <StepTextarea
-                placeholder={`Tell me more about your ${form.service.toLowerCase()} project${form.followUp ? ` — ${form.followUp.toLowerCase()}` : ''}, timeline, and goals...`}
-                value={form.details}
-                onChange={(v) => set('details', v)}
-                autoFocus
-              />
-            </div>
-            {submitError && (
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.82rem', color: '#FF6B6B', marginTop: 18 }}>
-                {submitError}
-              </p>
-            )}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 28 }}>
-              <NavBtn onClick={handleSubmit} disabled={submitting}>
-                {submitting ? 'Sending...' : 'Send Message'}
-                {!submitting && (
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
-              </NavBtn>
-              <BackBtn onClick={back} />
-            </div>
-          </div>
-        )}
-      </StepWrapper>
+      {step > 0 && (
+        <button type="button" onClick={() => go(step - 1)} className="mt-6 text-[15px] text-bone underline underline-offset-4 hover:text-jade">
+          Back
+        </button>
+      )}
     </div>
-  );
-}
-
-/* ── Small helpers ─────────────────────────────────────── */
-function StepLabel({ num }: { num: string }) {
-  return (
-    <p
-      style={{
-        fontFamily: 'var(--font-body)',
-        fontSize: '0.65rem',
-        color: 'rgba(255,255,255,0.22)',
-        letterSpacing: '0.14em',
-        textTransform: 'uppercase',
-        marginBottom: 16,
-      }}
-    >
-      {num}
-    </p>
-  );
-}
-
-function StepQuestion({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      style={{
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700,
-        fontSize: 'clamp(1.6rem, 4vw, 2.8rem)',
-        letterSpacing: '-0.035em',
-        lineHeight: 1.1,
-        color: '#ffffff',
-      }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-function StepHint({ children }: { children: React.ReactNode }) {
-  return (
-    <p
-      style={{
-        fontFamily: 'var(--font-body)',
-        fontSize: '0.85rem',
-        color: 'rgba(255,255,255,0.35)',
-        lineHeight: 1.6,
-        marginTop: 10,
-      }}
-    >
-      {children}
-    </p>
-  );
-}
-
-function BackBtn({ onClick }: { onClick: () => void }) {
-  return (
-    <NavBtn variant="ghost" onClick={onClick}>
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M19 12H5M12 19l-7-7 7-7" />
-      </svg>
-      Back
-    </NavBtn>
   );
 }

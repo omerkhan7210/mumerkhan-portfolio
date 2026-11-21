@@ -20,7 +20,7 @@ type Project = {
 };
 
 const ACCENTS = [
-  '#C8FF00', '#60A5FA', '#F472B6', '#34D399',
+  '#9FC7B8', '#60A5FA', '#F472B6', '#34D399',
   '#FB923C', '#A78BFA', '#38BDF8', '#86EFAC',
   '#FBBF24', '#E879F9', '#67E8F9', '#4ADE80',
   '#FCA5A5', '#D8B4FE', '#FDE68A',
@@ -156,7 +156,7 @@ function ProjectCard({
           zIndex: 10,
         }}
       >
-        {/* Tech tags + action buttons — revealed on hover */}
+        {/* Tech tags + action buttons - revealed on hover */}
         <div
           style={{
             overflow: 'hidden',
@@ -393,7 +393,7 @@ export default function WorkClient({ projects }: { projects: Project[] }) {
                 fontFamily: 'var(--font-display)',
                 fontWeight: 700,
                 fontSize: '2rem',
-                color: '#C8FF00',
+                color: '#9FC7B8',
                 letterSpacing: '-0.03em',
                 transition: 'opacity 0.3s',
                 opacity: fading ? 0 : 1,
@@ -484,14 +484,14 @@ function FilterTab({
         padding: '8px 16px',
         borderRadius: 8,
         border: active
-          ? '1px solid rgba(200,255,0,0.5)'
+          ? '1px solid rgba(159,199,184,0.5)'
           : `1px solid ${hovered ? 'rgba(255,255,255,0.14)' : 'rgba(255,255,255,0.07)'}`,
         background: active
-          ? 'rgba(200,255,0,0.1)'
+          ? 'rgba(159,199,184,0.1)'
           : hovered
           ? 'rgba(255,255,255,0.04)'
           : 'transparent',
-        color: active ? '#C8FF00' : hovered ? '#ffffff' : 'rgba(255,255,255,0.45)',
+        color: active ? '#9FC7B8' : hovered ? '#ffffff' : 'rgba(255,255,255,0.45)',
         cursor: 'pointer',
         transition: 'all 0.22s',
         display: 'flex',
@@ -507,8 +507,8 @@ function FilterTab({
           fontSize: '0.65rem',
           padding: '1px 6px',
           borderRadius: 10,
-          background: active ? 'rgba(200,255,0,0.18)' : 'rgba(255,255,255,0.07)',
-          color: active ? '#C8FF00' : 'rgba(255,255,255,0.3)',
+          background: active ? 'rgba(159,199,184,0.18)' : 'rgba(255,255,255,0.07)',
+          color: active ? '#9FC7B8' : 'rgba(255,255,255,0.3)',
           transition: 'all 0.22s',
         }}
       >

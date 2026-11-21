@@ -1,5 +1,5 @@
 /* Encodes calculator inputs into a URL-safe base64 query param so a
-   result can be shared/reloaded without any backend — the receiving
+   result can be shared/reloaded without any backend - the receiving
    page just decodes `?s=` on mount and reconstructs the same state. */
 
 export function encodeState(state: Record<string, unknown>): string {

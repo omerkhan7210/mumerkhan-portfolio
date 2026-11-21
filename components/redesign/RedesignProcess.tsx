@@ -32,7 +32,7 @@ export default function RedesignProcess({ offer }: { offer: OfferCopy }) {
       n: '01',
       title: 'I review your current site',
       body:
-        'Load speed, mobile layout, and — most importantly — how many taps it takes someone to call or request a quote. Most trade sites lose jobs right there, before design even matters.',
+        'Load speed, mobile layout, and - most importantly - how many taps it takes someone to call or request a quote. Most trade sites lose jobs right there, before design even matters.',
     },
     {
       n: '02',
@@ -41,7 +41,7 @@ export default function RedesignProcess({ offer }: { offer: OfferCopy }) {
     },
     {
       n: '03',
-      title: 'You decide — no pressure either way',
+      title: 'You decide - no pressure either way',
       body:
         `Like it? We talk about building it into the full site. Don't like it, or the timing's wrong? Keep the ${offer.noun} anyway. I'm not chasing a signature, I'm showing you the work first.`,
     },
@@ -97,7 +97,7 @@ export default function RedesignProcess({ offer }: { offer: OfferCopy }) {
             >
               <span
                 className="font-body text-xs tabular-nums"
-                style={{ color: 'rgba(200,255,0,0.6)' }}
+                style={{ color: 'rgba(159,199,184,0.6)' }}
               >
                 {step.n}
               </span>

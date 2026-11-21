@@ -7,13 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: '#0A0A0A',
-        'ink-2': '#111111',
-        'ink-3': '#1A1A1A',
-        cream: '#F5F4EF',
+        bone: '#E3E2DA',
+        jade: '#9FC7B8',
+        ink: '#161C1A',
+        'ink-2': '#1B2220',
+        'ink-3': '#1F2725',
+        cream: '#E3E2DA',
         'cream-2': '#EEEEE9',
-        lime: '#C8FF00',
-        muted: '#888888',
+        lime: '#9FC7B8',
+        muted: '#8E948D',
       },
       fontFamily: {
         sans: ['var(--font-display)', 'system-ui', 'sans-serif'],

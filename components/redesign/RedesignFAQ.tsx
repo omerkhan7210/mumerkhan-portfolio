@@ -7,11 +7,11 @@ function buildFaqs(offer: OfferCopy) {
   return [
     {
       q: `Is the free ${offer.noun} actually free?`,
-      a: `Yes — no card, no deposit, no catch. I ${offer.verb} it before we talk pricing because it's easier to judge real work than a pitch. If it's not for you, keep it either way.`,
+      a: `Yes - no card, no deposit, no catch. I ${offer.verb} it before we talk pricing because it's easier to judge real work than a pitch. If it's not for you, keep it either way.`,
     },
     {
       q: 'Will you touch my live site to build it?',
-      a: `No. The ${offer.noun} is a separate mockup — your live site stays exactly as it is unless and until you decide to move forward. There's zero risk to your current site or rankings.`,
+      a: `No. The ${offer.noun} is a separate mockup - your live site stays exactly as it is unless and until you decide to move forward. There's zero risk to your current site or rankings.`,
     },
     {
       q: `What if I don't like the ${offer.noun}?`,
@@ -19,15 +19,15 @@ function buildFaqs(offer: OfferCopy) {
     },
     {
       q: `How long does the free ${offer.noun} take?`,
-      a: "Usually a few days. It's built around your actual business, not a five-minute template swap — so I only send it once it's actually worth your time.",
+      a: "Usually a few days. It's built around your actual business, not a five-minute template swap - so I only send it once it's actually worth your time.",
     },
     {
-      q: "I'm not technical — will I be able to manage the site myself?",
+      q: "I'm not technical - will I be able to manage the site myself?",
       a: 'Yes. Every build includes a screen-recorded walkthrough so you can update text, photos, and service pages without calling a developer for every small change.',
     },
     {
       q: 'Do you only work with businesses in one region?',
-      a: "No — I build for trade and home service businesses across the US, UK, Australia, and beyond. Time zones aren't a blocker; most of my client communication happens async anyway.",
+      a: "No - I build for trade and home service businesses across the US, UK, Australia, and beyond. Time zones aren't a blocker; most of my client communication happens async anyway.",
     },
   ];
 }
@@ -52,7 +52,7 @@ function FaqItem({ q, a, open, onClick }: { q: string; a: string; open: boolean;
       >
         <span
           className="font-sans font-semibold"
-          style={{ fontSize: '1rem', color: open ? '#C8FF00' : '#ffffff', transition: 'color 0.25s' }}
+          style={{ fontSize: '1rem', color: open ? '#9FC7B8' : '#ffffff', transition: 'color 0.25s' }}
         >
           {q}
         </span>
@@ -65,7 +65,7 @@ function FaqItem({ q, a, open, onClick }: { q: string; a: string; open: boolean;
           strokeWidth="2.5"
           style={{
             flexShrink: 0,
-            color: open ? '#C8FF00' : 'rgba(255,255,255,0.3)',
+            color: open ? '#9FC7B8' : 'rgba(255,255,255,0.3)',
             transform: open ? 'rotate(45deg)' : 'none',
             transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1), color 0.25s',
           }}

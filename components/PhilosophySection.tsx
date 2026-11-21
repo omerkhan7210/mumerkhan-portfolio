@@ -1,110 +1,83 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
 
-const pillars = [
+const PILLARS = [
   {
     n: '01',
     heading: 'Design without compromise',
-    body: "Trade customers decide in seconds. I design for clarity and trust first — then polish every breakpoint so nothing gets in the way of the enquiry.",
+    body: 'Trade customers decide in seconds. I design for clarity and trust first, then polish every breakpoint so nothing gets in the way of the enquiry.',
   },
   {
     n: '02',
     heading: 'Speed is a feature',
-    body: "A slow site loses jobs on mobile. Every build is checked for speed — especially the path to call or request a quote.",
+    body: 'A slow site loses jobs on mobile. Every build is checked for speed, especially the path to call or request a quote.',
   },
   {
     n: '03',
     heading: 'SEO built in, not bolted on',
-    body: 'Clean structure helps local search and real users. Service pages, areas, and proof are built in — not bolted on later.',
+    body: 'Clean structure helps local search and real users. Service pages, areas, and proof are built in, not added later.',
   },
 ];
 
-function useScrollReveal(threshold = 0.08) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          el.classList.add('sr-visible');
-          obs.unobserve(el);
-        }
-      },
-      { threshold },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return ref;
-}
-
+/* Sticky headline on the left, pillars reveal one by one on the right. */
 export default function PhilosophySection() {
-  const headRef = useScrollReveal();
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const root = cardsRef.current;
+    const root = rootRef.current;
     if (!root) return;
-    const cards = Array.from(root.querySelectorAll<HTMLElement>('.phil-card'));
-    const obs = new IntersectionObserver(
+    const items = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]'));
+    const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = cards.indexOf(entry.target as HTMLElement);
-            setTimeout(() => {
-              (entry.target as HTMLElement).style.opacity = '1';
-              (entry.target as HTMLElement).style.transform = 'translateY(0)';
-            }, idx * 120);
-            obs.unobserve(entry.target);
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add('sr-visible');
+            io.unobserve(e.target);
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.2 },
     );
-    cards.forEach((c) => {
-      c.style.opacity = '0';
-      c.style.transform = 'translateY(28px)';
-      c.style.transition = 'opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1)';
-      obs.observe(c);
-    });
-    return () => obs.disconnect();
+    items.forEach((i) => io.observe(i));
+    return () => io.disconnect();
   }, []);
 
   return (
-    <section className="py-24 md:py-32 bg-cream">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div ref={headRef} className="sr">
-          <span className="label-tag-dark">The Philosophy</span>
+    <section ref={rootRef} className="bg-ink border-t border-white/[0.06] py-24 md:py-36">
+      <div className="max-w-[1360px] mx-auto px-6 md:px-10 grid md:grid-cols-[1fr_1.15fr] gap-14 md:gap-24">
+        <div className="md:sticky md:top-32 md:self-start">
           <h2
-            className="font-sans font-bold text-ink mb-16"
-            style={{ fontSize: 'clamp(2rem,5vw,3.4rem)', lineHeight: 1.05, letterSpacing: '-0.03em' }}
+            data-reveal
+            className="sr font-sans font-bold text-white"
+            style={{ fontSize: 'clamp(2.4rem, 5.4vw, 4.8rem)', lineHeight: 0.98, letterSpacing: '-0.04em' }}
           >
-            Your website should<br />win more jobs.<br />Not just look busy.
+            Your website should win more jobs.
+            <span className="block text-white/35 mt-2">Not just look busy.</span>
           </h2>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
-          {pillars.map((p) => (
-            <div
-              key={p.n}
-              className="phil-card rounded-2xl p-7 border border-black/5 bg-white/60"
-            >
-              <span className="font-body text-xs text-ink/40 tabular-nums">{p.n}</span>
-              <h3 className="font-sans font-semibold text-ink mt-3 mb-3" style={{ fontSize: '1.15rem' }}>
+        <div>
+          {PILLARS.map((p) => (
+            <div key={p.n} data-reveal className="sr py-10 md:py-14 border-t border-white/[0.08] first:border-t-0 first:pt-0">
+              <p
+                className="font-sans font-bold leading-none text-transparent"
+                style={{
+                  fontSize: 'clamp(4rem, 8vw, 7rem)',
+                  letterSpacing: '-0.05em',
+                  WebkitTextStroke: '1px rgba(159,199,184,0.55)',
+                }}
+              >
+                {p.n}
+              </p>
+              <h3 className="font-sans font-semibold text-white mt-6" style={{ fontSize: 'clamp(1.4rem, 2.2vw, 2rem)', letterSpacing: '-0.02em' }}>
                 {p.heading}
               </h3>
-              <p className="font-body text-sm text-ink/60 leading-relaxed">{p.body}</p>
+              <p className="font-body text-white/60 leading-relaxed mt-3 max-w-[52ch]" style={{ fontSize: 'clamp(1rem,1.2vw,1.1rem)' }}>
+                {p.body}
+              </p>
             </div>
           ))}
-        </div>
-
-        <div className="flex justify-center">
-          <Link href="/contact" className="btn-ink">
-            Start a project
-          </Link>
         </div>
       </div>
     </section>

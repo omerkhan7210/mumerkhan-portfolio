@@ -90,7 +90,7 @@ export default function AutomationRoiCalculator() {
 
   /* ── Complexity is computed from concrete answers, not self-labeled ──
      score: apps involved (1/2/3) + branching logic + error handling.
-     This is the "dynamic" piece — two people who'd both vaguely call
+     This is the "dynamic" piece - two people who'd both vaguely call
      their workflow "medium" can land in different cost tiers depending
      on what they actually answered. */
   const complexity = useMemo(() => {
@@ -136,7 +136,7 @@ export default function AutomationRoiCalculator() {
   }, [state, complexity]);
 
   const breakdown = useMemo<BreakdownItem[]>(() => {
-    const items: BreakdownItem[] = [{ label: 'Labor time saved', amount: result.monthlyLaborSavings, color: '#C8FF00' }];
+    const items: BreakdownItem[] = [{ label: 'Labor time saved', amount: result.monthlyLaborSavings, color: '#9FC7B8' }];
     if (result.monthlyToolSavings > 0) {
       items.push({ label: `Tool billing saved (vs ${state.currentTool === 'make' ? 'Make' : 'Zapier'})`, amount: result.monthlyToolSavings, color: '#60A5FA' });
     }
@@ -147,7 +147,7 @@ export default function AutomationRoiCalculator() {
 
   return (
     <div>
-      <p style={hintText}>Answer what applies below — your estimate updates instantly as you go.</p>
+      <p style={hintText}>Answer what applies below - your estimate updates instantly as you go.</p>
 
       <Section title="1. The process">
         <FieldLabel>What are you trying to automate?</FieldLabel>
@@ -258,7 +258,7 @@ export default function AutomationRoiCalculator() {
         <AiSummary tool="Automation ROI Calculator" inputs={state} breakdown={breakdown} />
 
         <p style={{ ...resultSub, marginTop: 20 }}>
-          Workflow tier is based on how many apps are involved and whether you need branching logic or error handling — not a guess.
+          Workflow tier is based on how many apps are involved and whether you need branching logic or error handling - not a guess.
         </p>
 
         <div style={{ marginTop: 24, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -312,7 +312,7 @@ function FieldLabel({ children, style }: { children: React.ReactNode; style?: Re
 }
 
 function Highlight({ children }: { children: React.ReactNode }) {
-  return <span style={{ color: '#C8FF00' }}>{children}</span>;
+  return <span style={{ color: '#9FC7B8' }}>{children}</span>;
 }
 
 function ChoiceRow({ options, value, onChange }: { options: { id: string; label: string }[]; value: string; onChange: (v: string) => void }) {
@@ -331,7 +331,7 @@ function ToggleRow({ label, value, onChange }: { label: string; value: boolean; 
   return (
     <button onClick={() => onChange(!value)} style={{ ...optionCard(value, true), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginBottom: 8 }}>
       <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#fff' }}>{label}</span>
-      <span style={{ width: 18, height: 18, borderRadius: 5, border: value ? '2px solid #C8FF00' : '2px solid rgba(255,255,255,0.2)', background: value ? '#C8FF00' : 'transparent', flexShrink: 0 }} />
+      <span style={{ width: 18, height: 18, borderRadius: 5, border: value ? '2px solid #9FC7B8' : '2px solid rgba(255,255,255,0.2)', background: value ? '#9FC7B8' : 'transparent', flexShrink: 0 }} />
     </button>
   );
 }
@@ -377,7 +377,7 @@ const sliderStyle: React.CSSProperties = {
   height: 6,
   borderRadius: 3,
   background: 'rgba(255,255,255,0.1)',
-  accentColor: '#C8FF00',
+  accentColor: '#9FC7B8',
   cursor: 'pointer',
 };
 
@@ -395,8 +395,8 @@ const textInputStyle: React.CSSProperties = {
 
 const resultBox: React.CSSProperties = {
   borderRadius: 20,
-  background: 'linear-gradient(135deg, rgba(200,255,0,0.06), rgba(255,255,255,0.02))',
-  border: '1px solid rgba(200,255,0,0.18)',
+  background: 'linear-gradient(135deg, rgba(159,199,184,0.06), rgba(255,255,255,0.02))',
+  border: '1px solid rgba(159,199,184,0.18)',
   padding: 'clamp(24px, 5vw, 40px)',
   textAlign: 'center',
 };
@@ -414,7 +414,7 @@ const resultNumber: React.CSSProperties = {
   fontFamily: 'var(--font-display)',
   fontWeight: 700,
   fontSize: 'clamp(2.4rem, 7vw, 4rem)',
-  color: '#C8FF00',
+  color: '#9FC7B8',
   letterSpacing: '-0.03em',
   lineHeight: 1,
 };
@@ -437,8 +437,8 @@ function optionCard(active: boolean, compact = false): React.CSSProperties {
     textAlign: 'left',
     padding: compact ? '14px 18px' : '18px 20px',
     borderRadius: 14,
-    border: active ? '1.5px solid #C8FF00' : '1.5px solid rgba(255,255,255,0.08)',
-    background: active ? 'rgba(200,255,0,0.07)' : 'rgba(255,255,255,0.02)',
+    border: active ? '1.5px solid #9FC7B8' : '1.5px solid rgba(255,255,255,0.08)',
+    background: active ? 'rgba(159,199,184,0.07)' : 'rgba(255,255,255,0.02)',
     cursor: 'pointer',
     transition: 'border-color 0.2s, background 0.2s',
     minWidth: compact ? 160 : undefined,

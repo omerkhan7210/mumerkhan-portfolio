@@ -1,0 +1,451 @@
+{
+ "kanalfuchs": [
+  {
+   "src": "/assets/strips/kanalfuchs-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kanalfuchs-2.webp",
+   "w": 412,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kanalfuchs-3.webp",
+   "w": 260,
+   "h": 380
+  }
+ ],
+ "v1-campers": [
+  {
+   "src": "/assets/strips/v1-campers-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/v1-campers-2.webp",
+   "w": 311,
+   "h": 380
+  }
+ ],
+ "roaddarts": [
+  {
+   "src": "/assets/strips/roaddarts-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/roaddarts-2.webp",
+   "w": 322,
+   "h": 380
+  }
+ ],
+ "erbs-ltd": [
+  {
+   "src": "/assets/strips/erbs-ltd-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/erbs-ltd-2.webp",
+   "w": 198,
+   "h": 380
+  }
+ ],
+ "kp-global-consultants": [
+  {
+   "src": "/assets/strips/kp-global-consultants-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kp-global-consultants-2.webp",
+   "w": 258,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kp-global-consultants-3.webp",
+   "w": 270,
+   "h": 380
+  }
+ ],
+ "globalremote": [
+  {
+   "src": "/assets/strips/globalremote-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/globalremote-2.webp",
+   "w": 311,
+   "h": 380
+  }
+ ],
+ "wetotalcare": [
+  {
+   "src": "/assets/strips/wetotalcare-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/wetotalcare-2.webp",
+   "w": 420,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/wetotalcare-3.webp",
+   "w": 373,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/wetotalcare-4.webp",
+   "w": 676,
+   "h": 380
+  }
+ ],
+ "isg-flooring": [
+  {
+   "src": "/assets/strips/isg-flooring-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/isg-flooring-2.webp",
+   "w": 174,
+   "h": 380
+  }
+ ],
+ "novara-md": [
+  {
+   "src": "/assets/strips/novara-md-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/novara-md-2.webp",
+   "w": 373,
+   "h": 380
+  }
+ ],
+ "house-of-greens": [
+  {
+   "src": "/assets/strips/house-of-greens-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/house-of-greens-2.webp",
+   "w": 350,
+   "h": 380
+  }
+ ],
+ "drivco-auction": [
+  {
+   "src": "/assets/strips/drivco-auction-1.webp",
+   "w": 608,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/drivco-auction-2.webp",
+   "w": 105,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/drivco-auction-3.webp",
+   "w": 608,
+   "h": 380
+  }
+ ],
+ "wlk-gardeners": [
+  {
+   "src": "/assets/strips/wlk-gardeners-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/wlk-gardeners-2.webp",
+   "w": 202,
+   "h": 380
+  }
+ ],
+ "bright-home": [
+  {
+   "src": "/assets/strips/bright-home-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/bright-home-2.webp",
+   "w": 336,
+   "h": 380
+  }
+ ],
+ "talehouse": [
+  {
+   "src": "/assets/strips/talehouse-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/talehouse-2.webp",
+   "w": 299,
+   "h": 380
+  }
+ ],
+ "cleverconcept": [
+  {
+   "src": "/assets/strips/cleverconcept-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/cleverconcept-2.webp",
+   "w": 97,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/cleverconcept-3.webp",
+   "w": 377,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/cleverconcept-4.webp",
+   "w": 415,
+   "h": 380
+  }
+ ],
+ "gc-logistics": [
+  {
+   "src": "/assets/strips/gc-logistics-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/gc-logistics-2.webp",
+   "w": 292,
+   "h": 380
+  }
+ ],
+ "karma-fastfood": [
+  {
+   "src": "/assets/strips/karma-fastfood-1.webp",
+   "w": 295,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/karma-fastfood-2.webp",
+   "w": 412,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/karma-fastfood-3.webp",
+   "w": 412,
+   "h": 380
+  }
+ ],
+ "lobos-co": [
+  {
+   "src": "/assets/strips/lobos-co-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/lobos-co-2.webp",
+   "w": 350,
+   "h": 380
+  }
+ ],
+ "manyway-laundry": [
+  {
+   "src": "/assets/strips/manyway-laundry-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/manyway-laundry-2.webp",
+   "w": 464,
+   "h": 380
+  }
+ ],
+ "panaceacare": [
+  {
+   "src": "/assets/strips/panaceacare-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/panaceacare-2.webp",
+   "w": 310,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/panaceacare-3.webp",
+   "w": 412,
+   "h": 380
+  }
+ ],
+ "shopfitters-fitout": [
+  {
+   "src": "/assets/strips/shopfitters-fitout-1.webp",
+   "w": 295,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/shopfitters-fitout-2.webp",
+   "w": 412,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/shopfitters-fitout-3.webp",
+   "w": 412,
+   "h": 380
+  }
+ ],
+ "furniture-store": [
+  {
+   "src": "/assets/strips/furniture-store-1.webp",
+   "w": 412,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/furniture-store-2.webp",
+   "w": 412,
+   "h": 380
+  }
+ ],
+ "yogi-escape": [
+  {
+   "src": "/assets/strips/yogi-escape-1.webp",
+   "w": 412,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/yogi-escape-2.webp",
+   "w": 412,
+   "h": 380
+  }
+ ],
+ "kings-capital": [
+  {
+   "src": "/assets/strips/kings-capital-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kings-capital-2.webp",
+   "w": 98,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kings-capital-3.webp",
+   "w": 388,
+   "h": 380
+  }
+ ],
+ "kingspeg": [
+  {
+   "src": "/assets/strips/kingspeg-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/kingspeg-2.webp",
+   "w": 882,
+   "h": 380
+  }
+ ],
+ "veterans-transition-support": [
+  {
+   "src": "/assets/strips/veterans-transition-support-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/veterans-transition-support-2.webp",
+   "w": 180,
+   "h": 380
+  }
+ ],
+ "ialus": [
+  {
+   "src": "/assets/strips/ialus-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/ialus-2.webp",
+   "w": 75,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/ialus-3.webp",
+   "w": 282,
+   "h": 380
+  }
+ ],
+ "shifalia": [
+  {
+   "src": "/assets/strips/shifalia-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/shifalia-2.webp",
+   "w": 246,
+   "h": 380
+  }
+ ],
+ "mizar": [
+  {
+   "src": "/assets/strips/mizar-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/mizar-2.webp",
+   "w": 204,
+   "h": 380
+  }
+ ],
+ "nexgen-ems": [
+  {
+   "src": "/assets/strips/nexgen-ems-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/nexgen-ems-2.webp",
+   "w": 318,
+   "h": 380
+  }
+ ],
+ "life-works-parenting": [
+  {
+   "src": "/assets/strips/life-works-parenting-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/life-works-parenting-2.webp",
+   "w": 245,
+   "h": 380
+  }
+ ],
+ "fogana": [
+  {
+   "src": "/assets/strips/fogana-1.webp",
+   "w": 676,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/fogana-2.webp",
+   "w": 219,
+   "h": 380
+  },
+  {
+   "src": "/assets/strips/fogana-3.webp",
+   "w": 277,
+   "h": 380
+  }
+ ]
+}

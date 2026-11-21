@@ -46,7 +46,7 @@ export default function TradeSelect({
           fontSize: '0.95rem',
           color: selected ? '#ffffff' : 'rgba(255,255,255,0.4)',
           background: 'rgba(255,255,255,0.03)',
-          border: `1px solid ${open ? 'rgba(200,255,0,0.4)' : 'rgba(255,255,255,0.1)'}`,
+          border: `1px solid ${open ? 'rgba(159,199,184,0.4)' : 'rgba(255,255,255,0.1)'}`,
           borderRadius: 10,
           padding: '13px 16px',
           width: '100%',
@@ -66,7 +66,7 @@ export default function TradeSelect({
           stroke="currentColor"
           strokeWidth="2.5"
           style={{
-            color: open ? '#C8FF00' : 'rgba(255,255,255,0.35)',
+            color: open ? '#9FC7B8' : 'rgba(255,255,255,0.35)',
             transform: open ? 'rotate(180deg)' : 'none',
             transition: 'transform 0.25s ease, color 0.25s',
             flexShrink: 0,
@@ -116,8 +116,8 @@ export default function TradeSelect({
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.9rem',
                 textAlign: 'left',
-                color: isSelected ? '#C8FF00' : 'rgba(255,255,255,0.7)',
-                background: isSelected ? 'rgba(200,255,0,0.08)' : 'transparent',
+                color: isSelected ? '#9FC7B8' : 'rgba(255,255,255,0.7)',
+                background: isSelected ? 'rgba(159,199,184,0.08)' : 'transparent',
                 border: 'none',
                 borderRadius: 8,
                 padding: '10px 12px',

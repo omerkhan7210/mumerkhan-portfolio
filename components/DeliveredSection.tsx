@@ -174,8 +174,8 @@ export default function DeliveredSection() {
               number={100}
               suffix="%"
               label="Upwork Verified"
-              sub="Job Success Score — maintained across every contract"
-              accent="#C8FF00"
+              sub="Job Success Score - maintained across every contract"
+              accent="#9FC7B8"
               size="large"
               triggered={triggered}
               delay={0}
@@ -202,7 +202,7 @@ export default function DeliveredSection() {
               delay={200}
             />
 
-            {/* Rating panel — full width of the 7-col right side */}
+            {/* Rating panel - full width of the 7-col right side */}
             <div
               className="col-span-2 rounded-2xl flex items-center justify-between gap-4 px-7 py-5"
               style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.06)' }}
@@ -210,7 +210,7 @@ export default function DeliveredSection() {
               <div>
                 <div className="flex gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#C8FF00">
+                    <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#9FC7B8">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   ))}
@@ -227,7 +227,7 @@ export default function DeliveredSection() {
                   <span
                     key={s}
                     className="font-body text-xs px-3 py-1 rounded-full text-right"
-                    style={{ background: 'rgba(200,255,0,0.06)', color: 'rgba(200,255,0,0.6)', border: '1px solid rgba(200,255,0,0.1)' }}
+                    style={{ background: 'rgba(159,199,184,0.06)', color: 'rgba(159,199,184,0.6)', border: '1px solid rgba(159,199,184,0.1)' }}
                   >
                     ✓ {s}
                   </span>

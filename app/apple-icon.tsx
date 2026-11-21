@@ -24,13 +24,13 @@ export default function AppleIcon() {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 28,
-            border: '3px solid rgba(200,255,0,0.4)',
-            background: 'rgba(200,255,0,0.06)',
+            border: '3px solid rgba(159,199,184,0.4)',
+            background: 'rgba(159,199,184,0.06)',
           }}
         >
           <span
             style={{
-              color: '#C8FF00',
+              color: '#9FC7B8',
               fontSize: 56,
               fontWeight: 800,
               letterSpacing: '-0.02em',

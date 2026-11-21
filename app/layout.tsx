@@ -1,49 +1,36 @@
-import type { Metadata } from 'next';
-import { Space_Grotesk, Inter } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import SmoothScroll from '@/components/SmoothScroll';
 import PageTransition from '@/components/PageTransition';
-import CustomCursor from '@/components/CustomCursor';
-import Preloader from '@/components/Preloader';
 import './globals.css';
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-  weight: ['300', '400', '500', '600'],
-});
-
 const SITE_URL = 'https://mumerkhan.com';
+
+const DEFAULT_TITLE = 'Muhammad Umer Khan | Freelance Web Developer (WordPress, Next.js & n8n)';
+const DEFAULT_DESC =
+  'Freelance web developer for growing businesses. Custom websites in WordPress and Next.js, Figma to WordPress, WooCommerce and n8n automation. 80+ projects, 100% Job Success on Upwork.';
+
+export const viewport: Viewport = {
+  themeColor: '#161C1A',
+  colorScheme: 'dark',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: 'Muhammad Umer Khan | Websites for Trade & Local Service Businesses',
-    template: '%s | Umer Khan',
-  },
-  description:
-    'Websites and lead systems for roofing, plumbing, HVAC, cleaning, and local service businesses. WordPress, conversion UX, and light automation. 100% Job Success on Upwork. 80+ projects.',
+  title: { default: DEFAULT_TITLE, template: '%s | Umer Khan' },
+  description: DEFAULT_DESC,
   keywords: [
-    'Trade business website',
-    'Roofing website designer',
-    'Plumbing website WordPress',
-    'HVAC website developer',
-    'Local service website',
-    'WordPress Developer',
-    'Quote path website',
-    'WooCommerce booking developer',
-    'Local SEO landing pages',
-    'Upwork WordPress Developer',
+    'freelance web developer',
+    'hire WordPress developer',
+    'freelance WordPress developer',
+    'Next.js developer for hire',
+    'Figma to WordPress',
+    'Elementor expert',
+    'WooCommerce developer',
+    'n8n automation expert',
+    'website redesign services',
+    'contractor website design',
   ],
   authors: [{ name: 'Muhammad Umer Khan', url: SITE_URL }],
   creator: 'Muhammad Umer Khan',
@@ -53,26 +40,71 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE_URL,
     siteName: 'Muhammad Umer Khan',
-    title: 'Muhammad Umer Khan | Websites for Trade & Local Service Businesses',
-    description:
-      'Websites and lead systems for roofing, plumbing, HVAC, cleaning, and local service businesses. 100% Job Success on Upwork.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Muhammad Umer Khan' }],
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESC,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Muhammad Umer Khan | Websites for Trade & Local Service Businesses',
-    description:
-      'Websites and lead systems for trade and local service businesses. WordPress, conversion UX, automation.',
-    images: ['/og-image.png'],
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESC,
   },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
   alternates: { canonical: SITE_URL },
+};
+
+/* Site-wide entity graph: one Person, the service business he runs, and the website.
+   Gives Google a single, consistent entity for brand queries ("muhammad umer khan"). */
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: 'Muhammad Umer Khan',
+      alternateName: ['Umer Khan', 'M Umer Khan'],
+      url: SITE_URL,
+      image: `${SITE_URL}/assets/me/umer-front.webp`,
+      jobTitle: 'Freelance Web Developer',
+      description: DEFAULT_DESC,
+      knowsAbout: ['WordPress', 'Elementor', 'WooCommerce', 'Next.js', 'React', 'Figma to WordPress', 'n8n workflow automation', 'Technical SEO', 'Local SEO'],
+      address: { '@type': 'PostalAddress', addressLocality: 'Karachi', addressCountry: 'PK' },
+      sameAs: ['https://www.upwork.com/freelancers/muhammadumerk5'],
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${SITE_URL}/#business`,
+      name: 'Umer Khan Web Development',
+      url: SITE_URL,
+      image: `${SITE_URL}/opengraph-image`,
+      founder: { '@id': `${SITE_URL}/#person` },
+      areaServed: ['United States', 'United Kingdom', 'European Union', 'Australia', 'Worldwide'],
+      priceRange: '$$',
+      address: { '@type': 'PostalAddress', addressLocality: 'Karachi', addressCountry: 'PK' },
+      serviceType: ['Web development', 'WordPress development', 'Next.js development', 'Website redesign', 'n8n automation', 'Technical SEO'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'Muhammad Umer Khan',
+      publisher: { '@id': `${SITE_URL}/#person` },
+      inLanguage: 'en',
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" style={{ ['--font-display' as string]: "'TikTok Sans', system-ui, sans-serif", ['--font-body' as string]: "'TikTok Sans', system-ui, sans-serif" }}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap"
+          rel="stylesheet"
+        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }} />
         {GTM_ID ? (
           <Script id="gtm" strategy="afterInteractive">{`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -94,8 +126,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
           </noscript>
         ) : null}
-        <Preloader />
-        <CustomCursor />
         <SmoothScroll>
           <PageTransition>{children}</PageTransition>
         </SmoothScroll>

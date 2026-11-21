@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       [form.service, form.followUp, form.budget, form.name, form.email, form.details],
     );
 
-    /* Email sending is best-effort — the lead is already safely in
+    /* Email sending is best-effort - the lead is already safely in
        the database, so a mail failure shouldn't surface as an error
        to the person submitting the form. */
     const salesEmail = process.env.SALES_EMAIL;
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       const reply = buildAutoReplyEmail(form);
       await Promise.allSettled([
         sendMail({ to: salesEmail, replyTo: form.email, subject: notify.subject, html: notify.html }),
-        sendMail({ to: form.email, from: `"Umer Khan" <${salesEmail}>`, subject: reply.subject, html: reply.html }),
+        sendMail({ to: form.email, subject: reply.subject, html: reply.html }),
       ]).then((results) => {
         results.forEach((r) => {
           if (r.status === 'rejected') console.error('Contact email send failed:', r.reason);

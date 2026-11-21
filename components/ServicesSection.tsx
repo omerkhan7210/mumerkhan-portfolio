@@ -5,243 +5,178 @@ import Link from 'next/link';
 
 const SERVICES = [
   {
-    n: '01',
     title: 'Quote & enquiry path',
-    desc: 'Mobile-first path to call or request a quote — sticky CTAs, shorter forms, photo upload, urgent vs non-urgent. Built so visitors become booked jobs.',
+    desc: 'Mobile-first path to call or request a quote - sticky CTAs, shorter forms, photo upload, urgent vs non-urgent. Built so visitors become booked jobs.',
     tags: ['Conversion', 'Mobile UX', 'WordPress'],
     href: '/services/wordpress-development',
   },
   {
-    n: '02',
     title: 'After-hours lead capture',
-    desc: 'Simple chat or lead flows for nights and weekends — name, area, phone, urgency — so enquiries do not die when the phone is not answered.',
+    desc: 'Simple chat or lead flows for nights and weekends - name, area, phone, urgency - so enquiries do not die when the phone is not answered.',
     tags: ['Lead capture', 'Automation', 'UX'],
     href: '/services/n8n-automation',
   },
   {
-    n: '03',
     title: 'Trade & local service websites',
-    desc: 'WordPress rebuilds for roofing, plumbing, HVAC, cleaning, and local trades — services, areas, galleries, trust, and enquiry-ready pages.',
+    desc: 'WordPress rebuilds for roofing, plumbing, HVAC, cleaning, and local trades - services, areas, galleries, trust, and enquiry-ready pages.',
     tags: ['WordPress', 'Elementor', 'Local business'],
     href: '/services/wordpress-development',
   },
   {
-    n: '04',
     title: 'Project galleries & proof',
-    desc: 'Real job photos organized by service type — so homeowners and commercial clients see finished work, not placeholders.',
+    desc: 'Real job photos organized by service type - so homeowners and commercial clients see finished work, not placeholders.',
     tags: ['Portfolio', 'Trust', 'WordPress'],
     href: '/services/wordpress-development',
   },
   {
-    n: '05',
     title: 'Local SEO service pages',
-    desc: 'City × service landing pages with unique meta and natural copy — the structure behind multi-location trade visibility.',
+    desc: 'City × service landing pages with unique meta and natural copy - the structure behind multi-location trade visibility.',
     tags: ['Local SEO', 'Rank Math', 'Elementor'],
     href: '/services/seo-performance',
   },
   {
-    n: '06',
     title: 'Booking & payment automation',
     desc: 'WooCommerce deposits, hire rules, branded reminder emails, and staff-safe payment workflows when bookings get complex.',
     tags: ['WooCommerce', 'WP-Cron', 'Stripe'],
     href: '/services/ecommerce-development',
   },
   {
-    n: '07',
     title: 'Figma → WordPress',
-    desc: 'Pixel-perfect builds from design files — every breakpoint, every interaction — without losing conversion structure.',
+    desc: 'Pixel-perfect builds from design files - every breakpoint, every interaction - without losing conversion structure.',
     tags: ['Figma', 'WordPress', 'CSS'],
     href: '/services/figma-to-web',
   },
   {
-    n: '08',
     title: 'Ongoing support',
-    desc: 'Updates, fixes, speed, and small feature work after launch — so the site keeps earning enquiries, not collecting dust.',
+    desc: 'Updates, fixes, speed, and small feature work after launch - so the site keeps earning enquiries, not collecting dust.',
     tags: ['Maintenance', 'Performance', 'Support'],
     href: '/services/website-maintenance',
   },
 ];
 
+/* Large-type index: one row open at a time, hover or focus opens it, tap toggles on touch. */
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState<number | null>(null);
+  const [open, setOpen] = useState(0);
 
   useEffect(() => {
     const el = headRef.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add('sr-visible'); obs.unobserve(el); } },
-      { threshold: 0.1 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const rows = Array.from(section.querySelectorAll<HTMLElement>('.svc-cell'));
-    rows.forEach((row) => {
-      row.style.opacity = '0';
-      row.style.transform = 'translateY(24px)';
-      row.style.transition = 'opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)';
-    });
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const i = rows.indexOf(entry.target as HTMLElement);
-            setTimeout(() => {
-              (entry.target as HTMLElement).style.opacity = '1';
-              (entry.target as HTMLElement).style.transform = 'none';
-            }, i * 55);
-            obs.unobserve(entry.target);
-          }
-        });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.classList.add('sr-visible');
+          io.disconnect();
+        }
       },
-      { threshold: 0.05 },
+      { threshold: 0.15 },
     );
-    rows.forEach((r) => obs.observe(r));
-    return () => obs.disconnect();
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 bg-ink border-t border-white/[0.04]">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div ref={headRef} className="sr flex items-end justify-between mb-16 flex-wrap gap-6">
-          <div>
-            <span className="label-tag">What I Do</span>
-            <h2
-              className="font-sans font-bold text-white mt-3"
-              style={{ fontSize: 'clamp(2rem,5vw,3.6rem)', lineHeight: 1, letterSpacing: '-0.03em' }}
-            >
-              What I help<br />you with
-            </h2>
-          </div>
-          <p className="font-body text-muted max-w-xs leading-relaxed text-sm">
-            Focused on trade and local service businesses — more enquiries, clearer proof, and sites that convert on mobile.
-          </p>
+    <section className="py-24 md:py-36 bg-ink">
+      <div className="max-w-[1360px] mx-auto px-6 md:px-10">
+        <div ref={headRef} className="sr mb-14 md:mb-20 max-w-[980px]">
+          <h2
+            className="font-sans font-bold text-white"
+            style={{ fontSize: 'clamp(2.4rem, 6vw, 5.2rem)', lineHeight: 0.98, letterSpacing: '-0.04em' }}
+          >
+            Everything a trade site needs to <span className="text-lime">book jobs.</span>
+          </h2>
         </div>
 
-        <div
-          className="grid grid-cols-1 md:grid-cols-2"
-          style={{ border: '1px solid rgba(255,255,255,0.05)' }}
-        >
+        <ul className="border-t border-white/[0.08]">
           {SERVICES.map((svc, i) => {
-            const isActive = active === i;
+            const isOpen = open === i;
             return (
-              <Link
-                key={i}
-                href={svc.href}
-                className="svc-cell group relative overflow-hidden"
-                style={{
-                  display: 'block',
-                  textDecoration: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.05)',
-                  borderRight: i % 2 === 0 ? '1px solid rgba(255,255,255,0.05)' : undefined,
-                  padding: '28px 32px 26px',
-                  cursor: 'pointer',
-                  background: isActive ? '#0e0e0e' : 'transparent',
-                  transition: 'background 0.35s ease',
-                }}
-                onMouseEnter={() => setActive(i)}
-                onMouseLeave={() => setActive(null)}
+              <li
+                key={svc.title}
+                className="border-b border-white/[0.08]"
+                onMouseEnter={() => window.matchMedia('(hover: hover)').matches && setOpen(i)}
               >
-                <div
-                  className="absolute inset-y-0 left-0 w-0.5 pointer-events-none"
-                  style={{
-                    background: '#C8FF00',
-                    transform: isActive ? 'scaleY(1)' : 'scaleY(0)',
-                    transformOrigin: 'bottom',
-                    transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1)',
-                  }}
-                />
-                <span
-                  className="absolute right-3 bottom-0 font-sans font-bold pointer-events-none select-none"
-                  style={{
-                    fontSize: '8rem',
-                    lineHeight: 0.85,
-                    color: isActive ? 'rgba(200,255,0,0.05)' : 'rgba(255,255,255,0.025)',
-                    transition: 'color 0.4s ease',
-                  }}
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={`svc-panel-${i}`}
+                  onClick={() => setOpen(i)}
+                  onFocus={() => setOpen(i)}
+                  className="w-full grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[5rem_1fr_auto] items-baseline gap-2 py-5 md:py-7 text-left group"
                 >
-                  {svc.n}
-                </span>
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <span
-                      className="font-body text-xs tabular-nums"
-                      style={{
-                        color: isActive ? 'rgba(200,255,0,0.6)' : 'rgba(255,255,255,0.2)',
-                        transition: 'color 0.3s',
-                      }}
-                    >
-                      {svc.n}
-                    </span>
-                    <svg
-                      width="13" height="13" viewBox="0 0 24 24" fill="none"
-                      stroke={isActive ? '#C8FF00' : 'rgba(255,255,255,0.15)'}
-                      strokeWidth="2"
-                      style={{
-                        transform: isActive ? 'translate(2px,-2px)' : 'none',
-                        transition: 'stroke 0.3s, transform 0.35s cubic-bezier(0.16,1,0.3,1)',
-                        flexShrink: 0,
-                      }}
-                    >
-                      <path d="M7 17L17 7M17 7H7M17 7v10" />
-                    </svg>
-                  </div>
-                  <h3
-                    className="font-sans font-semibold mb-2.5"
+                  <span className="font-body text-sm tabular-nums text-muted">{String(i + 1).padStart(2, '0')}</span>
+                  <span
+                    className="font-sans font-semibold transition-all duration-500"
                     style={{
-                      fontSize: '1.05rem',
-                      color: isActive ? 'var(--color-lime)' : 'var(--color-fg)',
-                      transition: 'color 0.3s ease',
+                      fontSize: 'clamp(1.5rem, 3.6vw, 3.2rem)',
+                      letterSpacing: '-0.03em',
+                      lineHeight: 1.05,
+                      color: isOpen ? 'var(--color-lime)' : 'rgba(255,255,255,0.72)',
+                      transform: isOpen ? 'translateX(12px)' : 'none',
+                      transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)',
                     }}
                   >
                     {svc.title}
-                  </h3>
-                  <p
-                    className="font-body text-sm leading-relaxed mb-4"
-                    style={{
-                      color: isActive ? `rgba(var(--fg-rgb),0.5)` : 'var(--color-muted)',
-                      transition: 'color 0.3s ease',
-                    }}
+                  </span>
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke={isOpen ? '#9FC7B8' : 'rgba(255,255,255,0.3)'}
+                    strokeWidth="2"
+                    className="transition-transform duration-500"
+                    style={{ transform: isOpen ? 'rotate(45deg)' : 'none' }}
+                    aria-hidden="true"
                   >
-                    {svc.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {svc.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-body text-xs px-2 py-0.5 rounded-sm"
-                        style={{
-                          background: isActive ? 'rgba(200,255,0,0.07)' : `rgba(var(--fg-rgb),0.04)`,
-                          color: isActive ? 'var(--color-lime)' : 'var(--color-muted)',
-                          border: isActive ? '1px solid rgba(200,255,0,0.14)' : `1px solid rgba(var(--fg-rgb),0.05)`,
-                          transition: 'background 0.3s, color 0.3s, border-color 0.3s',
-                        }}
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </button>
+
+                <div
+                  id={`svc-panel-${i}`}
+                  role="region"
+                  className="grid transition-[grid-template-rows] duration-500"
+                  style={{
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)',
+                  }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="grid md:grid-cols-[5rem_1fr_auto] gap-x-2 pb-8 md:pb-10">
+                      <span />
+                      <div className="md:pl-3 max-w-[64ch]">
+                        <p className="font-body text-white/65 leading-relaxed" style={{ fontSize: 'clamp(1rem,1.3vw,1.15rem)' }}>
+                          {svc.desc}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-5">
+                          {svc.tags.map((t) => (
+                            <span
+                              key={t}
+                              className="font-body text-xs px-3 py-1 rounded-full text-white/60 border border-white/10"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <Link
+                        href={svc.href}
+                        tabIndex={isOpen ? 0 : -1}
+                        className="mt-6 md:mt-0 self-end justify-self-start md:justify-self-end inline-flex items-center gap-2 font-sans font-semibold text-sm text-lime hover:gap-3 transition-all"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-4 h-px rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: isActive ? '100%' : '0%',
-                        background: 'linear-gradient(90deg, rgba(200,255,0,0.7), rgba(200,255,0,0.15))',
-                        transition: 'width 0.7s cubic-bezier(0.16,1,0.3,1)',
-                      }}
-                    />
+                        Learn more
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                          <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

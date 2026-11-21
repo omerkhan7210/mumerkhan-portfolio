@@ -16,7 +16,7 @@ function InfoLink({ href, children, lime }: { href: string; children: React.Reac
         fontFamily: 'var(--font-body)',
         fontSize: '0.85rem',
         color: lime
-          ? '#C8FF00'
+          ? '#9FC7B8'
           : hovered
           ? '#ffffff'
           : 'rgba(255,255,255,0.4)',
@@ -39,8 +39,8 @@ export default function ContactSidebar() {
       {/* Availability pill */}
       <div
         style={{
-          background: 'rgba(200,255,0,0.05)',
-          border: '1px solid rgba(200,255,0,0.18)',
+          background: 'rgba(159,199,184,0.05)',
+          border: '1px solid rgba(159,199,184,0.18)',
           borderRadius: 14,
           padding: '18px 22px',
           display: 'flex',
@@ -55,7 +55,7 @@ export default function ContactSidebar() {
               fontFamily: 'var(--font-display)',
               fontWeight: 600,
               fontSize: '0.88rem',
-              color: '#C8FF00',
+              color: '#9FC7B8',
               letterSpacing: '-0.01em',
               margin: 0,
             }}
@@ -66,7 +66,7 @@ export default function ContactSidebar() {
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '0.72rem',
-              color: 'rgba(200,255,0,0.45)',
+              color: 'rgba(159,199,184,0.45)',
               margin: '3px 0 0',
             }}
           >
@@ -100,7 +100,7 @@ export default function ContactSidebar() {
         },
         {
           heading: 'Upwork',
-          body: <InfoLink href="https://www.upwork.com/freelancers/muhammadumerk5" lime>View profile — 100% JSS ↗</InfoLink>,
+          body: <InfoLink href="https://www.upwork.com/freelancers/muhammadumerk5" lime>View profile - 100% JSS ↗</InfoLink>,
         },
       ].map(({ heading, body }) => (
         <div key={heading}>
@@ -165,7 +165,7 @@ export default function ContactSidebar() {
                   width: 4,
                   height: 4,
                   borderRadius: '50%',
-                  background: '#C8FF00',
+                  background: '#9FC7B8',
                   opacity: 0.55,
                   flexShrink: 0,
                 }}

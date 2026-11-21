@@ -30,7 +30,7 @@ export const services: Service[] = [
     tags: ['WordPress', 'WooCommerce', 'PHP', 'ACF', 'Elementor'],
     hero: {
       heading: 'WordPress That Actually Performs',
-      sub: 'Bespoke WordPress builds — fast, secure, and easy to manage without a developer on call.',
+      sub: 'Bespoke WordPress builds - fast, secure, and easy to manage without a developer on call.',
     },
     deliverables: [
       'Custom theme built from scratch (no page-builder bloat)',
@@ -51,11 +51,11 @@ export const services: Service[] = [
     ],
     technologies: ['WordPress', 'PHP', 'WooCommerce', 'Advanced Custom Fields', 'MySQL', 'Git', 'Cloudflare'],
     faqs: [
-      { q: 'Will I be able to edit the site myself?', a: 'Yes — every build gets a tailored admin setup and a screen-recorded tutorial. You\'ll be able to update text, images, and blog posts without touching code.' },
-      { q: 'Do you use page builders like Elementor or Divi?', a: 'I avoid them for custom work because they add significant bloat. Most projects use a hand-coded theme with Advanced Custom Fields for flexible content management.' },
+      { q: 'Will I be able to edit the site myself?', a: 'Yes - every build gets a tailored admin setup and a screen-recorded tutorial. You\'ll be able to update text, images, and blog posts without touching code.' },
+      { q: 'Do you build with Elementor or a custom theme?', a: 'Both. Elementor suits teams who want to edit layouts visually, and I build it lean: a light theme, global styles and no stacked add-on plugins. For sites where speed or complex data matters most, I hand-code a custom theme with Advanced Custom Fields. I will recommend whichever fits how your team works.' },
       { q: 'Can you migrate my existing WordPress site?', a: 'Absolutely. I handle full migrations including database, media files, redirects, and DNS changeover with zero downtime.' },
       { q: 'How long does a typical project take?', a: 'A standard 5–10 page marketing site takes 2–3 weeks. WooCommerce stores typically run 3–5 weeks depending on the product catalogue size.' },
-      { q: 'Do you offer ongoing maintenance?', a: 'Yes — I offer monthly retainer plans covering WordPress core, plugin, and theme updates, plus security scans and uptime monitoring.' },
+      { q: 'Do you offer ongoing maintenance?', a: 'Yes - I offer monthly retainer plans covering WordPress core, plugin, and theme updates, plus security scans and uptime monitoring.' },
     ],
   },
   {
@@ -68,7 +68,7 @@ export const services: Service[] = [
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'TypeScript', 'Next.js'],
     hero: {
       heading: 'Web Apps That Scale With You',
-      sub: 'From MVP to production — custom React/Node applications built with clean architecture and your growth in mind.',
+      sub: 'From MVP to production - custom React/Node applications built with clean architecture and your growth in mind.',
     },
     deliverables: [
       'React (or Next.js) frontend with TypeScript',
@@ -81,9 +81,9 @@ export const services: Service[] = [
       'Source code with clear README and handoff docs',
     ],
     process: [
-      { step: '01', title: 'Requirements Mapping', desc: 'We turn your idea into a feature list, data model, and API contract — so there\'s no ambiguity when we build.' },
+      { step: '01', title: 'Requirements Mapping', desc: 'We turn your idea into a feature list, data model, and API contract - so there\'s no ambiguity when we build.' },
       { step: '02', title: 'UI/UX Design', desc: 'Figma wireframes for every screen, mobile and desktop. Approved before development begins.' },
-      { step: '03', title: 'Backend First', desc: 'I build and test the API layer with real data before touching the frontend — fewer surprises later.' },
+      { step: '03', title: 'Backend First', desc: 'I build and test the API layer with real data before touching the frontend - fewer surprises later.' },
       { step: '04', title: 'Frontend Build', desc: 'React UI built component-by-component against the live API. You can test each feature as it\'s completed.' },
       { step: '05', title: 'Deploy & Document', desc: 'Production deployment, environment setup, and handoff documentation so your team can own it going forward.' },
     ],
@@ -99,7 +99,7 @@ export const services: Service[] = [
   {
     slug: 'n8n-automation',
     name: 'n8n Workflow Automation',
-    tagline: 'Automate repetitive tasks and connect your tools — without expensive SaaS fees.',
+    tagline: 'Automate repetitive tasks and connect your tools - without expensive SaaS fees.',
     metaDescription: 'n8n automation workflows by Umer Khan. Self-hosted Zapier alternative. Automate lead capture, CRM sync, email sequences, reporting and more. No per-task pricing.',
     icon: 'n8n',
     color: '#ea4b71',
@@ -119,17 +119,17 @@ export const services: Service[] = [
       '14-day monitoring period post-launch',
     ],
     process: [
-      { step: '01', title: 'Process Audit', desc: 'We map every manual step you currently do — spreadsheet updates, copy-paste between apps, email follow-ups — and prioritise by time saved.' },
+      { step: '01', title: 'Process Audit', desc: 'We map every manual step you currently do - spreadsheet updates, copy-paste between apps, email follow-ups - and prioritise by time saved.' },
       { step: '02', title: 'Architecture Design', desc: 'I design the workflow diagram before building, so you approve the logic and catch edge cases early.' },
-      { step: '03', title: 'Build & Test', desc: 'Workflows are built modularly — each node is tested independently, then together, using real (or realistic) data.' },
+      { step: '03', title: 'Build & Test', desc: 'Workflows are built modularly - each node is tested independently, then together, using real (or realistic) data.' },
       { step: '04', title: 'Error Handling', desc: 'Every production workflow gets error notifications, dead-letter queues, and automatic retries. Silent failures are not an option.' },
       { step: '05', title: 'Deploy & Train', desc: 'Live deployment to your environment, followed by a video walkthrough so your team can monitor and make minor edits.' },
     ],
     technologies: ['n8n', 'REST APIs', 'Webhooks', 'HubSpot', 'Airtable', 'Slack', 'Gmail', 'Notion', 'PostgreSQL'],
     faqs: [
-      { q: 'Why n8n instead of Zapier or Make?', a: 'n8n is self-hosted — you own your data and pay a flat server cost, not a per-task fee. For businesses running thousands of automations per month, the savings are significant.' },
+      { q: 'Why n8n instead of Zapier or Make?', a: 'n8n is self-hosted - you own your data and pay a flat server cost, not a per-task fee. For businesses running thousands of automations per month, the savings are significant.' },
       { q: 'What tools can n8n connect to?', a: 'n8n has 400+ native integrations and can connect to any service with a REST API or webhook. If it has an API, n8n can talk to it.' },
-      { q: 'I\'m not technical — will I be able to maintain it?', a: 'Yes. n8n has a visual drag-and-drop interface. I\'ll build the workflows and give you a walkthrough. Most clients can make minor edits within a day.' },
+      { q: 'I\'m not technical - will I be able to maintain it?', a: 'Yes. n8n has a visual drag-and-drop interface. I\'ll build the workflows and give you a walkthrough. Most clients can make minor edits within a day.' },
       { q: 'Do I need my own server?', a: 'You\'ll need a small VPS (€5–15/month on Hetzner or DigitalOcean). I handle the full server setup and n8n installation as part of the project.' },
       { q: 'What kinds of automations do you typically build?', a: 'Lead capture → CRM sync, sales pipeline updates, automated client onboarding emails, weekly reporting dashboards, social media scheduling, and invoice generation are the most common.' },
     ],
@@ -144,7 +144,7 @@ export const services: Service[] = [
     tags: ['Figma', 'React', 'HTML/CSS', 'Animation', 'Responsive'],
     hero: {
       heading: 'Your Design, Exactly as You Drew It',
-      sub: 'Pixel-perfect Figma-to-code conversion — every spacing, shadow, and interaction faithfully reproduced in the browser.',
+      sub: 'Pixel-perfect Figma-to-code conversion - every spacing, shadow, and interaction faithfully reproduced in the browser.',
     },
     deliverables: [
       'Semantic HTML with accessible markup (WCAG AA)',
@@ -157,16 +157,16 @@ export const services: Service[] = [
       'Clean, commented handoff-ready code',
     ],
     process: [
-      { step: '01', title: 'Design Review', desc: 'I audit your Figma file for inconsistencies, missing states, and responsive gaps before writing a line of code — saving revisions later.' },
+      { step: '01', title: 'Design Review', desc: 'I audit your Figma file for inconsistencies, missing states, and responsive gaps before writing a line of code - saving revisions later.' },
       { step: '02', title: 'Design Tokens', desc: 'Colours, typography, spacing, and shadows are extracted into CSS variables so the site is consistent and easy to update.' },
       { step: '03', title: 'Component Build', desc: 'I build bottom-up: atoms (buttons, inputs) → molecules (cards, navs) → pages. You review each component before we proceed.' },
-      { step: '04', title: 'Animations', desc: 'Scroll reveals, hover effects, and page transitions are added last — so they enhance the experience without blocking the core build.' },
+      { step: '04', title: 'Animations', desc: 'Scroll reveals, hover effects, and page transitions are added last - so they enhance the experience without blocking the core build.' },
       { step: '05', title: 'QA & Handoff', desc: 'Side-by-side comparison of Figma vs browser on each breakpoint. Annotated differences resolved before final delivery.' },
     ],
     technologies: ['Figma', 'React', 'Next.js', 'Tailwind CSS', 'GSAP', 'Framer Motion', 'HTML5', 'CSS3'],
     faqs: [
       { q: 'What format should my Figma file be in?', a: 'Ideally a shared Figma link with viewer access. The design should cover desktop (1440px) and mobile (375px) breakpoints at minimum, with all interactive states designed.' },
-      { q: 'Can you work with partial designs?', a: 'Yes — I can fill gaps using your existing design system or brand guidelines. Gaps are flagged upfront so there are no surprises.' },
+      { q: 'Can you work with partial designs?', a: 'Yes - I can fill gaps using your existing design system or brand guidelines. Gaps are flagged upfront so there are no surprises.' },
       { q: 'Do you handle backend/CMS integration too?', a: 'Absolutely. Most Figma-to-web projects pair naturally with WordPress or a headless CMS so clients can manage content themselves.' },
       { q: 'What if the design needs changes during development?', a: 'Small changes (copy, colours) are included at no charge. Structural layout changes mid-project are scoped separately to avoid timeline creep.' },
       { q: 'Can you match animations from a Figma prototype?', a: 'Yes. I translate Figma prototype interactions into real CSS/JS animations, and can suggest improvements where the prototype approach isn\'t practical in the browser.' },
@@ -175,14 +175,14 @@ export const services: Service[] = [
   {
     slug: 'ecommerce-development',
     name: 'E-Commerce Development',
-    tagline: 'Online stores built to sell — fast checkout, seamless UX, and solid infrastructure.',
+    tagline: 'Online stores built to sell - fast checkout, seamless UX, and solid infrastructure.',
     metaDescription: 'E-commerce development by Umer Khan. WooCommerce stores, custom product pages, payment gateway integration, and conversion-focused design. Worldwide clients.',
     icon: 'SHOP',
     color: '#96588a',
     tags: ['WooCommerce', 'WordPress', 'Payment Gateways', 'Inventory', 'SEO'],
     hero: {
       heading: 'An Online Store That Actually Sells',
-      sub: 'Conversion-focused WooCommerce stores — fast, secure, and set up to grow with your product catalogue.',
+      sub: 'Conversion-focused WooCommerce stores - fast, secure, and set up to grow with your product catalogue.',
     },
     deliverables: [
       'Custom WooCommerce theme (no page builders)',
@@ -196,31 +196,31 @@ export const services: Service[] = [
     ],
     process: [
       { step: '01', title: 'Store Strategy', desc: 'We map out your product catalogue, pricing logic, shipping rules, and checkout flow before any design work begins.' },
-      { step: '02', title: 'Design & UX', desc: 'Figma designs for product listing, product detail, cart, and checkout pages — optimised for conversion, not just aesthetics.' },
+      { step: '02', title: 'Design & UX', desc: 'Figma designs for product listing, product detail, cart, and checkout pages - optimised for conversion, not just aesthetics.' },
       { step: '03', title: 'WooCommerce Build', desc: 'Custom theme built on WooCommerce. Product pages, variation pickers, quantity controls, and trust signals all bespoke.' },
       { step: '04', title: 'Payments & Shipping', desc: 'Payment gateways tested in sandbox mode, shipping zones configured, and tax rules set up for your markets.' },
       { step: '05', title: 'Launch & Track', desc: 'Go-live checklist: SSL, redirects, Google Shopping feed, Analytics events, and a test order end-to-end before we flip the switch.' },
     ],
     technologies: ['WordPress', 'WooCommerce', 'Stripe', 'PayPal', 'PHP', 'MySQL', 'Google Analytics 4', 'GTM'],
     faqs: [
-      { q: 'Can you migrate my existing Shopify/WooCommerce store?', a: 'Yes — products, customers, and order history can all be migrated. Shopify migrations use the official CSV export format; WooCommerce-to-WooCommerce uses the native migrator.' },
+      { q: 'Can you migrate my existing Shopify/WooCommerce store?', a: 'Yes - products, customers, and order history can all be migrated. Shopify migrations use the official CSV export format; WooCommerce-to-WooCommerce uses the native migrator.' },
       { q: 'What payment gateways do you support?', a: 'Stripe, PayPal, and Razorpay are the most common. I can integrate any gateway with a WooCommerce extension or REST API, including local Pakistani gateways.' },
-      { q: 'Will it handle large product catalogues?', a: 'WooCommerce handles thousands of products well with proper caching (Redis or Varnish), a CDN, and database indexing — all of which I set up as standard.' },
-      { q: 'Do you set up the checkout flow?', a: 'Yes — cart, checkout, and account pages are all fully customised and tested. I also configure guest checkout, address autocomplete, and one-page checkout for higher conversion.' },
-      { q: 'Can you add a subscription or membership model?', a: 'Yes — WooCommerce Subscriptions for recurring billing and WooCommerce Memberships for gated content are both supported.' },
+      { q: 'Will it handle large product catalogues?', a: 'WooCommerce handles thousands of products well with proper caching (Redis or Varnish), a CDN, and database indexing - all of which I set up as standard.' },
+      { q: 'Do you set up the checkout flow?', a: 'Yes - cart, checkout, and account pages are all fully customised and tested. I also configure guest checkout, address autocomplete, and one-page checkout for higher conversion.' },
+      { q: 'Can you add a subscription or membership model?', a: 'Yes - WooCommerce Subscriptions for recurring billing and WooCommerce Memberships for gated content are both supported.' },
     ],
   },
   {
     slug: 'ui-ux-design',
     name: 'UI/UX Design',
-    tagline: 'User interfaces that look sharp and feel intuitive — designed in Figma, ready to build.',
+    tagline: 'User interfaces that look sharp and feel intuitive - designed in Figma, ready to build.',
     metaDescription: 'UI/UX design services by Umer Khan. Figma design systems, wireframes, interactive prototypes for web apps and websites. Brand-consistent, conversion-focused.',
     icon: 'UX',
     color: '#ff7262',
     tags: ['Figma', 'Design Systems', 'Wireframes', 'Prototyping', 'UX Research'],
     hero: {
       heading: 'Design That Turns Visitors Into Customers',
-      sub: 'Figma-first UI/UX work — from rough wireframe to pixel-perfect prototype ready for handoff.',
+      sub: 'Figma-first UI/UX work - from rough wireframe to pixel-perfect prototype ready for handoff.',
     },
     deliverables: [
       'User flow diagrams and sitemap',
@@ -235,13 +235,13 @@ export const services: Service[] = [
     process: [
       { step: '01', title: 'UX Research', desc: 'Competitor analysis, user goals, and pain points mapped out. A product built on assumptions ships twice.' },
       { step: '02', title: 'Information Architecture', desc: 'Sitemap and user flows defined so we know every screen that needs designing before opening Figma.' },
-      { step: '03', title: 'Wireframes', desc: 'Greyscale layouts for every key screen — reviewed and approved before adding colour or detail.' },
+      { step: '03', title: 'Wireframes', desc: 'Greyscale layouts for every key screen - reviewed and approved before adding colour or detail.' },
       { step: '04', title: 'Visual Design', desc: 'High-fidelity Figma screens with your brand colours, typography, and photography. Includes all interactive states.' },
       { step: '05', title: 'Prototype & Handoff', desc: 'Interactive Figma prototype for stakeholder sign-off, then a developer-ready handoff file with spacing, assets, and tokens.' },
     ],
     technologies: ['Figma', 'FigJam', 'Stark (Accessibility)', 'Unsplash', 'Google Fonts', 'Iconify'],
     faqs: [
-      { q: 'Do you also develop the designs you create?', a: 'Yes — this is actually my biggest differentiator. I design with development constraints in mind and can build the final product myself, so there\'s no translation loss between design and code.' },
+      { q: 'Do you also develop the designs you create?', a: 'Yes - this is actually my biggest differentiator. I design with development constraints in mind and can build the final product myself, so there\'s no translation loss between design and code.' },
       { q: 'What if I only have a logo and colour palette?', a: 'That\'s a perfect starting point. I\'ll extend your brand identity into a full design system and apply it consistently across all screens.' },
       { q: 'Can you redesign an existing product?', a: 'Yes. I\'ll do a UX audit of the current design first, identify friction points, and propose targeted improvements rather than a full rebuild if that\'s more appropriate.' },
       { q: 'How many revisions are included?', a: 'Two rounds of revisions per screen are included in the base price. Additional rounds are available at an hourly rate. Most projects wrap in one or two rounds.' },
@@ -258,7 +258,7 @@ export const services: Service[] = [
     tags: ['Technical SEO', 'Core Web Vitals', 'Schema', 'PageSpeed', 'Lighthouse'],
     hero: {
       heading: 'Rank Higher. Load Faster.',
-      sub: 'Technical SEO and Core Web Vitals work that translates into real search rankings — not just green Lighthouse bars.',
+      sub: 'Technical SEO and Core Web Vitals work that translates into real search rankings - not just green Lighthouse bars.',
     },
     deliverables: [
       'Full technical SEO audit (crawl errors, redirects, indexing)',
@@ -272,7 +272,7 @@ export const services: Service[] = [
     ],
     process: [
       { step: '01', title: 'Audit', desc: 'Full crawl of your site with Screaming Frog and Lighthouse. Every issue is catalogued, prioritised by impact, and presented in a clear action list.' },
-      { step: '02', title: 'Quick Wins', desc: 'Image compression, caching headers, and meta tag fixes are implemented first — these typically move the needle within days.' },
+      { step: '02', title: 'Quick Wins', desc: 'Image compression, caching headers, and meta tag fixes are implemented first - these typically move the needle within days.' },
       { step: '03', title: 'Core Web Vitals', desc: 'LCP, INP, and CLS improvements: server response time, render-blocking resources, layout shift culprits. Each fix is measured before and after.' },
       { step: '04', title: 'Schema & Structure', desc: 'Structured data added for your key content types. Sitemap and robots.txt reviewed. Internal linking reviewed for crawl efficiency.' },
       { step: '05', title: 'Reporting', desc: 'A before/after Lighthouse report and a Search Console benchmark so you can see exactly what changed and track the impact over the coming months.' },
@@ -282,14 +282,14 @@ export const services: Service[] = [
       { q: 'How long before I see results in search rankings?', a: 'Technical fixes (speed, indexing, schema) are picked up by Google within 2–4 weeks. Ranking improvements typically become visible over 2–3 months as Google re-crawls and re-evaluates your pages.' },
       { q: 'Do you do content SEO (keyword research, writing)?', a: 'My focus is technical SEO and performance. I can recommend content opportunities and keyword gaps, but the actual writing is not part of the core service.' },
       { q: 'What Lighthouse score should I aim for?', a: 'A Performance score of 90+ on mobile is the practical target. Scores above 90 are where diminishing returns set in; the effort is better spent on content and links.' },
-      { q: 'Do I need to be on WordPress for this?', a: 'No. I work with any platform — WordPress, Next.js, Webflow, custom builds. The optimisation techniques differ but the principles are the same.' },
+      { q: 'Do I need to be on WordPress for this?', a: 'No. I work with any platform - WordPress, Next.js, Webflow, custom builds. The optimisation techniques differ but the principles are the same.' },
       { q: 'Can you help if my site was penalised by Google?', a: 'Yes. Manual penalty recovery (submitting a reconsideration request) and algorithmic penalty analysis are available as a separate engagement. Send me your Search Console data and I\'ll assess.' },
     ],
   },
   {
     slug: 'website-maintenance',
     name: 'Website Maintenance',
-    tagline: 'Monthly care plans that keep your site secure, fast, and up to date — without you lifting a finger.',
+    tagline: 'Monthly care plans that keep your site secure, fast, and up to date - without you lifting a finger.',
     metaDescription: 'WordPress website maintenance by Umer Khan. Monthly updates, security monitoring, backups, uptime monitoring, and 1 hour of content changes. Flat monthly rate.',
     icon: 'MAINT',
     color: '#a3e635',
@@ -311,7 +311,7 @@ export const services: Service[] = [
     process: [
       { step: '01', title: 'Onboarding', desc: 'Access to your WordPress admin, hosting, and DNS. I set up automated backups and monitoring tools before touching anything else.' },
       { step: '02', title: 'Initial Audit', desc: 'Snapshot of current plugin versions, security status, and performance baseline. Any immediate risks are fixed in the first session.' },
-      { step: '03', title: 'Monthly Updates', desc: 'Core, themes, and plugins updated in a staging environment first — tested, then pushed to production. Zero downtime for your visitors.' },
+      { step: '03', title: 'Monthly Updates', desc: 'Core, themes, and plugins updated in a staging environment first - tested, then pushed to production. Zero downtime for your visitors.' },
       { step: '04', title: 'Security Check', desc: 'Monthly malware scan, login attempt review, and file integrity check. Any issues flagged and resolved before they become problems.' },
       { step: '05', title: 'Report', desc: 'Monthly email with uptime %, speed score, what was updated, any issues found, and a summary of content changes made.' },
     ],
@@ -319,7 +319,7 @@ export const services: Service[] = [
     faqs: [
       { q: 'What platforms do you maintain?', a: 'Primarily WordPress sites. For non-WordPress sites (Next.js, static sites), I offer a lighter plan covering server monitoring, dependency updates, and deployment support.' },
       { q: 'What if something breaks?', a: 'Covered. If an update causes an issue, I roll back immediately using the pre-update backup and fix the root cause. This is included at no extra charge.' },
-      { q: 'Can I increase the content editing hours?', a: 'Yes — additional hours are available at an hourly rate, billed at the end of each month. Most clients find 1 hour is sufficient for minor copy and image updates.' },
+      { q: 'Can I increase the content editing hours?', a: 'Yes - additional hours are available at an hourly rate, billed at the end of each month. Most clients find 1 hour is sufficient for minor copy and image updates.' },
       { q: 'Is there a contract?', a: 'Month-to-month with 30 days\' notice to cancel. No long-term commitment required.' },
       { q: 'Do you offer emergency support outside the maintenance plan?', a: 'Yes. If your site goes down or is hacked outside the maintenance schedule, I offer emergency response with a 2-hour SLA. Fee: $80/hour, minimum 1 hour.' },
     ],

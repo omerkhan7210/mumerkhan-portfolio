@@ -55,7 +55,7 @@ export default function AiSummary({
           fontSize: '0.7rem',
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
-          color: '#C8FF00',
+          color: '#9FC7B8',
           marginBottom: 8,
         }}
       >

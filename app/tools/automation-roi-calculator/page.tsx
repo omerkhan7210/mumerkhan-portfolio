@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { PageHero } from '@/components/page/Page';
 import AutomationRoiCalculator from '@/components/AutomationRoiCalculator';
 import BenchmarkTable from '@/components/calculators/BenchmarkTable';
 import FaqSection from '@/components/calculators/FaqSection';
 
 export const metadata: Metadata = {
-  title: 'Automation ROI Calculator 2026 — n8n & Workflow Savings',
+  title: 'Automation ROI Calculator 2026 - n8n & Workflow Savings',
   description:
     'Free automation ROI calculator. See how many hours and dollars a workflow automation (n8n, Zapier, Make) could save your business every year, and the exact payback period.',
   alternates: { canonical: 'https://mumerkhan.com/tools/automation-roi-calculator' },
@@ -47,7 +48,7 @@ const SAVINGS_SOURCES = [
 const FAQ_ITEMS = [
   {
     q: 'How accurate is this automation ROI estimate?',
-    a: 'The labor savings calculation is straightforward math: hours saved per week × hourly cost × team size, annualized. The setup cost and payback period are based on real n8n project tiers (simple/medium/complex) determined by how many apps are involved and whether you need branching logic or error handling — not a flat guess.',
+    a: 'The labor savings calculation is straightforward math: hours saved per week × hourly cost × team size, annualized. The setup cost and payback period are based on real n8n project tiers (simple/medium/complex) determined by how many apps are involved and whether you need branching logic or error handling - not a flat guess.',
   },
   {
     q: 'What is n8n and why does it change the numbers?',
@@ -59,7 +60,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Is my workflow too complex or too simple to automate?',
-    a: 'Almost any repetitive task that involves moving data between two or more digital tools is a good candidate. The exceptions are tasks that require human judgment calls on every instance, or processes still fully on paper — those usually need a digitization step first before automation makes sense.',
+    a: 'Almost any repetitive task that involves moving data between two or more digital tools is a good candidate. The exceptions are tasks that require human judgment calls on every instance, or processes still fully on paper - those usually need a digitization step first before automation makes sense.',
   },
 ];
 
@@ -68,54 +69,24 @@ export default function AutomationRoiCalculatorPage() {
     <>
       <Header />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section
-        className="relative bg-ink bg-grid-pattern overflow-hidden"
-        style={{ paddingTop: 'clamp(120px, 16vw, 180px)', paddingBottom: 'clamp(48px, 6vw, 72px)' }}
-      >
-        <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
-          <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>
-            Free Tool
-          </span>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              color: '#ffffff',
-              fontSize: 'clamp(2.2rem, 6vw, 3.6rem)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.03em',
-              marginTop: 12,
-            }}
-          >
-            Automation ROI calculator
-          </h1>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              color: 'rgba(255,255,255,0.45)',
-              fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-              maxWidth: 560,
-              lineHeight: 1.65,
-              marginTop: 18,
-            }}
-          >
-            See how much time and money a workflow automation could actually save your business, and how fast it pays for itself.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        crumbs={[{ href: '/tools', label: 'Tools' }, { href: '/tools/automation-roi-calculator', label: 'Automation ROI calculator' }]}
+        title={['Automation ROI', 'calculator']}
+        lead="See how much time and money a workflow automation could save your business, and how fast it pays for itself."
+      />
 
-      <section style={{ background: '#0A0A0A', padding: '0 24px 100px' }}>
+      <section style={{ padding: '0 24px 100px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
           <AutomationRoiCalculator />
         </div>
       </section>
 
-      <section style={{ background: '#0A0A0A', padding: '0 24px 100px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: 'var(--surface)', padding: '96px 24px 100px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 56, paddingTop: 64 }}>
           <div>
             <h2 style={h2Style}>How this estimate is calculated</h2>
             <p style={pStyle}>
-              Labor savings come from a simple formula — hours saved per week × hourly cost × team size, annualized. The
+              Labor savings come from a simple formula - hours saved per week × hourly cost × team size, annualized. The
               workflow complexity tier (and therefore the setup cost and payback period) is determined by how many apps
               are involved and whether you need conditional branching or error handling, not a self-reported "easy/medium/hard" label.
             </p>
@@ -128,7 +99,7 @@ export default function AutomationRoiCalculatorPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               {SAVINGS_SOURCES.map((s) => (
                 <div key={s.label}>
-                  <p style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.95rem', color: '#fff', marginBottom: 4 }}>{s.label}</p>
+                  <p style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.125rem', color: 'var(--ink)', marginBottom: 4 }}>{s.label}</p>
                   <p style={pStyle}>{s.detail}</p>
                 </div>
               ))}
@@ -158,23 +129,25 @@ export default function AutomationRoiCalculatorPage() {
 
 const h2Style: React.CSSProperties = {
   fontFamily: 'var(--font-display)',
-  fontWeight: 700,
-  fontSize: 'clamp(1.4rem, 3vw, 1.9rem)',
-  color: '#fff',
-  letterSpacing: '-0.02em',
+  fontWeight: 500,
+  fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
+  color: 'var(--ink)',
+  letterSpacing: '-0.01em',
   marginBottom: 20,
 };
 
 const pStyle: React.CSSProperties = {
   fontFamily: 'var(--font-body)',
-  fontSize: '0.92rem',
-  color: 'rgba(255,255,255,0.5)',
-  lineHeight: 1.75,
+  fontSize: '1.0625rem',
+  color: '#C4C7BF',
+  lineHeight: 1.65,
 };
 
 const linkStyle: React.CSSProperties = {
   fontFamily: 'var(--font-body)',
-  fontSize: '0.9rem',
-  color: '#C8FF00',
-  textDecoration: 'none',
+  fontSize: '1.0625rem',
+  color: 'var(--ink)',
+  textDecoration: 'underline',
+  textDecorationColor: '#9FC7B8',
+  textUnderlineOffset: 4,
 };

@@ -28,7 +28,7 @@ export function SocialCard() {
           width: 700,
           height: 700,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(200,255,0,0.16) 0%, rgba(200,255,0,0) 65%)',
+          background: 'radial-gradient(circle, rgba(159,199,184,0.16) 0%, rgba(159,199,184,0) 65%)',
         }}
       />
 
@@ -41,9 +41,9 @@ export function SocialCard() {
             gap: 10,
             padding: '8px 18px',
             borderRadius: 100,
-            border: '1px solid rgba(200,255,0,0.3)',
-            background: 'rgba(200,255,0,0.06)',
-            color: '#C8FF00',
+            border: '1px solid rgba(159,199,184,0.3)',
+            background: 'rgba(159,199,184,0.06)',
+            color: '#9FC7B8',
             fontSize: 22,
             fontWeight: 600,
             marginBottom: 28,
@@ -80,7 +80,7 @@ export function SocialCard() {
             ['6+', 'Years'],
           ].map(([num, label]) => (
             <div key={label} style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: 36, fontWeight: 800, color: '#C8FF00', letterSpacing: '-0.02em' }}>{num}</span>
+              <span style={{ fontSize: 36, fontWeight: 800, color: '#9FC7B8', letterSpacing: '-0.02em' }}>{num}</span>
               <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.4)' }}>{label}</span>
             </div>
           ))}
@@ -94,7 +94,7 @@ export function SocialCard() {
           height: 440,
           borderRadius: 28,
           overflow: 'hidden',
-          border: '2px solid rgba(200,255,0,0.3)',
+          border: '2px solid rgba(159,199,184,0.3)',
           display: 'flex',
           flexShrink: 0,
           zIndex: 1,

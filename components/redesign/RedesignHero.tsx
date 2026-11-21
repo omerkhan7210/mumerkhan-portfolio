@@ -23,14 +23,14 @@ export default function RedesignHero({
           top: '20%',
           width: 640,
           height: 640,
-          background: 'radial-gradient(circle, rgba(200,255,0,0.07) 0%, transparent 68%)',
+          background: 'radial-gradient(circle, rgba(159,199,184,0.07) 0%, transparent 68%)',
           pointerEvents: 'none',
         }}
       />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 28px', position: 'relative', zIndex: 1 }}>
         <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>
-          Built to fix your {offer.eyebrowNoun} — {trade.short}
+          Built to fix your {offer.eyebrowNoun} - {trade.short}
         </span>
 
         <h1
@@ -46,7 +46,7 @@ export default function RedesignHero({
           }}
         >
           I already {offer.verb}{company ? ` ${company}'s` : ' your'}{' '}
-          <em className="not-italic" style={{ color: '#C8FF00' }}>
+          <em className="not-italic" style={{ color: '#9FC7B8' }}>
             {offer.noun}.
           </em>
         </h1>
@@ -84,8 +84,8 @@ export default function RedesignHero({
             marginTop: 20,
           }}
         >
-          No payment, no obligation — see{' '}
-          <Link href="/work" style={{ color: 'rgba(200,255,0,0.6)' }}>
+          No payment, no obligation - see{' '}
+          <Link href="/work" style={{ color: 'rgba(159,199,184,0.6)' }}>
             real trade &amp; local service rebuilds
           </Link>{' '}
           below first.

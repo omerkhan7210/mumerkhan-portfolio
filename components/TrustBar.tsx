@@ -37,7 +37,7 @@ function useCounter(target: number, startMs: number, durationMs = 1400) {
 }
 
 const BADGES = [
-  { icon: '✦', label: '100% Job Success', sub: 'Upwork Score', accent: '#C8FF00' },
+  { icon: '✦', label: '100% Job Success', sub: 'Upwork Score', accent: '#9FC7B8' },
   { icon: '⭐', label: 'Top Rated', sub: 'Upwork Badge', accent: '#FBBF24' },
 ];
 

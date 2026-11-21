@@ -88,10 +88,10 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
       style={{
         position: 'relative',
         background: plan.highlight
-          ? 'linear-gradient(145deg, rgba(200,255,0,0.05) 0%, rgba(200,255,0,0.02) 100%)'
+          ? 'linear-gradient(145deg, rgba(159,199,184,0.05) 0%, rgba(159,199,184,0.02) 100%)'
           : 'rgba(255,255,255,0.02)',
         border: plan.highlight
-          ? '1px solid rgba(200,255,0,0.22)'
+          ? '1px solid rgba(159,199,184,0.22)'
           : '1px solid rgba(255,255,255,0.07)',
         borderRadius: 20,
         padding: '36px 30px 32px',
@@ -101,7 +101,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         opacity: visible ? 1 : 0,
         transition: 'opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1)',
         boxShadow: plan.highlight
-          ? '0 0 60px rgba(200,255,0,0.08), 0 24px 60px rgba(0,0,0,0.45)'
+          ? '0 0 60px rgba(159,199,184,0.08), 0 24px 60px rgba(0,0,0,0.45)'
           : '0 20px 40px rgba(0,0,0,0.3)',
       }}
     >
@@ -113,7 +113,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
             top: -14,
             left: '50%',
             transform: 'translateX(-50%)',
-            background: '#C8FF00',
+            background: '#9FC7B8',
             color: '#0A0A0A',
             fontFamily: 'var(--font-display)',
             fontWeight: 700,
@@ -134,7 +134,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         style={{
           fontFamily: 'var(--font-body)',
           fontSize: '0.68rem',
-          color: plan.highlight ? '#C8FF00' : 'rgba(255,255,255,0.32)',
+          color: plan.highlight ? '#9FC7B8' : 'rgba(255,255,255,0.32)',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           marginBottom: 6,
@@ -221,7 +221,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
             >
               <path
                 d="M5 13L9 17L19 7"
-                stroke={plan.highlight ? '#C8FF00' : 'rgba(255,255,255,0.32)'}
+                stroke={plan.highlight ? '#9FC7B8' : 'rgba(255,255,255,0.32)'}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -339,7 +339,7 @@ export default function PricingSection() {
           Need something in between?{' '}
           <Link
             href="/contact"
-            style={{ color: 'rgba(200,255,0,0.55)', textDecoration: 'none' }}
+            style={{ color: 'rgba(159,199,184,0.55)', textDecoration: 'none' }}
           >
             Let&apos;s build a custom quote.
           </Link>

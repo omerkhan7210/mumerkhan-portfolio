@@ -6,7 +6,7 @@ import Link from 'next/link';
 import projectsData from '@/data/projects.json';
 
 /* The five trade / local-service case studies already in the
-   portfolio — reused here rather than duplicated, framed as
+   portfolio - reused here rather than duplicated, framed as
    problem → fix → result instead of a generic project grid. */
 const TRADE_SLUGS = ['erbs-ltd', 'wlk-gardeners', 'isg-flooring', 'v1-campers', 'bright-home'];
 
@@ -80,7 +80,7 @@ export default function RedesignProof() {
             </h2>
           </div>
           <p className="font-body text-muted max-w-xs text-sm leading-relaxed">
-            No before/after screenshots here — just what was actually broken, and what
+            No before/after screenshots here - just what was actually broken, and what
             replaced it, on live sites for real roofing, gardening, flooring, and hire
             businesses.
           </p>
@@ -103,7 +103,7 @@ export default function RedesignProof() {
                   </h3>
                   <span
                     className="font-body text-xs px-2 py-0.5 rounded-sm"
-                    style={{ background: 'rgba(200,255,0,0.07)', color: 'rgba(200,255,0,0.65)', border: '1px solid rgba(200,255,0,0.14)' }}
+                    style={{ background: 'rgba(159,199,184,0.07)', color: 'rgba(159,199,184,0.65)', border: '1px solid rgba(159,199,184,0.14)' }}
                   >
                     {project.category}
                   </span>
@@ -130,7 +130,7 @@ export default function RedesignProof() {
                 <Link
                   href={`/work/${project.slug}`}
                   className="font-body text-sm font-semibold flex items-center gap-1.5 mt-auto"
-                  style={{ color: '#C8FF00' }}
+                  style={{ color: '#9FC7B8' }}
                 >
                   Read the full case study
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

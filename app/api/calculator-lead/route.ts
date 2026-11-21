@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       const resultEmail = buildCalculatorResultEmail(payload);
       const notifyEmail = buildCalculatorLeadNotificationEmail(payload);
       await Promise.allSettled([
-        sendMail({ to: email.trim(), from: `"Umer Khan" <${salesEmail}>`, subject: resultEmail.subject, html: resultEmail.html }),
+        sendMail({ to: email.trim(), subject: resultEmail.subject, html: resultEmail.html }),
         sendMail({ to: salesEmail, replyTo: email.trim(), subject: notifyEmail.subject, html: notifyEmail.html }),
       ]).then((results) => {
         results.forEach((r) => {

@@ -46,7 +46,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     return () => cleanup?.();
   }, []);
 
-  /* Reset scroll position on every route change — Lenis intercepts native
+  /* Reset scroll position on every route change - Lenis intercepts native
      scrolling, so Next.js's default scroll-to-top on navigation never
      reaches it, and the new page otherwise opens at the old scroll offset. */
   useEffect(() => {

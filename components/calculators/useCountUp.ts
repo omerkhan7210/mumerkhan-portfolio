@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 /* Animates from the previous displayed value to a new target whenever
-   the target changes — used so the headline number doesn't just jump
+   the target changes - used so the headline number doesn't just jump
    when the user tweaks an input, it visibly counts to the new value. */
 export function useCountUp(target: number, durationMs = 500) {
   const [display, setDisplay] = useState(target);

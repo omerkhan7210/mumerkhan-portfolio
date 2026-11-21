@@ -2,139 +2,53 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Reveal from '@/components/home/Reveal';
 import { skills } from '@/data/skills';
-import {
-  SiWordpress,
-  SiReact,
-  SiNodedotjs,
-  SiMongodb,
-  SiFigma,
-  SiN8N,
-  SiJavascript,
-  SiTypescript,
-  SiNextdotjs,
-  SiPhp,
-  SiTailwindcss,
-  SiWoocommerce,
-  SiGit,
-  SiHtml5,
-  SiMysql,
-} from 'react-icons/si';
-import type { IconType } from 'react-icons';
+import { PageHero, PageClosing } from '@/components/page/Page';
 
 export const metadata: Metadata = {
-  title: 'Skills & Experience — WordPress, React, n8n & More',
+  title: 'Skills: WordPress, Next.js, React, WooCommerce, n8n & More',
   description:
-    'A detailed look at my real experience with WordPress, React, Node.js, n8n automation, and every other tool I use — backed by actual client projects, not just a list of logos.',
+    'The tools I build with, each backed by real client projects: WordPress, Elementor, WooCommerce, Next.js, React, Node.js, MongoDB, n8n, Figma and more.',
   alternates: { canonical: 'https://mumerkhan.com/skills' },
-  openGraph: {
-    title: 'Skills & Experience | Umer Khan',
-    description: 'Real experience with WordPress, React, Node.js, n8n, and more — backed by actual client projects.',
-    url: 'https://mumerkhan.com/skills',
-  },
-};
-
-const ICONS: Record<string, IconType> = {
-  SiWordpress,
-  SiReact,
-  SiNodedotjs,
-  SiMongodb,
-  SiFigma,
-  SiN8N,
-  SiJavascript,
-  SiTypescript,
-  SiNextdotjs,
-  SiPhp,
-  SiTailwindcss,
-  SiWoocommerce,
-  SiGit,
-  SiHtml5,
-  SiMysql,
 };
 
 export default function SkillsPage() {
+  const groups = Array.from(new Set(skills.map((s) => s.category)));
   return (
     <>
       <Header />
-      <main className="bg-ink min-h-screen">
-        {/* ── Hero ──────────────────────────────────────────── */}
-        <section className="pt-36 pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,255,0,0.06) 0%, transparent 65%)',
-          }} />
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 relative z-10">
-            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-              <span className="font-body text-muted text-xs tracking-[0.12em] uppercase">Skills & experience</span>
-            </div>
-            <h1
-              className="font-sans font-extrabold text-white mb-6"
-              style={{ fontSize: 'clamp(2.6rem, 5.5vw, 5.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
-            >
-              Every skill, backed by{' '}
-              <span className="text-lime">real projects</span>
-            </h1>
-            <p className="font-body text-muted max-w-xl" style={{ fontSize: 'clamp(1rem, 1.3vw, 1.15rem)', lineHeight: 1.7 }}>
-              Click into any skill below for the actual story — what I&apos;ve built with it, which client projects used it, and what I can do for yours.
-            </p>
-          </div>
-        </section>
-
-        {/* ── Skills grid ─────────────────────────────────── */}
-        <section className="pb-24">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {skills.map((skill) => {
-                const Icon = ICONS[skill.icon];
-                return (
-                  <Link
-                    key={skill.slug}
-                    href={`/skills/${skill.slug}`}
-                    className="group relative flex flex-col p-7 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all duration-300"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <span
-                      className="absolute top-5 right-6 font-body text-white/30 text-xs"
-                      style={{ letterSpacing: '0.06em' }}
-                    >
-                      {skill.yearsLabel}
-                    </span>
-
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                      style={{ background: `${skill.color}15`, border: `1px solid ${skill.color}30` }}
-                    >
-                      {Icon && <Icon size={22} color={skill.color} />}
-                    </div>
-
-                    <p className="font-body text-xs mb-1.5" style={{ color: skill.color }}>{skill.category}</p>
-                    <h2
-                      className="font-sans font-bold text-white mb-2 group-hover:text-lime transition-colors duration-200"
-                      style={{ fontSize: '1.15rem', letterSpacing: '-0.02em' }}
-                    >
-                      {skill.name}
-                    </h2>
-                    <p className="font-body text-muted text-sm leading-relaxed mb-6 flex-1">
-                      {skill.tagline}
-                    </p>
-
-                    <div className="flex items-center gap-2 font-body text-lime text-sm font-medium">
-                      View experience
-                      <svg
-                        width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                      >
-                        <path d="M7 17L17 7M17 7H7M17 7v10" />
-                      </svg>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <div className="pb-8" />
+      <main>
+        <PageHero
+          crumbs={[{ href: '/skills', label: 'Skills' }]}
+          title={['The tools,', 'with receipts']}
+          image={{ src: '/assets/gallery/roaddarts.webp', w: 1280, h: 720, alt: 'RoadDarts web app on desktop, laptop and phone' }}
+          lead="Every skill below links to the client projects it was used on, so you can judge the work rather than the logo."
+        />
+        <div className="mx-auto max-w-[1440px] px-5 md:px-10 grid gap-16 md:gap-24">
+          {groups.map((g) => (
+            <section key={g} aria-label={g} className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-6">
+              <h2 className="lg:col-span-3 text-bone" style={{ fontSize: 'clamp(1.4rem, 2vw, 1.75rem)', fontWeight: 500 }}>{g}</h2>
+              <ul className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {skills.filter((s) => s.category === g).map((s, i) => (
+                  <Reveal as="li" key={s.slug} data-delay={String(i % 4)}>
+                    <Link href={`/skills/${s.slug}`} className="group flex h-full flex-col p-6 transition-colors hover:bg-[#26302D]" style={{ background: 'var(--surface)' }}>
+                      <span className="flex items-baseline justify-between gap-4">
+                        <span className="text-[21px] text-bone group-hover:text-jade transition-colors">{s.name}</span>
+                        <span className="text-[14px] whitespace-nowrap" style={{ color: 'var(--muted)' }}>{s.yearsLabel}</span>
+                      </span>
+                      <span className="mt-2 text-[16px] leading-[1.5]" style={{ color: '#C4C7BF' }}>{s.tagline}</span>
+                      <span className="mt-4 text-[14px]" style={{ color: 'var(--muted)' }}>
+                        {s.projectSlugs.length} project{s.projectSlugs.length === 1 ? '' : 's'}
+                      </span>
+                    </Link>
+                  </Reveal>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+        <PageClosing />
       </main>
       <Footer />
     </>

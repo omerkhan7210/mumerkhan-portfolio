@@ -1,270 +1,116 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import Reveal from '@/components/home/Reveal';
 import skills from '@/data/skills.json';
+import { PageHero, Split, PageClosing } from '@/components/page/Page';
 
 export const metadata: Metadata = {
-  title: 'About | Muhammad Umer Khan — Full Stack Developer',
+  title: 'About Muhammad Umer Khan, Freelance Web Developer',
   description:
-    'Full Stack Developer based in Karachi, Pakistan with 6+ years of experience and 80+ completed projects. 100% Job Success Score on Upwork. WordPress, MERN Stack, and n8n automation specialist.',
+    'Muhammad Umer Khan is a freelance web developer in Karachi, Pakistan with 6+ years of experience, 80+ projects and a 100% Job Success Score on Upwork. WordPress, Next.js and n8n.',
+  alternates: { canonical: 'https://mumerkhan.com/about' },
 };
 
-const ArrowIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-    <path d="M7 17L17 7M17 7H7M17 7v10" />
-  </svg>
-);
+const FACTS = [
+  ['Experience', '6+ years'],
+  ['Projects', '80+ completed'],
+  ['Job Success', '100% on Upwork'],
+  ['Reply time', '0–4 hours'],
+  ['Education', 'BS Computer Science, Bahria University'],
+  ['Based in', 'Karachi, Pakistan'],
+];
+
+const profileSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: 'https://mumerkhan.com/about',
+  mainEntity: { '@id': 'https://mumerkhan.com/#person' },
+};
 
 export default function About() {
   return (
     <>
       <Header />
+      <main>
+        <PageHero
+          crumbs={[{ href: '/about', label: 'About' }]}
+          title={['The person', 'writing the code']}
+          image={{ src: '/assets/me/umer-front.webp', w: 705, h: 1484, alt: 'Muhammad Umer Khan, freelance web developer in Karachi', cutout: true }}
+          lead="I’m Umer, a freelance web developer in Karachi. No account managers, no hand-offs: you talk to me, and I build it."
+        >
+          <Link href="/contact" className="btn-lime">Book a free call</Link>
+          <Link href="/work" className="text-[16px] text-bone underline underline-offset-[6px] decoration-[#9FC7B8] hover:text-jade">See my work</Link>
+        </PageHero>
 
-      {/* ══════════════════════════════════════
-          HERO
-      ══════════════════════════════════════ */}
-      <section className="relative pt-40 pb-24 bg-ink bg-grid-pattern overflow-hidden">
-        <div
-          className="absolute left-[-100px] top-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(circle at center, rgba(200,255,0,0.05) 0%, transparent 70%)',
-          }}
-        />
-        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-          <span className="label-tag">About Me</span>
-          <h1
-            className="font-sans font-bold text-white mb-6"
-            style={{
-              fontSize: 'clamp(2.8rem, 8vw, 6.5rem)',
-              lineHeight: '0.93',
-              letterSpacing: '-0.03em',
-            }}
-          >
-            Full Stack Dev.<br />
-            <em className="not-italic text-lime">I make ideas ship.</em>
-          </h1>
-          <p className="font-body text-muted text-lg max-w-lg leading-relaxed">
-            Detail-oriented developer specializing in WordPress, MERN Stack, and
-            automation. Based in Karachi — building for the world.
-          </p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          STORY  (light section)
-      ══════════════════════════════════════ */}
-      <section className="py-24 md:py-32 bg-cream">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            {/* Narrative */}
-            <div>
-              <span className="label-tag-dark">My Journey</span>
-              <h2
-                className="font-sans font-bold text-ink mb-8"
-                style={{
-                  fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-                  lineHeight: '1.1',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                Started with HTML.<br />Ended up everywhere.
-              </h2>
-              <div
-                className="space-y-4 font-body text-sm leading-relaxed"
-                style={{ color: '#444444' }}
-              >
-                <p className="font-semibold" style={{ color: '#1a1a1a' }}>
-                  Muhammad Umer Khan is a full-stack developer based in Karachi, Pakistan,
-                  with 6+ years of experience and 80+ completed projects across WordPress,
-                  the MERN stack (MongoDB, Express, React, Node.js), and n8n workflow
-                  automation. He holds a 100% Job Success Score on Upwork and works
-                  directly with clients worldwide — no agency overhead, no account
-                  managers, just the person who writes the code.
-                </p>
-                <p>
-                  It started at Bahria University studying Computer Science. What began
-                  as learning HTML and CSS quickly evolved into a full-stack obsession —
-                  spanning WordPress, React, Node.js, and eventually workflow automation
-                  with n8n.
-                </p>
-                <p>
-                  Every project taught me something new. MERN applications pushed
-                  my backend thinking. Pixel-perfect WordPress builds sharpened my
-                  eye for design. Automation projects changed how I see software
-                  entirely — not as code, but as systems.
-                </p>
-                <p>
-                  Today I work with clients worldwide, delivering solutions that
-                  look great, load fast, and actually solve the problem. A 100%
-                  Job Success on Upwork reflects the results, not just the effort.
-                </p>
-              </div>
+        <section aria-labelledby="story-title" className="mx-auto max-w-[1440px] px-5 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-12">
+          <Reveal as="figure" className="lg:col-span-5">
+            <div className="aspect-[4/5] w-full flex items-end justify-center overflow-hidden" style={{ background: 'var(--surface)' }}>
+              <img src="/assets/me/umer-seated.webp" alt="Muhammad Umer Khan at work, seated" width={1080} height={1371} className="h-[96%] w-auto object-contain object-bottom" />
             </div>
-
-            {/* Quick-fact cards */}
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { label: 'Experience', value: '6+ Years' },
-                { label: 'Projects Completed', value: '80+' },
-                { label: 'Location', value: 'Karachi, Pakistan' },
-                { label: 'Status', value: 'Available for hire' },
-                { label: 'Education', value: 'BS Computer Science' },
-                { label: 'University', value: 'Bahria University' },
-                { label: 'Job Success', value: '100% on Upwork' },
-                { label: 'Response Time', value: '0–4 hours' },
-              ].map((fact) => (
-                <div
-                  key={fact.label}
-                  className="p-5 rounded-xl"
-                  style={{ background: '#EEEEE9' }}
-                >
-                  <p
-                    className="font-body text-xs uppercase tracking-widest mb-1.5"
-                    style={{ color: '#AAAAAA' }}
-                  >
-                    {fact.label}
-                  </p>
-                  <p className="font-sans font-semibold text-ink text-sm">
-                    {fact.value}
-                  </p>
+          </Reveal>
+          <div className="lg:col-span-6 lg:col-start-7 self-center">
+            <h2 id="story-title" className="text-bone" style={{ fontSize: 'clamp(1.75rem, 2.6vw, 2.5rem)', lineHeight: 1.1, fontWeight: 500 }}>
+              Started with HTML, ended up everywhere
+            </h2>
+            <div className="mt-8 grid gap-5 text-[18px] leading-[1.6] text-bone max-w-[60ch]">
+              <p>
+                Muhammad Umer Khan is a freelance web developer based in Karachi, Pakistan, with 6+ years of experience and 80+ completed projects across WordPress, Next.js and the MERN stack, and n8n workflow automation. He holds a 100% Job Success Score on Upwork and works directly with clients worldwide.
+              </p>
+              <p>
+                It started at Bahria University, studying Computer Science. Learning HTML and CSS turned into a full-stack habit: WordPress, React, Node.js and, eventually, automation with n8n.
+              </p>
+              <p>
+                Every project taught me something. Web apps pushed my backend thinking. Pixel-perfect WordPress builds sharpened my eye for design. Automation changed how I see software: not as pages, but as systems that save people hours.
+              </p>
+              <p>
+                Today I build sites that look right, load fast and bring in work, mostly for clients in the US, UK, EU and Australia.
+              </p>
+            </div>
+            <dl className="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-[16px]">
+              {FACTS.map(([k, v]) => (
+                <div key={k}>
+                  <dt style={{ color: 'var(--muted)' }}>{k}</dt>
+                  <dd className="text-bone">{v}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════
-          SKILLS
-      ══════════════════════════════════════ */}
-      <section className="py-24 md:py-32 bg-ink">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <span className="label-tag">Skills</span>
-          <h2
-            className="font-sans font-bold text-white mb-16"
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-              lineHeight: '1',
-              letterSpacing: '-0.025em',
-            }}
-          >
-            The full toolkit.
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {skills.map((group, i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-5"
-                style={{
-                  background: '#111111',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                }}
-              >
-                <h3 className="font-sans font-semibold text-lime text-xs uppercase tracking-widest mb-4">
-                  {group.category}
-                </h3>
-                <ul className="space-y-2.5">
-                  {group.skills.map((skill, j) => (
-                    <li
-                      key={j}
-                      className="font-body text-muted text-sm flex items-center gap-2.5"
-                    >
-                      <span
-                        className="w-1 h-1 rounded-full flex-shrink-0"
-                        style={{ background: 'rgba(200,255,0,0.4)' }}
-                      />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <Split id="toolkit" title="The toolkit" intro="What I use day to day. Each one links to the work it powered." tone="surface">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-10">
+            {skills.map((g, i) => (
+              <Reveal key={g.category} data-delay={String(i % 3)}>
+                <h3 className="text-[19px] font-medium text-bone">{g.category}</h3>
+                <p className="mt-2 text-[16px] leading-[1.6]" style={{ color: '#C4C7BF' }}>{g.skills.join(', ')}</p>
+              </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+          <Link href="/skills" className="btn-outline mt-12">Every skill, with projects</Link>
+        </Split>
 
-      {/* ══════════════════════════════════════
-          CREDENTIALS
-      ══════════════════════════════════════ */}
-      <section
-        className="py-24 bg-ink-2 border-t border-white/[0.05]"
-      >
-        <div className="max-w-[1280px] mx-auto px-6">
-          <span className="label-tag">Credentials</span>
-          <h2
-            className="font-sans font-bold text-white mb-12"
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              lineHeight: '1',
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Background & proof.
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Split id="how" title="How I work">
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 text-[17px] leading-[1.6]">
             {[
-              {
-                icon: '🎓',
-                title: 'Bachelor of Computer Science',
-                sub: 'Bahria University, Karachi',
-                detail: '2022 – 2026',
-              },
-              {
-                icon: '⭐',
-                title: 'Upwork Top-Rated Freelancer',
-                sub: '100% Job Success Score',
-                detail: '9+ Upwork Projects · 5-Star Rated · Verified ID',
-              },
-            ].map((cred, i) => (
-              <div
-                key={i}
-                className="p-7 rounded-2xl flex items-start gap-5"
-                style={{
-                  background: '#111111',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                }}
-              >
-                <span className="text-3xl flex-shrink-0">{cred.icon}</span>
-                <div>
-                  <h3 className="font-sans font-bold text-white text-lg mb-1">
-                    {cred.title}
-                  </h3>
-                  <p className="font-body text-lime text-sm mb-1">{cred.sub}</p>
-                  <p className="font-body text-muted text-sm">{cred.detail}</p>
-                </div>
-              </div>
+              ['Fixed prices', 'You get a fixed quote before work starts. Half up front, half at launch, no surprise invoices.'],
+              ['Staging links, not screenshots', 'You review real pages on your own phone while I build, so feedback is fast and specific.'],
+              ['You own everything', 'Code, content, hosting and logins are yours from day one, documented and handed over.'],
+              ['I stay after launch', 'Every plan includes a support window after launch, and care plans are there if you want ongoing help.'],
+            ].map(([t, d], i) => (
+              <Reveal key={t} data-delay={String(i % 2)}>
+                <h3 className="text-[19px] font-medium text-bone">{t}</h3>
+                <p className="mt-2" style={{ color: '#C4C7BF' }}>{d}</p>
+              </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+        </Split>
 
-      {/* ══════════════════════════════════════
-          CTA  (lime section)
-      ══════════════════════════════════════ */}
-      <section className="py-20 bg-lime">
-        <div className="max-w-[1280px] mx-auto px-6 flex flex-col md:flex-row md:items-center justify-between gap-8">
-          <h2
-            className="font-sans font-bold text-ink"
-            style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-              letterSpacing: '-0.025em',
-              lineHeight: '1.1',
-            }}
-          >
-            Enough about me.<br />
-            Let&apos;s talk about your project.
-          </h2>
-          <Link href="/contact" className="btn-dark flex-shrink-0">
-            Get in Touch <ArrowIcon />
-          </Link>
-        </div>
-      </section>
-
+        <PageClosing sentence="Enough about me. Tell me about your project and I’ll reply today with an honest plan." />
+      </main>
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }} />
     </>
   );
 }

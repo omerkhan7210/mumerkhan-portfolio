@@ -3,81 +3,77 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 
-function useScrollReveal(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          el.classList.add('sr-visible');
-          obs.unobserve(el);
-        }
-      },
-      { threshold },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return ref;
-}
+const STEPS = [
+  { title: 'Send your site', body: 'Share the link to your current website. That is all I need to start.' },
+  { title: 'I build a real fix', body: 'A quote-path redesign, an after-hours capture flow, or a homepage concept, whichever your site actually needs.' },
+  { title: 'You decide', body: 'No cost and no obligation. Keep the concept, or hire me to build it properly.' },
+];
 
-/* Homepage-facing entry point into the /redesign landing page — the
+/* Homepage-facing entry point into the /redesign landing page - the
    cold-email offer ("I'll build your homepage concept free") made
    visible to general visitors too, not just email click-throughs. */
 export default function FreeConceptBanner() {
-  const ref = useScrollReveal();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.classList.add('sr-visible');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <section className="py-16 md:py-20 bg-ink-2 border-t border-white/[0.04]">
-      <div ref={ref} className="sr max-w-[1280px] mx-auto px-6">
-        <div
-          className="relative overflow-hidden rounded-2xl flex flex-col md:flex-row md:items-center md:justify-between gap-8"
-          style={{
-            padding: 'clamp(32px,5vw,52px)',
-            background: 'linear-gradient(135deg, rgba(200,255,0,0.06) 0%, rgba(200,255,0,0.015) 100%)',
-            border: '1px solid rgba(200,255,0,0.16)',
-          }}
+    <section ref={ref} className="sr bg-ink px-4 md:px-6 py-6 md:py-10">
+      <div
+        className="relative overflow-hidden rounded-2xl max-w-[1360px] mx-auto"
+        style={{
+          padding: 'clamp(32px, 6vw, 88px)',
+          background:
+            'radial-gradient(900px 520px at 88% 0%, rgba(159,199,184,0.16), transparent 62%), #0e0f0c',
+          border: '1px solid rgba(159,199,184,0.18)',
+        }}
+      >
+        <p className="font-body text-sm text-lime">Already have a website?</p>
+        <h2
+          className="font-sans font-bold text-white mt-4 max-w-[18ch]"
+          style={{ fontSize: 'clamp(2.2rem, 5.6vw, 5rem)', lineHeight: 0.98, letterSpacing: '-0.04em' }}
         >
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              right: -60,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: 340,
-              height: 340,
-              background: 'radial-gradient(circle, rgba(200,255,0,0.1) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 640 }}>
-            <span className="label-tag" style={{ marginBottom: 14 }}>
-              Already have a website?
-            </span>
-            <h2
-              className="font-sans font-bold text-white"
-              style={{ fontSize: 'clamp(1.6rem,3.5vw,2.6rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
-            >
-              I&apos;ll show you exactly what&apos;s costing you jobs — free, before you pay anything.
-            </h2>
-            <p className="font-body text-sm mt-4" style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, maxWidth: 480 }}>
-              For HVAC, plumbing, roofing, and cleaning businesses: send me your current
-              site and I&apos;ll send back a real, working fix — a quote-path redesign,
-              an after-hours capture flow, or a homepage concept, whichever your site
-              actually needs. No cost, no obligation.
-            </p>
-          </div>
-          <div style={{ position: 'relative', zIndex: 1, flexShrink: 0 }}>
-            <Link href="/redesign" className="btn-lime text-base">
-              Get my free concept
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M7 17L17 7M17 7H7M17 7v10" />
-              </svg>
-            </Link>
-          </div>
+          I&apos;ll show you what&apos;s costing you jobs. Free.
+        </h2>
+        <p className="font-body text-white/60 mt-6 max-w-[54ch] leading-relaxed" style={{ fontSize: 'clamp(1rem,1.25vw,1.15rem)' }}>
+          For HVAC, plumbing, roofing, and cleaning businesses. Before you pay anything, you get a real, working fix.
+        </p>
+
+        <ol className="grid md:grid-cols-3 gap-8 md:gap-12 mt-14 md:mt-20 border-t border-white/10 pt-10">
+          {STEPS.map((s, i) => (
+            <li key={s.title}>
+              <span className="font-sans font-bold text-lime tabular-nums" style={{ fontSize: '1.1rem' }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 className="font-sans font-semibold text-white text-xl mt-3" style={{ letterSpacing: '-0.02em' }}>
+                {s.title}
+              </h3>
+              <p className="font-body text-white/55 text-sm md:text-base mt-2 leading-relaxed max-w-[34ch]">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-12 md:mt-16">
+          <Link href="/redesign" className="btn-lime text-base">
+            Get my free concept
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

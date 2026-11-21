@@ -58,11 +58,11 @@ export default function ConceptRequestForm({ offer, presetTrade }: { offer: Offe
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           service: 'Redesign',
-          followUp: `${tradeLabel} — free ${offer.confirmationNoun} request`,
+          followUp: `${tradeLabel} - free ${offer.confirmationNoun} request`,
           budget: '',
           name: name.trim(),
           email: email.trim(),
-          details: `Source: /redesign landing page (offer: ${offer.key})\nBusiness: ${business.trim() || '—'}\nCurrent website: ${websiteUrl.trim()}\nTrade: ${tradeLabel}\n\n${message.trim() || 'No additional details provided.'}`,
+          details: `Source: /redesign landing page (offer: ${offer.key})\nBusiness: ${business.trim() || '-'}\nCurrent website: ${websiteUrl.trim()}\nTrade: ${tradeLabel}\n\n${message.trim() || 'No additional details provided.'}`,
         }),
       });
       if (!res.ok) {
@@ -85,15 +85,15 @@ export default function ConceptRequestForm({ offer, presetTrade }: { offer: Offe
             width: 64,
             height: 64,
             borderRadius: '50%',
-            background: 'rgba(200,255,0,0.12)',
-            border: '1px solid rgba(200,255,0,0.35)',
+            background: 'rgba(159,199,184,0.12)',
+            border: '1px solid rgba(159,199,184,0.35)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 24px',
           }}
         >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" strokeWidth="2.5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9FC7B8" strokeWidth="2.5">
             <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
@@ -105,7 +105,7 @@ export default function ConceptRequestForm({ offer, presetTrade }: { offer: Offe
         </h3>
         <p className="font-body text-sm" style={{ color: 'rgba(255,255,255,0.45)', maxWidth: 380, margin: '0 auto' }}>
           I&apos;ll take a look at {websiteUrl} and start on your {offer.confirmationNoun}. You&apos;ll hear from
-          me directly — usually within a few days, not weeks.
+          me directly - usually within a few days, not weeks.
         </p>
         <div style={{ marginTop: 28 }}>
           <Link href="/work" className="btn-outline" style={{ fontSize: '0.85rem' }}>

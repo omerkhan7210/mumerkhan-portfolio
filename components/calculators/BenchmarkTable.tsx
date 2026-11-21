@@ -1,4 +1,4 @@
-/* Static, crawlable pricing/savings table — this is the kind of content
+/* Static, crawlable pricing/savings table - this is the kind of content
    block Google pulls into featured snippets for "how much does X cost"
    queries, separate from the interactive calculator itself. */
 
@@ -25,7 +25,7 @@ export default function BenchmarkTable({ rows, title }: { rows: BenchmarkRow[]; 
               <p style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>{row.label}</p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>{row.note}</p>
             </div>
-            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#C8FF00', alignSelf: 'center', whiteSpace: 'nowrap' }}>
+            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#9FC7B8', alignSelf: 'center', whiteSpace: 'nowrap' }}>
               {row.value}
             </p>
           </div>

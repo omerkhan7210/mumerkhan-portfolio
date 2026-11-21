@@ -14,15 +14,7 @@ interface ProjectCardProps {
 }
 
 const accents = [
-  { color: '#00C896', bg: 'rgba(0,200,150,0.08)', border: 'rgba(0,200,150,0.14)' },
-  { color: '#8B5CF6', bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.14)' },
-  { color: '#F59E0B', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.14)' },
-  { color: '#F43F5E', bg: 'rgba(244,63,94,0.08)', border: 'rgba(244,63,94,0.14)' },
-  { color: '#14B8A6', bg: 'rgba(20,184,166,0.08)', border: 'rgba(20,184,166,0.14)' },
-  { color: '#F97316', bg: 'rgba(249,115,22,0.08)', border: 'rgba(249,115,22,0.14)' },
-  { color: '#0EA5E9', bg: 'rgba(14,165,233,0.08)', border: 'rgba(14,165,233,0.14)' },
-  { color: '#A78BFA', bg: 'rgba(167,139,250,0.08)', border: 'rgba(167,139,250,0.14)' },
-  { color: '#C8FF00', bg: 'rgba(200,255,0,0.08)', border: 'rgba(200,255,0,0.14)' },
+  { color: '#9FC7B8', bg: 'rgba(159,199,184,0.08)', border: 'rgba(159,199,184,0.14)' },
 ];
 
 export default function ProjectCard({

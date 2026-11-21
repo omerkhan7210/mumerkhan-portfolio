@@ -24,7 +24,7 @@ User inputs: ${JSON.stringify(inputs)}
 Cost/savings breakdown:
 ${breakdownLines}
 
-Write a 2-3 sentence personalized takeaway for this person based on their specific answers above. Reference at least one concrete detail from their inputs or breakdown. Be direct and consultative, not generic. No greeting, no sign-off, no markdown — plain prose only.`;
+Write a 2-3 sentence personalized takeaway for this person based on their specific answers above. Reference at least one concrete detail from their inputs or breakdown. Be direct and consultative, not generic. No greeting, no sign-off, no markdown - plain prose only.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
