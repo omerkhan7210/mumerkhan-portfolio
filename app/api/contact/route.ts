@@ -28,32 +28,39 @@ export async function POST(req: NextRequest) {
 
     const form = { service, followUp, budget, name: name.trim(), email: email.trim(), details };
 
-    const pool = getPool();
-    await pool.query(CREATE_TABLE_SQL);
-    await pool.query(
-      `INSERT INTO contact_submissions (service, follow_up, budget, name, email, details)
-       VALUES ($1, $2, $3, $4, $5, $6)`,
-      [form.service, form.followUp, form.budget, form.name, form.email, form.details],
-    );
+    /* Three independent delivery routes: database, email, n8n. A lead only
+       fails when none of them takes it, so a paused database or a mail
+       outage never blocks someone who is trying to hire you. */
+    const saveToDb = async () => {
+      if (!process.env.DATABASE_URL) return false;
+      const pool = getPool();
+      await pool.query(CREATE_TABLE_SQL);
+      await pool.query(
+        `INSERT INTO contact_submissions (service, follow_up, budget, name, email, details)
+         VALUES ($1, $2, $3, $4, $5, $6)`,
+        [form.service, form.followUp, form.budget, form.name, form.email, form.details],
+      );
+      return true;
+    };
 
-    /* Email sending is best-effort - the lead is already safely in
-       the database, so a mail failure shouldn't surface as an error
-       to the person submitting the form. */
     const salesEmail = process.env.SALES_EMAIL;
-    if (salesEmail) {
-      const notify = buildLeadNotificationEmail(form);
-      const reply = buildAutoReplyEmail(form);
-      await Promise.allSettled([
-        sendMail({ to: salesEmail, replyTo: form.email, subject: notify.subject, html: notify.html }),
-        sendMail({ to: form.email, subject: reply.subject, html: reply.html }),
-      ]).then((results) => {
-        results.forEach((r) => {
-          if (r.status === 'rejected') console.error('Contact email send failed:', r.reason);
-        });
+    const notify = buildLeadNotificationEmail(form);
+    const reply = buildAutoReplyEmail(form);
+    const [db, notified, , hook] = await Promise.allSettled([
+      saveToDb(),
+      salesEmail ? sendMail({ to: salesEmail, replyTo: form.email, subject: notify.subject, html: notify.html }).then(() => true) : Promise.resolve(false),
+      sendMail({ to: form.email, subject: reply.subject, html: reply.html }),
+      notifyLeadWebhook({ source: 'contact', tool: 'Contact Form', email: form.email, message: details, inputs: form, result: {} }),
+    ]).then((results) => {
+      results.forEach((r, i) => {
+        if (r.status === 'rejected') console.error(`Contact ${['db save', 'lead email', 'auto-reply', 'webhook'][i]} failed:`, r.reason);
       });
-    }
+      return results.map((r) => r.status === 'fulfilled' && r.value === true);
+    });
 
-    await notifyLeadWebhook({ source: 'contact', tool: 'Contact Form', email: form.email, message: details, inputs: form, result: {} });
+    if (!db && !notified && !hook) {
+      return NextResponse.json({ error: 'Something went wrong. Please try again or email me directly.' }, { status: 502 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
