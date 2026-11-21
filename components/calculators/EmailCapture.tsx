@@ -48,8 +48,8 @@ export default function EmailCapture({
 
   if (status === 'sent') {
     return (
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#C8FF00', marginTop: 18 }}>
-        ✓ Sent — check your inbox for the full breakdown.
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#9FC7B8', marginTop: 18 }}>
+        ✓ Sent - check your inbox for the full breakdown.
       </p>
     );
   }

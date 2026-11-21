@@ -21,7 +21,7 @@ export default function Preloader() {
     /* Lock scroll while preloader is active */
     document.body.style.overflow = 'hidden';
 
-    /* Animate progress over ~0.7s — this overlay blocks the entire page
+    /* Animate progress over ~0.7s - this overlay blocks the entire page
        (and the real LCP element underneath) on every first visit, so it
        has a direct Core Web Vitals cost. Kept short on purpose. */
     const duration = 700;
@@ -80,9 +80,9 @@ export default function Preloader() {
         inset: 0,
         zIndex: 99999,
         overflow: 'hidden',
-        backgroundColor: isFlash ? '#C8FF00' : '#0A0A0A',
+        backgroundColor: isFlash ? '#9FC7B8' : '#0A0A0A',
         transform: isExiting ? 'translateY(-100%)' : 'translateY(0)',
-        /* Spring-like slide — fast exit, tiny overshoot feel */
+        /* Spring-like slide - fast exit, tiny overshoot feel */
         transitionProperty: isExiting ? 'transform' : 'background-color',
         transitionDuration: isExiting ? '0.35s' : '0.14s',
         transitionTimingFunction: isExiting ? 'cubic-bezier(0.76, 0, 0.24, 1)' : 'ease',
@@ -101,7 +101,7 @@ export default function Preloader() {
             fontWeight: 800,
             fontSize: '1rem',
             letterSpacing: '0.12em',
-            color: isFlash ? '#0A0A0A' : '#C8FF00',
+            color: isFlash ? '#0A0A0A' : '#9FC7B8',
             transition: 'color 0.14s',
           }}
         >
@@ -144,7 +144,7 @@ export default function Preloader() {
           {String(progress).padStart(2, '0')}
         </div>
 
-        {/* Name reveal — two halves slide in from off-screen */}
+        {/* Name reveal - two halves slide in from off-screen */}
         <div
           style={{
             display: 'flex',
@@ -167,7 +167,7 @@ export default function Preloader() {
                 lineHeight: 0.9,
                 letterSpacing: '-0.04em',
                 color: isFlash ? '#0A0A0A' : '#ffffff',
-                /* Pure JS position — no CSS transition to prevent jitter */
+                /* Pure JS position - no CSS transition to prevent jitter */
                 transform: `translateY(${phase === 'loading' ? `${(100 - progress) * 1.2}px` : '0'})`,
                 transition: 'color 0.14s',
               }}
@@ -185,7 +185,7 @@ export default function Preloader() {
                 fontSize: 'clamp(3.5rem, 10vw, 8.5rem)',
                 lineHeight: 0.9,
                 letterSpacing: '-0.04em',
-                color: isFlash ? '#0A0A0A' : '#C8FF00',
+                color: isFlash ? '#0A0A0A' : '#9FC7B8',
                 transform: `translateY(${phase === 'loading' ? `${(100 - progress) * 1.2}px` : '0'})`,
                 transition: 'color 0.14s',
               }}
@@ -229,7 +229,7 @@ export default function Preloader() {
             style={{
               height: '100%',
               width: `${progress}%`,
-              background: isFlash ? '#0A0A0A' : '#C8FF00',
+              background: isFlash ? '#0A0A0A' : '#9FC7B8',
               transition: 'width 0.08s linear, background 0.14s',
               borderRadius: 1,
             }}
@@ -256,7 +256,7 @@ export default function Preloader() {
               fontWeight: 700,
               fontSize: '0.85rem',
               letterSpacing: '0.06em',
-              color: isFlash ? '#0A0A0A' : '#C8FF00',
+              color: isFlash ? '#0A0A0A' : '#9FC7B8',
               minWidth: 40,
               textAlign: 'right',
               transition: 'color 0.14s',

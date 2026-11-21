@@ -5,7 +5,7 @@
     "title": "ERBS Ltd",
     "category": "Roofing · Trade Website",
     "year": "2025",
-    "description": "UK roofing contractor site upgraded with real project photography and a structured Our Work gallery — so homeowners see proof, not placeholders.",
+    "description": "UK roofing contractor site upgraded with real project photography and a structured Our Work gallery - so homeowners see proof, not placeholders.",
     "longDescription": "Eastfield Roofing Services needed their website to reflect the quality of jobs they actually complete. Placeholder images were replaced with a full year of real project photos sourced from their Facebook archive, categorized by job type, and presented in a dedicated project gallery.",
     "challenge": "The site structure existed, but trust was weak: stock-style placeholders did not match a working roofing contractor with a strong local track record.",
     "solution": "Sourced and organized ~12 months of Facebook project photos, matched images to the right service pages, and built an Our Work portfolio gallery.",
@@ -26,7 +26,7 @@
       "Our Work portfolio gallery",
       "Mobile-friendly proof for local roofing enquiries"
     ],
-    "seoTitle": "ERBS Ltd — Roofing Website & Project Gallery"
+    "seoTitle": "ERBS Ltd - Roofing Website & Project Gallery"
   },
   {
     "id": 2,
@@ -34,7 +34,7 @@
     "title": "WLK Gardeners",
     "category": "Local Service · Full Rebrand",
     "year": "2025",
-    "description": "Full rebrand and Elementor rebuild for a UK gardening business — homepage process, FAQ, service areas, and migration to live with Duplicator Pro.",
+    "description": "Full rebrand and Elementor rebuild for a UK gardening business - homepage process, FAQ, service areas, and migration to live with Duplicator Pro.",
     "longDescription": "WLK Gardeners needed a complete brand shift on the web: new identity, a finished local-service site structure, and a clean move from staging to production without losing media.",
     "challenge": "An incomplete template kit and leftover old-business details left the site feeling unfinished.",
     "solution": "Applied the full brand kit in Elementor globals, completed Homepage, About, services hub, three service pages, FAQ content, fixed Contact, and migrated staging to live with Duplicator Pro.",
@@ -60,7 +60,7 @@
       "Service pages with mobile QA",
       "Live migration via Duplicator Pro"
     ],
-    "seoTitle": "WLK Gardeners — Local Service Website Rebrand"
+    "seoTitle": "WLK Gardeners - Local Service Website Rebrand"
   },
   {
     "id": 3,
@@ -68,7 +68,7 @@
     "title": "ISG Flooring",
     "category": "Local SEO · Service Pages",
     "year": "2025",
-    "description": "80 local SEO landing pages for a UK flooring company — 8 core services × 10 cities, with unique Rank Math meta and natural city-integrated copy.",
+    "description": "80 local SEO landing pages for a UK flooring company - 8 core services × 10 cities, with unique Rank Math meta and natural city-integrated copy.",
     "longDescription": "ISG Flooring needed scalable city coverage without thin pages. Built 80 landing pages manually in Elementor with unique Rank Math titles/descriptions and natural content for 10 UK cities.",
     "challenge": "Competing in multiple UK cities required dedicated landing pages per service and location without thin content.",
     "solution": "Designed a repeatable page structure, then manually customized each page in Elementor with city-specific content and unique Rank Math meta.",
@@ -89,7 +89,7 @@
       "Natural local copywriting",
       "Elementor-based scalable structure"
     ],
-    "seoTitle": "ISG Flooring — 80 Local SEO Landing Pages"
+    "seoTitle": "ISG Flooring - 80 Local SEO Landing Pages"
   },
   {
     "id": 4,
@@ -126,7 +126,7 @@
       "Branded WooCommerce reminder emails",
       "Order meta box for Stripe payment links"
     ],
-    "seoTitle": "V1 Campers — WooCommerce Booking & Deposit Automation"
+    "seoTitle": "V1 Campers - WooCommerce Booking & Deposit Automation"
   },
   {
     "id": 5,
@@ -134,7 +134,7 @@
     "title": "Bright Home",
     "category": "Local Service · Website",
     "year": "2025",
-    "description": "Website work for Bright Home (bright-home.co.uk) — clearer presentation for a UK home/services brand focused on enquiries and trust.",
+    "description": "Website work for Bright Home (bright-home.co.uk) - clearer presentation for a UK home/services brand focused on enquiries and trust.",
     "longDescription": "Supported Bright Home with website improvements aimed at presentation, clarity, and enquiry readiness for a local home-services audience.",
     "challenge": "Local home-service brands often lose enquiries when the site is generic or weak on next steps.",
     "solution": "WordPress-focused delivery emphasizing clear service presentation, mobile readability, and a path to contact.",
@@ -145,15 +145,15 @@
     ],
     "link": "https://bright-home.co.uk/",
     "technologies": ["WordPress", "Elementor", "Mobile UX"],
-    "cardImage": "/assets/isg/isg-card.jpg",
-    "heroImage": "/assets/isg/isg-hero.jpg",
-    "galleryImages": ["/assets/isg/isg-card.jpg"],
+    "cardImage": "/assets/brighthome/brighthome,3screen.png",
+    "heroImage": "/assets/brighthome/brighthome,3screen.png",
+    "galleryImages": ["/assets/brighthome/brighthome collage.png"],
     "keyFeatures": [
       "Local service website presentation",
       "Enquiry-oriented structure",
       "Mobile-friendly layout"
     ],
-    "seoTitle": "Bright Home — Local Service Website"
+    "seoTitle": "Bright Home - Local Service Website"
   },
   {
     "id": 6,
@@ -163,7 +163,7 @@
     "year": "2024",
     "description": "Custom MERN Stack web application for business location discovery and navigation with Google Maps integration.",
     "longDescription": "Built a complete custom web application using MERN stack (MongoDB, Express, React, Node.js) that helps users discover and navigate to business locations effortlessly. Integrated Google Maps API for real-time directions, advanced filtering functionality, and visual display of business locations on interactive maps.",
-    "challenge": "The client needed a platform that could handle thousands of business listings, allow users to filter by category and proximity, and show real-time routing — all within a single-page app that felt fast and native on mobile.",
+    "challenge": "The client needed a platform that could handle thousands of business listings, allow users to filter by category and proximity, and show real-time routing - all within a single-page app that felt fast and native on mobile.",
     "solution": "Built a full MERN stack application with a custom REST API, MongoDB geospatial indexing for proximity searches, React frontend with state management, and Google Maps JS API integration for dynamic routing and cluster markers.",
     "results": [
       "Sub-2s initial load time",
@@ -233,7 +233,7 @@
     "description": "Fully custom WordPress theme built from scratch with flexible content modules and a polished editorial design.",
     "longDescription": "Developed a custom WordPress theme built from scratch based on client requirements. Features flexible dynamic sections, custom layouts, and reusable content modules that enable easy management and updates. The solution supports multiple iterations and evolving content workflows.",
     "challenge": "The client had outgrown off-the-shelf themes but didn't want a page builder. They needed a completely custom theme that gave editors full control over content layout without touching code.",
-    "solution": "Built a bespoke WordPress theme using PHP, advanced custom fields (ACF), and custom post types. Created a library of flexible content modules — each with its own layout options — that the editorial team could compose into any page structure.",
+    "solution": "Built a bespoke WordPress theme using PHP, advanced custom fields (ACF), and custom post types. Created a library of flexible content modules - each with its own layout options - that the editorial team could compose into any page structure.",
     "results": [
       "Zero page builder dependency",
       "Full editorial control",
@@ -265,7 +265,7 @@
     "year": "2024",
     "description": "Pixel-perfect WordPress conversion from a detailed Figma design for a medical aesthetics brand.",
     "longDescription": "Meticulously translated a detailed Figma design into a fully functional WordPress site. Every layout detail, typography specification, and component was implemented with pixel-perfect accuracy across all breakpoints.",
-    "challenge": "The design team had invested weeks in a highly detailed Figma prototype — every pixel, every animation, every hover state was specified. The client wanted code that honored 100% of that design without compromise.",
+    "challenge": "The design team had invested weeks in a highly detailed Figma prototype - every pixel, every animation, every hover state was specified. The client wanted code that honored 100% of that design without compromise.",
     "solution": "Used WordPress with Elementor Pro and heavy custom CSS to match every design detail. Implemented custom hover animations, responsive typography scales, and component-level CSS overrides to achieve exact fidelity to the Figma source.",
     "results": [
       "100% design fidelity achieved",
@@ -374,7 +374,7 @@
     "category": "WordPress Business Site",
     "year": "2024",
     "description": "High-end logistics company website with a luxury aesthetic, custom animations, and a powerful service showcase.",
-    "longDescription": "Designed and built a premium website for a logistics company targeting enterprise clients. The brief was 'luxury logistics' — the site needed to convey precision, reliability, and scale while looking visually impressive. Built with WordPress using a custom theme and advanced CSS animations.",
+    "longDescription": "Designed and built a premium website for a logistics company targeting enterprise clients. The brief was 'luxury logistics' - the site needed to convey precision, reliability, and scale while looking visually impressive. Built with WordPress using a custom theme and advanced CSS animations.",
     "challenge": "Logistics websites are typically dry and corporate. The client wanted to stand out in a crowded market by looking premium and trustworthy, with a design that matched their high-value service proposition.",
     "solution": "Custom WordPress theme built around a dark, sophisticated color palette with gold accents. Implemented smooth scroll animations, a dynamic service card grid, interactive fleet showcase, and an animated metrics section showing company stats.",
     "results": [
@@ -453,8 +453,8 @@
     "year": "2023",
     "description": "Bold restaurant brand website with online menu, location finder, and an energetic visual identity.",
     "longDescription": "Built a brand-forward website for a fast food restaurant chain. The site needed high energy, bold typography, and a mouth-watering visual experience. Implemented an interactive menu with category filters, a location finder, and an online ordering integration.",
-    "challenge": "The client had strong brand photography and a bold identity but no web presence that matched it. They needed a site that felt as exciting as their brand — fast, visual, appetizing — and drove foot traffic and online orders.",
-    "solution": "Custom WordPress site with a bold design system — high-contrast colors, large food photography, and animated menu cards. Integrated an interactive menu with JavaScript filtering by category, a location finder with embedded maps, and an online ordering plugin.",
+    "challenge": "The client had strong brand photography and a bold identity but no web presence that matched it. They needed a site that felt as exciting as their brand - fast, visual, appetizing - and drove foot traffic and online orders.",
+    "solution": "Custom WordPress site with a bold design system - high-contrast colors, large food photography, and animated menu cards. Integrated an interactive menu with JavaScript filtering by category, a location finder with embedded maps, and an online ordering plugin.",
     "results": [
       "Brand-matched visual identity",
       "Interactive menu with filtering",
@@ -492,8 +492,8 @@
     "category": "Agency Website",
     "year": "2024",
     "description": "Creative agency portfolio site with editorial layout, smooth animations, and a strong visual identity.",
-    "longDescription": "Designed and developed a sophisticated agency website for Lobos & Co. The client wanted something that felt premium, editorial, and confident — the kind of site that wins clients before a word is read. Built with WordPress and custom animations.",
-    "challenge": "Agency websites need to sell the agency before showcasing the work. Lobos needed a site that immediately communicated quality, professionalism, and creativity — not just a portfolio list.",
+    "longDescription": "Designed and developed a sophisticated agency website for Lobos & Co. The client wanted something that felt premium, editorial, and confident - the kind of site that wins clients before a word is read. Built with WordPress and custom animations.",
+    "challenge": "Agency websites need to sell the agency before showcasing the work. Lobos needed a site that immediately communicated quality, professionalism, and creativity - not just a portfolio list.",
     "solution": "Built a custom WordPress site with an editorial design system: large typography, generous whitespace, scroll-triggered reveal animations, and a curated work showcase. The homepage leads with a bold statement, followed by selected case studies with hover effects.",
     "results": [
       "High-impact homepage achieved",
@@ -555,7 +555,7 @@
     "category": "Healthcare WordPress",
     "year": "2024",
     "description": "Professional healthcare website with service pages, appointment booking, and trust-building patient experience.",
-    "longDescription": "Built a comprehensive healthcare website for Panacea Care, covering multiple service areas including physiotherapy, nutrition, and wellness coaching. The site needed to feel trustworthy, clinical, and warm — a difficult balance that required careful design choices.",
+    "longDescription": "Built a comprehensive healthcare website for Panacea Care, covering multiple service areas including physiotherapy, nutrition, and wellness coaching. The site needed to feel trustworthy, clinical, and warm - a difficult balance that required careful design choices.",
     "challenge": "Healthcare sites need to balance professionalism with approachability. Patients should feel reassured and confident, not intimidated. The client also needed online appointment booking and clear service descriptions for SEO.",
     "solution": "Custom WordPress site with a clean, light design using calming colors. Built individual service pages with structured content, implemented an appointment booking plugin with calendar sync, and added patient testimonials and team profiles to build trust.",
     "results": [
@@ -668,9 +668,9 @@
     "category": "Wellness Brand Website",
     "year": "2023",
     "description": "Serene yoga studio website with class booking, instructor profiles, and a calming visual meditation aesthetic.",
-    "longDescription": "Built a wellness-focused website for a yoga studio and retreat brand. The site needed to evoke calm, flow, and mindfulness while still being functional — booking classes, showcasing instructors, and selling retreat packages. Every design decision was made to reduce friction and increase serenity.",
+    "longDescription": "Built a wellness-focused website for a yoga studio and retreat brand. The site needed to evoke calm, flow, and mindfulness while still being functional - booking classes, showcasing instructors, and selling retreat packages. Every design decision was made to reduce friction and increase serenity.",
     "challenge": "Most yoga studio websites feel either too corporate or too DIY. Yogi Escape needed something that felt premium, peaceful, and made the visitor want to book a class within 30 seconds of arriving on the page.",
-    "solution": "Custom WordPress site with soft, organic design language — curved elements, warm neutrals, flowing typography. Implemented a class schedule with online booking, instructor profile pages with specialty tags, and a retreat packages page with integrated payment.",
+    "solution": "Custom WordPress site with soft, organic design language - curved elements, warm neutrals, flowing typography. Implemented a class schedule with online booking, instructor profile pages with specialty tags, and a retreat packages page with integrated payment.",
     "results": [
       "Online class booking implemented",
       "Instructor profile system",
@@ -707,9 +707,9 @@
     "category": "Full-Stack Web App",
     "year": "2024",
     "description": "Custom PHP car dealership and live auction platform with a real-time bidding engine and admin management panel.",
-    "longDescription": "Built a full car dealership and auction platform from scratch in PHP and MySQL — no framework, no page builder. Covers the full flow a real auction site needs: browsing by brand and category, viewing detailed listings with bid history, placing live bids against a countdown, and an admin panel for managing inventory.",
-    "challenge": "A car marketplace is a different kind of project than a brochure site — it needed a real relational data model (cars, bids, users, orders, cart, wishlist) and bidding logic that has to behave correctly under time pressure: tracking the current highest bid and bidder, counting down to auction close, and preventing stale data from showing the wrong price.",
-    "solution": "Designed an 8-table MySQL schema (cardetails, bids, users, orders, cart, wishlist, products, admins) and built the full PHP application around it — brand/category browsing, a detailed auction page with a live countdown timer and current-highest-bid display, an admin login and management panel, and a Tailwind-based UI on top of it all.",
+    "longDescription": "Built a full car dealership and auction platform from scratch in PHP and MySQL - no framework, no page builder. Covers the full flow a real auction site needs: browsing by brand and category, viewing detailed listings with bid history, placing live bids against a countdown, and an admin panel for managing inventory.",
+    "challenge": "A car marketplace is a different kind of project than a brochure site - it needed a real relational data model (cars, bids, users, orders, cart, wishlist) and bidding logic that has to behave correctly under time pressure: tracking the current highest bid and bidder, counting down to auction close, and preventing stale data from showing the wrong price.",
+    "solution": "Designed an 8-table MySQL schema (cardetails, bids, users, orders, cart, wishlist, products, admins) and built the full PHP application around it - brand/category browsing, a detailed auction page with a live countdown timer and current-highest-bid display, an admin login and management panel, and a Tailwind-based UI on top of it all.",
     "results": [
       "Real-time bidding engine with live highest-bid tracking",
       "8-table relational schema covering the full auction lifecycle",
@@ -741,9 +741,9 @@
     "category": "B2B Portfolio Site",
     "year": "2024",
     "description": "React + Tailwind website for a wealth management and financial advisory firm.",
-    "longDescription": "Built a corporate website for a financial advisory firm covering financial planning, investment management, retirement solutions, and wealth preservation. The brief called for a site that reads as trustworthy and established — the kind of design that reassures a visitor handing over financial decisions to a stranger.",
+    "longDescription": "Built a corporate website for a financial advisory firm covering financial planning, investment management, retirement solutions, and wealth preservation. The brief called for a site that reads as trustworthy and established - the kind of design that reassures a visitor handing over financial decisions to a stranger.",
     "challenge": "Financial services sites have to walk a line: look credible and established without tipping into generic stock-photo corporate cliché, and present four distinct service lines clearly enough that a visitor can self-select into the right one without a phone call.",
-    "solution": "Built a React frontend styled entirely with a custom Tailwind config, structured around a clear service-first information architecture — a hero with a direct value statement, a four-pillar services grid (Financial Planning, Investment Management, Retirement Solutions, Wealth Preservation) repeated as a comparison section, and a testimonials block for social proof.",
+    "solution": "Built a React frontend styled entirely with a custom Tailwind config, structured around a clear service-first information architecture - a hero with a direct value statement, a four-pillar services grid (Financial Planning, Investment Management, Retirement Solutions, Wealth Preservation) repeated as a comparison section, and a testimonials block for social proof.",
     "results": [
       "Four service lines presented with clear self-selection paths",
       "Consistent design system built on custom Tailwind tokens",
@@ -774,8 +774,8 @@
     "category": "B2B Portfolio Site",
     "year": "2024",
     "description": "React + Framer Motion site for a private equity holding company, built with page transitions and motion-driven storytelling.",
-    "longDescription": "Built a corporate site for a private equity group that owns several lines of business under one umbrella. The brief was explicitly about feel as much as function — a confident, cinematic site using motion to communicate scale and global reach, not just a static page of investment categories.",
-    "challenge": "Private equity sites tend to be either dry and text-heavy or flashy without substance. The goal here was a site that felt genuinely premium through motion design — page transitions, scroll-driven reveals — while still clearly communicating the firm's investment focus areas (Global Presence, Strategic Partnerships, Financial Expertise).",
+    "longDescription": "Built a corporate site for a private equity group that owns several lines of business under one umbrella. The brief was explicitly about feel as much as function - a confident, cinematic site using motion to communicate scale and global reach, not just a static page of investment categories.",
+    "challenge": "Private equity sites tend to be either dry and text-heavy or flashy without substance. The goal here was a site that felt genuinely premium through motion design - page transitions, scroll-driven reveals - while still clearly communicating the firm's investment focus areas (Global Presence, Strategic Partnerships, Financial Expertise).",
     "solution": "Built entirely in React with Framer Motion handling page transitions and scroll-triggered animations, layered over full-bleed photography of skylines and business environments to reinforce the 'global reach' positioning. Structured navigation around the firm's core pillars rather than generic page names.",
     "results": [
       "Custom page-transition system built with Framer Motion",
@@ -807,7 +807,7 @@
     "year": "2026",
     "description": "Technical SEO audit, key page redesigns, and a custom job-landings feature for a nonprofit veteran job-placement organization.",
     "longDescription": "Ongoing engagement with Veterans Transition Support, a nonprofit helping veterans move into civilian careers through free job training and mentoring. The work spans a full technical SEO audit, redesigns of several key pages (donors & sponsors, events calendar, donation flow, job submission form), and a custom 'job landings' feature that lets the team log and showcase veteran job placements with an approval workflow.",
-    "challenge": "As a donor- and grant-funded nonprofit, the site needed to be both technically healthy for search visibility and credible to prospective donors and partners — while giving a non-technical team a way to log job placements (the organization's core success metric) without needing a developer involved every time.",
+    "challenge": "As a donor- and grant-funded nonprofit, the site needed to be both technically healthy for search visibility and credible to prospective donors and partners - while giving a non-technical team a way to log job placements (the organization's core success metric) without needing a developer involved every time.",
     "solution": "Ran a full crawl-based technical SEO audit (accessibility, Core Web Vitals, structured data, canonicals, redirects, and 200+ other checks) and used it to drive a prioritized cleanup plan. Delivered redesigns for the donors/sponsors, events, donation, and job submission pages with formal client sign-off on each. Built a custom job-landings board with a submission and admin-approval workflow so the team can publish new veteran placements themselves. Separately scoped a phased growth proposal covering a homepage rebuild, an Events Hub via the Eventbrite API, and automated lead capture.",
     "results": [
       "Full technical SEO audit covering 200+ automated checks",
@@ -839,7 +839,7 @@
     "year": "2026",
     "description": "Accounting & advisory firm website covering IFRS advisory, internal audit, and offshore accounting services.",
     "longDescription": "Rebuilt and fixed a corporate site for KP Global Consultants, an accounting and financial advisory firm offering budgeting & forecasting, IFRS technical advisory, internal audit, and offshore accounting/audit support services. The original site had broken navigation, missing plugin includes, and hardcoded absolute URLs that prevented it from being portable to a new host.",
-    "challenge": "The existing site referenced a hardcoded production domain throughout every page, was missing a script include that broke its homepage slider entirely, and loaded a font over an insecure http:// connection that browsers silently blocked once served over https — all invisible until you actually tried to deploy it somewhere new.",
+    "challenge": "The existing site referenced a hardcoded production domain throughout every page, was missing a script include that broke its homepage slider entirely, and loaded a font over an insecure http:// connection that browsers silently blocked once served over https - all invisible until you actually tried to deploy it somewhere new.",
     "solution": "Converted every hardcoded absolute URL to a relative path across all 10 pages, restored the missing flexslider plugin include that had never actually been wired up, and fixed the mixed-content font request to load over https. Deployed clean to Vercel with a proper clean-URL routing config.",
     "results": [
       "Fixed homepage slider that was silently broken on every page",
@@ -872,7 +872,7 @@
     "year": "2026",
     "description": "Static site rebuild for a nonprofit academic organization, with dead links, broken plugins, and exposed credentials cleaned up.",
     "longDescription": "Took over a nonprofit organization's existing static site, which had accumulated a long tail of front-end bugs: dead links to a removed PHP admin dashboard, unguarded jQuery plugin calls throwing console errors across most pages, missing script includes, and exposed database credentials left in deleted PHP files. Rebuilt it as a clean static frontend deployment.",
-    "challenge": "The site had a PHP/MySQL-backed events CRUD admin panel with hardcoded database and SMTP credentials committed in plaintext — a real security exposure — plus over a dozen separate front-end bugs (missing jQuery includes, wrong script load order, dead image references, unguarded plugin initializations) accumulated across 13 pages.",
+    "challenge": "The site had a PHP/MySQL-backed events CRUD admin panel with hardcoded database and SMTP credentials committed in plaintext - a real security exposure - plus over a dozen separate front-end bugs (missing jQuery includes, wrong script load order, dead image references, unguarded plugin initializations) accumulated across 13 pages.",
     "solution": "Removed the PHP admin backend entirely (out of scope for a static deployment) and deleted the files containing exposed credentials. Systematically swept every page with automated browser testing to find and fix each console error: guarded every jQuery plugin call against missing elements, fixed script load order, rewrote dead links and image references to local assets, and added missing ES-module script attributes.",
     "results": [
       "Removed hardcoded database & SMTP credentials from the codebase",
@@ -905,7 +905,7 @@
     "year": "2026",
     "description": "Healthcare fundraising platform frontend built in React, covering fundraiser creation, case browsing, and donor flows.",
     "longDescription": "A React (Create React App) frontend for ShifaLia, a healthcare-focused fundraising platform where patients can raise funds for medical care and donors can browse and contribute to active cases. The build covers the full public-facing flow: browsing cases, reading updates and articles, and starting a fundraiser.",
-    "challenge": "The production build was failing because CRA treats ESLint warnings as hard build errors under CI, and the project's routing meant any mistyped URL rendered a blank page with no 404 fallback — both invisible in local development but blocking on deployment.",
+    "challenge": "The production build was failing because CRA treats ESLint warnings as hard build errors under CI, and the project's routing meant any mistyped URL rendered a blank page with no 404 fallback - both invisible in local development but blocking on deployment.",
     "solution": "Resolved the CI build-failure by overriding the build command directly rather than relying on a local .env file (which Vercel doesn't upload), and mapped out the app's real routes from its router config to verify every public page renders correctly end to end.",
     "results": [
       "Fixed CI build failure blocking all deployments",

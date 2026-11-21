@@ -8,7 +8,7 @@ export type ContactFormData = {
 };
 
 const SITE_URL = 'https://mumerkhan.com';
-const LIME = '#C8FF00';
+const LIME = '#9FC7B8';
 const INK = '#0A0A0A';
 
 /* All user-supplied form fields get interpolated into raw HTML below,
@@ -135,7 +135,7 @@ export function wrapEmail(bodyHtml: string): string {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td>
-                    <span style="display:inline-block;width:34px;height:34px;border-radius:8px;background:rgba(200,255,0,0.08);border:1px solid rgba(200,255,0,0.3);text-align:center;line-height:34px;font-weight:800;color:${LIME};font-size:13px;">UK</span>
+                    <span style="display:inline-block;width:34px;height:34px;border-radius:8px;background:rgba(159,199,184,0.08);border:1px solid rgba(159,199,184,0.3);text-align:center;line-height:34px;font-weight:800;color:${LIME};font-size:13px;">UK</span>
                   </td>
                   <td align="right">
                     <span style="color:rgba(255,255,255,0.4);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;">mumerkhan.com</span>

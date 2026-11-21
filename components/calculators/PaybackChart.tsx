@@ -1,6 +1,6 @@
 'use client';
 
-/* 12-month cumulative-value line chart with the break-even point marked —
+/* 12-month cumulative-value line chart with the break-even point marked -
    this is the single feature research showed real competitor ROI
    calculators (e.g. Blaron) lean on hardest: visitors trust a curve
    crossing zero far more than a single static number. */
@@ -59,8 +59,8 @@ export default function PaybackChart({
       <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
         <defs>
           <linearGradient id="payback-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#C8FF00" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#C8FF00" stopOpacity="0" />
+            <stop offset="0%" stopColor="#9FC7B8" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#9FC7B8" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -69,7 +69,7 @@ export default function PaybackChart({
 
         {/* Area + line */}
         <path d={areaD} fill="url(#payback-fill)" />
-        <path d={pathD} fill="none" stroke="#C8FF00" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />
+        <path d={pathD} fill="none" stroke="#9FC7B8" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />
 
         {/* Break-even marker */}
         {breakEvenMonth !== null && breakEvenMonth <= months && (
@@ -83,12 +83,12 @@ export default function PaybackChart({
               strokeOpacity={0.3}
               strokeDasharray="4 4"
             />
-            <circle cx={x(breakEvenMonth)} cy={zeroY} r={5} fill="#0A0A0A" stroke="#C8FF00" strokeWidth={2} />
+            <circle cx={x(breakEvenMonth)} cy={zeroY} r={5} fill="#0A0A0A" stroke="#9FC7B8" strokeWidth={2} />
             <text
               x={x(breakEvenMonth)}
               y={padding.top - 4}
               textAnchor="middle"
-              fill="#C8FF00"
+              fill="#9FC7B8"
               fontSize="11"
               fontFamily="var(--font-body)"
               fontWeight={700}

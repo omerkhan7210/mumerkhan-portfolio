@@ -2,17 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Reveal from '@/components/home/Reveal';
+import { PageHero, Split, FaqList, PageClosing } from '@/components/page/Page';
 
 export const metadata: Metadata = {
-  title: 'Pricing — Transparent Web Development Rates',
+  title: 'Web Development Pricing: Fixed Quotes from $499',
   description:
-    'Clear, upfront pricing for web development, WordPress, MERN stack, and automation projects. No hidden costs. View full feature comparison and FAQ.',
+    'Fixed, upfront prices for websites, WooCommerce stores, web apps and n8n automation. Starter $499, Growth $999, custom builds quoted. Full feature comparison and FAQ.',
   alternates: { canonical: 'https://mumerkhan.com/pricing' },
-  openGraph: {
-    title: 'Pricing | Umer Khan — Full Stack Developer',
-    description: 'Transparent web development pricing. Starter $499, Growth $999, Scale custom. Full feature comparison included.',
-    url: 'https://mumerkhan.com/pricing',
-  },
 };
 
 const PLANS = [
@@ -20,7 +17,7 @@ const PLANS = [
     name: 'Starter',
     price: '$499',
     note: 'One-time',
-    tagline: 'A clean, professional web presence — fast.',
+    tagline: 'A clean, professional web presence - fast.',
     highlight: false,
     cta: { label: 'Get started', href: '/contact' },
     features: [
@@ -92,9 +89,9 @@ const PLANS = [
 ];
 
 const FAQS = [
-  { q: 'What\'s included in the price?', a: 'Everything listed in your plan. Design, development, testing, deployment, and post-launch support. Hosting is not included — I recommend Hostinger or DigitalOcean and can set it up as part of the project.' },
+  { q: 'What\'s included in the price?', a: 'Everything listed in your plan. Design, development, testing, deployment, and post-launch support. Hosting is not included - I recommend Hostinger or DigitalOcean and can set it up as part of the project.' },
   { q: 'Do you charge for revisions?', a: 'Revisions within the agreed scope are included as listed. Changes that alter the project scope (new pages, new features) are quoted separately before work begins.' },
-  { q: 'Can I upgrade to a higher plan mid-project?', a: 'Yes — the difference is billed at the point of upgrade. It\'s rare that this happens since we scope everything before work starts.' },
+  { q: 'Can I upgrade to a higher plan mid-project?', a: 'Yes - the difference is billed at the point of upgrade. It\'s rare that this happens since we scope everything before work starts.' },
   { q: 'Do you offer payment plans?', a: 'Yes. All projects are split into two payments: 50% upfront to begin work, 50% on delivery. For Scale projects, milestone-based payments can be arranged.' },
   { q: 'What about ongoing maintenance?', a: 'Monthly maintenance retainers (starting at $99/month) cover WordPress/plugin updates, uptime monitoring, security scans, and one hour of content changes. Ask for details when you enquire.' },
   { q: 'Is hosting included?', a: 'Hosting is not included in the one-time fee, but I\'ll recommend a plan, set up the server, and configure everything as part of the project at no extra charge.' },
@@ -111,191 +108,109 @@ function Check({ value }: { value: string | boolean }) {
   return <span className="font-body text-white/70 text-sm">{value}</span>;
 }
 
+const ADDONS = [
+                { name: 'n8n Automation Setup', price: 'From $350', desc: 'Self-hosted n8n instance + 1 custom workflow built and tested.' },
+                { name: 'Monthly Maintenance', price: '$99 / mo', desc: 'Updates, backups, uptime monitoring, and 1h of content changes.' },
+                { name: 'Extra Revision Round', price: '$80', desc: 'One additional round of revisions on any deliverable.' },
+                { name: 'Figma Design Only', price: 'From $200', desc: 'Figma wireframes and high-fidelity designs, no development.' }
+];
+
+const offerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'Web development packages',
+  itemListElement: PLANS.filter((p) => p.price.startsWith('$')).map((p) => ({
+    '@type': 'Offer',
+    name: `${p.name} website package`,
+    price: p.price.replace(/[^0-9]/g, ''),
+    priceCurrency: 'USD',
+    description: p.tagline,
+    seller: { '@id': 'https://mumerkhan.com/#person' },
+  })),
+};
+
+const cell = (v: string | boolean) => (v === true ? 'Included' : v === false ? '–' : v);
+
 export default function PricingPage() {
   return (
     <>
       <Header />
-      <main className="bg-ink min-h-screen">
-        {/* ── Hero ──────────────────────────────────────────── */}
-        <section className="pt-36 pb-16 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse 80% 50% at 50% -5%, rgba(200,255,0,0.06) 0%, transparent 60%)',
-          }} />
-          <div className="max-w-[1100px] mx-auto px-6 md:px-10 relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-              <span className="font-body text-muted text-xs tracking-[0.12em] uppercase">No hidden fees</span>
-            </div>
-            <h1
-              className="font-sans font-extrabold text-white mb-5"
-              style={{ fontSize: 'clamp(2.6rem, 5.5vw, 5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
-            >
-              Pricing that makes sense
-            </h1>
-            <p className="font-body text-muted mx-auto max-w-lg" style={{ fontSize: 'clamp(1rem, 1.3vw, 1.1rem)', lineHeight: 1.7 }}>
-              Every price is fixed upfront. No billable-hours surprises, no scope-creep invoices. Pick a plan or book a call to get a custom quote.
-            </p>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          crumbs={[{ href: '/pricing', label: 'Pricing' }]}
+          title={['Plain prices,', 'fixed quotes']}
+          image={{ src: '/assets/gallery/v1-campers.webp', w: 1280, h: 720, alt: 'V1 Campers booking website on desktop, laptop and phone' }}
+          lead="Pick the plan that fits, or tell me the project and I’ll quote it. Half up front, half at launch, nothing hidden."
+        >
+          <Link href="/contact" className="btn-lime">Get a fixed quote</Link>
+          <Link href="/tools/website-cost-calculator" className="text-[16px] text-bone underline underline-offset-[6px] decoration-[#9FC7B8] hover:text-jade">Estimate your site first</Link>
+        </PageHero>
 
-        {/* ── Plan cards ────────────────────────────────────── */}
-        <section className="pb-16">
-          <div className="max-w-[1100px] mx-auto px-6 md:px-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {PLANS.map((plan) => (
-                <div
-                  key={plan.name}
-                  className="flex flex-col p-7 rounded-2xl border relative"
-                  style={{
-                    borderColor: plan.highlight ? 'rgba(200,255,0,0.35)' : 'rgba(255,255,255,0.08)',
-                    background: plan.highlight ? 'rgba(200,255,0,0.04)' : 'rgba(255,255,255,0.02)',
-                  }}
-                >
-                  {plan.badge && (
-                    <div
-                      className="absolute -top-3 left-6 font-body text-ink text-xs font-bold px-3 py-1 rounded-full"
-                      style={{ background: '#C8FF00', letterSpacing: '0.06em' }}
-                    >
-                      {plan.badge}
-                    </div>
-                  )}
-                  <p className="font-body text-muted text-xs tracking-[0.1em] uppercase mb-3">{plan.name}</p>
-                  <div className="flex items-baseline gap-2 mb-1">
-                    <span
-                      className="font-sans font-extrabold text-white"
-                      style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', letterSpacing: '-0.04em' }}
-                    >
-                      {plan.price}
-                    </span>
-                    <span className="font-body text-muted text-sm">{plan.note}</span>
-                  </div>
-                  <p className="font-body text-muted text-sm mb-6">{plan.tagline}</p>
-
-                  <Link
-                    href={plan.cta.href}
-                    className={plan.highlight ? 'btn-lime mb-6' : 'btn-outline mb-6'}
-                    style={{ justifyContent: 'center', textAlign: 'center' }}
-                  >
-                    {plan.cta.label}
-                  </Link>
-
-                  <ul className="space-y-3 flex-1">
-                    {plan.features.map((f, i) => (
-                      <li key={i} className="flex items-center justify-between gap-3 py-1 border-b border-white/[0.04] last:border-0">
-                        <span className="font-body text-white/50 text-xs">{f.label}</span>
-                        <Check value={f.value} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Feature comparison table ──────────────────────── */}
-        <section className="pb-16">
-          <div className="max-w-[1100px] mx-auto px-6 md:px-10">
-            <h2
-              className="font-sans font-bold text-white mb-8"
-              style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)', letterSpacing: '-0.025em' }}
-            >
-              Full comparison
-            </h2>
-            <div className="overflow-x-auto rounded-2xl border border-white/[0.07]">
-              <table className="w-full min-w-[600px]">
-                <thead>
-                  <tr className="border-b border-white/[0.07]">
-                    <th className="font-body text-muted text-xs tracking-[0.1em] uppercase text-left px-6 py-4 w-[38%]">Feature</th>
-                    {PLANS.map((p) => (
-                      <th
-                        key={p.name}
-                        className="font-sans font-bold text-sm px-4 py-4 text-center"
-                        style={{ color: p.highlight ? '#C8FF00' : 'rgba(255,255,255,0.75)' }}
-                      >
-                        {p.name}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {PLANS[0].features.map((f, i) => (
-                    <tr key={i} className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors">
-                      <td className="font-body text-white/60 text-sm px-6 py-3.5">{f.label}</td>
-                      {PLANS.map((p) => (
-                        <td key={p.name} className="px-4 py-3.5 text-center">
-                          <Check value={p.features[i].value} />
-                        </td>
-                      ))}
-                    </tr>
+        <section aria-label="Plans" className="mx-auto max-w-[1440px] px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-2">
+          {PLANS.map((p, i) => {
+            const lead = 'badge' in p && p.badge;
+            return (
+              <Reveal key={p.name} data-delay={String(i)} className="flex flex-col p-7 md:p-9" style={{ background: lead ? 'var(--accent)' : 'var(--surface)', color: lead ? 'var(--accent-ink)' : 'var(--ink)' }}>
+                <h2 className="text-[22px] font-medium">{p.name}</h2>
+                <p className="mt-6 tabular-nums" style={{ fontSize: 'clamp(2.75rem, 4.4vw, 4rem)', fontWeight: 600, lineHeight: 1 }}>{p.price}</p>
+                <p className="mt-2 text-[15px]" style={{ opacity: 0.8 }}>{p.note}{lead ? ', and the plan most clients choose' : ''}</p>
+                <p className="mt-6 text-[17px] leading-[1.5]">{p.tagline}</p>
+                <ul className="mt-6 grid gap-1.5 text-[16px]">
+                  {p.features.filter((f) => f.value !== false).slice(0, 7).map((f) => (
+                    <li key={f.label}>{f.value === true ? f.label : `${f.label}: ${f.value}`}</li>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Add-ons ───────────────────────────────────────── */}
-        <section className="pb-16 border-t border-white/[0.05]">
-          <div className="max-w-[1100px] mx-auto px-6 md:px-10 pt-14">
-            <p className="font-body text-lime text-xs tracking-[0.14em] uppercase mb-4">Add-ons</p>
-            <h2
-              className="font-sans font-bold text-white mb-8"
-              style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', letterSpacing: '-0.02em' }}
-            >
-              Extend any plan
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { name: 'n8n Automation Setup', price: 'From $350', desc: 'Self-hosted n8n instance + 1 custom workflow built and tested.' },
-                { name: 'Monthly Maintenance', price: '$99 / mo', desc: 'Updates, backups, uptime monitoring, and 1h of content changes.' },
-                { name: 'Extra Revision Round', price: '$80', desc: 'One additional round of revisions on any deliverable.' },
-                { name: 'Figma Design Only', price: 'From $200', desc: 'Figma wireframes and high-fidelity designs, no development.' },
-              ].map((addon) => (
-                <div
-                  key={addon.name}
-                  className="p-5 rounded-xl border border-white/[0.07] bg-white/[0.02]"
-                >
-                  <p className="font-sans font-bold text-white text-sm mb-1" style={{ letterSpacing: '-0.01em' }}>{addon.name}</p>
-                  <p className="font-body text-lime text-sm mb-2">{addon.price}</p>
-                  <p className="font-body text-muted text-xs leading-relaxed">{addon.desc}</p>
+                </ul>
+                <div className="mt-auto pt-8">
+                  <Link href={p.cta.href} className={lead ? 'btn-dark' : 'btn-lime'}>{p.cta.label}</Link>
                 </div>
-              ))}
-            </div>
-          </div>
+              </Reveal>
+            );
+          })}
         </section>
 
-        {/* ── FAQ ───────────────────────────────────────────── */}
-        <section className="pb-16 border-t border-white/[0.05]">
-          <div className="max-w-[1100px] mx-auto px-6 md:px-10 pt-14">
-            <p className="font-body text-lime text-xs tracking-[0.14em] uppercase mb-4">FAQ</p>
-            <h2
-              className="font-sans font-bold text-white mb-10"
-              style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)', letterSpacing: '-0.025em' }}
-            >
-              Questions about pricing
-            </h2>
-            <div className="max-w-3xl space-y-0 divide-y divide-white/[0.06]">
-              {FAQS.map((faq, i) => (
-                <details key={i} className="group py-5">
-                  <summary className="flex items-center justify-between cursor-pointer list-none">
-                    <span className="font-sans font-semibold text-white/90 pr-8" style={{ fontSize: '0.95rem', letterSpacing: '-0.01em' }}>
-                      {faq.q}
-                    </span>
-                    <span className="w-6 h-6 rounded-full border border-white/15 flex-shrink-0 flex items-center justify-center text-white/40 group-open:rotate-45 transition-transform duration-200" style={{ fontSize: '1rem' }}>
-                      +
-                    </span>
-                  </summary>
-                  <p className="font-body text-muted text-sm leading-relaxed mt-3 pr-8">{faq.a}</p>
-                </details>
-              ))}
-            </div>
+        <Split id="compare" title="Compare plans" intro="Everything each plan includes, line by line.">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[560px] text-left text-[16px]">
+              <thead>
+                <tr style={{ borderBottom: '1px solid #33403C' }}>
+                  <th scope="col" className="py-3 pr-4 font-normal" style={{ color: 'var(--muted)' }}>Feature</th>
+                  {PLANS.map((p) => <th key={p.name} scope="col" className="py-3 px-4 font-medium text-bone">{p.name}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {PLANS[0].features.map((f, row) => (
+                  <tr key={f.label} style={{ borderBottom: '1px solid #26302D' }}>
+                    <th scope="row" className="py-3 pr-4 font-normal text-bone">{f.label}</th>
+                    {PLANS.map((p) => <td key={p.name} className="py-3 px-4" style={{ color: '#C4C7BF' }}>{cell(p.features[row].value)}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </section>
+        </Split>
 
-        <div className="pb-8" />
+        <Split id="addons" title="Add-ons & care" tone="surface">
+          <ul className="grid md:grid-cols-2 gap-x-16 gap-y-6">
+            {ADDONS.map((a) => (
+              <li key={a.name}>
+                <div className="flex items-baseline justify-between gap-4 text-[19px] text-bone">
+                  <span>{a.name}</span>
+                  <span className="tabular-nums whitespace-nowrap">{a.price}</span>
+                </div>
+                <p className="mt-1 text-[16px]" style={{ color: 'var(--muted)' }}>{a.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </Split>
+
+        <Split id="faq" title="Pricing questions">
+          <FaqList faqs={FAQS} />
+        </Split>
+
+        <PageClosing sentence="Not sure which plan fits? Describe the project and I’ll recommend the cheapest option that does the job." />
       </main>
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offerSchema) }} />
     </>
   );
 }

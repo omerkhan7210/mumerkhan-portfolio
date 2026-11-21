@@ -17,10 +17,10 @@ type LaunchTimeframe = 'asap' | '1-2mo' | '3mo-plus' | 'flexible';
 type BudgetRange = 'lt2k' | '2-5k' | '5-10k' | '10k-plus' | 'not-sure';
 
 const PROJECT_TYPES: { id: ProjectType; label: string; sub: string; base: [number, number]; color: string }[] = [
-  { id: 'landing', label: 'Landing Page', sub: '1–3 pages, single focus', base: [300, 600], color: '#C8FF00' },
-  { id: 'marketing', label: 'Marketing Site', sub: '5–10 pages, CMS', base: [600, 1500], color: '#C8FF00' },
-  { id: 'ecommerce', label: 'E-Commerce Store', sub: 'WooCommerce / Shopify-style', base: [2000, 5000], color: '#C8FF00' },
-  { id: 'webapp', label: 'Custom Web App', sub: 'Accounts, dashboard, custom logic', base: [5000, 12000], color: '#C8FF00' },
+  { id: 'landing', label: 'Landing Page', sub: '1–3 pages, single focus', base: [300, 600], color: '#9FC7B8' },
+  { id: 'marketing', label: 'Marketing Site', sub: '5–10 pages, CMS', base: [600, 1500], color: '#9FC7B8' },
+  { id: 'ecommerce', label: 'E-Commerce Store', sub: 'WooCommerce / Shopify-style', base: [2000, 5000], color: '#9FC7B8' },
+  { id: 'webapp', label: 'Custom Web App', sub: 'Accounts, dashboard, custom logic', base: [5000, 12000], color: '#9FC7B8' },
 ];
 
 const ADDONS: { id: string; label: string; cost: [number, number]; color: string }[] = [
@@ -179,7 +179,7 @@ export default function WebsiteCostCalculator() {
 
   return (
     <div>
-      <p style={hintText}>Answer what applies below — your estimate updates instantly as you go.</p>
+      <p style={hintText}>Answer what applies below - your estimate updates instantly as you go.</p>
 
       <Section title="1. Project basics">
         <FieldLabel>What are you building?</FieldLabel>
@@ -367,8 +367,8 @@ export default function WebsiteCostCalculator() {
         <p style={resultLabel}>Estimated cost</p>
         <p style={resultNumber}>${animatedLow.toLocaleString()}–${animatedHigh.toLocaleString()}</p>
         <p style={resultSub}>
-          This is a rough estimate based on your actual scope. Every project is different —{' '}
-          <Link href="/pricing" style={{ color: '#C8FF00' }}>see fixed-fee packages</Link> or get an exact quote below.
+          This is a rough estimate based on your actual scope. Every project is different -{' '}
+          <Link href="/pricing" style={{ color: '#9FC7B8' }}>see fixed-fee packages</Link> or get an exact quote below.
         </p>
 
         <BreakdownBars items={breakdown} />
@@ -412,7 +412,7 @@ function FieldLabel({ children, style }: { children: React.ReactNode; style?: Re
 }
 
 function Highlight({ children }: { children: React.ReactNode }) {
-  return <span style={{ color: '#C8FF00' }}>{children}</span>;
+  return <span style={{ color: '#9FC7B8' }}>{children}</span>;
 }
 
 function ChoiceRow({ options, value, onChange }: { options: { id: string; label: string }[]; value: string; onChange: (v: string) => void }) {
@@ -443,8 +443,8 @@ function Checkbox({ checked }: { checked: boolean }) {
         width: 18,
         height: 18,
         borderRadius: 5,
-        border: checked ? '2px solid #C8FF00' : '2px solid rgba(255,255,255,0.2)',
-        background: checked ? '#C8FF00' : 'transparent',
+        border: checked ? '2px solid #9FC7B8' : '2px solid rgba(255,255,255,0.2)',
+        background: checked ? '#9FC7B8' : 'transparent',
         flexShrink: 0,
       }}
     />
@@ -493,7 +493,7 @@ const sliderStyle: React.CSSProperties = {
   height: 6,
   borderRadius: 3,
   background: 'rgba(255,255,255,0.1)',
-  accentColor: '#C8FF00',
+  accentColor: '#9FC7B8',
   cursor: 'pointer',
 };
 
@@ -511,8 +511,8 @@ const textInputStyle: React.CSSProperties = {
 
 const resultBox: React.CSSProperties = {
   borderRadius: 20,
-  background: 'linear-gradient(135deg, rgba(200,255,0,0.06), rgba(255,255,255,0.02))',
-  border: '1px solid rgba(200,255,0,0.18)',
+  background: 'linear-gradient(135deg, rgba(159,199,184,0.06), rgba(255,255,255,0.02))',
+  border: '1px solid rgba(159,199,184,0.18)',
   padding: 'clamp(24px, 5vw, 40px)',
   textAlign: 'center',
 };
@@ -530,7 +530,7 @@ const resultNumber: React.CSSProperties = {
   fontFamily: 'var(--font-display)',
   fontWeight: 700,
   fontSize: 'clamp(2.4rem, 7vw, 4rem)',
-  color: '#C8FF00',
+  color: '#9FC7B8',
   letterSpacing: '-0.03em',
   lineHeight: 1,
 };
@@ -553,8 +553,8 @@ function optionCard(active: boolean, compact = false): React.CSSProperties {
     textAlign: 'left',
     padding: compact ? '14px 18px' : '18px 20px',
     borderRadius: 14,
-    border: active ? '1.5px solid #C8FF00' : '1.5px solid rgba(255,255,255,0.08)',
-    background: active ? 'rgba(200,255,0,0.07)' : 'rgba(255,255,255,0.02)',
+    border: active ? '1.5px solid #9FC7B8' : '1.5px solid rgba(255,255,255,0.08)',
+    background: active ? 'rgba(159,199,184,0.07)' : 'rgba(255,255,255,0.02)',
     cursor: 'pointer',
     transition: 'border-color 0.2s, background 0.2s',
     minWidth: compact ? 160 : undefined,

@@ -1,6 +1,6 @@
 # Muhammad Umer Khan
 
-> Full Stack Developer based in Karachi, Pakistan, specializing in WordPress development, the MERN stack (MongoDB, Express, React, Node.js), and n8n workflow automation. 6+ years of experience, 80+ completed projects, 100% Job Success Score on Upwork.
+> Freelance web developer based in Karachi, Pakistan, building WordPress and Next.js websites for growing businesses in the US, UK, EU and Australia, plus WooCommerce stores, Figma-to-WordPress builds and n8n workflow automation. 6+ years of experience, 80+ completed projects, 100% Job Success Score on Upwork.
 
 Muhammad Umer Khan builds custom websites, e-commerce stores, full-stack web applications, and workflow automations for small and mid-sized businesses. He works directly with clients as a freelancer (not through an agency), offering fixed-price packages and free estimation tools.
 
@@ -13,6 +13,7 @@ Muhammad Umer Khan builds custom websites, e-commerce stores, full-stack web app
 - [Figma to Web](https://mumerkhan.com/services/figma-to-web): Converting Figma designs into pixel-accurate, responsive code.
 - [UI/UX Design](https://mumerkhan.com/services/ui-ux-design): Interface and experience design in Figma.
 - [SEO & Performance](https://mumerkhan.com/services/seo-performance): Core Web Vitals optimization and on-page SEO.
+- [Trade & Local Service Websites](https://mumerkhan.com/redesign): Websites for roofing, plumbing, HVAC and cleaning companies, with quote paths, job galleries and local service pages.
 - [Website Maintenance](https://mumerkhan.com/services/website-maintenance): Ongoing support, updates, and security monitoring.
 
 ## Free tools

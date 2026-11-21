@@ -1,3 +1,5 @@
+import { newPosts } from './blog-2026';
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -12,11 +14,11 @@ export type BlogPost = {
   content: string;
 };
 
-export const posts: BlogPost[] = [
+const basePosts: BlogPost[] = [
   {
     slug: 'ecommerce-website-cost-in-2026-for-small-businesses-what-actually-changes-the-price',
     title: 'Ecommerce Website Cost in 2026 for Small Businesses: What Actually Changes the Price',
-    seoTitle: 'Ecommerce Website Cost in 2026 for Small Businesses: Real Pricing Guide',
+    seoTitle: 'Ecommerce Website Cost 2026: Small Business Pricing Guide',
     seoDescription:
       'A practical breakdown of ecommerce website cost in 2026 for small businesses, including what affects pricing, common ranges, hidden costs, and when WordPress or custom builds make sense.',
     excerpt:
@@ -32,19 +34,19 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'wordpress-vs-custom-web-development',
-    title: 'WordPress vs Custom Web Development in 2025: Which Is Right for Your Business?',
-    seoTitle: 'WordPress vs Custom Web Development 2025: Cost, Pros & Cons',
+    title: 'WordPress vs Custom Website Design: Which Is Right for Your Business in 2026?',
+    seoTitle: 'WordPress vs Custom Website (2026): Cost, Speed & SEO Compared',
     seoDescription:
-      'WordPress or custom code? A 2025 cost and performance breakdown covering pricing, flexibility, maintenance, and SEO — so you choose the right platform the first time.',
+      'WordPress vs a custom website: real 2026 costs, build times, speed and SEO compared by a developer who builds both - plus a simple rule for choosing.',
     excerpt:
-      'WordPress powers over 43% of the internet. Custom code powers the rest. Here\'s how to decide which camp your next website project belongs in — without the agency sales pitch.',
+      'WordPress powers over 43% of the internet. Custom code powers the rest. Here\'s how to decide which camp your next website project belongs in - without the agency sales pitch.',
     date: '2025-09-10',
     readTime: 7,
     category: 'Web Development',
     tags: ['WordPress', 'Web Development', 'Decision Making', 'CMS'],
     coverGradient: 'from-[#21759b] to-[#0A0A0A]',
     content: `
-<p>Every week I get some version of the same question: <em>"Should I use WordPress or build something custom?"</em> It's a reasonable thing to wonder — and the honest answer is: it depends on your goals, budget, and growth plans. Here's the framework I use to decide for clients.</p>
+<p>Every week I get some version of the same question: <em>"Should I use WordPress or build something custom?"</em> It's a reasonable thing to wonder - and the honest answer is: it depends on your goals, budget, and growth plans. Here's the framework I use to decide for clients.</p>
 
 <div class="stat-row">
   <div class="stat-box"><span class="stat-num">43%</span><span class="stat-label">of all websites run on WordPress</span></div>
@@ -60,18 +62,18 @@ export const posts: BlogPost[] = [
 <ul>
   <li><strong>Marketing sites and blogs:</strong> If your primary goal is publishing content and generating leads, WordPress is almost always the right tool. The CMS is mature, SEO plugins like Rank Math are excellent, and updates are straightforward.</li>
   <li><strong>E-commerce at moderate scale:</strong> WooCommerce handles roughly a quarter of all online stores. For catalogues under ~10,000 SKUs with standard checkout flows, it's robust and well-supported.</li>
-  <li><strong>Tight budgets:</strong> A well-built WordPress site can be delivered faster and cheaper than a custom build doing the same job. If budget is a constraint, that matters — see my <a href="/pricing">transparent pricing breakdown</a> for real numbers.</li>
+  <li><strong>Tight budgets:</strong> A well-built WordPress site can be delivered faster and cheaper than a custom build doing the same job. If budget is a constraint, that matters - see my <a href="/pricing">transparent pricing breakdown</a> for real numbers.</li>
   <li><strong>Clients who need to self-manage:</strong> The Gutenberg editor is genuinely easy to use. If you need your marketing team to update pages without calling a developer, WordPress is the best answer on the market.</li>
 </ul>
 
 <h2>The case for custom development</h2>
 
-<p>Custom development (React, Next.js, Node.js) isn't about prestige — it's about solving problems WordPress can't. Here's when it earns its cost:</p>
+<p>Custom development (React, Next.js, Node.js) isn't about prestige - it's about solving problems WordPress can't. Here's when it earns its cost:</p>
 
 <ul>
-  <li><strong>Complex user interactions:</strong> Real-time dashboards, multi-step configurators, collaborative tools, booking systems with dynamic logic — these fight against WordPress at every turn. A React app built for the job will be faster to build and more reliable to maintain.</li>
+  <li><strong>Complex user interactions:</strong> Real-time dashboards, multi-step configurators, collaborative tools, booking systems with dynamic logic - these fight against WordPress at every turn. A React app built for the job will be faster to build and more reliable to maintain.</li>
   <li><strong>Performance at scale:</strong> Heavily trafficked applications where milliseconds matter need fine-grained control over caching, rendering strategy, and database queries. WordPress's abstraction layers work against you here.</li>
-  <li><strong>Unique UX requirements:</strong> If your competitive advantage is the product experience itself — the interaction model, the animation, the feel — you need code that bends to your design, not a theme that approximates it.</li>
+  <li><strong>Unique UX requirements:</strong> If your competitive advantage is the product experience itself - the interaction model, the animation, the feel - you need code that bends to your design, not a theme that approximates it.</li>
   <li><strong>SaaS and subscription products:</strong> Any product where users have accounts, manage data, and pay recurring fees belongs in a purpose-built stack, not WordPress with a membership plugin bolted on.</li>
 </ul>
 
@@ -98,7 +100,7 @@ export const posts: BlogPost[] = [
 
 <h2>The hybrid approach: headless WordPress</h2>
 
-<p>In practice, many projects benefit from combining both. Headless WordPress — where WordPress handles the CMS and a Next.js frontend renders the pages — gives you the editorial simplicity of WordPress with the performance and flexibility of custom code. It's more expensive to build but often the right call for growing companies. You can read more about the underlying architecture on <a href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noopener noreferrer">the official WordPress REST API documentation</a>.</p>
+<p>In practice, many projects benefit from combining both. Headless WordPress - where WordPress handles the CMS and a Next.js frontend renders the pages - gives you the editorial simplicity of WordPress with the performance and flexibility of custom code. It's more expensive to build but often the right call for growing companies. You can read more about the underlying architecture on <a href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noopener noreferrer">the official WordPress REST API documentation</a>.</p>
 
 <a href="/services/wordpress-development" class="internal-link-card">
   <div><span class="ilc-label">Related service</span><span class="ilc-title">Custom WordPress Development →</span></div>
@@ -106,15 +108,15 @@ export const posts: BlogPost[] = [
 
 <h2>The honest verdict</h2>
 
-<p>If your site is primarily a marketing tool, use WordPress. If your site <em>is</em> the product, go custom. If you're not sure, <a href="/contact">send me a message</a> — I'll give you a straight answer, not one designed to sell you the more expensive option.</p>
+<p>If your site is primarily a marketing tool, use WordPress. If your site <em>is</em> the product, go custom. If you're not sure, <a href="/contact">send me a message</a> - I'll give you a straight answer, not one designed to sell you the more expensive option.</p>
     `,
   },
   {
     slug: 'what-is-n8n-automation',
     title: 'What Is n8n? The Workflow Automation Tool Saving Small Businesses Hours Every Week',
-    seoTitle: 'What Is n8n Automation? Zapier Alternative Guide 2025',
+    seoTitle: 'What Is n8n? A Plain-English Guide for Business Owners (2026)',
     seoDescription:
-      'n8n is a self-hosted workflow automation tool — the open-source Zapier alternative you actually own. Learn what it automates, what it costs, and how to get started.',
+      'n8n is a self-hosted workflow automation tool - the open-source Zapier alternative you actually own. Learn what it automates, what it costs, and how to get started.',
     excerpt:
       'n8n is what Zapier wishes it was: open-source, self-hosted, and free of per-task pricing. Here\'s what it can do for your business in plain English.',
     date: '2025-10-22',
@@ -133,9 +135,9 @@ export const posts: BlogPost[] = [
 
 <h2>What exactly is n8n?</h2>
 
-<p>n8n (pronounced "n-eight-n") is an open-source workflow automation tool. You install it on your own server, and it runs forever at the cost of the server — typically €5–15 per month on a basic VPS. There are no per-task fees, no escalating pricing tiers, no surprise bills at the end of the month. You can read the project's technical documentation on the <a href="https://docs.n8n.io" target="_blank" rel="noopener noreferrer">official n8n docs site</a>.</p>
+<p>n8n (pronounced "n-eight-n") is an open-source workflow automation tool. You install it on your own server, and it runs forever at the cost of the server - typically €5–15 per month on a basic VPS. There are no per-task fees, no escalating pricing tiers, no surprise bills at the end of the month. You can read the project's technical documentation on the <a href="https://docs.n8n.io" target="_blank" rel="noopener noreferrer">official n8n docs site</a>.</p>
 
-<p>Inside n8n, you build workflows using a drag-and-drop visual editor. Each workflow is a series of connected nodes — triggers, actions, conditions, loops. A simple example:</p>
+<p>Inside n8n, you build workflows using a drag-and-drop visual editor. Each workflow is a series of connected nodes - triggers, actions, conditions, loops. A simple example:</p>
 
 <blockquote>When a new lead fills in a contact form → add them to HubSpot CRM → send a personalised welcome email → notify the sales team in Slack → create a follow-up task in Notion.</blockquote>
 
@@ -176,7 +178,7 @@ export const posts: BlogPost[] = [
   </div>
 </div>
 
-<p>Zapier is excellent and the right choice for businesses running a handful of simple automations. But Zapier's pricing scales with task volume — at 50,000+ tasks per month you're looking at $100–500/month or more. n8n on a €10 VPS handles millions of tasks for the same flat cost.</p>
+<p>Zapier is excellent and the right choice for businesses running a handful of simple automations. But Zapier's pricing scales with task volume - at 50,000+ tasks per month you're looking at $100–500/month or more. n8n on a €10 VPS handles millions of tasks for the same flat cost.</p>
 
 <p>Beyond price, n8n gives you something Zapier doesn't: full visibility and control over your data. Every automation runs on your own infrastructure. For businesses in regulated industries or with strict data policies, that's often a requirement, not a preference.</p>
 
@@ -190,9 +192,9 @@ export const posts: BlogPost[] = [
 
 <h2>Is it hard to use?</h2>
 
-<p>n8n's visual editor is genuinely intuitive for anyone comfortable with basic software tools. The complexity comes in writing the business logic — conditional branches, error handling, data transformation. That's where most businesses benefit from having someone build the initial workflows, after which their own team can monitor and make minor edits.</p>
+<p>n8n's visual editor is genuinely intuitive for anyone comfortable with basic software tools. The complexity comes in writing the business logic - conditional branches, error handling, data transformation. That's where most businesses benefit from having someone build the initial workflows, after which their own team can monitor and make minor edits.</p>
 
-<p>If you have manual processes eating hours of your team's time every week, n8n is almost certainly worth investigating. Feel free to <a href="/contact">get in touch</a> — I'm happy to look at your current process and tell you whether automation makes sense, and how it compares to options like <a href="/services/wordpress-development">a WordPress-based workflow</a> if that's part of your stack.</p>
+<p>If you have manual processes eating hours of your team's time every week, n8n is almost certainly worth investigating. Feel free to <a href="/contact">get in touch</a> - I'm happy to look at your current process and tell you whether automation makes sense, and how it compares to options like <a href="/services/wordpress-development">a WordPress-based workflow</a> if that's part of your stack.</p>
     `,
   },
   {
@@ -202,7 +204,7 @@ export const posts: BlogPost[] = [
     seoDescription:
       'Most business websites are actively costing their owners money. Here are the five most common website conversion killers I see in every audit, and how to fix each one.',
     excerpt:
-      'Your website might look fine to you — but to potential clients, it might be sending all the wrong signals. Here are the silent conversion killers I see in almost every audit.',
+      'Your website might look fine to you - but to potential clients, it might be sending all the wrong signals. Here are the silent conversion killers I see in almost every audit.',
     date: '2025-11-05',
     readTime: 8,
     category: 'Strategy',
@@ -217,7 +219,7 @@ export const posts: BlogPost[] = [
   <div class="stat-box"><span class="stat-num">8 sec</span><span class="stat-label">average attention span before bounce</span></div>
 </div>
 
-<h2>1. It loads slowly — and you've stopped noticing</h2>
+<h2>1. It loads slowly - and you've stopped noticing</h2>
 
 <p>Google has published research showing that 53% of mobile users abandon a page that takes longer than 3 seconds to load. But the bigger problem is that you, as the owner, have been looking at your own site for years. Your browser has it cached. You don't experience the load time a first-time visitor does.</p>
 
@@ -227,7 +229,7 @@ export const posts: BlogPost[] = [
 
 <p>"Digital Marketing Agency" is a headline. "More bookings for your restaurant, guaranteed" is a value proposition. The first describes you; the second describes the outcome the client wants.</p>
 
-<p>Most business websites lead with the company's identity. But visitors don't care about you yet — they care about whether you can solve their problem. Review your homepage headline. If it would still be accurate if your competitor used it, it's not specific enough.</p>
+<p>Most business websites lead with the company's identity. But visitors don't care about you yet - they care about whether you can solve their problem. Review your homepage headline. If it would still be accurate if your competitor used it, it's not specific enough.</p>
 
 <h2>3. There's no obvious next step</h2>
 
@@ -256,15 +258,15 @@ export const posts: BlogPost[] = [
 
 <h2>4. The mobile experience is an afterthought</h2>
 
-<p>Over 60% of web traffic is on mobile. Yet many websites were designed desktop-first and "made responsive" as an afterthought — which usually means elements are technically not overlapping, but the experience is awkward. Text too small to read without zooming, buttons too small to tap accurately, forms that span the full width of a 375px screen.</p>
+<p>Over 60% of web traffic is on mobile. Yet many websites were designed desktop-first and "made responsive" as an afterthought - which usually means elements are technically not overlapping, but the experience is awkward. Text too small to read without zooming, buttons too small to tap accurately, forms that span the full width of a 375px screen.</p>
 
-<p>Test your site on an actual phone, not a browser's mobile emulator. The experience is different. Recruit someone who's never seen it and watch them try to complete a simple task — the friction points will become obvious immediately.</p>
+<p>Test your site on an actual phone, not a browser's mobile emulator. The experience is different. Recruit someone who's never seen it and watch them try to complete a simple task - the friction points will become obvious immediately.</p>
 
 <h2>5. You have no social proof above the fold</h2>
 
-<p>Trust is the primary conversion variable for service businesses. Visitors have no prior relationship with you and no way to verify your claims. Social proof — testimonials, client logos, case studies, review scores — does the verification for them.</p>
+<p>Trust is the primary conversion variable for service businesses. Visitors have no prior relationship with you and no way to verify your claims. Social proof - testimonials, client logos, case studies, review scores - does the verification for them.</p>
 
-<p>The mistake is burying social proof at the bottom of the page, where only visitors who are already convinced will see it. Your strongest testimonial or client logo bar should appear in the first screen — before the visitor decides whether to keep reading.</p>
+<p>The mistake is burying social proof at the bottom of the page, where only visitors who are already convinced will see it. Your strongest testimonial or client logo bar should appear in the first screen - before the visitor decides whether to keep reading.</p>
 
 <a href="/services/ui-ux-design" class="internal-link-card">
   <div><span class="ilc-label">Related service</span><span class="ilc-title">UI/UX Design for Conversion →</span></div>
@@ -272,15 +274,15 @@ export const posts: BlogPost[] = [
 
 <h2>What to do next</h2>
 
-<p>Pick one of these five problems and fix it this week. You don't need a full rebuild. Conversion improvements compound — fixing your load time and your headline is often enough to meaningfully shift enquiry volume. If you want a proper audit, <a href="/contact">get in touch</a> and I'll take a look, or browse real before/after results on the <a href="/work">work page</a>.</p>
+<p>Pick one of these five problems and fix it this week. You don't need a full rebuild. Conversion improvements compound - fixing your load time and your headline is often enough to meaningfully shift enquiry volume. If you want a proper audit, <a href="/contact">get in touch</a> and I'll take a look, or browse real before/after results on the <a href="/work">work page</a>.</p>
     `,
   },
   {
     slug: 'how-much-does-a-website-cost',
     title: 'How Much Does a Professional Website Cost in 2025? Real Numbers',
-    seoTitle: 'How Much Does a Website Cost in 2025? Real Pricing Guide',
+    seoTitle: 'Website Cost for Small Business (2026): Real Price Ranges',
     seoDescription:
-      'Transparent website pricing for 2025. From a simple landing page to a full e-commerce store — what you should actually expect to pay, and why quotes vary so much.',
+      'Transparent website pricing for 2025. From a simple landing page to a full e-commerce store - what you should actually expect to pay, and why quotes vary so much.',
     excerpt:
       'Website pricing is notoriously opaque. Quotes range from $200 to $20,000 for "the same thing." Here\'s what actually drives cost, and what you should expect to pay.',
     date: '2025-12-18',
@@ -289,17 +291,17 @@ export const posts: BlogPost[] = [
     tags: ['Website Cost', 'Pricing', 'Budget', 'Web Development'],
     coverGradient: 'from-[#10b981] to-[#0A0A0A]',
     content: `
-<p>The most common question I get before a project quote: <em>"How much does a website actually cost?"</em> Prices online range from $200 on Fiverr to $50,000 from a digital agency — for what sounds like the same deliverable. Here's what's actually going on.</p>
+<p>The most common question I get before a project quote: <em>"How much does a website actually cost?"</em> Prices online range from $200 on Fiverr to $50,000 from a digital agency - for what sounds like the same deliverable. Here's what's actually going on.</p>
 
 <h2>Why prices vary so wildly</h2>
 
-<p>A website is not a commodity. The same brief — "I need a website for my consultancy" — can result in a template with some text swapped out, or a fully custom-designed, performance-optimised site with integrated lead tracking and automation. The difference in outcome is enormous, and the difference in cost reflects that.</p>
+<p>A website is not a commodity. The same brief - "I need a website for my consultancy" - can result in a template with some text swapped out, or a fully custom-designed, performance-optimised site with integrated lead tracking and automation. The difference in outcome is enormous, and the difference in cost reflects that.</p>
 
 <p>The main factors that drive cost are:</p>
 <ul>
   <li><strong>Custom design vs template:</strong> A unique Figma design takes 15–30 hours. A premium theme costs $50. Both can look professional, but one is yours and one looks like 10,000 other sites.</li>
   <li><strong>Number of pages and content complexity:</strong> A 5-page marketing site and a 50-page site with case studies, blog, team directory, and resources are not the same project.</li>
-  <li><strong>Custom functionality:</strong> Booking systems, membership portals, complex filtering, API integrations — each adds significant development hours. This is where <a href="/services/n8n-automation">workflow automation</a> often gets bundled in too.</li>
+  <li><strong>Custom functionality:</strong> Booking systems, membership portals, complex filtering, API integrations - each adds significant development hours. This is where <a href="/services/n8n-automation">workflow automation</a> often gets bundled in too.</li>
   <li><strong>E-commerce:</strong> WooCommerce for 20 products vs a 5,000-SKU store with inventory sync and multiple payment gateways are completely different scopes.</li>
   <li><strong>Ongoing support and maintenance:</strong> A project with a 12-month support retainer naturally costs more upfront than a once-off handoff.</li>
 </ul>
@@ -315,19 +317,19 @@ export const posts: BlogPost[] = [
 </div>
 
 <h3>Landing page / simple portfolio ($300–600)</h3>
-<p>1–3 pages, template-based or lightly customised, basic contact form. Suitable for freelancers or very early-stage businesses. Fast turnaround (3–5 days). SEO basics included. No CMS — content updates require a developer.</p>
+<p>1–3 pages, template-based or lightly customised, basic contact form. Suitable for freelancers or very early-stage businesses. Fast turnaround (3–5 days). SEO basics included. No CMS - content updates require a developer.</p>
 
-<h3>Marketing website — 5–10 pages ($600–1,500)</h3>
+<h3>Marketing website - 5–10 pages ($600–1,500)</h3>
 <p>Custom design, WordPress CMS, mobile-responsive, contact forms, basic SEO, Google Analytics. Suitable for most small businesses. Typical turnaround: 2–3 weeks. See exactly what's included on the <a href="/pricing">Growth plan</a>.</p>
 
 <h3>Business website with custom functionality ($1,500–3,500)</h3>
 <p>Custom design, advanced CMS, booking systems, calculators, API integrations, multi-location content. Suitable for growing businesses with specific operational needs.</p>
 
 <h3>E-commerce store ($2,000–5,000+)</h3>
-<p>WooCommerce, custom product pages, payment gateways, inventory management, order emails, and basic analytics. Price scales with catalogue size and checkout complexity — see the <a href="/services/ecommerce-development">e-commerce development service</a> for a full breakdown.</p>
+<p>WooCommerce, custom product pages, payment gateways, inventory management, order emails, and basic analytics. Price scales with catalogue size and checkout complexity - see the <a href="/services/ecommerce-development">e-commerce development service</a> for a full breakdown.</p>
 
 <h3>Custom web application ($5,000+)</h3>
-<p>React/Node.js, user authentication, database design, admin dashboard. Priced by the feature list — a simple CRUD app might be $5K; a full SaaS product with subscriptions and multi-tenancy is a 6-figure engagement. My <a href="/services/mern-stack-development">MERN stack development service</a> covers this tier.</p>
+<p>React/Node.js, user authentication, database design, admin dashboard. Priced by the feature list - a simple CRUD app might be $5K; a full SaaS product with subscriptions and multi-tenancy is a 6-figure engagement. My <a href="/services/mern-stack-development">MERN stack development service</a> covers this tier.</p>
 
 <h2>The agency markup</h2>
 
@@ -351,11 +353,11 @@ export const posts: BlogPost[] = [
   {
     slug: 'freelancer-vs-agency-website',
     title: 'Freelancer vs Agency: Who Should Build Your Website in 2026?',
-    seoTitle: 'Freelancer vs Agency for Website Development: 2026 Comparison',
+    seoTitle: 'Hire a Freelance Web Developer or an Agency? (2026 Guide)',
     seoDescription:
       'Hiring a freelance developer or a digital agency for your next website? A breakdown of cost, speed, communication, and quality differences to help you decide.',
     excerpt:
-      'The agency-vs-freelancer decision usually comes down to one unexamined assumption: that more people automatically means more reliability. Here\'s when that\'s true — and when it\'s just overhead you\'re paying for.',
+      'The agency-vs-freelancer decision usually comes down to one unexamined assumption: that more people automatically means more reliability. Here\'s when that\'s true - and when it\'s just overhead you\'re paying for.',
     date: '2026-02-12',
     readTime: 6,
     category: 'Hiring',
@@ -372,15 +374,15 @@ export const posts: BlogPost[] = [
 
 <h2>What you're actually paying for at an agency</h2>
 
-<p>An agency quote isn't just developer time — it's a project manager, an account manager, a designer, and a margin on top of all of it. That structure buys you real things: redundancy if someone's on leave, a formal process, and someone whose whole job is keeping your project moving.</p>
+<p>An agency quote isn't just developer time - it's a project manager, an account manager, a designer, and a margin on top of all of it. That structure buys you real things: redundancy if someone's on leave, a formal process, and someone whose whole job is keeping your project moving.</p>
 
-<p>What it doesn't buy you is necessarily better code. The person actually building your site is, in almost every case, a single developer — the same as if you'd hired a freelancer directly. You're paying extra for the layer of people between you and that developer, not for the code itself.</p>
+<p>What it doesn't buy you is necessarily better code. The person actually building your site is, in almost every case, a single developer - the same as if you'd hired a freelancer directly. You're paying extra for the layer of people between you and that developer, not for the code itself.</p>
 
 <h2>What you're actually paying for with a freelancer</h2>
 
 <p>With a freelancer, you're talking directly to the person who builds your site. No account manager translating your feedback, no project manager scheduling a call to discuss a call. Decisions happen in one message instead of three.</p>
 
-<p>The tradeoff is real, though: a freelancer is one person. If they get sick, get busy with another client, or simply aren't very good, there's no internal backup covering for them. That risk is the entire reason agencies can charge what they charge — and the entire reason vetting matters so much more when you're hiring solo.</p>
+<p>The tradeoff is real, though: a freelancer is one person. If they get sick, get busy with another client, or simply aren't very good, there's no internal backup covering for them. That risk is the entire reason agencies can charge what they charge - and the entire reason vetting matters so much more when you're hiring solo.</p>
 
 <div class="compare-grid">
   <div class="compare-card">
@@ -398,7 +400,7 @@ export const posts: BlogPost[] = [
       <li>Budget matters and you don't need agency overhead</li>
       <li>You want direct communication with the person doing the work</li>
       <li>Your project fits within one person's skill set</li>
-      <li>Speed matters — fewer approval layers means faster turnaround</li>
+      <li>Speed matters - fewer approval layers means faster turnaround</li>
     </ul>
   </div>
 </div>
@@ -412,7 +414,7 @@ export const posts: BlogPost[] = [
 <p>Since the freelancer route lives or dies on who you pick, here's what actually separates a reliable hire from a risky one:</p>
 
 <ul>
-  <li><strong>A real portfolio with live links.</strong> Not screenshots — links you can click and test yourself. Anyone can show a Figma mockup; fewer people can show 20+ shipped, working sites.</li>
+  <li><strong>A real portfolio with live links.</strong> Not screenshots - links you can click and test yourself. Anyone can show a Figma mockup; fewer people can show 20+ shipped, working sites.</li>
   <li><strong>Verifiable track record.</strong> A platform like Upwork with a maintained Job Success Score gives you something an agency's "About Us" page can't: a record of actual client outcomes, not marketing copy.</li>
   <li><strong>How they communicate before you've paid them anything.</strong> If response times are slow and answers are vague during the sales conversation, that's the best version of working with them you'll ever get.</li>
   <li><strong>Whether they ask you questions back.</strong> A freelancer who immediately quotes a price without understanding your actual goal is optimizing for closing the deal, not for the result.</li>
@@ -420,9 +422,9 @@ export const posts: BlogPost[] = [
 
 <h2>The honest answer</h2>
 
-<p>For most small-to-medium business websites — marketing sites, e-commerce stores, custom web apps under enterprise scale — a vetted freelancer delivers the same outcome as an agency for a fraction of the cost, with faster communication. The agency premium earns its keep mainly at a scale and complexity most single-business websites never reach.</p>
+<p>For most small-to-medium business websites - marketing sites, e-commerce stores, custom web apps under enterprise scale - a vetted freelancer delivers the same outcome as an agency for a fraction of the cost, with faster communication. The agency premium earns its keep mainly at a scale and complexity most single-business websites never reach.</p>
 
-<p>I work directly with clients with a <a href="https://www.upwork.com/freelancers/muhammadumerk5" target="_blank" rel="noopener">100% Job Success Score on Upwork</a> and a portfolio of <a href="/work">27 shipped projects</a> you can actually click through. If you want to talk through your specific project before deciding either way, <a href="/contact">reach out</a> — I'll tell you honestly if it's a fit.</p>
+<p>I work directly with clients with a <a href="https://www.upwork.com/freelancers/muhammadumerk5" target="_blank" rel="noopener">100% Job Success Score on Upwork</a> and a portfolio of <a href="/work">27 shipped projects</a> you can actually click through. If you want to talk through your specific project before deciding either way, <a href="/contact">reach out</a> - I'll tell you honestly if it's a fit.</p>
     `,
   },
   {
@@ -430,7 +432,7 @@ export const posts: BlogPost[] = [
     title: 'How Long Does It Take to Build a Website in 2026? Realistic Timelines',
     seoTitle: 'How Long Does It Take to Build a Website? 2026 Timeline Guide',
     seoDescription:
-      'Realistic website timelines for 2026 — from a 3-day landing page to a 3-month custom web app. What actually determines how long your project will take.',
+      'Realistic website timelines for 2026 - from a 3-day landing page to a 3-month custom web app. What actually determines how long your project will take.',
     excerpt:
       '"How long will my website take?" is the second most common question I get, right after price. The honest answer depends on five factors most people don\'t think to ask about upfront.',
     date: '2026-04-03',
@@ -454,7 +456,7 @@ export const posts: BlogPost[] = [
   <li><strong>Design approval rounds.</strong> Every round of "actually, can we try a different color" or "let's see three more layout options" adds days. Decisive feedback is the single biggest lever you control.</li>
   <li><strong>Scope and custom functionality.</strong> A contact form takes an hour. A booking system with calendar sync, conditional pricing, and SMS confirmations takes days. Functionality is where timelines genuinely scale.</li>
   <li><strong>Number of revision cycles built into the agreement.</strong> Unlimited revisions sound generous but often extend timelines indefinitely. A defined number of structured revision rounds keeps things moving.</li>
-  <li><strong>How fast you respond.</strong> A developer waiting 4 days for feedback on every milestone adds those 4 days to your calendar — even though zero actual development time was spent.</li>
+  <li><strong>How fast you respond.</strong> A developer waiting 4 days for feedback on every milestone adds those 4 days to your calendar - even though zero actual development time was spent.</li>
 </ul>
 
 <h2>Realistic timelines by project type</h2>
@@ -462,33 +464,33 @@ export const posts: BlogPost[] = [
 <h3>Landing page / single-page site (3–5 days)</h3>
 <p>Template-based or lightly customised, one page, basic contact form. Content needs to be ready before day one for this timeline to hold.</p>
 
-<h3>Marketing website — 5–10 pages (2–3 weeks)</h3>
+<h3>Marketing website - 5–10 pages (2–3 weeks)</h3>
 <p>Custom design, WordPress CMS, mobile-responsive, SEO basics. This is the timeline assuming content is supplied early and feedback turns around within 1–2 business days. See what's actually included at this tier on the <a href="/pricing">pricing page</a>.</p>
 
 <h3>E-commerce store (3–6 weeks)</h3>
-<p>WooCommerce setup, product catalogue import, payment gateway integration, and testing checkout flows properly takes real time — most of it isn't development, it's getting every product, price, and shipping rule correct. Catalogue size is the biggest variable; see the <a href="/services/ecommerce-development">e-commerce development</a> breakdown.</p>
+<p>WooCommerce setup, product catalogue import, payment gateway integration, and testing checkout flows properly takes real time - most of it isn't development, it's getting every product, price, and shipping rule correct. Catalogue size is the biggest variable; see the <a href="/services/ecommerce-development">e-commerce development</a> breakdown.</p>
 
 <h3>Custom web application (2–4+ months)</h3>
-<p>Authentication, database design, an admin dashboard, and business-specific logic. Scoped feature-by-feature rather than by page count — a simple internal tool might land at the low end, a multi-tenant SaaS product runs well beyond four months. My <a href="/services/mern-stack-development">MERN stack development</a> work falls in this tier.</p>
+<p>Authentication, database design, an admin dashboard, and business-specific logic. Scoped feature-by-feature rather than by page count - a simple internal tool might land at the low end, a multi-tenant SaaS product runs well beyond four months. My <a href="/services/mern-stack-development">MERN stack development</a> work falls in this tier.</p>
 
 <a href="/work" class="internal-link-card">
   <div><span class="ilc-label">Real examples</span><span class="ilc-title">See actual delivery timelines across 27 projects →</span></div>
 </a>
 
-<h2>Why timelines slip — and it's rarely the dev</h2>
+<h2>Why timelines slip - and it's rarely the dev</h2>
 
-<p>In my own project history, the single biggest cause of timeline slippage isn't development speed — it's waiting. Waiting for content, waiting for feedback, waiting for a stakeholder to sign off. A developer can usually hit an aggressive deadline if everything needed from the client side arrives on schedule. The moment that stops happening, the calendar — not the code — becomes the bottleneck.</p>
+<p>In my own project history, the single biggest cause of timeline slippage isn't development speed - it's waiting. Waiting for content, waiting for feedback, waiting for a stakeholder to sign off. A developer can usually hit an aggressive deadline if everything needed from the client side arrives on schedule. The moment that stops happening, the calendar - not the code - becomes the bottleneck.</p>
 
 <h2>How to keep your project on schedule</h2>
 
 <ul>
   <li>Have your core content (copy, logo, key images) ready before kickoff, not promised "by next week"</li>
   <li>Agree on a feedback turnaround time upfront (24–48 hours is reasonable) and actually hold to it</li>
-  <li>Limit design decision-makers to one or two people — more approvers means more rounds</li>
+  <li>Limit design decision-makers to one or two people - more approvers means more rounds</li>
   <li>Lock scope before development starts; mid-project "can we also add" requests are the most common source of delay</li>
 </ul>
 
-<p>If you want a realistic timeline for your specific project rather than a generic range, <a href="/contact">tell me what you're building</a> — I'll give you an honest estimate based on scope, not a number designed to win the bid.</p>
+<p>If you want a realistic timeline for your specific project rather than a generic range, <a href="/contact">tell me what you're building</a> - I'll give you an honest estimate based on scope, not a number designed to win the bid.</p>
     `,
   },
   {
@@ -498,14 +500,14 @@ export const posts: BlogPost[] = [
     seoDescription:
       'n8n, Zapier, or Make for business automation? A practical 2026 comparison covering pricing, self-hosting, complexity, and which tool fits which kind of workflow.',
     excerpt:
-      'All three automate your busywork. They are not interchangeable. Here\'s how to pick the right one based on what you\'re actually automating — not which one has the prettiest landing page.',
+      'All three automate your busywork. They are not interchangeable. Here\'s how to pick the right one based on what you\'re actually automating - not which one has the prettiest landing page.',
     date: '2026-06-08',
     readTime: 8,
     category: 'Automation',
     tags: ['n8n', 'Zapier', 'Make', 'Automation', 'Workflow'],
     coverGradient: 'from-[#FB7185] to-[#0A0A0A]',
     content: `
-<p>Zapier, Make, and n8n all promise the same thing — connect your apps, eliminate manual work, save hours every week. They're genuinely not interchangeable, though, and picking the wrong one usually shows up later as either a surprise bill or a workflow you've outgrown.</p>
+<p>Zapier, Make, and n8n all promise the same thing - connect your apps, eliminate manual work, save hours every week. They're genuinely not interchangeable, though, and picking the wrong one usually shows up later as either a surprise bill or a workflow you've outgrown.</p>
 
 <div class="stat-row">
   <div class="stat-box"><span class="stat-num">7,000+</span><span class="stat-label">apps on Zapier's directory</span></div>
@@ -513,23 +515,23 @@ export const posts: BlogPost[] = [
   <div class="stat-box"><span class="stat-num">Per-task</span><span class="stat-label">how Zapier & Make bill, at scale</span></div>
 </div>
 
-<h2>Zapier — best for simple, high-volume integrations</h2>
+<h2>Zapier - best for simple, high-volume integrations</h2>
 
-<p>Zapier's strength is breadth and simplicity: a massive app directory and a "when this happens, do that" model anyone non-technical can build in minutes. It's the right call when your automation is genuinely simple — a new form submission creates a CRM contact, a new sale triggers a Slack message — and you don't want to think about infrastructure at all.</p>
+<p>Zapier's strength is breadth and simplicity: a massive app directory and a "when this happens, do that" model anyone non-technical can build in minutes. It's the right call when your automation is genuinely simple - a new form submission creates a CRM contact, a new sale triggers a Slack message - and you don't want to think about infrastructure at all.</p>
 
-<p>The catch is cost at scale. Zapier bills per task executed, and that adds up fast once you're running thousands of automation steps a month. Complex branching logic also gets clumsy — Zapier wasn't built for workflows with many conditional paths.</p>
+<p>The catch is cost at scale. Zapier bills per task executed, and that adds up fast once you're running thousands of automation steps a month. Complex branching logic also gets clumsy - Zapier wasn't built for workflows with many conditional paths.</p>
 
-<h2>Make (formerly Integromat) — best for visual complexity</h2>
+<h2>Make (formerly Integromat) - best for visual complexity</h2>
 
-<p>Make sits between Zapier and n8n: a visual canvas that handles branching logic and data transformation far better than Zapier, while staying no-code. If your workflow has real complexity — multiple conditional paths, data that needs reshaping mid-flow, several services chained together — Make handles it more gracefully than Zapier without requiring you to write code.</p>
+<p>Make sits between Zapier and n8n: a visual canvas that handles branching logic and data transformation far better than Zapier, while staying no-code. If your workflow has real complexity - multiple conditional paths, data that needs reshaping mid-flow, several services chained together - Make handles it more gracefully than Zapier without requiring you to write code.</p>
 
 <p>It still bills on a usage model (operations rather than raw tasks), so cost at high volume remains a real consideration, just a bit more forgiving than Zapier's.</p>
 
-<h2>n8n — best for control, scale, and cost at volume</h2>
+<h2>n8n - best for control, scale, and cost at volume</h2>
 
-<p>n8n is the odd one out: open-source, and can be self-hosted, which means once it's running, there's no per-task billing ceiling. For a business running high-volume automation — thousands of executions a month — that alone can be the difference between a $20 plan and a $500+ one on a usage-billed competitor.</p>
+<p>n8n is the odd one out: open-source, and can be self-hosted, which means once it's running, there's no per-task billing ceiling. For a business running high-volume automation - thousands of executions a month - that alone can be the difference between a $20 plan and a $500+ one on a usage-billed competitor.</p>
 
-<p>The tradeoff is technical overhead. Self-hosting means someone needs to set up and maintain the instance, and while n8n's visual editor is intuitive for basic flows, real business logic — conditional branches, error handling, custom code steps — benefits from someone who's built workflows like it before. This is exactly the gap I closed on a recent project: <a href="/work/globalremote">GlobalRemote's recruitment platform</a> needed an n8n pipeline that parses uploaded CVs, extracts candidate data, and pushes it into their CRM automatically — eliminating 8+ hours of manual data entry a day.</p>
+<p>The tradeoff is technical overhead. Self-hosting means someone needs to set up and maintain the instance, and while n8n's visual editor is intuitive for basic flows, real business logic - conditional branches, error handling, custom code steps - benefits from someone who's built workflows like it before. This is exactly the gap I closed on a recent project: <a href="/work/globalremote">GlobalRemote's recruitment platform</a> needed an n8n pipeline that parses uploaded CVs, extracts candidate data, and pushes it into their CRM automatically - eliminating 8+ hours of manual data entry a day.</p>
 
 <div class="compare-grid">
   <div class="compare-card">
@@ -562,16 +564,19 @@ export const posts: BlogPost[] = [
 
 <h2>The real cost comparison at scale</h2>
 
-<p>For light usage, the three tools land in a similar price range and the decision comes down to ease of use. The gap opens up at volume: a business running tens of thousands of monthly automation tasks on Zapier or Make can pay hundreds of dollars a month for something that costs only server hosting on a self-hosted n8n instance — typically $5–20/month for a small-to-medium workload. The break-even point where n8n's setup effort pays for itself is usually somewhere in the first one to three months, depending on volume.</p>
+<p>For light usage, the three tools land in a similar price range and the decision comes down to ease of use. The gap opens up at volume: a business running tens of thousands of monthly automation tasks on Zapier or Make can pay hundreds of dollars a month for something that costs only server hosting on a self-hosted n8n instance - typically $5–20/month for a small-to-medium workload. The break-even point where n8n's setup effort pays for itself is usually somewhere in the first one to three months, depending on volume.</p>
 
 <h2>The honest recommendation</h2>
 
-<p>Start with Zapier if you're not sure how much automation you'll actually need — it's the fastest to test an idea with zero commitment. Move to Make once your workflows need real branching logic. Move to n8n once volume or cost makes per-task billing painful, or once you need a level of custom logic the no-code tools can't express.</p>
+<p>Start with Zapier if you're not sure how much automation you'll actually need - it's the fastest to test an idea with zero commitment. Move to Make once your workflows need real branching logic. Move to n8n once volume or cost makes per-task billing painful, or once you need a level of custom logic the no-code tools can't express.</p>
 
-<p>If you're past the "trying it out" stage and want an n8n setup built properly the first time — error handling, retries, and logic that won't break the moment an upstream app changes its API — <a href="/contact">let's talk about your workflow</a>.</p>
+<p>If you're past the "trying it out" stage and want an n8n setup built properly the first time - error handling, retries, and logic that won't break the moment an upstream app changes its API - <a href="/contact">let's talk about your workflow</a>.</p>
     `,
   },
 ];
+
+
+export const posts: BlogPost[] = [...newPosts, ...basePosts];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return posts.find((p) => p.slug === slug);

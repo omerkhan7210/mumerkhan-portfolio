@@ -34,18 +34,18 @@ type Tech = {
 };
 
 const INNER: Tech[] = [
-  { Icon: SiWordpress,  name: 'WordPress', color: '#21759B', years: '4+ yrs', slug: 'wordpress', detail: '50+ sites built — custom themes, bespoke plugins, WP REST API & Elementor Pro builds.' },
-  { Icon: SiReact,      name: 'React',     color: '#61DAFB', years: '3+ yrs', slug: 'react', detail: 'MERN Stack apps — Hooks, Context API, custom hooks, reusable component architecture.' },
+  { Icon: SiWordpress,  name: 'WordPress', color: '#21759B', years: '4+ yrs', slug: 'wordpress', detail: '50+ sites built - custom themes, bespoke plugins, WP REST API & Elementor Pro builds.' },
+  { Icon: SiReact,      name: 'React',     color: '#61DAFB', years: '3+ yrs', slug: 'react', detail: 'MERN Stack apps - Hooks, Context API, custom hooks, reusable component architecture.' },
   { Icon: SiNodedotjs,  name: 'Node.js',   color: '#3C873A', years: '3+ yrs', slug: 'nodejs', detail: 'REST APIs, Express.js middleware, JWT authentication & server-side architecture.' },
-  { Icon: SiMongodb,    name: 'MongoDB',   color: '#47A248', years: '3+ yrs', slug: 'mongodb', detail: 'NoSQL schema design, aggregation pipelines, indexing — MERN Stack data layer.' },
+  { Icon: SiMongodb,    name: 'MongoDB',   color: '#47A248', years: '3+ yrs', slug: 'mongodb', detail: 'NoSQL schema design, aggregation pipelines, indexing - MERN Stack data layer.' },
   { Icon: SiFigma,      name: 'Figma',     color: '#F24E1E', years: 'Daily',  slug: 'figma', detail: 'Pixel-perfect design-to-code conversions, auto-layout, prototyping & client collaboration.' },
   { Icon: SiN8N,        name: 'n8n',       color: '#EA4B71', years: '2+ yrs', slug: 'n8n', detail: 'Workflow automation, API integrations, no-code / low-code business process automation.' },
 ];
 
 const OUTER: Tech[] = [
-  { Icon: SiJavascript,  name: 'JavaScript',   color: '#F7DF1E', years: '6+ yrs', slug: 'javascript', detail: 'Core language — ES6+, async/await, closures, event loop & DOM manipulation.' },
-  { Icon: SiTypescript,  name: 'TypeScript',   color: '#3178C6', years: '2+ yrs', slug: 'typescript', detail: 'Type-safe React/Next.js — interfaces, generics, utility types, strict mode.' },
-  { Icon: SiNextdotjs,   name: 'Next.js',      color: '#FFFFFF', years: '2+ yrs', slug: 'nextjs', detail: 'App Router, SSR, SSG, ISR, API routes — production-grade full-stack deployments.' },
+  { Icon: SiJavascript,  name: 'JavaScript',   color: '#F7DF1E', years: '6+ yrs', slug: 'javascript', detail: 'Core language - ES6+, async/await, closures, event loop & DOM manipulation.' },
+  { Icon: SiTypescript,  name: 'TypeScript',   color: '#3178C6', years: '2+ yrs', slug: 'typescript', detail: 'Type-safe React/Next.js - interfaces, generics, utility types, strict mode.' },
+  { Icon: SiNextdotjs,   name: 'Next.js',      color: '#FFFFFF', years: '2+ yrs', slug: 'nextjs', detail: 'App Router, SSR, SSG, ISR, API routes - production-grade full-stack deployments.' },
   { Icon: SiPhp,         name: 'PHP',           color: '#8993BE', years: '4+ yrs', slug: 'php', detail: 'WordPress custom development, OOP PHP, hooks & filters, WP-CLI, cron jobs.' },
   { Icon: SiTailwindcss, name: 'Tailwind',      color: '#06B6D4', years: '3+ yrs', slug: 'tailwindcss', detail: 'Rapid UI development, custom design system tokens, responsive layout systems.' },
   { Icon: SiWoocommerce, name: 'WooCommerce',   color: '#96588A', years: '3+ yrs', slug: 'woocommerce', detail: 'Full e-commerce builds, custom product types & payment gateway integration.' },
@@ -300,7 +300,7 @@ export default function TechStackSection() {
       const { default: gsap } = await import('gsap');
       gsapInstance = gsap;
 
-      /* Initial 3D state — photo is horizontal (laying flat away from viewer) */
+      /* Initial 3D state - photo is horizontal (laying flat away from viewer) */
       gsap.set(photo, {
         transformPerspective: 1000,
         rotateX: -90,
@@ -438,7 +438,7 @@ export default function TechStackSection() {
               />
             ))}
 
-            {/* Center photo — 3D reveal via GSAP + IntersectionObserver */}
+            {/* Center photo - 3D reveal via GSAP + IntersectionObserver */}
             <div
               ref={photoRef}
               style={{
@@ -449,9 +449,9 @@ export default function TechStackSection() {
                 height: 230,
                 borderRadius: '50%',
                 overflow: 'hidden',
-                border: '2px solid rgba(200,255,0,0.22)',
+                border: '2px solid rgba(159,199,184,0.22)',
                 boxShadow:
-                  '0 0 0 10px rgba(200,255,0,0.04), 0 0 70px rgba(200,255,0,0.14), 0 24px 80px rgba(0,0,0,0.75)',
+                  '0 0 0 10px rgba(159,199,184,0.04), 0 0 70px rgba(159,199,184,0.14), 0 24px 80px rgba(0,0,0,0.75)',
                 zIndex: 20,
                 flexShrink: 0,
               }}
@@ -463,7 +463,7 @@ export default function TechStackSection() {
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
                 priority
               />
-              {/* Vignette — subtle dark fade at the photo edges */}
+              {/* Vignette - subtle dark fade at the photo edges */}
               <div
                 style={{
                   position: 'absolute', inset: 0,
@@ -474,7 +474,7 @@ export default function TechStackSection() {
               />
             </div>
 
-            {/* Orbit rings — fade/scale in after photo via GSAP */}
+            {/* Orbit rings - fade/scale in after photo via GSAP */}
             <div ref={orbitRef} style={{ position: 'absolute', inset: 0 }}>
               <OrbitRing
                 techs={INNER}
@@ -518,8 +518,8 @@ export default function TechStackSection() {
               width: 160, height: 160,
               borderRadius: '50%',
               overflow: 'hidden',
-              border: '2px solid rgba(200,255,0,0.2)',
-              boxShadow: '0 0 50px rgba(200,255,0,0.12)',
+              border: '2px solid rgba(159,199,184,0.2)',
+              boxShadow: '0 0 50px rgba(159,199,184,0.12)',
               position: 'relative',
               flexShrink: 0,
             }}

@@ -154,13 +154,13 @@ export default function SitePreviewModal({ url, title, onClose }: Props) {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.75rem',
-                color: '#C8FF00',
+                color: '#9FC7B8',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 5,
                 padding: '5px 12px',
                 borderRadius: 6,
-                border: '1px solid rgba(200,255,0,0.3)',
+                border: '1px solid rgba(159,199,184,0.3)',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
               }}
@@ -216,7 +216,7 @@ export default function SitePreviewModal({ url, title, onClose }: Props) {
                   height: 36,
                   borderRadius: '50%',
                   border: '2px solid rgba(255,255,255,0.07)',
-                  borderTopColor: '#C8FF00',
+                  borderTopColor: '#9FC7B8',
                   animation: 'spin 0.8s linear infinite',
                 }}
               />
@@ -276,7 +276,7 @@ export default function SitePreviewModal({ url, title, onClose }: Props) {
                   fontSize: '0.85rem',
                   fontWeight: 600,
                   color: '#0A0A0A',
-                  background: '#C8FF00',
+                  background: '#9FC7B8',
                   padding: '10px 24px',
                   borderRadius: 100,
                   textDecoration: 'none',

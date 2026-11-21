@@ -43,8 +43,8 @@ export default function CustomCursor() {
       const target = e.currentTarget as HTMLElement;
       ring.style.width = '52px';
       ring.style.height = '52px';
-      ring.style.borderColor = 'rgba(200,255,0,0.8)';
-      ring.style.background = 'rgba(200,255,0,0.06)';
+      ring.style.borderColor = 'rgba(159,199,184,0.8)';
+      ring.style.background = 'rgba(159,199,184,0.06)';
       dot.style.opacity = '0';
       /* Show "View" label on project cards */
       if (target.dataset.cursorLabel && labelRef.current) {
@@ -56,7 +56,7 @@ export default function CustomCursor() {
     const onLeave = () => {
       ring.style.width = '30px';
       ring.style.height = '30px';
-      ring.style.borderColor = 'rgba(200,255,0,0.5)';
+      ring.style.borderColor = 'rgba(159,199,184,0.5)';
       ring.style.background = 'transparent';
       dot.style.opacity = '1';
       if (labelRef.current) {
@@ -107,7 +107,7 @@ export default function CustomCursor() {
           top: -100,
           width: 8,
           height: 8,
-          background: '#C8FF00',
+          background: '#9FC7B8',
           borderRadius: '50%',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
@@ -125,7 +125,7 @@ export default function CustomCursor() {
           top: -100,
           width: 30,
           height: 30,
-          border: '1px solid rgba(200,255,0,0.5)',
+          border: '1px solid rgba(159,199,184,0.5)',
           borderRadius: '50%',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
@@ -139,7 +139,7 @@ export default function CustomCursor() {
         <span
           ref={labelRef}
           style={{
-            color: '#C8FF00',
+            color: '#9FC7B8',
             fontSize: '9px',
             fontWeight: 700,
             letterSpacing: '0.05em',

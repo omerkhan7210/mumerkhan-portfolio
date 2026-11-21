@@ -11,24 +11,23 @@ import { getTradeCopy, TRADE_OPTIONS } from '@/components/redesign/tradeCopy';
 import { getOfferCopy } from '@/components/redesign/offerCopy';
 
 export const metadata: Metadata = {
-  title: 'Your Free Homepage Concept | Muhammad Umer Khan',
+  title: { absolute: 'Websites for Roofing, HVAC & Plumbing Companies | Free Concept' },
   description:
-    "I already built you a homepage concept — see it first, no payment or obligation. Website redesigns built specifically for HVAC, plumbing, roofing, and cleaning businesses.",
+    "I already built you a homepage concept - see it first, no payment or obligation. Website redesigns built specifically for HVAC, plumbing, roofing, and cleaning businesses.",
   alternates: {
     canonical: 'https://mumerkhan.com/redesign',
   },
   openGraph: {
     title: 'Your Free Homepage Concept | Muhammad Umer Khan',
     description:
-      'Website redesigns built specifically for trade & home service businesses — HVAC, plumbing, roofing, cleaning. See your free concept first.',
+      'Website redesigns built specifically for trade & home service businesses - HVAC, plumbing, roofing, cleaning. See your free concept first.',
     url: 'https://mumerkhan.com/redesign',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Free homepage concept for trade & home service businesses' }],
   },
 };
 
 /* Cold-email links append ?trade=hvac&offer=quote-path&company=Acme+HVAC
    so this page always matches what was actually promised in that specific
-   email (quote-path fix / after-hours capture / homepage concept — see
+   email (quote-path fix / after-hours capture / homepage concept - see
    the outreach playbook) instead of assuming one fixed pitch. Resolved
    server-side so nothing here needs a client-side searchParams hook. */
 export default function RedesignLandingPage({

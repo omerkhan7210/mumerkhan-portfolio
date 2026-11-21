@@ -2,140 +2,61 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Services from '@/components/home/Services';
 import { services } from '@/data/services';
-import { SiWordpress, SiReact, SiN8N, SiFigma } from 'react-icons/si';
-import { FiShoppingCart, FiPenTool, FiTrendingUp, FiShield } from 'react-icons/fi';
-import type { IconType } from 'react-icons';
+import { PageHero, Split, ItemList, PageClosing } from '@/components/page/Page';
+import { SERVICE_SEO } from '@/components/page/serviceSeo';
 
 export const metadata: Metadata = {
-  title: 'Services — Full Stack Development & Design',
+  title: 'Web Development Services: WordPress, Next.js, WooCommerce & n8n',
   description:
-    'WordPress development, MERN stack web apps, n8n automation, Figma-to-web, e-commerce, and UI/UX design. Hire Umer Khan for your next web project.',
+    'Freelance web development services: custom WordPress and Elementor sites, Figma to WordPress, Next.js apps, WooCommerce stores, n8n automation and technical SEO. Fixed quotes.',
   alternates: { canonical: 'https://mumerkhan.com/services' },
-  openGraph: {
-    title: 'Services | Umer Khan — Full Stack Developer',
-    description: 'Six specialist services: WordPress, MERN Stack, n8n Automation, Figma to Web, E-Commerce, and UI/UX Design.',
-    url: 'https://mumerkhan.com/services',
-  },
 };
 
-const SERVICE_ICONS: Record<string, IconType> = {
-  'wordpress-development': SiWordpress,
-  'mern-stack-development': SiReact,
-  'n8n-automation': SiN8N,
-  'figma-to-web': SiFigma,
-  'ecommerce-development': FiShoppingCart,
-  'ui-ux-design': FiPenTool,
-  'seo-performance': FiTrendingUp,
-  'website-maintenance': FiShield,
-};
+const INDUSTRIES = [
+  { title: 'Trades & home services', desc: 'Roofing, plumbing, HVAC, flooring, cleaning and gardening firms that need calls and quote requests.', href: '/redesign' },
+  { title: 'Professional services', desc: 'Consultants, clinics, logistics and B2B firms that need trust, clarity and a clean enquiry path.' },
+  { title: 'E-commerce & bookings', desc: 'Stores and hire businesses that need WooCommerce, deposits, bookings and Stripe payments to just work.' },
+  { title: 'Startups & SaaS', desc: 'Founders who need a fast Next.js marketing site, a dashboard or a first product version.' },
+  { title: 'Agencies', desc: 'White-label Figma to WordPress and Elementor builds, delivered to spec and on time.' },
+  { title: 'Nonprofits & education', desc: 'Community, course and charity sites that volunteers can actually edit.' },
+];
 
-export default function ServicesPage() {
+export default function ServicesIndex() {
   return (
     <>
       <Header />
-      <main className="bg-ink min-h-screen">
-        {/* ── Hero ──────────────────────────────────────────── */}
-        <section className="pt-36 pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,255,0,0.06) 0%, transparent 65%)',
-          }} />
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 relative z-10">
-            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-              <span className="font-body text-muted text-xs tracking-[0.12em] uppercase">What I do</span>
-            </div>
-            <h1
-              className="font-sans font-extrabold text-white mb-6"
-              style={{ fontSize: 'clamp(2.6rem, 5.5vw, 5.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
-            >
-              Services built for{' '}
-              <span className="text-lime">real results</span>
-            </h1>
-            <p className="font-body text-muted max-w-xl" style={{ fontSize: 'clamp(1rem, 1.3vw, 1.15rem)', lineHeight: 1.7 }}>
-              Six specialist services. Every project scoped clearly, delivered on time, and built to perform — not just to look good.
-            </p>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          crumbs={[{ href: '/services', label: 'Services' }]}
+          title={['What I build', 'for you']}
+          image={{ src: '/assets/gallery/kp-global-consultants.webp', w: 1280, h: 720, alt: 'KP Global Consultants website on desktop, laptop and phone' }}
+          lead="Websites, stores, web apps and automations, built by one developer who answers your messages and owns the result."
+        >
+          <Link href="/contact" className="btn-lime">Book a free call</Link>
+          <Link href="/tools/website-cost-calculator" className="text-[16px] text-bone underline underline-offset-[6px] decoration-[#9FC7B8] hover:text-jade">Estimate your project</Link>
+        </PageHero>
 
-        {/* ── Services grid ─────────────────────────────────── */}
-        <section className="pb-24">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {services.map((svc, i) => {
-                const Icon = SERVICE_ICONS[svc.slug];
-                return (
-                <Link
-                  key={svc.slug}
-                  href={`/services/${svc.slug}`}
-                  className="group relative flex flex-col p-7 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all duration-300"
-                  style={{ textDecoration: 'none' }}
-                >
-                  {/* Number */}
-                  <span
-                    className="absolute top-5 right-6 font-body text-white/10 font-bold"
-                    style={{ fontSize: '0.7rem', letterSpacing: '0.08em' }}
-                  >
-                    0{i + 1}
-                  </span>
+        <div>
+          <Services />
+        </div>
 
-                  {/* Icon area */}
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                    style={{
-                      background: `${svc.color}15`,
-                      border: `1px solid ${svc.color}30`,
-                      color: svc.color,
-                    }}
-                  >
-                    {Icon ? <Icon size={20} /> : null}
-                  </div>
+        <Split id="all" title="Every service" intro="Each page lists exactly what’s included, how it runs and what it costs." tone="surface">
+          <ItemList
+            items={services.map((s) => ({
+              title: SERVICE_SEO[s.slug]?.short ?? s.name,
+              desc: s.tagline,
+              href: `/services/${s.slug}`,
+            }))}
+          />
+        </Split>
 
-                  <h2
-                    className="font-sans font-bold text-white mb-2 group-hover:text-lime transition-colors duration-200"
-                    style={{ fontSize: '1.15rem', letterSpacing: '-0.02em' }}
-                  >
-                    {svc.name}
-                  </h2>
-                  <p className="font-body text-muted text-sm leading-relaxed mb-6 flex-1">
-                    {svc.tagline}
-                  </p>
+        <Split id="industries" title="Who I work with">
+          <ItemList items={INDUSTRIES} />
+        </Split>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {svc.tags.slice(0, 3).map((t) => (
-                      <span
-                        key={t}
-                        className="font-body text-white/40 text-xs px-2.5 py-1 rounded-md border border-white/[0.06]"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA link */}
-                  <div className="flex items-center gap-2 font-body text-lime text-sm font-medium">
-                    View service
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                    >
-                      <path d="M7 17L17 7M17 7H7M17 7v10" />
-                    </svg>
-                  </div>
-                </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <div className="pb-8" />
+        <PageClosing />
       </main>
       <Footer />
     </>

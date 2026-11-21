@@ -2,97 +2,73 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactClient from '@/components/ContactClient';
-import ContactSidebar from '@/components/ContactSidebar';
+import { PageHero } from '@/components/page/Page';
+import Reveal from '@/components/home/Reveal';
 
 export const metadata: Metadata = {
-  title: 'Contact | Muhammad Umer Khan — Full Stack Developer',
+  title: 'Hire a Freelance Web Developer: Get a Fixed Quote',
   description:
-    "Let's build something together. Get in touch with Muhammad Umer Khan for WordPress, MERN Stack, automation, or design projects.",
+    'Tell me about your website, store, app or automation project. I reply within 4 hours on weekdays with a plan and a fixed price. Free 20-minute call.',
+  alternates: { canonical: 'https://mumerkhan.com/contact' },
 };
+
+const NEXT = [
+  ['Within 4 hours', 'I read your answers and reply with questions or a first plan.'],
+  ['On a free 20-minute call', 'We agree scope, timeline and what success looks like.'],
+  ['Within 24 hours of the call', 'You get a fixed quote and a dated plan. No obligation.'],
+];
 
 export default function Contact() {
   return (
     <>
       <Header />
-
-      {/* ── Hero ──────────────────────────────────────── */}
-      <section
-        className="relative bg-ink bg-grid-pattern overflow-hidden"
-        style={{ paddingTop: 'clamp(120px,16vw,180px)', paddingBottom: 'clamp(48px,5vw,72px)' }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            right: -80,
-            top: '40%',
-            transform: 'translateY(-50%)',
-            width: 560,
-            height: 560,
-            background: 'radial-gradient(circle, rgba(200,255,0,0.055) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }}
+      <main>
+        <PageHero
+          crumbs={[{ href: '/contact', label: 'Contact' }]}
+          title={['Tell me what', 'you’re building']}
+          image={{ src: '/assets/me/umer-aside.webp', w: 1164, h: 1415, alt: 'Muhammad Umer Khan, freelance web developer', cutout: true }}
+          lead="Four quick questions. I reply within four hours on weekdays with an honest plan and a price."
         />
-        <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 28px', position: 'relative', zIndex: 1 }}>
-          <span className="label-tag" style={{ marginBottom: 16, display: 'inline-flex' }}>
-            Let&apos;s Talk
-          </span>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              color: '#ffffff',
-              fontSize: 'clamp(2.8rem, 8vw, 6rem)',
-              lineHeight: 0.93,
-              letterSpacing: '-0.04em',
-              marginTop: 12,
-            }}
-          >
-            Tell me what<br />
-            <em className="not-italic" style={{ color: '#C8FF00' }}>you&apos;re building.</em>
-          </h1>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              color: 'rgba(255,255,255,0.38)',
-              fontSize: '1rem',
-              maxWidth: 440,
-              lineHeight: 1.65,
-              marginTop: 20,
-            }}
-          >
-            From quick questions to full project briefs — I&apos;m here. Usually reply within 4 hours.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Form + Info ───────────────────────────────── */}
-      <section style={{ background: '#111111', padding: 'clamp(52px,7vw,96px) 28px' }}>
-        <div
-          style={{
-            maxWidth: 1360,
-            margin: '0 auto',
-            display: 'grid',
-            gap: 48,
-          }}
-          className="grid-cols-1 lg:grid-cols-[1fr_340px]"
-        >
-          {/* Multi-step form */}
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.06)',
-              borderRadius: 20,
-              padding: 'clamp(28px,5vw,48px)',
-            }}
-          >
+        <section className="mx-auto max-w-[1440px] px-5 md:px-10 -mt-6 grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-16 pb-24">
+          <div className="lg:col-span-7">
             <ContactClient />
           </div>
-
-          {/* Info sidebar */}
-          <ContactSidebar />
-        </div>
-      </section>
-
+          <aside className="lg:col-span-4 lg:col-start-9 grid gap-10 content-start" aria-label="Other ways to reach me">
+            <Reveal>
+              <h2 className="text-[19px] font-medium text-bone">What happens next</h2>
+              <ol className="mt-4 grid gap-4">
+                {NEXT.map(([t, d]) => (
+                  <li key={t} className="text-[16px] leading-[1.55]">
+                    <span className="text-bone font-medium">{t},</span> <span style={{ color: '#C4C7BF' }}>{d.charAt(0).toLowerCase() + d.slice(1)}</span>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+            <Reveal data-delay="1">
+              <h2 className="text-[19px] font-medium text-bone">Prefer something else?</h2>
+              <ul className="mt-4 grid gap-2 text-[16px]">
+                <li>
+                  <a href="mailto:omerfarooqkhan7210@gmail.com?subject=New%20website%20project" className="text-bone underline underline-offset-4 hover:text-jade break-all">
+                    omerfarooqkhan7210@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.upwork.com/freelancers/muhammadumerk5" target="_blank" rel="noopener noreferrer" className="text-bone underline underline-offset-4 hover:text-jade">
+                    Hire me on Upwork
+                  </a>
+                  <span style={{ color: 'var(--muted)' }}> (100% Job Success)</span>
+                </li>
+              </ul>
+            </Reveal>
+            <Reveal as="figure" data-delay="2" className="p-6" style={{ background: 'var(--surface)' }}>
+              <blockquote className="text-[17px] leading-[1.5] text-bone">
+                “Fast turnaround, zero back-and-forth on revisions. Just clean work delivered exactly as described.”
+              </blockquote>
+              <figcaption className="mt-3 text-[15px]" style={{ color: 'var(--muted)' }}>Tyler W., CEO, United States, via Upwork</figcaption>
+            </Reveal>
+          </aside>
+        </section>
+      </main>
       <Footer />
     </>
   );

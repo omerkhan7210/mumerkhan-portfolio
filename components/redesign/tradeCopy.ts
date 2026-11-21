@@ -1,7 +1,7 @@
 /* Shared trade-personalization data for the /redesign landing page.
    Cold-email links can append ?trade=hvac (etc.) and optionally
    &company=Acme+HVAC so the hero speaks directly to the recipient's
-   industry — the whole point of this page vs. the general homepage. */
+   industry - the whole point of this page vs. the general homepage. */
 
 export type TradeKey = 'hvac' | 'plumbing' | 'roofing' | 'cleaning' | 'electrical';
 

@@ -11,7 +11,7 @@ export default function ShareButton({ url }: { url: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* clipboard API unavailable — silently no-op, button still shows the URL via title */
+      /* clipboard API unavailable - silently no-op, button still shows the URL via title */
     }
   };
 
@@ -22,7 +22,7 @@ export default function ShareButton({ url }: { url: string }) {
       style={{
         fontFamily: 'var(--font-body)',
         fontSize: '0.78rem',
-        color: copied ? '#C8FF00' : 'rgba(255,255,255,0.45)',
+        color: copied ? '#9FC7B8' : 'rgba(255,255,255,0.45)',
         background: 'none',
         border: 'none',
         cursor: 'pointer',

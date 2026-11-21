@@ -1,4 +1,4 @@
-/* Server component — no client JS needed. <details>/<summary> gives a
+/* Server component - no client JS needed. <details>/<summary> gives a
    fully crawlable, accessible accordion, and the FAQPage JSON-LD here
    is what's actually eligible for Google's FAQ rich-result snippets. */
 

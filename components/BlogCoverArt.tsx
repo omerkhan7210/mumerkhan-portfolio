@@ -1,5 +1,5 @@
 /* Abstract editorial cover art rendered as real SVG image content for
-   blog cards/heroes — there's no stock photography in this project, so
+   blog cards/heroes - there's no stock photography in this project, so
    each post gets a distinct generative illustration keyed to its
    category accent color instead of a flat gradient swatch. */
 
