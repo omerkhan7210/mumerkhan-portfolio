@@ -452,4 +452,208 @@ export const newPosts: BlogPost[] = [
 <p>I build Figma designs in Elementor and in custom themes, and clients have called the results pixel-perfect. See the <a href="/services/figma-to-web">Figma to WordPress service</a> and the <a href="/work/novara-md">Novara MD case study</a>, or <a href="/contact">send me your Figma file</a> for a fixed quote.</p>
 `,
   },
+  {
+    slug: 'woocommerce-developer-cost',
+    title: 'WooCommerce Developer Cost in 2026: Hourly Rates, Store Prices and What Moves the Number',
+    seoTitle: 'WooCommerce Developer Cost 2026: Rates & Store Prices',
+    seoDescription:
+      'What a WooCommerce developer costs in 2026: hourly rates by experience, freelancer vs agency store prices, ongoing costs, and how to keep the quote honest.',
+    excerpt:
+      'A WooCommerce store can cost $1,500 or $50,000, and both quotes can be fair. Here is what developers actually charge in 2026, what changes the price, and how to compare quotes without getting burned.',
+    date: '2026-11-21',
+    readTime: 8,
+    category: 'Costs',
+    tags: ['woocommerce developer cost', 'hire woocommerce developer', 'woocommerce store cost', 'woocommerce developer hourly rate', 'woocommerce freelancer vs agency'],
+    coverGradient: 'from-[#9FC7B8] to-[#161C1A]',
+    content: `
+<p>If you have asked three people what a WooCommerce store costs, you probably got three answers that were thousands of dollars apart. That is not always someone overcharging. WooCommerce itself is free; what you pay for is the developer's time, and the time depends almost entirely on what your store has to do.</p>
+<p>This guide gives you the 2026 ranges, explains what pushes a quote up or down, and lists the questions that separate a fair quote from a risky one.</p>
+
+<h2>WooCommerce developer hourly rates in 2026</h2>
+<p>Published rate surveys disagree, so treat these as bands rather than prices:</p>
+<ul>
+<li><strong>Entry-level developers:</strong> roughly $50 to $100 an hour, according to <a href="https://www.codeable.io/blog/woocommere-cost/" rel="noopener" target="_blank">Codeable's 2026 pricing guide</a>.</li>
+<li><strong>Experienced and specialised developers:</strong> $100 to $200+ an hour, from the same guide.</li>
+<li><strong>Offshore developers:</strong> around $20 to $60 an hour (Codeable).</li>
+<li><strong>US freelancers specifically:</strong> one estimator puts the band at <a href="https://projectcostestimator.com/cost/woocommerce/us" rel="noopener" target="_blank">$65 to $175 an hour</a>, with agencies charging roughly 2.2 times freelancer rates.</li>
+</ul>
+<p>Both sources sell development services, so read them as the market's own view of itself. The pattern is consistent though: you pay more per hour for people who have built stores like yours before, and they usually need fewer hours.</p>
+
+<h2>What a WooCommerce store costs to build</h2>
+<table>
+<thead><tr><th>Store type</th><th>Typical range</th><th>What it usually includes</th></tr></thead>
+<tbody>
+<tr><td>Basic store</td><td>$1,500 to $8,000</td><td>A theme adapted to your brand, up to a few dozen products, standard checkout, payments and shipping.</td></tr>
+<tr><td>Mid-level store</td><td>$5,000 to $25,000</td><td>Custom design, product variations or bundles, subscriptions or bookings, a few integrations (email, accounting, inventory).</td></tr>
+<tr><td>Complex store</td><td>$25,000 to $100,000+</td><td>Custom functionality, B2B pricing, ERP or warehouse integrations, large catalogues, multi-currency or multi-site.</td></tr>
+</tbody>
+</table>
+<p>Ranges are from <a href="https://www.codeable.io/blog/woocommere-cost/" rel="noopener" target="_blank">Codeable</a>. For a single comparison point, <a href="https://projectcostestimator.com/cost/woocommerce/us" rel="noopener" target="_blank">ProjectCostEstimator</a> puts a US WooCommerce site at <strong>$1,600 to $6,700 with a freelancer</strong> or <strong>$4,050 to $16,150 with an agency</strong>, built over 4 to 12 weeks. For your own number, try the <a href="/tools/website-cost-calculator">website cost calculator</a>.</p>
+
+<h2>What actually moves the price</h2>
+<h3>1. Product structure, not product count</h3>
+<p>Importing 500 simple products is a spreadsheet job. Twenty products that each have size, colour and material variations with their own prices, stock and images is real work. When you ask for a quote, describe your most complicated product, not your average one.</p>
+
+<h3>2. Checkout rules</h3>
+<p>Deposits, minimum order values, local delivery zones, trade accounts that see different prices, VAT rules for several countries: each one is a set of conditions that has to be built and tested. On the <a href="/work/v1-campers">V1 Campers booking build</a>, for example, most of the effort went into making the deposit screen show real booking totals, not into the design.</p>
+
+<h3>3. Integrations</h3>
+<p>Connecting the store to accounting, a CRM, an inventory system or a fulfilment partner is often the biggest hidden cost. A ready-made plugin may cover it; if not, the developer has to work with that system's API. Ask early which of your tools already have a maintained WooCommerce plugin.</p>
+
+<h3>4. Custom design versus a theme</h3>
+<p>A good theme adapted to your brand is the fastest route to a professional store. A fully custom design costs more, but can be faster and easier to manage if it avoids stacking several plugins to get the look you want.</p>
+
+<h3>5. Migration</h3>
+<p>Moving from Shopify, Wix or an old WooCommerce install means mapping products, customers, orders and URLs, and setting up redirects so you do not lose search rankings. Budget for it separately.</p>
+
+<h2>Costs after launch</h2>
+<ul>
+<li><strong>Hosting:</strong> a store needs better hosting than a brochure site. Cheap shared hosting is the most common cause of slow checkouts.</li>
+<li><strong>Paid plugins and extensions:</strong> subscriptions, bookings, advanced shipping and B2B pricing are often yearly licences.</li>
+<li><strong>Maintenance:</strong> WordPress, WooCommerce and plugin updates, backups and security monitoring. Codeable lists typical retainers of $500 to $3,000 a month for larger stores; small stores usually pay far less. My <a href="/services/website-maintenance">maintenance plans</a> are fixed monthly.</li>
+<li><strong>Payment fees:</strong> charged by Stripe, PayPal and similar, not by WooCommerce.</li>
+</ul>
+
+<h2>Freelancer or agency for WooCommerce?</h2>
+<p>For most small and mid-sized stores, an experienced freelancer is the better value: one person who knows the whole build, at a lower rate. An agency makes sense when you need design, development, copywriting, photography and paid ads run as one project, or when the store is big enough to need a team. There is a longer comparison in <a href="/blog/freelancer-vs-agency-website">Freelancer vs Agency</a>.</p>
+
+<h2>Six questions that keep a quote honest</h2>
+<ol>
+<li><strong>Is the price fixed, and what exactly does it include?</strong> Get the scope in writing: pages, product types, integrations, number of revision rounds.</li>
+<li><strong>Which paid plugins will I need, and who owns the licences?</strong> They should be in your name.</li>
+<li><strong>Will the store use High-Performance Order Storage?</strong> WooCommerce has turned on HPOS by default for new stores since <a href="https://woocommerce.com/document/high-performance-order-storage/" rel="noopener" target="_blank">version 8.2</a>. A developer who does not know what it is has not built many recent stores.</li>
+<li><strong>How will you test checkout?</strong> Look for test orders across payment methods, coupons, shipping zones and mobile.</li>
+<li><strong>What happens after launch?</strong> Ask about the support window and the price of changes after it ends.</li>
+<li><strong>Can I see a live store you built?</strong> Then place a test order on it if you can.</li>
+</ol>
+<p>More questions are in <a href="/blog/questions-to-ask-a-web-developer-before-hiring">21 Questions to Ask a Web Developer Before Hiring</a>.</p>
+
+<h2>Getting a fixed quote</h2>
+<p>I build WooCommerce stores with fixed prices and a written scope, from adapted themes to custom checkout logic. See the <a href="/services/ecommerce-development">ecommerce development service</a>, the <a href="/blog/ecommerce-website-cost-in-2026-for-small-businesses-what-actually-changes-the-price">full ecommerce cost guide</a>, or <a href="/contact">tell me about your store</a> and I will reply with a plan and a price.</p>
+`,
+  },
+  {
+    slug: 'plumbing-website-design',
+    title: 'Plumbing Website Design: 11 Things That Turn Visitors Into Booked Jobs',
+    seoTitle: 'Plumbing Website Design: 11 Features That Get Calls',
+    seoDescription:
+      'What a plumbing website needs to turn searches into calls: one-tap phone, emergency messaging, service and area pages, fast mobile speed and trust signals.',
+    excerpt:
+      'Most plumbing leads arrive as a phone call from someone with water on the floor. A good plumbing website is built around that moment: one tap to call, proof you are local, and a page that loads before they give up.',
+    date: '2026-11-21',
+    readTime: 8,
+    category: 'Trades',
+    tags: ['plumbing website design', 'plumber website', 'plumbing company website', 'website for plumbers', 'plumbing web design'],
+    coverGradient: 'from-[#9FC7B8] to-[#161C1A]',
+    content: `
+<p>A plumbing website has one job: get the right person to call you. The visitor is often stressed, on a phone, and comparing you against two or three other companies in the same search. Design that wins awards does not matter much here. Design that makes calling you the obvious next step does.</p>
+<p>Below are the eleven things that matter most, in the order a homeowner experiences them.</p>
+
+<h2>Why the website matters more than it used to</h2>
+<p>Industry roundups estimate that <a href="https://www.webtonic.io/blog/plumbing-landing-page-statistics" rel="noopener" target="_blank">75 to 85% of plumbing conversions arrive as phone calls</a> rather than forms. The same roundup cites an audit of 47 plumber websites in which roughly a quarter did not show a phone number prominently. These figures come from marketing agencies rather than independent studies, so treat them as direction, not gospel. Still, the direction is clear: the phone number is the product.</p>
+
+<h2>1. A phone number you can tap from the first screen</h2>
+<p>Put the number in the header, make it a tap-to-call link, and keep it visible as the visitor scrolls on mobile. A sticky "Call now" bar at the bottom of the phone screen is the single highest-value element on most trade sites.</p>
+
+<h2>2. Emergency messaging, if you do emergency work</h2>
+<p>If you offer 24/7 call-outs, say so in the first line, not in a paragraph halfway down. "Burst pipe? We can be there in 60 minutes" beats "Welcome to our website". If you do not offer emergency work, say what your response time is instead, so nobody calls expecting something you do not do. The <a href="/work/kanalfuchs">Kanalfuchs drain service site</a> puts its emergency number in view from the very first scroll for exactly this reason.</p>
+
+<h2>3. A headline that names the job and the area</h2>
+<p>"Plumber in Leeds: leaks, boilers, blocked drains" tells both the visitor and Google what you do and where. Vague slogans do neither.</p>
+
+<h2>4. One page per service</h2>
+<p>Drain unblocking, boiler repair, bathroom installs and leak detection are different searches made by different people. A separate page for each lets you rank for each one and answer the questions specific to it: price ranges, how long it takes, what the visitor should do before you arrive.</p>
+
+<h2>5. Service-area pages that are genuinely useful</h2>
+<p>Town pages work when they contain something real: jobs you have done there, local response times, the parts of the area you cover. Copy-pasted pages with the town name swapped are easy for Google to ignore. On the <a href="/work/isg-flooring">ISG Flooring build</a> I created 80 city-by-service pages, each with its own content, so they could rank individually.</p>
+
+<h2>6. Real photos of your team and vans</h2>
+<p>Stock photos of smiling plumbers are instantly recognisable and build no trust. A slightly imperfect photo of your actual van outside an actual house does more. The same goes for before-and-after shots of finished jobs.</p>
+
+<h2>7. Reviews where people decide</h2>
+<p>Put two or three short reviews next to the call button and the booking form, not on a separate testimonials page nobody visits. Link to your Google Business Profile so visitors can see the full count.</p>
+
+<h2>8. Licences, insurance and guarantees</h2>
+<p>Show your licence or registration numbers, insurance, trade body memberships and any workmanship guarantee. These are what separate you from someone on a classifieds site.</p>
+
+<h2>9. Upfront pricing guidance</h2>
+<p>You cannot price every job online, but you can give a call-out fee, an hourly rate or "most drain unblocks cost between X and Y". Visitors who see a price range are more likely to call, and less likely to argue when you arrive.</p>
+
+<h2>10. Speed on a phone</h2>
+<p>A slow site loses the stressed visitor first. Keep images compressed, avoid heavy sliders and video headers, and check the page with Google PageSpeed Insights. If your site is built with Elementor, there is a practical checklist in <a href="/blog/fix-slow-elementor-website">how to fix a slow Elementor website</a>.</p>
+
+<h2>11. A short form and a missed-call safety net</h2>
+<p>Some people cannot call: they are at work, or it is midnight. Offer a form with three or four fields (name, phone, postcode, problem) and reply fast. For the calls you miss while on a job, an automatic text back stops the caller from moving to the next plumber. Here is <a href="/blog/missed-call-text-back-for-contractors">how a missed-call text back works</a>.</p>
+
+<h2>What a plumbing website costs</h2>
+<p>A focused plumbing site with service and area pages usually sits in the small-business range covered in <a href="/blog/how-much-does-a-website-cost">How Much Does a Website Cost?</a>. The biggest cost difference is the number of service and area pages, and whether you need booking or automation behind the form.</p>
+
+<h2>Want a free concept first?</h2>
+<p>I build websites for plumbers, roofers, HVAC and other trades, and I can mock up your homepage before you commit to anything. See <a href="/redesign">the free concept offer for trade businesses</a>, the <a href="/blog/roofing-website-design">roofing</a> and <a href="/blog/hvac-website-design-features">HVAC</a> guides, or <a href="/contact">tell me about your business</a>.</p>
+`,
+  },
+  {
+    slug: 'fix-slow-elementor-website',
+    title: 'How to Fix a Slow Elementor Website: A Practical Checklist',
+    seoTitle: 'How to Fix a Slow Elementor Website (2026 Checklist)',
+    seoDescription:
+      'Why Elementor sites get slow and how to fix them: measure first, cut DOM size with containers, trim plugins and fonts, fix images, hosting and caching.',
+    excerpt:
+      'Elementor is not slow by default, but it makes it very easy to build slow pages. This checklist goes from measuring the problem to the fixes that usually make the biggest difference.',
+    date: '2026-11-21',
+    readTime: 8,
+    category: 'WordPress',
+    tags: ['slow elementor website', 'speed up elementor', 'elementor performance', 'elementor dom size', 'elementor pagespeed'],
+    coverGradient: 'from-[#9FC7B8] to-[#161C1A]',
+    content: `
+<p>"Elementor is slow" is one of the most common complaints about WordPress sites, and it is only half true. Elementor makes it very easy to stack nested sections, add widget plugins and drop in full-size images, and each of those choices adds weight. The good news is that most slow Elementor sites can be made fast without rebuilding them on a different platform.</p>
+
+<h2>Step 1: Measure before you change anything</h2>
+<p>Run the slowest important page (usually the homepage or a service page) through Google PageSpeed Insights, on mobile. Write down three things:</p>
+<ul>
+<li><strong>Largest Contentful Paint (LCP):</strong> how long the main content takes to appear.</li>
+<li><strong>Time to First Byte:</strong> how long the server takes to respond. If this alone is over a second, the problem is hosting or caching, not Elementor.</li>
+<li><strong>"Avoid an excessive DOM size":</strong> how many elements the page has.</li>
+</ul>
+<p>Change one thing at a time and re-test. Some optimisations can break layouts or custom CSS, so work on a staging copy if you have one.</p>
+
+<h2>Step 2: Cut the DOM size</h2>
+<p>Every element on the page has to be built and styled by the browser. Google's Lighthouse starts warning when a page has <a href="https://web.dev/articles/dom-size-and-interactivity" rel="noopener" target="_blank">more than about 800 nodes and flags it as excessive above 1,400</a>. Elementor pages built with old-style sections and columns pass that easily.</p>
+<p>The biggest fix is switching to <strong>Flexbox Containers</strong>. According to <a href="https://elementor.com/blog/elementor-performance/" rel="noopener" target="_blank">Elementor's own performance guide</a>, the old section and column structure wraps each widget in four div elements, while a container needs only two, and deeply nested sections can reach eight levels that containers cut to four or fewer. Elementor recommends three steps:</p>
+<ol>
+<li>convert sections and columns to containers;</li>
+<li>remove containers that only hold one child, and put the child directly in the parent;</li>
+<li>set nested containers to full width where possible, because boxed containers add an extra inner wrapper.</li>
+</ol>
+<p>Elementor includes a converter for old sections. Check each page after converting, because spacing sometimes shifts.</p>
+
+<h2>Step 3: Remove what the page does not use</h2>
+<ul>
+<li><strong>Addon packs:</strong> widget bundles often load their CSS and JavaScript on every page, even if you use one widget. If you only use two widgets from a pack, replace them and remove the plugin.</li>
+<li><strong>Unused Elementor features:</strong> in the Elementor settings, turn off features and experiments you do not use, and turn on the performance options (such as loading CSS as an external file) that your version offers.</li>
+<li><strong>Icon libraries:</strong> loading the full Font Awesome library for five icons is wasteful. Use inline SVG icons where the option exists.</li>
+<li><strong>Fonts:</strong> stick to one or two font families and the weights you actually use. Each extra weight is another file.</li>
+</ul>
+
+<h2>Step 4: Fix images and the hero</h2>
+<p>The hero image is usually the LCP element, so it decides how fast the page feels.</p>
+<ul>
+<li>Serve images in WebP or AVIF at the size they are displayed, not straight from the camera.</li>
+<li>Do not lazy-load the hero image; do lazy-load everything below the fold.</li>
+<li>Replace hero sliders and background videos with one strong image. Sliders are slow and rarely clicked.</li>
+</ul>
+
+<h2>Step 5: Hosting and caching</h2>
+<p>If Time to First Byte is high, no amount of Elementor tuning will fix it. Use hosting with server-side caching and a recent PHP version, add a page-caching plugin if the host does not cache for you, and put a CDN in front of images. Cheap shared hosting is the most common root cause I see.</p>
+
+<h2>Step 6: Keep it fast</h2>
+<p>Sites slow down again as plugins and pages are added. Re-test after every big change, keep plugins updated, and remove anything you stop using. A <a href="/services/website-maintenance">maintenance plan</a> that includes speed checks stops the slow creep.</p>
+
+<h2>When a rebuild is the better answer</h2>
+<p>If a site has dozens of plugins, an outdated theme and pages built from nested sections, converting and cleaning can cost more than rebuilding the key pages properly. A lean Elementor build or a custom theme is often cheaper over the next few years. There is more on that trade-off in <a href="/blog/wordpress-vs-custom-web-development">WordPress vs Custom Website</a> and <a href="/blog/signs-you-need-a-website-redesign">10 signs your website needs a redesign</a>.</p>
+
+<h2>Want someone to do it for you?</h2>
+<p>I fix slow WordPress and Elementor sites and build new ones that start fast. See the <a href="/services/seo-performance">SEO and performance service</a> or <a href="/contact">send me your URL</a> and I will tell you what is slowing it down.</p>
+`,
+  },
 ];
