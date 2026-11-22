@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /.next
+Disallow: /api/
 
 # Explicitly allow AI/answer-engine crawlers (AEO/GEO) — these would
 # already be allowed by the wildcard rule above, but naming them
@@ -12,13 +13,32 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+# ChatGPT search: decides whether pages can be shown and cited in answers
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 User-agent: Google-Extended
