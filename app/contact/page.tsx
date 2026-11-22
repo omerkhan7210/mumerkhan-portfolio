@@ -48,8 +48,8 @@ export default function Contact() {
               <h2 className="text-[19px] font-medium text-bone">Prefer something else?</h2>
               <ul className="mt-4 grid gap-2 text-[16px]">
                 <li>
-                  <a href="mailto:omerfarooqkhan7210@gmail.com?subject=New%20website%20project" className="text-bone underline underline-offset-4 hover:text-jade break-all">
-                    omerfarooqkhan7210@gmail.com
+                  <a href="mailto:umer@mumerkhan.com?subject=New%20website%20project" className="text-bone underline underline-offset-4 hover:text-jade break-all">
+                    umer@mumerkhan.com
                   </a>
                 </li>
                 <li>

@@ -208,7 +208,7 @@ export function PageClosing({
         <p className="text-bone max-w-[34ch]" style={{ fontSize: 'clamp(1.25rem, 1.6vw, 1.375rem)', lineHeight: 1.45 }}>{sentence}</p>
         <div className="mt-6 flex flex-wrap items-baseline gap-6">
           <Link href={action.href} className="btn-lime !py-3 !px-[18px] text-[15px]">{action.label}</Link>
-          <a href="mailto:omerfarooqkhan7210@gmail.com?subject=New%20website%20project" className="text-[15px] text-bone underline underline-offset-4 hover:text-jade">
+          <a href="mailto:umer@mumerkhan.com?subject=New%20website%20project" className="text-[15px] text-bone underline underline-offset-4 hover:text-jade">
             or email me
           </a>
         </div>

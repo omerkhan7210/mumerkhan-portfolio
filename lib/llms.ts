@@ -10,7 +10,7 @@ const INTRO = `# Muhammad Umer Khan
 
 > Freelance web developer (Karachi, Pakistan) building WordPress, Elementor, WooCommerce and Next.js websites and n8n automations for small and mid-sized businesses in the US, UK, EU and Australia. 6+ years of experience, 80+ completed projects, 100% Job Success Score and 5.0 rating on Upwork. Works directly with clients as a freelancer, not an agency, with fixed-price quotes.
 
-Also builds websites for trade and local service businesses (roofing, HVAC, plumbing, landscaping, flooring) with quote paths, job galleries and local service pages. Contact: https://mumerkhan.com/contact`;
+Also builds websites for trade and local service businesses (roofing, HVAC, plumbing, landscaping, flooring) with quote paths, job galleries and local service pages. Contact: umer@mumerkhan.com or https://mumerkhan.com/contact`;
 
 const PROFILES = `## Profiles
 
