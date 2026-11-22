@@ -256,7 +256,7 @@ export function Closing() {
         </p>
         <div className="mt-6 flex flex-wrap items-baseline gap-6">
           <Link href="/contact" className="btn-lime !py-3 !px-[18px] text-[15px]">Book a free call</Link>
-          <a href="mailto:omerfarooqkhan7210@gmail.com?subject=New%20website%20project" className="text-[15px] text-bone underline underline-offset-4 hover:text-jade">
+          <a href="mailto:umer@mumerkhan.com?subject=New%20website%20project" className="text-[15px] text-bone underline underline-offset-4 hover:text-jade">
             or email me
           </a>
         </div>

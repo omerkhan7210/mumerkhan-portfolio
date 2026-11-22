@@ -151,7 +151,7 @@ export function wrapEmail(bodyHtml: string): string {
               <p style="margin:0 0 12px;font-size:12px;color:#888;">Full Stack Developer · Karachi, Pakistan</p>
               <p style="margin:0;font-size:11px;color:#aaa;">
                 <a href="${SITE_URL}" style="color:#aaa;text-decoration:none;">mumerkhan.com</a> ·
-                <a href="mailto:sales@mumerkhan.com" style="color:#aaa;text-decoration:none;">sales@mumerkhan.com</a>
+                <a href="mailto:umer@mumerkhan.com" style="color:#aaa;text-decoration:none;">umer@mumerkhan.com</a>
               </p>
             </td>
           </tr>

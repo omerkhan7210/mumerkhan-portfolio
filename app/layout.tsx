@@ -65,6 +65,7 @@ const graph = {
       url: SITE_URL,
       image: `${SITE_URL}/assets/me/umer-front.webp`,
       jobTitle: 'Freelance Web Developer',
+      email: 'mailto:umer@mumerkhan.com',
       description: DEFAULT_DESC,
       knowsAbout: ['WordPress', 'Elementor', 'WooCommerce', 'Next.js', 'React', 'Figma to WordPress', 'n8n workflow automation', 'Technical SEO', 'Local SEO'],
       address: { '@type': 'PostalAddress', addressLocality: 'Karachi', addressCountry: 'PK' },

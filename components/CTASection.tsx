@@ -111,7 +111,7 @@ export default function CTASection() {
             Let&apos;s Talk
           </Link>
           <a
-            href="mailto:omerfarooqkhan7210@gmail.com"
+            href="mailto:umer@mumerkhan.com"
             className="btn-outline text-base"
             style={{ padding: '16px 36px' }}
           >

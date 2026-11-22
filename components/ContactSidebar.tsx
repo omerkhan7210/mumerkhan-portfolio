@@ -79,7 +79,7 @@ export default function ContactSidebar() {
       {[
         {
           heading: 'Email',
-          body: <InfoLink href="mailto:omerfarooqkhan7210@gmail.com">omerfarooqkhan7210@gmail.com</InfoLink>,
+          body: <InfoLink href="mailto:umer@mumerkhan.com">umer@mumerkhan.com</InfoLink>,
         },
         {
           heading: 'Location',
