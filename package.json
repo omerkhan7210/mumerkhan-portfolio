@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "submit-sitemap": "node -r dotenv/config scripts/submit-sitemap.js dotenv_config_path=.env.local",
+    "indexnow": "node scripts/indexnow.js",
     "gsc-report": "node -r dotenv/config scripts/gsc-report.js dotenv_config_path=.env.local"
   },
   "dependencies": {
