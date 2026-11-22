@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
+/* Share card in the site's dark-room style: deep green-grey ground, bone type,
+   jade accent, square corners, the background-removed portrait standing on the bottom edge. */
 export function SocialCard() {
-  const photoPath = path.join(process.cwd(), 'public', 'assets', 'my_og_image.jpg');
-  const photoBase64 = fs.readFileSync(photoPath).toString('base64');
-  const photoSrc = `data:image/jpeg;base64,${photoBase64}`;
+  const photo = fs.readFileSync(path.join(process.cwd(), 'public', 'assets', 'me', 'umer-og.png')).toString('base64');
 
   return (
     <div
@@ -12,96 +12,51 @@ export function SocialCard() {
         width: '100%',
         height: '100%',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        background: '#0A0A0A',
-        padding: '0 80px',
+        background: '#161C1A',
         position: 'relative',
+        padding: '72px 80px',
       }}
     >
-      {/* Lime glow accent, top-right */}
-      <div
-        style={{
-          position: 'absolute',
-          top: -200,
-          right: -150,
-          width: 700,
-          height: 700,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(159,199,184,0.16) 0%, rgba(159,199,184,0) 65%)',
-        }}
+      {/* Portrait, right side, standing on the bottom edge */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`data:image/png;base64,${photo}`}
+        width={295}
+        height={620}
+        alt=""
+        style={{ position: 'absolute', right: 96, bottom: 0 }}
       />
+      {/* Jade bar under the portrait */}
+      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 10, background: '#9FC7B8', display: 'flex' }} />
 
-      {/* Left: text */}
-      <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 640, zIndex: 1 }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            padding: '8px 18px',
-            borderRadius: 100,
-            border: '1px solid rgba(159,199,184,0.3)',
-            background: 'rgba(159,199,184,0.06)',
-            color: '#9FC7B8',
-            fontSize: 22,
-            fontWeight: 600,
-            marginBottom: 28,
-            alignSelf: 'flex-start',
-          }}
-        >
-          Full Stack Developer
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 700, height: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: 76, fontWeight: 800, color: '#E3E2DA', letterSpacing: '-0.03em', lineHeight: 1.0 }}>
+            Muhammad Umer Khan
+          </div>
+          <div style={{ fontSize: 34, color: '#9FC7B8', marginTop: 26, lineHeight: 1.25 }}>
+            Freelance web developer
+          </div>
+          <div style={{ fontSize: 28, color: '#9AA099', marginTop: 10, lineHeight: 1.35 }}>
+            WordPress, Next.js and n8n automation
+          </div>
         </div>
-        <div
-          style={{
-            fontSize: 64,
-            fontWeight: 800,
-            color: '#ffffff',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.05,
-            marginBottom: 24,
-          }}
-        >
-          Muhammad Umer Khan
-        </div>
-        <div
-          style={{
-            fontSize: 27,
-            color: 'rgba(255,255,255,0.55)',
-            lineHeight: 1.4,
-          }}
-        >
-          WordPress · MERN Stack · n8n Automation
-        </div>
-        <div style={{ display: 'flex', gap: 36, marginTop: 40 }}>
-          {[
-            ['80+', 'Projects'],
-            ['100%', 'Job Success'],
-            ['6+', 'Years'],
-          ].map(([num, label]) => (
-            <div key={label} style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: 36, fontWeight: 800, color: '#9FC7B8', letterSpacing: '-0.02em' }}>{num}</span>
-              <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.4)' }}>{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Right: photo */}
-      <div
-        style={{
-          width: 360,
-          height: 440,
-          borderRadius: 28,
-          overflow: 'hidden',
-          border: '2px solid rgba(159,199,184,0.3)',
-          display: 'flex',
-          flexShrink: 0,
-          zIndex: 1,
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={photoSrc} width={360} height={440} style={{ objectFit: 'cover' }} alt="" />
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', gap: 48 }}>
+            {[
+              ['80+', 'projects'],
+              ['100%', 'Job Success'],
+              ['5.0', 'Upwork rating'],
+            ].map(([num, label]) => (
+              <div key={label} style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: 44, fontWeight: 800, color: '#E3E2DA', letterSpacing: '-0.02em' }}>{num}</span>
+                <span style={{ fontSize: 20, color: '#9AA099' }}>{label}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ fontSize: 24, color: '#E3E2DA', marginTop: 32 }}>mumerkhan.com</div>
+        </div>
       </div>
     </div>
   );
